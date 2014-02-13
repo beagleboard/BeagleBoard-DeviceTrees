@@ -274,6 +274,10 @@
 	};
 };
 
+&i2c2 {
+	clock-frequency = <400000>;
+};
+
 #include "twl4030.dtsi"
 #include "twl4030_omap3.dtsi"
 
