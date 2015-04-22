@@ -464,16 +464,6 @@
 	};
 };
 
-&emif1 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-};
-
-&emif2 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-};
-
 &mcbsp1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcbsp1_pins>;

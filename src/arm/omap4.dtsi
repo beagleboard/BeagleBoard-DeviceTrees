@@ -698,6 +698,7 @@
 			hw-caps-read-idle-ctrl;
 			hw-caps-ll-interface;
 			hw-caps-temp-alert;
+			status = "disabled";
 		};
 
 		emif2: emif@4d000000 {
@@ -710,6 +711,7 @@
 			hw-caps-read-idle-ctrl;
 			hw-caps-ll-interface;
 			hw-caps-temp-alert;
+			status = "disabled";
 		};
 
 		ocp2scp@4a0ad000 {
