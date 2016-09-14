@@ -142,6 +142,7 @@
 	};
 
 	etb@540000000 {
+		status = "disabled";
 		compatible = "arm,coresight-etb10", "arm,primecell";
 		reg = <0x5401b000 0x1000>;
 
@@ -156,6 +157,7 @@
 	};
 
 	etm@54010000 {
+		status = "disabled";
 		compatible = "arm,coresight-etm3x", "arm,primecell";
 		reg = <0x54010000 0x1000>;
 
