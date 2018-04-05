@@ -380,6 +380,8 @@
 	interrupts = <7>; /* NMI */
 	interrupt-parent = <&intc>;
 
+	ti,pmic-shutdown-controller;
+
 	charger {
 		interrupts = <0>, <1>;
 		interrupt-names = "USB", "AC";
@@ -508,8 +510,6 @@
 
 &rtc {
 	system-power-controller;
-	clocks = <&clk_32768_ck>, <&clkdiv32k_ick>;
-	clock-names = "ext-clk", "int-clk";
 };
 
 &dcan1 {
