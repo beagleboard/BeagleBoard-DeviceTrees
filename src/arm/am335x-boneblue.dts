@@ -605,6 +605,8 @@
 	interrupts = <7>; /* NMI */
 	interrupt-parent = <&intc>;
 
+	ti,pmic-shutdown-controller;
+
 	charger {
 		interrupts = <0>, <1>;
 		interrupt-names = "USB", "AC";
@@ -734,8 +736,6 @@
 
 &rtc {
 	system-power-controller;
-	clocks = <&clk_32768_ck>, <&clk_24mhz_clkctrl AM3_CLK_24MHZ_CLKDIV32K_CLKCTRL 0>;
-	clock-names = "ext-clk", "int-clk";
 };
 
 &wkup_m3_ipc {
