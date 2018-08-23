@@ -1,6 +1,9 @@
-// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
  */
 /dts-v1/;
 
@@ -10,18 +13,6 @@
 / {
 	model = "TI OMAP4 PandaBoard-ES";
 	compatible = "ti,omap4-panda-es", "ti,omap4-panda", "ti,omap4460", "ti,omap4430", "ti,omap4";
-};
-
-&emif1 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
-};
-
-&emif2 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
 };
 
 /* Audio routing is differnet between PandaBoard4430 and PandaBoardES */
