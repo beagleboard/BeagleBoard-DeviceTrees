@@ -503,11 +503,13 @@
 &emif1 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
+	status = "ok";
 };
 
 &emif2 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
+	status = "ok";
 };
 
 &keypad {
