@@ -2046,6 +2046,16 @@
 					status = "disabled";
 				};
 
+				eqep0: eqep@180 {
+					compatible = "ti,am33xx-eqep";
+					reg = <0x180 0x80>;
+					clocks = <&l4ls_gclk>;
+					clock-names = "fck";
+					interrupts = <79>;
+					interrupt-names = "eqep0";
+					status = "disabled";
+				};
+
 				ehrpwm0: pwm@200 {
 					compatible = "ti,am3352-ehrpwm",
 						     "ti,am33xx-ehrpwm";
@@ -2099,6 +2109,16 @@
 					status = "disabled";
 				};
 
+				eqep1: eqep@180 {
+					compatible = "ti,am33xx-eqep";
+					reg = <0x180 0x80>;
+					clocks = <&l4ls_gclk>;
+					clock-names = "fck";
+					interrupts = <88>;
+					interrupt-names = "eqep1";
+					status = "disabled";
+				};
+
 				ehrpwm1: pwm@200 {
 					compatible = "ti,am3352-ehrpwm",
 						     "ti,am33xx-ehrpwm";
@@ -2149,6 +2169,16 @@
 					clock-names = "fck";
 					interrupts = <61>;
 					interrupt-names = "ecap2";
+					status = "disabled";
+				};
+
+				eqep2: eqep@180 {
+					compatible = "ti,am33xx-eqep";
+					reg = <0x180 0x80>;
+					clocks = <&l4ls_gclk>;
+					clock-names = "fck";
+					interrupts = <89>;
+					interrupt-names = "eqep2";
 					status = "disabled";
 				};
 
