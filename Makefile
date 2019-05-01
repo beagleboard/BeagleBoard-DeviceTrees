@@ -3,7 +3,7 @@ DTC ?= dtc
 CPP ?= cpp
 KERNEL_VERSION ?= $(shell uname -r)
 
-DTCVERSION = $(shell dtc --version | grep ^Version | sed 's/^.* //g')
+DTCVERSION = $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
 
 MAKEFLAGS += -rR --no-print-directory
 
