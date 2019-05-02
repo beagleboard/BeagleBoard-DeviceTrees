@@ -1,3 +1,5 @@
+#include <dt-bindings/reset/ti-syscon.h>
+
 &l4_wkup {						/* 0x44c00000 */
 	compatible = "ti,am33xx-l4-wkup", "simple-bus";
 	reg = <0x44c00000 0x800>,
@@ -96,10 +98,10 @@
 
 			prcm: prcm@0 {
 				compatible = "ti,am3-prcm", "simple-bus";
-				reg = <0 0x2000>;
+				reg = <0 0xb00>;
 				#address-cells = <1>;
 				#size-cells = <1>;
-				ranges = <0 0 0x2000>;
+				ranges = <0 0 0xb00>;
 
 				prcm_clocks: clocks {
 					#address-cells = <1>;
@@ -107,6 +109,19 @@
 				};
 
 				prcm_clockdomains: clockdomains {
+				};
+
+			};
+
+			prm_per {
+				compatible = "syscon", "simple-bus";
+				reg = <0x0c00 100>;
+				per_rst: reset-controller {
+					compatible = "ti,syscon-reset";
+					#reset-cells = <1>;
+					ti,reset-bits = <
+						0x0 1 0x0 1 0x0 0 (ASSERT_SET | DEASSERT_CLEAR | STATUS_NONE) /* 0: pruss */
+					>;
 				};
 			};
 		};
@@ -792,11 +807,97 @@
 		};
 
 		target-module@300000 {			/* 0x4a300000, ap 9 04.0 */
-			compatible = "ti,sysc";
-			status = "disabled";
+			compatible = "ti,sysc-pruss", "ti,sysc";
+			reg = <0x326000 0x4>,
+			      <0x326004 0x4>;
+			reg-names = "rev", "sysc";
+			ti,no-reset-on-init;
+			/* Domains (P, C): per_pwrdm, pruss_ocp_clkdm */
+			clocks = <&pruss_ocp_clkctrl AM3_PRUSS_OCP_PRUSS_CLKCTRL 0>;
+			clock-names = "fck";
+			/* TODO: Use Reset control for RM_PER_RSTCTRL, bit 1 */
+			resets = <&per_rst 0>;
+
 			#address-cells = <1>;
 			#size-cells = <1>;
 			ranges = <0x0 0x300000 0x80000>;
+
+			pruss: pruss@0 {
+				compatible = "ti,am3356-pruss";
+				reg = <0x0 0x2000>,
+				      <0x2000 0x2000>,
+				      <0x10000 0x3000>;
+				reg-names = "dram0", "dram1",
+					    "shrdram2";
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges;
+				status = "disabled";
+
+				pruss_cfg: cfg@26000 {
+					compatible = "syscon";
+					reg = <0x26000 0x2000>;
+				};
+
+				pruss_iep: iep@2e000 {
+					compatible = "syscon";
+					reg = <0x2e000 0x31c>;
+				};
+
+				pruss_mii_rt: mii_rt@32000 {
+					compatible = "syscon";
+					reg = <0x32000 0x58>;
+				};
+
+				pruss_intc: intc@20000 {
+					compatible = "ti,am3356-pruss-intc";
+					reg = <0x20000 0x2000>;
+					reg-names = "intc";
+					interrupt-controller;
+					#interrupt-cells = <1>;
+					interrupts = <20 21 22 23 24 25 26 27>;
+					interrupt-names = "host2", "host3", "host4",
+							  "host5", "host6", "host7",
+							  "host8", "host9";
+				};
+
+				pru0: pru@34000 {
+					compatible = "ti,am3356-pru";
+					reg = <0x34000 0x2000>,
+					      <0x22000 0x400>,
+					      <0x22400 0x100>;
+					reg-names = "iram", "control", "debug";
+					gpcfg = <&pruss_cfg 0x8>;
+					firmware-name = "am335x-pru0-fw";
+					interrupt-parent = <&pruss_intc>;
+					interrupts = <16>, <17>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pru1: pru@38000 {
+					compatible = "ti,am3356-pru";
+					reg = <0x38000 0x2000>,
+					      <0x24000 0x400>,
+					      <0x24400 0x100>;
+					reg-names = "iram", "control", "debug";
+					gpcfg = <&pruss_cfg 0xc>;
+					firmware-name = "am335x-pru1-fw";
+					interrupt-parent = <&pruss_intc>;
+					interrupts = <18>, <19>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pruss_mdio: mdio@32400 {
+					compatible = "ti,davinci_mdio";
+					reg = <0x32400 0x90>;
+					clocks = <&dpll_core_m4_ck>;
+					clock-names = "fck";
+					bus_freq = <1000000>;
+					#address-cells = <1>;
+					#size-cells = <0>;
+					status = "disabled";
+				};
+			};
 		};
 	};
 };

@@ -122,3 +122,7 @@
 &sham {
 	status = "okay";
 };
+
+&pruss {
+	status = "okay";
+};

@@ -17,6 +17,17 @@
 
 #define SYSC_DRA7_MCAN_ENAWAKEUP	(1 << 4)
 
+/* SYSCONFIG specific to PRUSS */
+#define SYSC_PRUSS_SUB_MWAIT		(1 << 5)
+#define SYSC_PRUSS_STANDBY_INIT		(1 << 4)
+
+#define SYSC_PRUSS_STANDBY_FORCE	(0 << 2)
+#define SYSC_PRUSS_STANDBY_NO		(1 << 2)
+#define SYSC_PRUSS_STANDBY_SMART	(2 << 2)
+#define SYSC_PRUSS_STANDBY_MASK		(3 << 2)
+
+#define SYSC_PRUSS_IDLE_MASK		3
+
 /* SYSCONFIG STANDBYMODE/MIDLEMODE/SIDLEMODE supported by hardware */
 #define SYSC_IDLE_FORCE			0
 #define SYSC_IDLE_NO			1
