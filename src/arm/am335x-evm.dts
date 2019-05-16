@@ -94,7 +94,7 @@
 		};
 	};
 
-	backlight {
+	lcd_bl: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&ecap0 0 50000 0>;
 		brightness-levels = <0 51 53 56 62 75 101 152 255>;
@@ -106,6 +106,7 @@
 		status = "okay";
 		pinctrl-names = "default";
 		pinctrl-0 = <&lcd_pins_s0>;
+		backlight = <&lcd_bl>;
 		panel-info {
 			ac-bias           = <255>;
 			ac-bias-intrpt    = <0>;
@@ -497,6 +498,8 @@
 
 &lcdc {
 	status = "okay";
+
+	blue-and-red-wiring = "crossed";
 };
 
 &elm {
@@ -519,7 +522,12 @@
 	pinctrl-0 = <&nandflash_pins_s0>;
 	ranges = <0 0 0x08000000 0x1000000>;	/* CS0: 16MB for NAND */
 	nand@0,0 {
+		compatible = "ti,omap2-nand";
 		reg = <0 0 4>; /* CS0, offset 0, IO size 4 */
+		interrupt-parent = <&gpmc>;
+		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
+			     <1 IRQ_TYPE_NONE>;	/* termcount */
+		rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 */
 		ti,nand-ecc-opt = "bch8";
 		ti,elm-id = <&elm>;
 		nand-bus-width = <8>;
@@ -538,12 +546,9 @@
 		gpmc,access-ns = <64>;
 		gpmc,rd-cycle-ns = <82>;
 		gpmc,wr-cycle-ns = <82>;
-		gpmc,wait-on-read = "true";
-		gpmc,wait-on-write = "true";
 		gpmc,bus-turnaround-ns = <0>;
 		gpmc,cycle2cycle-delay-ns = <0>;
 		gpmc,clk-activation-ns = <0>;
-		gpmc,wait-monitoring-ns = <0>;
 		gpmc,wr-access-ns = <40>;
 		gpmc,wr-data-mux-bus-ns = <0>;
 		/* MTD partition table */
@@ -638,7 +643,7 @@
 			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
 			regulator-name = "vdd_mpu";
 			regulator-min-microvolt = <912500>;
-			regulator-max-microvolt = <1312500>;
+			regulator-max-microvolt = <1351500>;
 			regulator-boot-on;
 			regulator-always-on;
 		};
@@ -743,8 +748,8 @@
 &mmc3 {
 	/* these are on the crossbar and are outlined in the
 	   xbar-event-map element */
-	dmas = <&edma 12
-		&edma 13>;
+	dmas = <&edma_xbar 12 0 1
+		&edma_xbar 13 0 2>;
 	dma-names = "tx", "rx";
 	status = "okay";
 	vmmc-supply = <&wlan_en_reg>;
@@ -766,11 +771,6 @@
 	};
 };
 
-&edma {
-	ti,edma-xbar-event-map = /bits/ 16 <1 12
-					    2 13>;
-};
-
 &sham {
 	status = "okay";
 };
@@ -783,4 +783,17 @@
 	status = "disabled";	/* Enable only if Profile 1 is selected */
 	pinctrl-names = "default";
 	pinctrl-0 = <&dcan1_pins_default>;
+};
+
+&wkup_m3_ipc {
+	ti,scale-data-fw = "am335x-evm-scale-data.bin";
+};
+
+&rtc {
+	clocks = <&clk_32768_ck>, <&clkdiv32k_ick>;
+	clock-names = "ext-clk", "int-clk";
+};
+
+&sgx {
+	status = "okay";
 };

@@ -50,6 +50,8 @@
 
 #define MODE_SELECT		(1 << 8)
 
+#define MANUAL_MODE		MODE_SELECT
+
 #define PULL_ENA		(0 << 16)
 #define PULL_DIS		(1 << 16)
 #define PULL_UP			(1 << 17)
@@ -67,5 +69,27 @@
 #define PIN_INPUT_PULLUP	(PULL_ENA | INPUT_EN | PULL_UP)
 #define PIN_INPUT_PULLDOWN	(PULL_ENA | INPUT_EN)
 
-#endif
+/*
+ * Macro to allow using the absolute physical address instead of the
+ * padconf registers instead of the offset from padconf base.
+ */
+#define DRA7XX_CORE_IOPAD(pa, val)	(((pa) & 0xffff) - 0x3400) (val)
 
+/* DRA7 IODELAY configuration parameters */
+#define A_DELAY(val)		((val) & 0xFFFF)
+#define G_DELAY(val)		(((val) & 0xFFFF) << 16)
+
+/* DRA72 VIP MUX selection parameters */
+#define VIP_VIN3A		(0x0 << 4)
+#define VIP_VIN5A		(0x1 << 4)
+#define VIP_VIN6A		(0x2 << 4)
+
+#define VIP_VIN4B		(0x0 << 3)
+
+#define VIP_VIN2A		(0x0 << 1)
+#define VIP_VIN4A		(0x1 << 1)
+
+#define VIP_VIN3B		(0x0 << 0)
+#define VIP_VIN2B		(0x1 << 0)
+
+#endif

@@ -70,8 +70,9 @@
 	};
 
 	leds {
-		pinctrl-names = "default";
-		pinctrl-0 = <&user_leds_s0>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&user_leds_default>;
+		pinctrl-1 = <&user_leds_sleep>;
 
 		compatible = "gpio-leds";
 
@@ -133,7 +134,7 @@
 		};
 	};
 
-	backlight {
+	lcd_bl: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&ecap2 0 50000 PWM_POLARITY_INVERTED>;
 		brightness-levels = <0 58 61 66 75 90 125 170 255>;
@@ -168,31 +169,32 @@
 		pinctrl-names = "default", "sleep";
 		pinctrl-0 = <&lcd_pins_default>;
 		pinctrl-1 = <&lcd_pins_sleep>;
+		backlight = <&lcd_bl>;
 		status = "okay";
 		panel-info {
-			ac-bias           = <255>;
-			ac-bias-intrpt    = <0>;
-			dma-burst-sz      = <16>;
-			bpp               = <32>;
-			fdd               = <0x80>;
-			sync-edge         = <0>;
-			sync-ctrl         = <1>;
-			raster-order      = <0>;
-			fifo-th           = <0>;
+			ac-bias		= <255>;
+			ac-bias-intrpt	= <0>;
+			dma-burst-sz	= <16>;
+			bpp		= <32>;
+			fdd		= <0x80>;
+			sync-edge	= <0>;
+			sync-ctrl	= <1>;
+			raster-order	= <0>;
+			fifo-th		= <0>;
 		};
 		display-timings {
 			480x272 {
-				hactive         = <480>;
-				vactive         = <272>;
-				hback-porch     = <43>;
-				hfront-porch    = <8>;
-				hsync-len       = <4>;
-				vback-porch     = <12>;
-				vfront-porch    = <4>;
-				vsync-len       = <10>;
+				hactive		= <480>;
+				vactive		= <272>;
+				hback-porch	= <43>;
+				hfront-porch	= <8>;
+				hsync-len	= <4>;
+				vback-porch	= <12>;
+				vfront-porch	= <4>;
+				vsync-len	= <10>;
 				clock-frequency = <9000000>;
-				hsync-active    = <0>;
-				vsync-active    = <0>;
+				hsync-active	= <0>;
+				vsync-active	= <0>;
 			};
 		};
 	};
@@ -200,7 +202,13 @@
 
 &am33xx_pinmux {
 	pinctrl-names = "default";
-	pinctrl-0 = <&gpio_keys_s0 &clkout2_pin>;
+	pinctrl-0 = <&gpio_keys_s0 &clkout2_pin &ddr3_vtt_toggle>;
+
+	ddr3_vtt_toggle: ddr3_vtt_toggle {
+		pinctrl-single,pins = <
+			0x164 (PIN_OUTPUT | MUX_MODE7)	/* ecap0_in_pwm0_out.gpio0_7 */
+		>;
+	};
 
 	lcd_pins_default: lcd_pins_default {
 		pinctrl-single,pins = <
@@ -268,13 +276,21 @@
 		>;
 	};
 
-
-	user_leds_s0: user_leds_s0 {
+	user_leds_default: user_leds_default {
 		pinctrl-single,pins = <
 			0x10 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad4.gpio1_4 */
 			0x14 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad5.gpio1_5 */
 			0x18 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad6.gpio1_6 */
 			0x1c (PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad7.gpio1_7 */
+		>;
+	};
+
+	user_leds_sleep: user_leds_sleep {
+		pinctrl-single,pins = <
+			0x10 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a5.gpio1_21 */
+			0x14 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a6.gpio1_22 */
+			0x18 (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a7.gpio1_23 */
+			0x1c (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a8.gpio1_24 */
 		>;
 	};
 
@@ -535,6 +551,12 @@
 	};
 };
 
+&wkup_m3_ipc {
+	ti,needs-vtt-toggle;
+	ti,vtt-gpio-pin = <7>;
+	ti,scale-data-fw = "am335x-evm-scale-data.bin";
+};
+
 #include "tps65910.dtsi"
 
 &tps {
@@ -560,7 +582,7 @@
 			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
 			regulator-name = "vdd_mpu";
 			regulator-min-microvolt = <912500>;
-			regulator-max-microvolt = <1312500>;
+			regulator-max-microvolt = <1351500>;
 			regulator-boot-on;
 			regulator-always-on;
 		};
@@ -712,5 +734,16 @@
 };
 
 &lcdc {
-      status = "okay";
+	status = "okay";
+
+	blue-and-red-wiring = "crossed";
+};
+
+&sgx {
+	status = "okay";
+};
+
+&rtc {
+	clocks = <&clk_32768_ck>, <&clkdiv32k_ick>;
+	clock-names = "ext-clk", "int-clk";
 };

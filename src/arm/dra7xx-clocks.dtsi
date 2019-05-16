@@ -98,10 +98,18 @@
 		clock-frequency = <32768>;
 	};
 
-	sys_32k_ck: sys_32k_ck {
+	sys_clk32_crystal_ck: sys_clk32_crystal_ck {
 		#clock-cells = <0>;
 		compatible = "fixed-clock";
 		clock-frequency = <32768>;
+	};
+
+	sys_clk32_pseudo_ck: sys_clk32_pseudo_ck {
+		#clock-cells = <0>;
+		compatible = "fixed-factor-clock";
+		clocks = <&sys_clkin1>;
+		clock-mult = <1>;
+		clock-div = <610>;
 	};
 
 	virt_12000000_ck: virt_12000000_ck {
@@ -330,6 +338,8 @@
 		compatible = "ti,omap4-dpll-clock";
 		clocks = <&sys_clkin1>, <&dpll_dsp_byp_mux>;
 		reg = <0x0234>, <0x0238>, <0x0240>, <0x023c>;
+		assigned-clocks = <&dpll_dsp_ck>;
+		assigned-clock-rates = <600000000>;
 	};
 
 	dpll_dsp_m2_ck: dpll_dsp_m2_ck {
@@ -341,6 +351,8 @@
 		reg = <0x0244>;
 		ti,index-starts-at-one;
 		ti,invert-autoidle-bit;
+		assigned-clocks = <&dpll_dsp_m2_ck>;
+		assigned-clock-rates = <600000000>;
 	};
 
 	iva_dpll_hs_clk_div: iva_dpll_hs_clk_div {
@@ -364,6 +376,8 @@
 		compatible = "ti,omap4-dpll-clock";
 		clocks = <&sys_clkin1>, <&dpll_iva_byp_mux>;
 		reg = <0x01a0>, <0x01a4>, <0x01ac>, <0x01a8>;
+		assigned-clocks = <&dpll_iva_ck>;
+		assigned-clock-rates = <1165000000>;
 	};
 
 	dpll_iva_m2_ck: dpll_iva_m2_ck {
@@ -375,6 +389,8 @@
 		reg = <0x01b0>;
 		ti,index-starts-at-one;
 		ti,invert-autoidle-bit;
+		assigned-clocks = <&dpll_iva_m2_ck>;
+		assigned-clock-rates = <388333334>;
 	};
 
 	iva_dclk: iva_dclk {
@@ -398,6 +414,8 @@
 		compatible = "ti,omap4-dpll-clock";
 		clocks = <&sys_clkin1>, <&dpll_gpu_byp_mux>;
 		reg = <0x02d8>, <0x02dc>, <0x02e4>, <0x02e0>;
+		assigned-clocks = <&dpll_gpu_ck>;
+		assigned-clock-rates = <1277000000>;
 	};
 
 	dpll_gpu_m2_ck: dpll_gpu_m2_ck {
@@ -409,6 +427,8 @@
 		reg = <0x02e8>;
 		ti,index-starts-at-one;
 		ti,invert-autoidle-bit;
+		assigned-clocks = <&dpll_gpu_m2_ck>;
+		assigned-clock-rates = <425666667>;
 	};
 
 	dpll_core_m2_ck: dpll_core_m2_ck {
@@ -651,6 +671,8 @@
 		reg = <0x0248>;
 		ti,index-starts-at-one;
 		ti,invert-autoidle-bit;
+		assigned-clocks = <&dpll_dsp_m3x2_ck>;
+		assigned-clock-rates = <400000000>;
 	};
 
 	dpll_gmac_x2_ck: dpll_gmac_x2_ck {
@@ -783,6 +805,8 @@
 		clocks = <&dpll_abe_m2x2_ck>, <&dpll_core_h22x2_ck>;
 		ti,bit-shift = <24>;
 		reg = <0x0520>;
+		assigned-clocks = <&ipu1_gfclk_mux>;
+		assigned-clock-parents = <&dpll_core_h22x2_ck>;
 	};
 
 	mcasp1_ahclkr_mux: mcasp1_ahclkr_mux {
@@ -993,6 +1017,14 @@
 		ti,max-div = <64>;
 		reg = <0x019c>;
 		ti,index-power-of-two;
+	};
+
+	gmac_main_clk: gmac_main_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-factor-clock";
+		clocks = <&gmac_250m_dclk_div>;
+		clock-mult = <1>;
+		clock-div = <2>;
 	};
 
 	l3init_480m_dclk_div: l3init_480m_dclk_div {
@@ -1710,13 +1742,12 @@
 		reg = <0x0c00>;
 	};
 
-	gmac_gmii_ref_clk_div: gmac_gmii_ref_clk_div {
+	rmii_50mhz_clk_mux: rmii_50mhz_clk_mux@13d0 {
 		#clock-cells = <0>;
-		compatible = "ti,divider-clock";
-		clocks = <&dpll_gmac_m2_ck>;
+		compatible = "ti,mux-clock";
+		clocks = <&dpll_gmac_h11x2_ck>, <&rmii_clk_ck>;
 		ti,bit-shift = <24>;
 		reg = <0x13d0>;
-		ti,dividers = <2>;
 	};
 
 	gmac_rft_clk_mux: gmac_rft_clk_mux {
@@ -1733,6 +1764,8 @@
 		clocks = <&dpll_core_h14x2_ck>, <&dpll_per_h14x2_ck>, <&dpll_gpu_m2_ck>;
 		ti,bit-shift = <24>;
 		reg = <0x1220>;
+		assigned-clocks = <&gpu_core_gclk_mux>;
+		assigned-clock-parents = <&dpll_gpu_m2_ck>;
 	};
 
 	gpu_hyd_gclk_mux: gpu_hyd_gclk_mux {
@@ -1741,6 +1774,8 @@
 		clocks = <&dpll_core_h14x2_ck>, <&dpll_per_h14x2_ck>, <&dpll_gpu_m2_ck>;
 		ti,bit-shift = <26>;
 		reg = <0x1220>;
+		assigned-clocks = <&gpu_hyd_gclk_mux>;
+		assigned-clock-parents = <&dpll_gpu_m2_ck>;
 	};
 
 	l3instr_ts_gclk_div: l3instr_ts_gclk_div {
@@ -1856,7 +1891,7 @@
 		reg = <0x1908>;
 	};
 
-	mcasp8_ahclk_mux: mcasp8_ahclk_mux {
+	mcasp8_ahclkx_mux: mcasp8_ahclkx_mux {
 		#clock-cells = <0>;
 		compatible = "ti,mux-clock";
 		clocks = <&abe_24m_fclk>, <&abe_sys_clk_div>, <&func_24m_clk>, <&atl_clkin3_ck>, <&atl_clkin2_ck>, <&atl_clkin1_ck>, <&atl_clkin0_ck>, <&sys_clkin2>, <&ref_clkin0_ck>, <&ref_clkin1_ck>, <&ref_clkin2_ck>, <&ref_clkin3_ck>, <&mlb_clk>, <&mlbp_clk>;
@@ -2145,5 +2180,37 @@
 		clocks = <&l3_iclk_div>;
 		ti,bit-shift = <0>;
 		reg = <0x558>;
+	};
+
+	sys_32k_ck: sys_32k_ck {
+		#clock-cells = <0>;
+		compatible = "ti,mux-clock";
+		clocks = <&sys_clk32_crystal_ck>, <&sys_clk32_pseudo_ck>, <&sys_clk32_pseudo_ck>, <&sys_clk32_pseudo_ck>;
+		ti,bit-shift = <8>;
+		reg = <0x6c4>;
+	};
+
+	ehrpwm0_tbclk: ehrpwm0_tbclk {
+		#clock-cells = <0>;
+		compatible = "ti,gate-clock";
+		clocks = <&l4_root_clk_div>;
+		ti,bit-shift = <20>;
+		reg = <0x0558>;
+	};
+
+	ehrpwm1_tbclk: ehrpwm1_tbclk {
+		#clock-cells = <0>;
+		compatible = "ti,gate-clock";
+		clocks = <&l4_root_clk_div>;
+		ti,bit-shift = <21>;
+		reg = <0x0558>;
+	};
+
+	ehrpwm2_tbclk: ehrpwm2_tbclk {
+		#clock-cells = <0>;
+		compatible = "ti,gate-clock";
+		clocks = <&l4_root_clk_div>;
+		ti,bit-shift = <22>;
+		reg = <0x0558>;
 	};
 };
