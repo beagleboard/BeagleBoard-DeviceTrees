@@ -45,6 +45,7 @@
 		#size-cells = <0>;
 		cpu@0 {
 			compatible = "arm,cortex-a8";
+			enable-method = "ti,am3352";
 			device_type = "cpu";
 			reg = <0>;
 
@@ -54,6 +55,17 @@
 			clock-names = "cpu";
 
 			clock-latency = <300000>; /* From omap-cpufreq driver */
+			cpu-idle-states = <&mpu_gate>;
+		};
+
+		idle-states {
+			mpu_gate: mpu_gate {
+				compatible = "arm,idle-state";
+				entry-latency-us = <40>;
+				exit-latency-us = <90>;
+				min-residency-us = <300>;
+				ti,idle-wkup-m3;
+			};
 		};
 	};
 
@@ -144,6 +156,8 @@
 		mpu {
 			compatible = "ti,omap3-mpu";
 			ti,hwmods = "mpu";
+			pm-sram = <&pm_sram_code
+				   &pm_sram_data>;
 		};
 	};
 
@@ -287,6 +301,13 @@
 			reg =	<0x49a00000 0x100000>;
 			interrupts = <114>;
 			interrupt-names = "edma3_tcerrint";
+		};
+
+		emif: emif@4c000000 {
+			compatible = "ti,emif-am3352";
+			reg =	<0x4C000000 0x1000>;
+			sram = <&pm_sram_code
+				&pm_sram_data>;
 		};
 
 		gpio0: gpio@44e07000 {
@@ -893,6 +914,110 @@
 		ocmcram: ocmcram@40300000 {
 			compatible = "mmio-sram";
 			reg = <0x40300000 0x10000>; /* 64k */
+			ranges = <0x0 0x40300000 0x10000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			pm_sram_code: pm-sram-code@0 {
+				compatible = "ti,sram";
+				reg = <0x0 0x1000>;
+				protect-exec;
+			};
+
+			pm_sram_data: pm-sram-data@1000 {
+				compatible = "ti,sram";
+				reg = <0x1000 0x1000>;
+				pool;
+			};
+		};
+
+		pruss_soc_bus: pruss_soc_bus@4a326004 {
+			compatible = "ti,am3356-pruss-soc-bus";
+			reg = <0x4a326004 0x4>;
+			ti,hwmods = "pruss";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0x0 0x4a300000 0x80000>;
+			status = "disabled";
+
+			pruss: pruss@0 {
+				compatible = "ti,am3356-pruss";
+				reg = <0x0 0x80000>;
+				interrupts = <20 21 22 23 24 25 26 27>;
+				interrupt-names = "host2", "host3", "host4",
+						  "host5", "host6", "host7",
+						  "host8", "host9";
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges;
+				status = "disabled";
+
+				pruss_mem: memories@0 {
+					reg = <0x0 0x2000>,
+					      <0x2000 0x2000>,
+					      <0x10000 0x3000>;
+					reg-names = "dram0", "dram1",
+						    "shrdram2";
+				};
+
+				pruss_cfg: cfg@26000 {
+					compatible = "syscon";
+					reg = <0x26000 0x2000>;
+				};
+
+				pruss_iep: iep@2e000 {
+					compatible = "syscon";
+					reg = <0x2e000 0x31c>;
+				};
+
+				pruss_mii_rt: mii_rt@32000 {
+					compatible = "syscon";
+					reg = <0x32000 0x58>;
+				};
+
+				pruss_intc: intc@20000 {
+					compatible = "ti,am3356-pruss-intc";
+					reg = <0x20000 0x2000>;
+					reg-names = "intc";
+					interrupt-controller;
+					#interrupt-cells = <1>;
+				};
+
+				pru0: pru@34000 {
+					compatible = "ti,am3356-pru";
+					reg = <0x34000 0x2000>,
+					      <0x22000 0x400>,
+					      <0x22400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am335x-pru0-fw";
+					interrupt-parent = <&pruss_intc>;
+					interrupts = <16>, <17>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pru1: pru@38000 {
+					compatible = "ti,am3356-pru";
+					reg = <0x38000 0x2000>,
+					      <0x24000 0x400>,
+					      <0x24400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am335x-pru1-fw";
+					interrupt-parent = <&pruss_intc>;
+					interrupts = <18>, <19>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pruss_mdio: mdio@32400 {
+					compatible = "ti,davinci_mdio";
+					reg = <0x32400 0x90>;
+					clocks = <&dpll_core_m4_ck>;
+					clock-names = "fck";
+					bus_freq = <1000000>;
+					#address-cells = <1>;
+					#size-cells = <0>;
+					status = "disabled";
+				};
+			};
 		};
 
 		elm: elm@48080000 {
@@ -1000,6 +1125,22 @@
 			ti,hwmods = "rng";
 			reg = <0x48310000 0x2000>;
 			interrupts = <111>;
+		};
+
+		/*
+		 * The SGX is disabled by default because it is an optional
+		 * module and only some AM335x variants contain this module,
+		 * such as AM3358 and AM3357. The status should be overwritten
+		 * as "OK" at the corresponding board.dts.
+		 */
+		sgx: sgx@56000000 {
+			compatible = "ti,am3352-sgx530", "img,sgx530";
+			ti,hwmods = "gfx";
+			reg = <0x56000000 0x10000>;
+			interrupts = <37>;
+			clocks = <&gfx_fck_div_ck>;
+			clock-names = "fclk";
+			status = "disabled";
 		};
 	};
 };

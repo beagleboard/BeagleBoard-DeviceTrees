@@ -6,6 +6,7 @@
  * published by the Free Software Foundation.
  */
 
+#include "dra74-ipu-dsp-common.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clk/ti-dra7-atl.h>
 #include <dt-bindings/input/input.h>
@@ -18,6 +19,11 @@
 	extcon_usb1: extcon_usb1 {
 		compatible = "linux,extcon-usb-gpio";
 		id-gpio = <&pcf_gpio_21 1 GPIO_ACTIVE_HIGH>;
+	};
+
+	extcon_usb2: extcon_usb2 {
+		compatible = "linux,extcon-usb-gpio";
+		id-gpio = <&pcf_gpio_21 2 GPIO_ACTIVE_HIGH>;
 	};
 
 	sound0: sound0 {
@@ -99,6 +105,16 @@
 			gpios = <&pcf_lcd 3 GPIO_ACTIVE_LOW>;
 		};
 	};
+
+	clk_ov10633_fixed: clk_ov10633_fixed {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <24000000>;
+	};
+};
+
+&gpu {
+	status = "ok";
 };
 
 &i2c3 {
@@ -198,8 +214,13 @@
 	extcon = <&extcon_usb1>;
 };
 
+&omap_dwc3_2 {
+	extcon = <&extcon_usb2>;
+};
+
 &usb2 {
 	dr_mode = "host";
+	extcon = <&extcon_usb2>;
 };
 
 &atl {
@@ -237,22 +258,25 @@
 	rx-num-evt = <32>;
 };
 
-&mailbox5 {
+&pcie1_rc {
 	status = "okay";
-	mbox_ipu1_ipc3x: mbox_ipu1_ipc3x {
-		status = "okay";
-	};
-	mbox_dsp1_ipc3x: mbox_dsp1_ipc3x {
-		status = "okay";
-	};
 };
 
-&mailbox6 {
+&vip1 {
 	status = "okay";
-	mbox_ipu2_ipc3x: mbox_ipu2_ipc3x {
-		status = "okay";
-	};
-	mbox_dsp2_ipc3x: mbox_dsp2_ipc3x {
-		status = "okay";
+};
+
+&mmc4 {
+	bus-width = <4>;
+	cap-power-off-card;
+	keep-power-in-suspend;
+	non-removable;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	wlcore: wlcore@2 {
+		compatible = "ti,wl1835";
+		reg = <2>;
+		interrupt-parent = <&gpio5>;
+		interrupts = <7 IRQ_TYPE_EDGE_RISING>;
 	};
 };
