@@ -31,6 +31,8 @@
 		serial3 = &uart4;
 		serial4 = &uart5;
 		serial5 = &uart6;
+		rproc0 = &dsp;
+		rproc1 = &ipu;
 	};
 
 	cpus {
@@ -172,6 +174,7 @@
 					reg = <0x40 0x01b6>;
 					#address-cells = <1>;
 					#size-cells = <0>;
+					#pinctrl-cells = <1>;
 					#interrupt-cells = <1>;
 					interrupt-controller;
 					pinctrl-single,register-width = <16>;
@@ -193,7 +196,7 @@
 						pbias_mmc_reg: pbias_mmc_omap5 {
 							regulator-name = "pbias_mmc_omap5";
 							regulator-min-microvolt = <1800000>;
-							regulator-max-microvolt = <3000000>;
+							regulator-max-microvolt = <3300000>;
 						};
 					};
 				};
@@ -271,6 +274,7 @@
 				reg = <0xc840 0x003c>;
 				#address-cells = <1>;
 				#size-cells = <0>;
+				#pinctrl-cells = <1>;
 				#interrupt-cells = <1>;
 				interrupt-controller;
 				pinctrl-single,register-width = <16>;
@@ -822,6 +826,27 @@
 			reg = <0x4ae14000 0x80>;
 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "wd_timer2";
+		};
+
+		dsp: dsp {
+			compatible = "ti,omap5-dsp";
+			ti,hwmods = "dsp";
+			syscon-bootreg = <&scm_conf 0x304>;
+			iommus = <&mmu_dsp>;
+			mboxes = <&mailbox &mbox_dsp>;
+			ti,rproc-standby-info = <0x4a004420>;
+			status = "disabled";
+		};
+
+		ipu: ipu@55020000 {
+			compatible = "ti,omap5-ipu";
+			reg = <0x55020000 0x10000>;
+			reg-names = "l2ram";
+			ti,hwmods = "ipu";
+			iommus = <&mmu_ipu>;
+			mboxes = <&mailbox &mbox_ipu>;
+			ti,rproc-standby-info = <0x4a008920>;
+			status = "disabled";
 		};
 
 		dmm@4e000000 {

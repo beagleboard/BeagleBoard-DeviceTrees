@@ -32,6 +32,10 @@
 		reg = <0x80000000 0x10000000>; /* 256 MB */
 	};
 
+	chosen {
+		stdout-path = &uart0;
+	};
+
 	vbat: fixedregulator0 {
 		compatible = "regulator-fixed";
 		regulator-name = "vbat";
@@ -133,7 +137,7 @@
 		};
 	};
 
-	backlight {
+	lcd_bl: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&ecap2 0 50000 PWM_POLARITY_INVERTED>;
 		brightness-levels = <0 58 61 66 75 90 125 170 255>;
@@ -168,6 +172,7 @@
 		pinctrl-names = "default", "sleep";
 		pinctrl-0 = <&lcd_pins_default>;
 		pinctrl-1 = <&lcd_pins_sleep>;
+		backlight = <&lcd_bl>;
 		status = "okay";
 		panel-info {
 			ac-bias		= <255>;
@@ -200,7 +205,13 @@
 
 &am33xx_pinmux {
 	pinctrl-names = "default";
-	pinctrl-0 = <&gpio_keys_s0 &clkout2_pin>;
+	pinctrl-0 = <&gpio_keys_s0 &clkout2_pin &ddr3_vtt_toggle>;
+
+	ddr3_vtt_toggle: ddr3_vtt_toggle {
+		pinctrl-single,pins = <
+			0x164 (PIN_OUTPUT | MUX_MODE7)	/* ecap0_in_pwm0_out.gpio0_7 */
+		>;
+	};
 
 	lcd_pins_default: lcd_pins_default {
 		pinctrl-single,pins = <
@@ -535,6 +546,12 @@
 	};
 };
 
+&wkup_m3_ipc {
+	ti,needs-vtt-toggle;
+	ti,vtt-gpio-pin = <7>;
+	ti,scale-data-fw = "am335x-evm-scale-data.bin";
+};
+
 #include "tps65910.dtsi"
 
 &tps {
@@ -715,4 +732,29 @@
 	status = "okay";
 
 	blue-and-red-wiring = "crossed";
+};
+
+&sgx {
+	status = "okay";
+};
+
+&rtc {
+	clocks = <&clk_32768_ck>, <&clkdiv32k_ick>;
+	clock-names = "ext-clk", "int-clk";
+};
+
+&pruss_soc_bus {
+	status = "okay";
+
+	pruss: pruss@4a300000 {
+		status = "okay";
+
+		pru0: pru@4a334000 {
+			status = "okay";
+		};
+
+		pru1: pru@4a338000 {
+			status = "okay";
+		};
+	};
 };
