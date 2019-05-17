@@ -6,6 +6,7 @@
  * published by the Free Software Foundation.
  */
 
+#include "dra74-ipu-dsp-common.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clk/ti-dra7-atl.h>
 #include <dt-bindings/input/input.h>
@@ -104,6 +105,16 @@
 			gpios = <&pcf_lcd 3 GPIO_ACTIVE_LOW>;
 		};
 	};
+
+	clk_ov10633_fixed: clk_ov10633_fixed {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <24000000>;
+	};
+};
+
+&gpu {
+	status = "ok";
 };
 
 &i2c3 {
@@ -247,26 +258,6 @@
 	rx-num-evt = <32>;
 };
 
-&mailbox5 {
-	status = "okay";
-	mbox_ipu1_ipc3x: mbox_ipu1_ipc3x {
-		status = "okay";
-	};
-	mbox_dsp1_ipc3x: mbox_dsp1_ipc3x {
-		status = "okay";
-	};
-};
-
-&mailbox6 {
-	status = "okay";
-	mbox_ipu2_ipc3x: mbox_ipu2_ipc3x {
-		status = "okay";
-	};
-	mbox_dsp2_ipc3x: mbox_dsp2_ipc3x {
-		status = "okay";
-	};
-};
-
 &pcie1_rc {
 	status = "okay";
 };
@@ -285,3 +276,8 @@
 		interrupts = <7 IRQ_TYPE_EDGE_RISING>;
 	};
 };
+
+&vip1 {
+	status = "okay";
+};
+

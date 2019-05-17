@@ -331,6 +331,7 @@
 				ti,hwmods = "pcie1";
 				phys = <&pcie1_phy>;
 				phy-names = "pcie-phy0";
+				ti,syscon-lane-sel = <&scm_conf_pcie 0x18>;
 				interrupt-map-mask = <0 0 0 7>;
 				interrupt-map = <0 0 0 1 &pcie1_intc 1>,
 						<0 0 0 2 &pcie1_intc 2>,
@@ -355,6 +356,7 @@
 				phys = <&pcie1_phy>;
 				phy-names = "pcie-phy0";
 				ti,syscon-unaligned-access = <&scm_conf1 0x14 1>;
+				ti,syscon-lane-sel = <&scm_conf_pcie 0x18>;
 				status = "disabled";
 			};
 		};
@@ -905,6 +907,8 @@
 			reg = <0x48032000 0x80>;
 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer2";
+			clocks = <&l4per_clkctrl DRA7_TIMER2_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer3: timer@48034000 {
@@ -912,6 +916,8 @@
 			reg = <0x48034000 0x80>;
 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer3";
+			clocks = <&l4per_clkctrl DRA7_TIMER3_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer4: timer@48036000 {
@@ -919,6 +925,8 @@
 			reg = <0x48036000 0x80>;
 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer4";
+			clocks = <&l4per_clkctrl DRA7_TIMER4_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer5: timer@48820000 {
@@ -926,6 +934,8 @@
 			reg = <0x48820000 0x80>;
 			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer5";
+			clocks = <&ipu_clkctrl DRA7_TIMER5_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer6: timer@48822000 {
@@ -933,6 +943,8 @@
 			reg = <0x48822000 0x80>;
 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer6";
+			clocks = <&ipu_clkctrl DRA7_TIMER6_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer7: timer@48824000 {
@@ -940,6 +952,8 @@
 			reg = <0x48824000 0x80>;
 			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer7";
+			clocks = <&ipu_clkctrl DRA7_TIMER7_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer8: timer@48826000 {
@@ -947,6 +961,8 @@
 			reg = <0x48826000 0x80>;
 			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer8";
+			clocks = <&ipu_clkctrl DRA7_TIMER8_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer9: timer@4803e000 {
@@ -954,6 +970,8 @@
 			reg = <0x4803e000 0x80>;
 			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer9";
+			clocks = <&l4per_clkctrl DRA7_TIMER9_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer10: timer@48086000 {
@@ -961,6 +979,8 @@
 			reg = <0x48086000 0x80>;
 			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer10";
+			clocks = <&l4per_clkctrl DRA7_TIMER10_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer11: timer@48088000 {
@@ -968,6 +988,8 @@
 			reg = <0x48088000 0x80>;
 			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer11";
+			clocks = <&l4per_clkctrl DRA7_TIMER11_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer12: timer@4ae20000 {
@@ -977,6 +999,8 @@
 			ti,hwmods = "timer12";
 			ti,timer-alwon;
 			ti,timer-secure;
+			clocks = <&wkupaon_clkctrl DRA7_TIMER12_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer13: timer@48828000 {
@@ -984,6 +1008,8 @@
 			reg = <0x48828000 0x80>;
 			interrupts = <GIC_SPI 339 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer13";
+			clocks = <&l4per_clkctrl DRA7_TIMER13_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer14: timer@4882a000 {
@@ -991,6 +1017,8 @@
 			reg = <0x4882a000 0x80>;
 			interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer14";
+			clocks = <&l4per_clkctrl DRA7_TIMER14_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer15: timer@4882c000 {
@@ -998,6 +1026,8 @@
 			reg = <0x4882c000 0x80>;
 			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer15";
+			clocks = <&l4per_clkctrl DRA7_TIMER15_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		timer16: timer@4882e000 {
@@ -1005,6 +1035,8 @@
 			reg = <0x4882e000 0x80>;
 			interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "timer16";
+			clocks = <&l4per_clkctrl DRA7_TIMER16_CLKCTRL 24>;
+			clock-names = "fck";
 		};
 
 		wdt2: wdt@4ae14000 {
@@ -1026,6 +1058,39 @@
 			reg = <0x4e000000 0x800>;
 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
 			ti,hwmods = "dmm";
+		};
+
+		ipu1: ipu@58820000 {
+			compatible = "ti,dra7-ipu";
+			reg = <0x58820000 0x10000>;
+			reg-names = "l2ram";
+			ti,hwmods = "ipu1";
+			iommus = <&mmu_ipu1>;
+			ti,rproc-standby-info = <0x4a005520>;
+			status = "disabled";
+		};
+
+		ipu2: ipu@55020000 {
+			compatible = "ti,dra7-ipu";
+			reg = <0x55020000 0x10000>;
+			reg-names = "l2ram";
+			ti,hwmods = "ipu2";
+			iommus = <&mmu_ipu2>;
+			ti,rproc-standby-info = <0x4a008920>;
+			status = "disabled";
+		};
+
+		dsp1: dsp@40800000 {
+			compatible = "ti,dra7-dsp";
+			reg = <0x40800000 0x48000>,
+			      <0x40e00000 0x8000>,
+			      <0x40f00000 0x8000>;
+			reg-names = "l2ram", "l1pram", "l1dram";
+			ti,hwmods = "dsp1";
+			syscon-bootreg = <&scm_conf 0x55c>;
+			iommus = <&mmu0_dsp1>, <&mmu1_dsp1>;
+			ti,rproc-standby-info = <0x4a005420>;
+			status = "disabled";
 		};
 
 		i2c1: i2c@48070000 {
@@ -1141,7 +1206,6 @@
 			ti,hwmods = "mmu0_dsp1";
 			#iommu-cells = <0>;
 			ti,syscon-mmuconfig = <&dsp1_system 0x0>;
-			status = "disabled";
 		};
 
 		mmu1_dsp1: mmu@40d02000 {
@@ -1151,7 +1215,6 @@
 			ti,hwmods = "mmu1_dsp1";
 			#iommu-cells = <0>;
 			ti,syscon-mmuconfig = <&dsp1_system 0x1>;
-			status = "disabled";
 		};
 
 		mmu_ipu1: mmu@58882000 {
@@ -1161,7 +1224,6 @@
 			ti,hwmods = "mmu_ipu1";
 			#iommu-cells = <0>;
 			ti,iommu-bus-err-back;
-			status = "disabled";
 		};
 
 		mmu_ipu2: mmu@55082000 {
@@ -1171,7 +1233,196 @@
 			ti,hwmods = "mmu_ipu2";
 			#iommu-cells = <0>;
 			ti,iommu-bus-err-back;
+		};
+
+		pruss_soc_bus1: pruss-soc-bus@4b226004 {
+			compatible = "ti,am5728-pruss-soc-bus";
+			reg = <0x4b226004 0x4>;
+			ti,hwmods = "pruss1";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
 			status = "disabled";
+
+			pruss1: pruss@4b200000 {
+				compatible = "ti,am5728-pruss";
+				reg = <0x4b200000 0x80000>;
+				interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>;
+				interrupt-names = "host2", "host3", "host4",
+						  "host5", "host6", "host7",
+						  "host8", "host9";
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges;
+				status = "disabled";
+
+				pruss1_mem: memories@4b200000 {
+					reg = <0x4b200000 0x2000>,
+					      <0x4b202000 0x2000>,
+					      <0x4b210000 0x8000>;
+					reg-names = "dram0", "dram1",
+						    "shrdram2";
+				};
+
+				pruss1_cfg: cfg@4b226000 {
+					compatible = "syscon";
+					reg = <0x4b226000 0x2000>;
+				};
+
+				pruss1_iep: iep@4b22e000 {
+					compatible = "syscon";
+					reg = <0x4b22e000 0x31c>;
+				};
+
+				pruss1_mii_rt: mii-rt@4b232000 {
+					compatible = "syscon";
+					reg = <0x4b232000 0x58>;
+				};
+
+				pruss1_intc: interrupt-controller@4b220000 {
+					compatible = "ti,am5728-pruss-intc";
+					reg = <0x4b220000 0x2000>;
+					interrupt-controller;
+					#interrupt-cells = <1>;
+				};
+
+				pru1_0: pru@4b234000 {
+					compatible = "ti,am5728-pru";
+					reg = <0x4b234000 0x3000>,
+					      <0x4b222000 0x400>,
+					      <0x4b222400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am57xx-pru1_0-fw";
+					interrupt-parent = <&pruss1_intc>;
+					interrupts = <16>, <17>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pru1_1: pru@4b238000 {
+					compatible = "ti,am5728-pru";
+					reg = <0x4b238000 0x3000>,
+					      <0x4b224000 0x400>,
+					      <0x4b224400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am57xx-pru1_1-fw";
+					interrupt-parent = <&pruss1_intc>;
+					interrupts = <18>, <19>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pruss1_mdio: mdio@4b232400 {
+					compatible = "ti,davinci_mdio";
+					reg = <0x4b232400 0x90>;
+					#address-cells = <1>;
+					#size-cells = <0>;
+					clocks = <&dpll_gmac_h13x2_ck>;
+					clock-names = "fck";
+					bus_freq = <1000000>;
+					status = "disabled";
+				};
+			};
+		};
+
+		pruss_soc_bus2: pruss-soc-bus@4b2a6004 {
+			compatible = "ti,am5728-pruss-soc-bus";
+			reg = <0x4b2a6004 0x4>;
+			ti,hwmods = "pruss2";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+			status = "disabled";
+
+			pruss2: pruss@4b280000 {
+				compatible = "ti,am5728-pruss";
+				reg = <0x4b280000 0x80000>;
+				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>,
+					     <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>;
+				interrupt-names = "host2", "host3", "host4",
+						  "host5", "host6", "host7",
+						  "host8", "host9";
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges;
+				status = "disabled";
+
+				pruss2_mem: memories@4b280000 {
+					reg = <0x4b280000 0x2000>,
+					      <0x4b282000 0x2000>,
+					      <0x4b290000 0x8000>;
+					reg-names = "dram0", "dram1",
+						    "shrdram2";
+				};
+
+				pruss2_cfg: cfg@4b2a6000 {
+					compatible = "syscon";
+					reg = <0x4b2a6000 0x2000>;
+				};
+
+				pruss2_iep: iep@4b2ae000 {
+					compatible = "syscon";
+					reg = <0x4b2ae000 0x31c>;
+				};
+
+				pruss2_mii_rt: mii-rt@4b2b2000 {
+					compatible = "syscon";
+					reg = <0x4b2b2000 0x58>;
+				};
+
+				pruss2_intc: interrupt-controller@4b2a0000 {
+					compatible = "ti,am5728-pruss-intc";
+					reg = <0x4b2a0000 0x2000>;
+					interrupt-controller;
+					#interrupt-cells = <1>;
+				};
+
+				pru2_0: pru@4b2b4000 {
+					compatible = "ti,am5728-pru";
+					reg = <0x4b2b4000 0x3000>,
+					      <0x4b2a2000 0x400>,
+					      <0x4b2a2400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am57xx-pru2_0-fw";
+					interrupt-parent = <&pruss2_intc>;
+					interrupts = <16>, <17>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pru2_1: pru@4b2b8000 {
+					compatible = "ti,am5728-pru";
+					reg = <0x4b2b8000 0x3000>,
+					      <0x4b2a4000 0x400>,
+					      <0x4b2a4400 0x100>;
+					reg-names = "iram", "control", "debug";
+					firmware-name = "am57xx-pru2_1-fw";
+					interrupt-parent = <&pruss2_intc>;
+					interrupts = <18>, <19>;
+					interrupt-names = "vring", "kick";
+				};
+
+				pruss2_mdio: mdio@4b2b2400 {
+					compatible = "ti,davinci_mdio";
+					reg = <0x4b2b2400 0x90>;
+					#address-cells = <1>;
+					#size-cells = <0>;
+					clocks = <&dpll_gmac_h13x2_ck>;
+					clock-names = "fck";
+					bus_freq = <1000000>;
+					status = "disabled";
+				};
+			};
 		};
 
 		abb_mpu: regulator-abb-mpu {
@@ -1913,6 +2164,28 @@
 			status = "disabled";
 		};
 
+		gpu: gpu@56000000 {
+			compatible = "ti,dra7-sgx544", "img,sgx544";
+			reg = <0x56000000 0x10000>;
+			reg-names = "gpu_ocp_base";
+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+			ti,hwmods = "gpu";
+			clocks = <&l3_iclk_div>, <&gpu_core_gclk_mux>,
+				<&gpu_hyd_gclk_mux>;
+			clock-names = "iclk", "fclk1", "fclk2";
+			status = "disabled";
+		};
+
+		bb2d: bb2d@59000000 {
+			compatible = "ti,dra7-bb2d";
+			reg = <0x59000000 0x0700>;
+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+			ti,hwmods = "bb2d";
+			clocks = <&dss_clkctrl DRA7_BB2D_CLKCTRL 0>;
+			clock-names = "fck";
+			status = "disabled";
+		};
+
 		dss: dss@58000000 {
 			compatible = "ti,dra7-dss";
 			/* 'reg' defined in dra72x.dtsi and dra74x.dtsi */
@@ -2109,6 +2382,68 @@
 			ti,absolute-max-voltage-uv = <1500000>;
 		};
 
+		vpe {
+			compatible = "ti,vpe";
+			ti,hwmods = "vpe";
+			clocks = <&dpll_core_h23x2_ck>;
+			clock-names = "fck";
+			reg = <0x489d0000 0x120>,
+			      <0x489d0700 0x80>,
+			      <0x489d5700 0x18>,
+			      <0x489dd000 0x400>;
+			reg-names = "vpe_top",
+				    "sc",
+				    "csc",
+				    "vpdma";
+			interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
+
+		vip1: vip@0x48970000 {
+			compatible = "ti,vip1";
+			reg = <0x48970000 0x114>,
+			      <0x48975500 0xD8>,
+			      <0x48975700 0x18>,
+			      <0x48975800 0x80>,
+			      <0x48975a00 0xD8>,
+			      <0x48975c00 0x18>,
+			      <0x48975d00 0x80>,
+			      <0x4897d000 0x400>;
+			reg-names = "vip",
+				    "parser0",
+				    "csc0",
+				    "sc0",
+				    "parser1",
+				    "csc1",
+				    "sc1",
+				    "vpdma";
+			ti,hwmods = "vip1";
+			interrupts = <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 392 IRQ_TYPE_LEVEL_HIGH>;
+			/* CTRL_CORE_SMA_SW_1 */
+			syscon-pol = <&scm_conf 0x534>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				vin1a: port@0 {
+					reg = <0>;
+				};
+				vin2a: port@1 {
+					reg = <1>;
+				};
+				vin1b: port@2 {
+					reg = <2>;
+				};
+				vin2b: port@3 {
+					reg = <3>;
+				};
+			};
+		};
 	};
 
 	thermal_zones: thermal-zones {
