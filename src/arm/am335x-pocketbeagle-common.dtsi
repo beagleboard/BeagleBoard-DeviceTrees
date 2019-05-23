@@ -1193,4 +1193,3 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
 };
-
