@@ -293,4 +293,3 @@
 };
 
 #include "am335x-bone-pinmux-spi0.dtsi"
-
