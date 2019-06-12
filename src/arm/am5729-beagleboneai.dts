@@ -949,7 +949,7 @@
 		brcm,sd_sgentry_align = <512>;
 
 		interrupt-parent = <&gpio3>;
-		interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+		interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
 		interrupt-names = "host-wake";
 	};
 };
