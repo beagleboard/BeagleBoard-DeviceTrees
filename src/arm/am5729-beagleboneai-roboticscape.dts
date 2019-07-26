@@ -8,6 +8,11 @@
 #include "am5729-beagleboneai.dts"
 
 / {
+	chosen {
+		base_dtb = "am5729-beagleboneai-roboticscape.dts";
+		base_dtb_timestamp = __TIMESTAMP__;
+	};
+
 	rcleds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
