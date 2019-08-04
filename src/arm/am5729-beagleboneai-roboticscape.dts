@@ -56,20 +56,6 @@
 	};
 };
 
-&ocp {
-	pruss1_shmem: pruss_shmem@4b200000 {
-		status = "okay";
-		compatible = "ti,pruss-shmem";
-		reg = <0x4b200000 0x020000>;
-	};
-
-	pruss2_shmem: pruss_shmem@4b280000 {
-		status = "okay";
-		compatible = "ti,pruss-shmem";
-		reg = <0x4b280000 0x020000>;
-	};
-};
-
 &cape_pins {
 	status = "disabled";
 };
