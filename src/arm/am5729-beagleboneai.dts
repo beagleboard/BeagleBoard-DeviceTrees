@@ -250,6 +250,20 @@
 	};
 };
 
+&ocp {
+	pruss1_shmem: pruss_shmem@4b200000 {
+		status = "okay";
+		compatible = "ti,pruss-shmem";
+		reg = <0x4b200000 0x020000>;
+	};
+
+	pruss2_shmem: pruss_shmem@4b280000 {
+		status = "okay";
+		compatible = "ti,pruss-shmem";
+		reg = <0x4b280000 0x020000>;
+	};
+};
+
 &dra7_pmx_core {
 	extcon_usb1_pins_default: extcon_usb1_pins_default {
 		pinctrl-single,pins = <
@@ -1105,27 +1119,27 @@
 };
 
 &cpu_alert0 {
-	temperature = <80000>; /* milliCelsius */
+	temperature = <65000>; /* milliCelsius */
 };
 
 &cpu_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <80000>; /* milliCelsius */
 };
 
 &gpu_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <80000>; /* milliCelsius */
 };
 
 &core_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <80000>; /* milliCelsius */
 };
 
 &dspeve_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <80000>; /* milliCelsius */
 };
 
 &iva_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <80000>; /* milliCelsius */
 };
 
 &sata {
