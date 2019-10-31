@@ -13,6 +13,11 @@
 	model = "SeeedStudio BeagleBone Green Gateway";
 	compatible = "ti,am335x-bone-green-gateway", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
+	aliases {
+		rtc0 = &extrtc;
+		rtc1 = &rtc;
+	};
+
 	chosen {
 		base_dtb = "am335x-bonegreen-gateway.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
@@ -23,6 +28,14 @@
 	status = "okay";
 };
 
+&am33xx_pinmux {
+	usbhost_pins: pinmux_usbhost_pins {
+		pinctrl-single,pins = <
+		AM33XX_IOPAD(0x924, PIN_OUTPUT | MUX_MODE0)
+		>;
+	};
+};
+
 &cpu0_opp_table {
 	/*
 	 * All PG 2.0 silicon may not support 1GHz but some of the early
@@ -31,6 +44,13 @@
 	 */
 	oppnitro-1000000000 {
 		opp-supported-hw = <0x06 0x0100>;
+	};
+};
+
+&i2c0 {
+	extrtc: rtc@68 {
+		compatible = "dallas,ds1340";
+		reg = <0x68>;
 	};
 };
 
