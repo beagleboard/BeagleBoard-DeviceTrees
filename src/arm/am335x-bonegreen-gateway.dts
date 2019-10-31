@@ -33,3 +33,15 @@
 		opp-supported-hw = <0x06 0x0100>;
 	};
 };
+
+&cpsw_emac0 {
+	status = "disable";
+};
+
+&mac {
+	status = "disable";
+};
+
+&davinci_mdio {
+	status = "disable";
+};
