@@ -1171,3 +1171,5 @@
 		opp-suspend;
 	};
 };
+
+#include "dra7-ipu-common-early-boot.dtsi"
