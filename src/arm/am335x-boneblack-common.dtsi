@@ -1,12 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  */
 
 #include <dt-bindings/display/tda998x.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 &ldo3_reg {
 	regulator-min-microvolt = <1800000>;
