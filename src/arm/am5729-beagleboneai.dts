@@ -951,10 +951,11 @@
 		reg = <1>;
 		compatible = "brcm,bcm4329-fmac";
 
-		//brcm,drive-strength = <10>;
-		//brcm,broken-sg-support;
-		//brcm,broken_sg_support;
-		brcm,sd-head-align = <4>;
+		/*
+		 * Not Mainline: brcm,sd_head_align/brcm,sd_sgentry_align
+		 * From: Cypress Linux WiFi Driver Release (FMAC) [2019-05-08]
+		 * https://community.cypress.com/docs/DOC-17441
+		 */
 		brcm,sd_head_align = <4>;
 		brcm,sd_sgentry_align = <512>;
 
