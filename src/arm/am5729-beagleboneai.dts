@@ -819,19 +819,6 @@
 		stmpe_touchscreen {
 			status = "disabled";
 			compatible = "st,stmpe-ts";
-			/* 8 sample average control */
-			st,ave-ctrl = <3>;
-			/* 7 length fractional part in z */
-			st,fraction-z = <7>;
-			/*
-			 * 50 mA typical 80 mA max touchscreen drivers
-			 * current limit value
-			 */
-			st,i-drive = <1>;
-			/* 1 ms panel driver settling time */
-			st,settling = <3>;
-			/* 5 ms touch detect interrupt delay */
-			st,touch-det-delay = <5>;
 		};
 
 		stmpe_gpio {
