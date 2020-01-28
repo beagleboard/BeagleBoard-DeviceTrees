@@ -1,22 +1,22 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2014-2019 Texas Instruments Incorporated - http://www.ti.com/
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
+ * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
  */
+
 /dts-v1/;
 
 #include "dra74x.dtsi"
 #include "am57xx-commercial-grade.dtsi"
 #include "dra74x-mmc-iodelay.dtsi"
+#include "dra74-ipu-dsp-common.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/dra.h>
 
 / {
 	model = "BeagleBoard.org BeagleBone AI";
-	compatible = "beagleboard.org,am5729-beagleboneai", "ti,am5728", "ti,dra742", "ti,dra74", "ti,dra7";
+	compatible = "beagle,am5729-beagleboneai", "ti,am5728",
+		     "ti,dra742", "ti,dra74", "ti,dra7";
 
 	aliases {
 		rtc0 = &tps659038_rtc;
@@ -187,7 +187,10 @@
 	};
 
 	hdmi_enc: encoder@0 {
-		compatible = "ti,tpd12s016", "ti,tpd12s015";
+		/* "ti,tpd12s016" software compatible with "ti,tpd12s015"
+		 *  no need for individual driver
+		 */
+		compatible = "ti,tpd12s015";
 		gpios = <0>,
 			<0>,
 			<&gpio7 12 GPIO_ACTIVE_HIGH>;
@@ -225,8 +228,8 @@
 		compatible = "mmc-pwrseq-simple";
 		pinctrl-names = "default";
 		pinctrl-0 = <&brcmf_pwrseq_pins_default>;
-		reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>,     // BT-REG-ON
-				<&gpio3 18 GPIO_ACTIVE_LOW>;   // WL-REG-ON
+		reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>,	/* BT-REG-ON */
+				<&gpio3 18 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
 	};
 
 	unused_pins: unused_pins {
@@ -576,6 +579,10 @@
 	};
 };
 
+&vip2 {
+	status = "okay";
+};
+
 &i2c1 {
 	status = "okay";
 	clock-frequency = <400000>;
@@ -845,9 +852,44 @@
 	};
 };
 
+&mcspi3 {
+	status = "okay";
+	ti,pindir-d0-out-d1-in;
+
+	sn65hvs882: sn65hvs882@0 {
+		compatible = "pisosr-gpio";
+		gpio-controller;
+		#gpio-cells = <2>;
+
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+		spi-cpol;
+	};
+};
+
 &cpu0 {
 	vdd-supply = <&vdd_mpu>;
 	voltage-tolerance = <1>;
+};
+
+&gpu {
+	status = "okay";
+};
+
+&pruss_soc_bus1 {
+	status = "okay";
+
+	pruss1: pruss@4b200000 {
+		status = "okay";
+	};
+};
+
+&pruss_soc_bus2 {
+	status = "okay";
+
+	pruss2: pruss@4b280000 {
+		status = "okay";
+	};
 };
 
 &uart1 {
@@ -864,21 +906,37 @@
 			"ethernet-phy-ieee802.3-c22";
 		eee-broken-100tx;
 		eee-broken-1000t;
-		//interrupt-parent = <&gpio5>;
-		//interrupts = <19 IRQ_TYPE_EDGE_RISING>;
 	};
 };
 
 &mac {
 	slaves = <1>;
 	status = "okay";
-	//dual_emac;
 };
 
 &cpsw_emac0 {
 	phy-handle = <&phy0>;
 	phy-mode = "rgmii";
-	//dual_emac_res_vlan = <1>;
+};
+
+&ipu2 {
+	status = "okay";
+	memory-region = <&ipu2_memory_region>;
+};
+
+&ipu1 {
+	status = "okay";
+	memory-region = <&ipu1_memory_region>;
+};
+
+&dsp1 {
+	status = "okay";
+	memory-region = <&dsp1_memory_region>;
+};
+
+&dsp2 {
+	status = "okay";
+	memory-region = <&dsp2_memory_region>;
 };
 
 &mmc1 {
@@ -923,7 +981,6 @@
 	ti,needs-special-reset;
 	dmas = <&sdma_xbar 47>, <&sdma_xbar 48>;
 	dma-names = "tx", "rx";
-
 	pinctrl-names = "default", "hs", "ddr_1_8v", "hs200_1_8v";
 	pinctrl-0 = <&mmc2_pins_default>;
 	pinctrl-1 = <&mmc2_pins_hs>;
@@ -999,10 +1056,6 @@
 	dr_mode = "host";
 };
 
-&gpu {
-	status = "okay";
-};
-
 &bb2d {
 	status = "okay";
 };
@@ -1021,7 +1074,6 @@
 	port {
 		hdmi_out: endpoint {
 			remote-endpoint = <&hdmi_encoder_in>;
-			//lanes = <1 0 3 2 5 4 7 6>;
 		};
 	};
 };
@@ -1082,42 +1134,6 @@
 	status = "okay";
 };
 
-&ipu1 {
-	status = "okay";
-	memory-region = <&ipu1_memory_region>;
-};
-
-&ipu2 {
-	status = "okay";
-	memory-region = <&ipu2_memory_region>;
-};
-
-&dsp1 {
-	status = "okay";
-	memory-region = <&dsp1_memory_region>;
-};
-
-&dsp2 {
-	status = "okay";
-	memory-region = <&dsp2_memory_region>;
-};
-
-&pruss_soc_bus1 {
-	status = "okay";
-};
-
-&pruss1 {
-	status = "okay";
-};
-
-&pruss_soc_bus2 {
-	status = "okay";
-};
-
-&pruss2 {
-	status = "okay";
-};
-
 &cpu_alert0 {
 	temperature = <55000>; /* milliCelsius */
 };
@@ -1158,7 +1174,7 @@
 /* cape header stuff */
 &i2c4 {
 	status = "okay";
-	clock-frequency = <400000>;
+	clock-frequency = <100000>;
 };
 
 /* thermal hacks */
