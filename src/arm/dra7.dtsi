@@ -446,6 +446,16 @@
 			firmware-name = "dra7-dsp1-fw.xe66";
 		};
 
+		bb2d: bb2d@59000000 {
+			compatible = "ti,dra7-bb2d","vivante,gc";
+			reg = <0x59000000 0x0700>;
+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+			ti,hwmods = "bb2d";
+			clocks = <&dpll_core_h24x2_ck>;
+			clock-names = "fclk";
+			status = "disabled";
+		};
+
 		target-module@40d01000 {
 			compatible = "ti,sysc-omap2", "ti,sysc";
 			reg = <0x40d01000 0x4>,
