@@ -988,9 +988,6 @@
 	/* P9_09                PWR_BUT */
 
 	/* P9_10                RSTn */
-
-	/* to-do */	
-
 	
 	/* P9_11a */
 	P9_11_default_pin: pinmux_P9_11_default_pin { pinctrl-single,pins = <
