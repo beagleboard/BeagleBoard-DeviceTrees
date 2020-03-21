@@ -575,7 +575,7 @@
 		};
 	};
 
-    tda19988: tda19988 {
+	tda19988: tda19988@70 {
 		compatible = "nxp,tda998x";
 		reg = <0x70>;
 
@@ -654,14 +654,14 @@
     status = "okay";
     pinctrl-names = "default"; 
 
-    stepper_control{
+    stepper_control@0{
         #address-cells 	  = <1>;
         #size-cells 	  = <0>;
         compatible 	  = "spidev";
         reg 		  = <0>;
         spi-max-frequency = <2000000>;
     };
-    aux_control{
+    aux_control@1{
         #address-cells 	  = <1>;
         #size-cells 	  = <0>;
         compatible 	  = "spidev";
@@ -675,7 +675,7 @@
     pinctrl-names = "default";
 	pinctrl-0 = <&spi1_pins>;	
 
-    ext_stepper_B{
+    ext_stepper_B@0{
         #address-cells 	  = <1>;
         #size-cells 	  = <0>;
         compatible 	  = "spidev";
@@ -683,7 +683,7 @@
         spi-max-frequency = <16000000>;
     };
 
-    ext_stepper_C{
+    ext_stepper_C@1{
         #address-cells 	  = <1>;
         #size-cells 	  = <0>;
         compatible 	  = "spidev";
