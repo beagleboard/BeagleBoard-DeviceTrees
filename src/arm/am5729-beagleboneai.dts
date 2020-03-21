@@ -303,15 +303,15 @@
 
 	/* P8_05 */
 	P8_05_default_pin: pinmux_P8_05_default_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x378C PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	
+		DRA7XX_CORE_IOPAD(0x378C, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	
 	P8_05_gpio_pin: pinmux_P8_05_gpio_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x378C PIN_OUTPUT | INPUT_EN | MUX_MODE14) >; };		
+		DRA7XX_CORE_IOPAD(0x378C, PIN_OUTPUT | INPUT_EN | MUX_MODE14) >; };		
 	P8_05_gpio_pu_pin: pinmux_P8_05_gpio_pu_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x378C PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	
+		DRA7XX_CORE_IOPAD(0x378C, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	
 	P8_05_gpio_pd_pin: pinmux_P8_05_gpio_pd_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x378C PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	
+		DRA7XX_CORE_IOPAD(0x378C, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	
 	P8_05_gpio_input_pin: pinmux_P8_05_gpio_input_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x378C PIN_INPUT | MUX_MODE14) >; };			
+		DRA7XX_CORE_IOPAD(0x378C, PIN_INPUT | MUX_MODE14) >; };			
 
 	/* P8_06 */
 	P8_06_default_pin: pinmux_P8_06_default_pin { pinctrl-single,pins = <
