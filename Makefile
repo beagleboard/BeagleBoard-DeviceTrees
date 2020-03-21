@@ -85,6 +85,19 @@ ifeq "$(DTCVERSION)" "1.5.0"
 	DTC_FLAGS += -Wno-unique_unit_address
 endif
 
+ifeq "$(DTCVERSION)" "1.6.0"
+	#http://snapshot.debian.org/package/device-tree-compiler/1.5.0-1/#device-tree-compiler_1.5.0-1
+	#http://snapshot.debian.org/archive/debian/20190313T032949Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-1_amd64.deb
+	#Debian: 1.4.5
+	DTC_FLAGS += -Wno-pci_bridge
+	DTC_FLAGS += -Wno-simple_bus_reg
+	#Debian: 1.4.6
+	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
+	DTC_FLAGS += -Wno-alias_paths
+	#Debian: 1.4.7-3 (Buster)
+	DTC_FLAGS += -Wno-unique_unit_address
+endif
+
 # Beautify output
 # ---------------------------------------------------------------------------
 #
