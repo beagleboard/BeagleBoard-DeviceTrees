@@ -963,7 +963,33 @@
 	P8_46_pruout_pin: pinmux_P8_46_pruout_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x3638, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	
 	P8_46_pruin_pin: pinmux_P8_46_pruin_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x3638, PIN_INPUT | MUX_MODE12) >; };			
+		DRA7XX_CORE_IOPAD(0x3638, PIN_INPUT | MUX_MODE12) >; };	
+
+	/************************/
+	/* P9 Header */
+	/************************/
+
+	/* P9_01                GND */
+
+	/* P9_02                GND */
+
+	/* P9_03                3V3 */
+
+	/* P9_04                3V3 */
+
+	/* P9_05                VDD_5V */
+
+	/* P9_06                VDD_5V */
+
+	/* P9_07                SYS_5V */
+
+	/* P9_08                SYS_5V */
+
+	/* P9_09                PWR_BUT */
+
+	/* P9_10                RSTn */
+
+	/* to-do */		
 
 	
 	extcon_usb1_pins_default: extcon_usb1_pins_default {
