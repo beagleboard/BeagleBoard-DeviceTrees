@@ -1411,21 +1411,21 @@
 
 	/* P9_32                VADC */
 
-	/* P9_33 (ZCZ ball C8)  AIN4         */
+	/* P9_33 	  			AIN4*/
 
 	/* P9_34                AGND */
 
-	/* P9_35 (ZCZ ball A8)  AIN6         */
+	/* P9_35 				AIN6 */
 
-	/* P9_36 (ZCZ ball B8)  AIN5         */
+	/* P9_36 				AIN5 */
 
-	/* P9_37 (ZCZ ball B7)  AIN2         */
+	/* P9_37  				AIN2 */
 
-	/* P9_38 (ZCZ ball A7)  AIN3         */
+	/* P9_38  				AIN3*/
 
-	/* P9_39 (ZCZ ball B6)  AIN0         */
+	/* P9_39  				AIN0*/
 
-	/* P9_40 (ZCZ ball C7)  AIN1         */
+	/* P9_40   				AIN1*/
 
 	/* P9_41a */
 	P9_41_default_pin: pinmux_P9_41_default_pin { pinctrl-single,pins = <
