@@ -1071,8 +1071,8 @@
 	P9_16_gpio_input_pin: pinmux_P9_16_gpio_input_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x35B0, PIN_INPUT | MUX_MODE14) >; };			
 	P9_16_pwm_pin: pinmux_P9_16_pwm_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x35B0, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };	
-
+		DRA7XX_CORE_IOPAD(0x35B0, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };
+	
 	/* P9_17a */
 	P9_17_default_pin: pinmux_P9_17_default_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x37CC, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	
@@ -1226,7 +1226,7 @@
 	P9_23_pwm_pin: pinmux_P9_23_pwm_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x37B4, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE15) >; };	/* ?? ehrpwm0_synco */
 
-	/* P9_24 */
+		/* P9_24 */
 	P9_24_default_pin: pinmux_P9_24_default_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x368C, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	
 	P9_24_gpio_pin: pinmux_P9_24_gpio_pin { pinctrl-single,pins = <
@@ -1267,7 +1267,7 @@
 	P9_25_pruin_pin: pinmux_P9_25_pruin_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x3694, PIN_INPUT | MUX_MODE12) >; };			
 
-	/* P9_26a */
+		/* P9_26a */
 	P9_26_default_pin: pinmux_P9_26_default_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x3688, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	
 	P9_26_gpio_pin: pinmux_P9_26_gpio_pin { pinctrl-single,pins = <
@@ -1316,9 +1316,8 @@
 		DRA7XX_CORE_IOPAD(0x35A0, PIN_INPUT | MUX_MODE12) >; };	
 
 	/* P9_27b */
-	P9_27_i2c_pin: pinmux_P9_27_i2c_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x36B0, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE10 >; };	
-
+	
+	
 	/* P9_28 */
 	P9_28_default_pin: pinmux_P9_28_default_pin { pinctrl-single,pins = <
 		DRA7XX_CORE_IOPAD(0x36E0, PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	
@@ -1362,8 +1361,7 @@
 		DRA7XX_CORE_IOPAD(0x36D8, PIN_INPUT | MUX_MODE12) >; };	
 
 	/* P9_29b */
-	P9_29_i2c_pin: pinmux_P9_29_i2c_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x36A8, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE10 >; };
+	
 
 	/* P9_30 */
 	P9_30_default_pin: pinmux_P9_30_default_pin { pinctrl-single,pins = <
@@ -1406,8 +1404,7 @@
 		DRA7XX_CORE_IOPAD(0x36D4, PIN_INPUT | MUX_MODE12) >; };			
 
 	/* P9_31b */
-	P9_31_i2c_pin: pinmux_P9_31_i2c_pin { pinctrl-single,pins = <
-		DRA7XX_CORE_IOPAD(0x36A4, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE10 >; };
+	
 
 	/* P9_32                VADC */
 
@@ -1482,7 +1479,7 @@
 	/* P9_45                GND */
 
 	/* P9_46                GND */
-	
+
 	extcon_usb1_pins_default: extcon_usb1_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x3518, PIN_INPUT | MUX_MODE14) /* AG2: vin1a_d9.gpio3_13  - USR0 */
