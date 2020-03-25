@@ -19,6 +19,22 @@
 		     "ti,dra742", "ti,dra74", "ti,dra7";
 
 	aliases {
+		// I2C
+		bone-i2c1 = &i2c5;
+		bone-i2c2 = &i2c4;
+		bone-i2c3 = &i2c3;
+		// SPI
+		bone-spi0 = &spi2;
+		bone-spi1 = &spi3;
+		// UART
+		bone-serial0 = &uart1;
+		bone-serial1 = &uart10;
+		bone-serial2 = &uart3;
+		bone-serial4 = &uart5;
+		bone-serial5 = &uart8;
+		// CAN
+		bone-d-can1 = &dcan2; 
+
 		rtc0 = &tps659038_rtc;
 		rtc1 = &rtc;
 		display0 = &hdmi_conn;
