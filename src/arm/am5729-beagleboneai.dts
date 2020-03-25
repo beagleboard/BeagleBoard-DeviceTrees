@@ -24,8 +24,7 @@
 		bone-i2c2 = &i2c4;
 		bone-i2c3 = &i2c3;
 		// SPI
-		bone-spi0 = &spi2;
-		bone-spi1 = &spi3;
+		bone-spi0 = &qspi;
 		// UART
 		bone-serial0 = &uart1;
 		bone-serial1 = &uart10;
