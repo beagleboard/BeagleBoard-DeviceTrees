@@ -1200,6 +1200,7 @@
 	pinctrl-0 = <>;
 
 	clock-frequency = <100000>;
+	symlink = "bone-i2c1";
 };
 
 &i2c2 {
@@ -1208,48 +1209,56 @@
 	pinctrl-0 = <>;
 
 	clock-frequency = <100000>;
+	symlink = "bone-i2c2";
 };
 
 &uart1 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-uart1";
 };
 
 &uart2 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-uart2";
 };
 
 &uart3 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-uart3";
 };
 
 &uart4 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-uart4";
 };
 
 &uart5 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-uart5";
 };
 
 &dcan0 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-can0";
 };
 
 &dcan1 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone-can1";
 };
 
 &eqep0 {
@@ -1263,6 +1272,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
+	symlink = "bone-eqep0";
 };
 
 &eqep1 {
@@ -1276,6 +1286,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
+	symlink = "bone-eqep1";
 };
 
 &eqep2 {
@@ -1289,6 +1300,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
+	symlink = "bone-eqep2";
 };
 
 &epwmss0 {
