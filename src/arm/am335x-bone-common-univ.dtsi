@@ -1200,7 +1200,7 @@
 	pinctrl-0 = <>;
 
 	clock-frequency = <100000>;
-	symlink = "bone-i2c1";
+	symlink = "bone/i2c/1";
 };
 
 &i2c2 {
@@ -1209,56 +1209,56 @@
 	pinctrl-0 = <>;
 
 	clock-frequency = <100000>;
-	symlink = "bone-i2c2";
+	symlink = "bone/i2c/2";
 };
 
 &uart1 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-uart1";
+	symlink = "bone/uart/1";
 };
 
 &uart2 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-uart2";
+	symlink = "bone/uart/2";
 };
 
 &uart3 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-uart3";
+	symlink = "bone/uart/3";
 };
 
 &uart4 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-uart4";
+	symlink = "bone/uart/4";
 };
 
 &uart5 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-uart5";
+	symlink = "bone/uart/5";
 };
 
 &dcan0 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-can0";
+	symlink = "bone/can/0";
 };
 
 &dcan1 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
-	symlink = "bone-can1";
+	symlink = "bone/can/1";
 };
 
 &eqep0 {
@@ -1272,7 +1272,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone-eqep0";
+	symlink = "bone/eqep/0";
 };
 
 &eqep1 {
@@ -1286,7 +1286,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone-eqep1";
+	symlink = "bone/eqep/1";
 };
 
 &eqep2 {
@@ -1300,7 +1300,7 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone-eqep2";
+	symlink = "bone/eqep/2";
 };
 
 &epwmss0 {
