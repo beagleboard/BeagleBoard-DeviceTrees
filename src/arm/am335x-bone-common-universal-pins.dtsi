@@ -955,7 +955,7 @@
 
 	/*       (ZCZ ball A15) */
 	A15_default_pin: pinmux_A15_default_pin {
-		pinctrl-single,pins = <0x1b0  0x0b>; };     /* Mode 3 */
+		pinctrl-single,pins = <0x1b0 (PIN_OUTPUT_PULLUP | MUX_MODE7)>; };     /* Mode 7, Pull-Up */
 	A15_clkout_pin: pinmux_A15_clkout_pin {
 		pinctrl-single,pins = <0x1b0  0x0b>; };     /* Mode 3 */
 	A15_gpio_pin: pinmux_A15_gpio_pin {
