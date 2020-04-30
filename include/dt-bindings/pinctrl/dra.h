@@ -1,12 +1,9 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * This header provides constants for DRA pinctrl bindings.
  *
  * Copyright (C) 2013 Texas Instruments Incorporated - http://www.ti.com/
  * Author: Rajendra Nayak <rnayak@ti.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  */
 
 #ifndef _DT_BINDINGS_PINCTRL_DRA_H
@@ -76,5 +73,19 @@
 /* DRA7 IODELAY configuration parameters */
 #define A_DELAY_PS(val)			((val) & 0xffff)
 #define G_DELAY_PS(val)			((val) & 0xffff)
+
+/* DRA72 VIP MUX selection parameters */
+#define VIP_VIN3A		(0x0 << 4)
+#define VIP_VIN5A		(0x1 << 4)
+#define VIP_VIN6A		(0x2 << 4)
+
+#define VIP_VIN4B		(0x0 << 3)
+
+#define VIP_VIN2A		(0x0 << 1)
+#define VIP_VIN4A		(0x1 << 1)
+
+#define VIP_VIN3B		(0x0 << 0)
+#define VIP_VIN2B		(0x1 << 0)
+
 #endif
 
