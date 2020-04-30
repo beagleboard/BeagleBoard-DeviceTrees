@@ -32,6 +32,27 @@
 		reg = <0x0 0x80000000 0x0 0x80000000>;
 	};
 
+	main_12v0: fixedregulator-main_12v0 {
+		/* main supply */
+		compatible = "regulator-fixed";
+		regulator-name = "main_12v0";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	evm_5v0: fixedregulator-evm_5v0 {
+		/* Output of TPS54531D */
+		compatible = "regulator-fixed";
+		regulator-name = "evm_5v0";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&main_12v0>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
 	vdd_3v3: fixedregulator-vdd_3v3 {
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_3v3";
@@ -388,7 +409,7 @@
 };
 
 &cpu0 {
-	vdd-supply = <&smps12_reg>;
+	cpu0-supply = <&smps12_reg>;
 	voltage-tolerance = <1>;
 };
 
@@ -442,10 +463,9 @@
 	pinctrl-0 = <&mmc2_pins_default>;
 
 	vmmc-supply = <&vdd_3v3>;
-	vqmmc-supply = <&vdd_3v3>;
 	bus-width = <8>;
-	non-removable;
-	no-1-8-v;
+	ti,non-removable;
+	cap-mmc-dual-data-rate;
 };
 
 &sata {
@@ -555,7 +575,7 @@
 
 &mcasp3 {
 	#sound-dai-cells = <0>;
-	assigned-clocks = <&l4per_clkctrl DRA7_MCASP3_CLKCTRL 24>;
+	assigned-clocks = <&mcasp3_ahclkx_mux>;
 	assigned-clock-parents = <&sys_clkin2>;
 	status = "okay";
 
