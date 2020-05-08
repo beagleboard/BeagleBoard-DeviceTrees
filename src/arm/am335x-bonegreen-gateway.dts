@@ -35,6 +35,15 @@
 		gpio = <&gpio3 9 0>;
 		enable-active-high;
 	};
+
+	leds {
+		led6 {
+			label = "beaglebone:green:usr4";
+			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "netdev";
+			default-state = "off";
+		};
+	};
 };
 
 &cpu0_opp_table {
