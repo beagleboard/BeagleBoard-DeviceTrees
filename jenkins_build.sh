@@ -38,8 +38,8 @@ dtc_git_build
 
 echo "*********************************************"
 echo "dtc: `/var/lib/jenkins/git/dtc/dtc --version`"
-DTC=/var/lib/jenkins/git/dtc/dtc make clean
-DTC=/var/lib/jenkins/git/dtc/dtc make all || exit 1
+DTC=/var/lib/jenkins/git/dtc/dtc DTCVERSION=2.0.0 make clean
+DTC=/var/lib/jenkins/git/dtc/dtc DTCVERSION=2.0.0 make all || exit 1
 echo "*********************************************"
 
 unset git_tag
