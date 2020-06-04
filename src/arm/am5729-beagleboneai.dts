@@ -200,6 +200,14 @@
 	};
 };
 
+&dra7_pmx_core {
+	pmic_pins_default: pmic_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x3690, PIN_INPUT_PULLUP | MUX_MODE14) /* F21: gpio6_16.gpio6_16 - PMIC_INT */
+		>;
+	};
+};
+
 &i2c1 {
 	status = "okay";
 	clock-frequency = <400000>;
@@ -209,6 +217,9 @@
 		reg = <0x58>;
 		interrupt-parent = <&gpio6>;
 		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&pmic_pins_default>;
 
 		#interrupt-cells = <2>;
 		interrupt-controller;
