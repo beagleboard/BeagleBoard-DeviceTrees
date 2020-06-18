@@ -977,6 +977,27 @@
 	pinctrl-0 = <>;
 };
 
+// EQEP0 is available on:
+// P1.31 - A
+// P2.34 - B
+// P1.29 - STRB
+// P2.28 - IDX
+&eqep0 {
+	status = "okay";
+	count_mode = <0>;	// count_mode is not userspace op_mode
+	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
+	// 1 -> Direction mode.  cha input = clock, chb input = direction
+	// 2 -> UP count mode for frequency measurement QDIR=1, ignore direction input
+	// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
+
+	swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
+	invert_qa = <1>;	// invert channel A input?
+	invert_qb = <1>;	// invert channel B input?
+	invert_qi = <0>;	// invert index input?
+	invert_qs = <0>;	// invert strobe input?
+	omit_interrupt = <0>;	// 1 -> do not install interrupt handler, 0 -> do install
+};
+
 &epwmss1 {
 	status = "okay";
 };
@@ -996,6 +1017,27 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+};
+
+// EQEP2 is available on:
+// P2.24 - A
+// P2.33 - B
+// P2.18 - STRB
+// P2.22 - IDX
+&eqep2 {
+	status = "okay";
+	count_mode = <0>;	// count_mode is not userspace op_mode
+	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
+	// 1 -> Direction mode.  cha input = clock, chb input = direction
+	// 2 -> UP count mode for frequency measurement QDIR=1, ignore direction input
+	// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
+
+	swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
+	invert_qa = <1>;	// invert channel A input?
+	invert_qb = <1>;	// invert channel B input?
+	invert_qi = <0>;	// invert index input?
+	invert_qs = <0>;	// invert strobe input?
+	omit_interrupt = <0>;	// 1 -> do not install interrupt handler, 0 -> do install
 };
 
 &i2c0 {
