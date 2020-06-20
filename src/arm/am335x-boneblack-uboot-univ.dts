@@ -7,6 +7,7 @@
 #include "am33xx.dtsi"
 #include "am335x-bone-common.dtsi"
 #include "am335x-bone-common-univ.dtsi"
+#include "bbb-bone-buses.dtsi"
 
 / {
 	model = "TI AM335x BeagleBone Black";
