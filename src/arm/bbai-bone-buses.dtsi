@@ -14,7 +14,7 @@
 			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpio6_15.uart10_txd */
 			P9_26A( PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio6_14.uart10_rxd */
 			/* unused pins */
-			P9_26B( PIN_OUTPUT | MUX_MODE15)
+			P9_26B( PIN_OUTPUT | MUX_MODE15)		/* vin1a_d20.off */
 		>;
 	};
 
@@ -23,36 +23,36 @@
 			P9_21B( PIN_OUTPUT_PULLUP | MUX_MODE1)	/* spi2_d1.uart3_txd */
 			P9_22B( PIN_INPUT_PULLUP  | MUX_MODE1)	/* spi2_sclk.uart3_rxd */
 			/* unused pins */
-			P9_21A( PIN_OUTPUT | MUX_MODE15)
-			P9_22A( PIN_OUTPUT | MUX_MODE15)
+			P9_21A( PIN_OUTPUT | MUX_MODE15)		/* vin1a_vsync0.off */
+			P9_22A( PIN_OUTPUT | MUX_MODE15)		/* xref_clk2.off */
 		>;
 	};
 
 	bone_uart_4_pins: pinmux_bone_uart_4_pins {
-        pinctrl-single,pins = <
-            P9_13( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr1.uart5_txd */
-            P9_11A( PIN_INPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr0.uart5_rxd */
-            /* unused pins */
-			P9_11B( PIN_OUTPUT | MUX_MODE15)
-        >;
-    };
+		pinctrl-single,pins = <
+			P9_13( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr1.uart5_txd */
+			P9_11A( PIN_INPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr0.uart5_rxd */
+			/* unused pins */
+			P9_11B( PIN_OUTPUT | MUX_MODE15)		/* vout1_d17.off */
+		>;
+	};
 
 	bone_uart_5_pins: pinmux_bone_uart_5_pins {
 		pinctrl-single,pins = <
 			P8_37B( PIN_OUTPUT_PULLUP | MUX_MODE3)	/* uart8_txd */
 			P8_38B( PIN_INPUT_PULLUP | MUX_MODE3)	/* uart8_rxd */
 			/* unused pins */
-			P8_37A( PIN_OUTPUT | MUX_MODE15)
-			P8_38A( PIN_OUTPUT | MUX_MODE15)			
+			P8_37A( PIN_OUTPUT | MUX_MODE15)		/* vout1_d8.off */
+			P8_38A( PIN_OUTPUT | MUX_MODE15)		/* vout1_d9.off */			
 		>;
 	};
 };
 
 bone_uart_1: &uart10 {
 	status = "disabled";
-    pinctrl-names = "default";
-    pinctrl-0 = <&bone_uart_1_pins>;
-    symlink = "bone/uart/1";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_uart_1_pins>;
+	symlink = "bone/uart/1";
 };
 
 bone_uart_2: &uart3 {
@@ -67,10 +67,10 @@ bone_uart_3: &ocp{
 };
 
 bone_uart_4: &uart5 {
-    status = "disabled";
-    pinctrl-names = "default";
-    pinctrl-0 = <&bone_uart_4_pins>;
-    symlink = "bone/uart/4";
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_uart_4_pins>;
+	symlink = "bone/uart/4";
 };
 
 bone_uart_5: &uart8 {
