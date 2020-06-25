@@ -11,44 +11,44 @@
 &am33xx_pinmux {
 bone_uart_1_pins: pinmux_bone_uart_1_pins {
 		pinctrl-single,pins = <
-			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE0)
-			P9_26( PIN_INPUT_PULLUP | MUX_MODE0)
+			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE0)	/* uart1_txd */
+			P9_26( PIN_INPUT_PULLUP | MUX_MODE0)	/* uart1_rxd */
 		>;
 	};
 
 	bone_uart_2_pins: pinmux_bone_uart_2_pins {
 		pinctrl-single,pins = <
-			P9_21( PIN_OUTPUT_PULLUP | MUX_MODE1)
-			P9_22( PIN_INPUT_PULLUP  | MUX_MODE1)
+			P9_21( PIN_OUTPUT_PULLUP | MUX_MODE1)	/* spi0_d0 */
+			P9_22( PIN_INPUT_PULLUP  | MUX_MODE1)	/* spi0_sclk */
 		>;
 	};
 
-    bone_uart_3_pins: pinmux_bone_uart_3_pins {
+	bone_uart_3_pins: pinmux_bone_uart_3_pins {
 		pinctrl-single,pins = <
-            P9_42A (PIN_OUTPUT_PULLUP | MUX_MODE1)
+			P9_42A (PIN_OUTPUT_PULLUP | MUX_MODE1)	/* P0_in_PWM0_out */
 		>;
 	};
 
 	bone_uart_4_pins: pinmux_bone_uart_4_pins {
-        pinctrl-single,pins = <
-            P9_13(PIN_OUTPUT_PULLUP | MUX_MODE6)
-            P9_11(PIN_OUTPUT_PULLUP | MUX_MODE6)
-        >;
-    };
+		pinctrl-single,pins = <
+			P9_13(PIN_OUTPUT_PULLUP | MUX_MODE6)	/* gpmc_wpn */
+			P9_11(PIN_OUTPUT_PULLUP | MUX_MODE6)	/* gpmc_wait0 */
+		>;
+	};
 
 	bone_uart_5_pins: pinmux_bone_uart_5_pins {
 		pinctrl-single,pins = <
-			P8_37( PIN_OUTPUT_PULLUP | MUX_MODE4)
-			P8_38( PIN_INPUT_PULLUP | MUX_MODE4)
+			P8_37( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* lcd_data8 */
+			P8_38( PIN_INPUT_PULLUP | MUX_MODE4)	/* lcd_data9 */
 		>;
 	};
 };
 
 bone_uart_1: &uart1 {
 	status = "disabled";
-    pinctrl-names = "default";
-    pinctrl-0 = <&bone_uart_1_pins>;
-    symlink = "bone/uart/1";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_uart_1_pins>;
+	symlink = "bone/uart/1";
 };
 
 bone_uart_2: &uart2 {
@@ -66,10 +66,10 @@ bone_uart_3: &uart3 {
 };
 
 bone_uart_4: &uart4 {
-    status = "disabled";
-    pinctrl-names = "default";
-    pinctrl-0 = <&bone_uart_4_pins>;
-    symlink = "bone/uart/4";
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_uart_4_pins>;
+	symlink = "bone/uart/4";
 };
 
 bone_uart_5: &uart5 {
