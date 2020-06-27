@@ -1177,7 +1177,7 @@
 &i2c4 {
 	status = "okay";
 	clock-frequency = <100000>;
-	symlink = "bone-i2c2";
+	symlink = "bone/i2c/2";
 };
 
 /* thermal hacks */
