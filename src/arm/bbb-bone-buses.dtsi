@@ -9,7 +9,8 @@
 #include <dt-bindings/board/am335x-bbb-pins.h>
 
 &am33xx_pinmux {
-bone_uart_1_pins: pinmux_bone_uart_1_pins {
+	// UARTs
+	bone_uart_1_pins: pinmux_bone_uart_1_pins {
 		pinctrl-single,pins = <
 			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE0)	/* uart1_txd */
 			P9_26( PIN_INPUT_PULLUP | MUX_MODE0)	/* uart1_rxd */
@@ -42,8 +43,40 @@ bone_uart_1_pins: pinmux_bone_uart_1_pins {
 			P8_38( PIN_INPUT_PULLUP | MUX_MODE4)	/* lcd_data9 */
 		>;
 	};
+
+	// I2Cs
+	bone_i2c_1_pins: pinmux_bone_i2c_1_pins {
+		pinctrl-single,pins = <
+			P9_18( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_d1.i2c1_sda */
+			P9_17( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_cs0.i2c1_scl */
+		>;
+	};
+
+	bone_i2c_2_pins: pinmux_bone_i2c_2_pins {
+		pinctrl-single,pins = <
+			P9_20( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_ctsn.i2c2_sda */
+			P9_19( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_rtsn.i2c2_scl */
+		>;
+	};
+
+	// use only when bone_i2c_2 is not in use
+	bone_i2c_2a_pins: pinmux_bone_i2c_2a_pins {
+		pinctrl-single,pins = <
+			P9_22( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_sclk.i2c2_sda */
+			P9_21( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_d0.i2c2_scl */
+		>;
+	};	
+
+	// use only when bone_i2c_1 is not in use
+	bone_i2c_3_pins: pinmux_bone_i2c_3_pins {
+		pinctrl-single,pins = <
+			P9_26( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_rxd.i2c1_sda */
+			P9_24( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_txd.i2c1_scl */
+		>;
+	};
 };
 
+// UARTs
 bone_uart_1: &uart1 {
 	status = "disabled";
 	pinctrl-names = "default";
@@ -77,4 +110,35 @@ bone_uart_5: &uart5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&bone_uart_5_pins>;
 	symlink = "bone/uart/5";
+};
+
+// I2Cs 
+bone_i2c_1: &i2c1 {
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_i2c_1_pins>;
+	symlink = "bone/i2c/1";
+};
+
+bone_i2c_2: &i2c2 {
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_i2c_2_pins>;
+	symlink = "bone/i2c/2";
+};
+
+// use only when bone_i2c_2 is not in use
+bone_i2c_2a: &i2c2 {
+	// status = "disabled";
+	// pinctrl-names = "default";
+	// pinctrl-0 = <&bone_i2c_2a_pins>;
+	// symlink = "bone/i2c/2a";
+};
+
+// use only when bone_i2c_1 is not in use
+bone_i2c_3: &i2c1 {
+	// status = "disabled";
+	// pinctrl-names = "default";
+	// pinctrl-0 = <&bone_i2c_3_pins>;
+	// symlink = "bone/i2c/3";
 };
