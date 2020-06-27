@@ -9,6 +9,7 @@
 #include <dt-bindings/board/am572x-bbai-pins.h>
 
 &dra7_pmx_core {
+	// Uarts
 	bone_uart_1_pins: pinmux_bone_uart_1_pins {
 		pinctrl-single,pins = <
 			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpio6_15.uart10_txd */
@@ -46,8 +47,39 @@
 			P8_38A( PIN_OUTPUT | MUX_MODE15)		/* vout1_d9.off */			
 		>;
 	};
+
+	// I2Cs
+	bone_i2c_1_pins: pinmux_bone_i2c_1_pins {
+		pinctrl-single,pins = <
+			P9_18B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr0.i2c5_sda */
+			P9_17B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr1.i2c5_scl */
+			/* unused pins */
+			P9_18A( PIN_OUTPUT | MUX_MODE15)					/* spi2_d0.off */
+			P9_17A( PIN_OUTPUT | MUX_MODE15)					/* spi2_cs0.off */
+		>;
+	};
+
+	bone_i2c_2_pins: pinmux_bone_i2c_2_pins {
+		pinctrl-single,pins = <
+			P9_20A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a1.i2c4_sda */
+			P9_19A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a0.i2c4_scl */
+			/* unused pins */
+			P9_20B( PIN_OUTPUT | MUX_MODE15)					/* vin2a_d4.off */
+			P9_19B( PIN_OUTPUT | MUX_MODE15)					/* vin2a_d5.off */
+		>;
+	};
+
+	bone_i2c_3_pins: pinmux_bone_i2c_3_pins {
+		pinctrl-single,pins = <
+			P9_26A( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_14.i2c3_sda */
+			P9_24( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_15.i2c3_scl */
+			/* unused pins*/
+			P9_26B( PIN_OUTPUT | MUX_MODE15)					/* gpio6_14.off */
+		>;
+	};	
 };
 
+// UARTs
 bone_uart_1: &uart10 {
 	status = "disabled";
 	pinctrl-names = "default";
@@ -78,4 +110,30 @@ bone_uart_5: &uart8 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&bone_uart_5_pins>;
 	symlink = "bone/uart/5";
+};
+
+// I2Cs
+bone_i2c_1: &i2c5 {
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_i2c_1_pins>;
+	symlink = "bone/i2c/1";
+};
+
+bone_i2c_2: &i2c4 {
+	// status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_i2c_2_pins>;
+	// symlink = "bone/i2c/2";
+};
+
+bone_i2c_2a: &ocp {
+	// Not available
+};
+
+bone_i2c_3: &i2c3 {
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_i2c_3_pins>;
+	symlink = "bone/i2c/3";
 };
