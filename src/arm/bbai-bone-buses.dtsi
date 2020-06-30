@@ -54,8 +54,8 @@
 			P9_18B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr0.i2c5_sda */
 			P9_17B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr1.i2c5_scl */
 			/* unused pins */
-			P9_18A( PIN_OUTPUT | MUX_MODE15)					/* spi2_d0.off */
-			P9_17A( PIN_OUTPUT | MUX_MODE15)					/* spi2_cs0.off */
+			P9_18A( PIN_OUTPUT | MUX_MODE15)		/* spi2_d0.off */
+			P9_17A( PIN_OUTPUT | MUX_MODE15)		/* spi2_cs0.off */
 		>;
 	};
 
@@ -64,8 +64,8 @@
 			P9_20A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a1.i2c4_sda */
 			P9_19A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a0.i2c4_scl */
 			/* unused pins */
-			P9_20B( PIN_OUTPUT | MUX_MODE15)					/* vin2a_d4.off */
-			P9_19B( PIN_OUTPUT | MUX_MODE15)					/* vin2a_d5.off */
+			P9_20B( PIN_OUTPUT | MUX_MODE15)		/* vin2a_d4.off */
+			P9_19B( PIN_OUTPUT | MUX_MODE15)		/* vin2a_d5.off */
 		>;
 	};
 
@@ -74,7 +74,40 @@
 			P9_26A( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_14.i2c3_sda */
 			P9_24( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_15.i2c3_scl */
 			/* unused pins*/
-			P9_26B( PIN_OUTPUT | MUX_MODE15)					/* gpio6_14.off */
+			P9_26B( PIN_OUTPUT | MUX_MODE15)		/* gpio6_14.off */
+		>;
+	};
+
+	// SPIs
+	bone_spi_0_pins: pinmux_bone_spi_0_pins {
+		pinctrl-single,pins = <
+			P9_22B( PIN_INPUT | MUX_MODE0)	/* spi2_sclk.spi2_sclk */
+			P9_21B( PIN_INPUT | MUX_MODE0)	/* spi2_d1.spi2_d1 */
+			P9_18A( PIN_INPUT | MUX_MODE0)	/* spi2_d0.spi2_d0 */
+			P9_17A( PIN_INPUT | MUX_MODE0)	/* spi2_cs0.spi2_cs0 */
+			/* unused pins */
+			P9_22A( PIN_INPUT | MUX_MODE15)	/* xref_clk2.off */
+			P9_21A( PIN_INPUT | MUX_MODE15)	/* vin1a_vsync0.off */
+			P9_18B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr0.off */
+			P9_17B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr1.off */
+		>;
+	};
+
+	bone_spi_1_pins: pinmux_bone_spi_1_pins {
+		pinctrl-single,pins = <
+			P9_31A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr8.spi3_sclk */
+			P9_29A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr9.spi3_d1 */
+			P9_30( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr10.spi3_d0 */
+			P9_28( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr11.spi3_cs0 */
+			P9_42A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr12.spi3_cs1 */
+			// P8_45A( PIN_INPUT | MUX_MODE8)	/* vout1_d0.spi3_cs2 */
+			// P8_46B( PIN_INPUT | MUX_MODE8)	/* vout1_d23.spi3_cs3 */
+			/* unused pins */
+			P9_31B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr8.off */
+			P9_29B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr9.off */
+			P9_42B( PIN_INPUT | MUX_MODE15)	/* vin2a_d13.off */
+			// P8_45B( PIN_INPUT | MUX_MODE8)	/* vout1_d16.off */
+			// P8_46A( PIN_INPUT | MUX_MODE8)	/* vout1_d1.off */
 		>;
 	};	
 };
@@ -136,4 +169,59 @@ bone_i2c_3: &i2c3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&bone_i2c_3_pins>;
 	symlink = "bone/i2c/3";
+};
+
+// SPIs
+bone_spi_0: &mcspi2 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_spi_0_pins>;
+
+	channel@0 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		compatible = "spidev";
+		symlink = "/bone/spi/0.0";
+
+		reg = <0>;
+		spi-max-frequency = <16000000>;
+		spi-cpha;
+	};
+};
+
+bone_spi_1: &mcspi3 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bone_spi_1_pins>;
+	ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
+
+	channel@0 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		compatible = "spidev";
+		symlink = "/bone/spi/1.0";
+
+		reg = <0>;
+		spi-max-frequency = <16000000>;
+		spi-cpha;
+	};
+
+	channel@1 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		compatible = "spidev";
+		symlink = "/bone/spi/1.1";
+
+		reg = <1>;
+		spi-max-frequency = <16000000>;
+	};
 };
