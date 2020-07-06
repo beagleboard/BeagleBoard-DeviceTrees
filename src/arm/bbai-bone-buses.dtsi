@@ -31,9 +31,10 @@
 
 	bone_uart_4_pins: pinmux_bone_uart_4_pins {
 		pinctrl-single,pins = <
-			P9_13( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr1.uart5_txd */
+			P9_13A( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr1.uart5_txd */
 			P9_11A( PIN_INPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr0.uart5_rxd */
 			/* unused pins */
+			P9_13B( PIN_OUTPUT | MUX_MODE15)		/* usb1_drvvbus */
 			P9_11B( PIN_OUTPUT | MUX_MODE15)		/* vout1_d17.off */
 		>;
 	};
