@@ -71,7 +71,8 @@
 #define P9_11A(mode) DRA7XX_CORE_IOPAD(0x372C, mode) /* B19: P9.11a: mcasp3_axr0 */
 #define P9_11B(mode) DRA7XX_CORE_IOPAD(0x3620, mode) /* B8: P9.11b: vout1_d17 */
 #define P9_12(mode) DRA7XX_CORE_IOPAD(0x36AC, mode)  /* B14: P9.12: mcasp1_aclkr */
-#define P9_13(mode) DRA7XX_CORE_IOPAD(0x3730, mode)  /* C17: P9.13: mcasp3_axr1 */
+#define P9_13A(mode) DRA7XX_CORE_IOPAD(0x3730, mode)  /* C17: P9.13a: mcasp3_axr1 */
+#define P9_13B(mode) DRA7XX_CORE_IOPAD(0x3680, mode)  /* AB10: P9.13b: usb1_drvvbus */
 #define P9_14(mode) DRA7XX_CORE_IOPAD(0x35AC, mode)  /* D6: P9.14: vin2a_d17 */
 #define P9_15(mode) DRA7XX_CORE_IOPAD(0x3514, mode)  /* AG4: P9.15: vin1a_d8 */
 #define P9_16(mode) DRA7XX_CORE_IOPAD(0x35B0, mode)  /* C5: P9.16: vin2a_d18 */
