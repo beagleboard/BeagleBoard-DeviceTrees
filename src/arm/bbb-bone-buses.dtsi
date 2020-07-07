@@ -8,6 +8,366 @@
 
 #include <dt-bindings/board/am335x-bbb-pins.h>
 
+/********/
+/* LEDs */
+/********/
+&{/} {
+	leds {
+		pinctrl-names = "default";
+		compatible = "gpio-leds";
+
+		led_P8_03 {
+			gpios = <&gpio1 6 0>;
+			status = "disabled";
+		};
+
+		led_P8_04 {
+			gpios = <&gpio1 7 0>;
+			status = "disabled";
+		};
+
+		led_P8_05 {
+			gpios = <&gpio1 2 0>;
+			status = "disabled";
+		};
+
+		led_P8_06 {
+			gpios = <&gpio1 3 0>;
+			status = "disabled";
+		};
+
+		led_P8_07 {
+			gpios = <&gpio2 2 0>;
+			status = "disabled";
+		};
+
+		led_P8_08 {
+			gpios = <&gpio2 3 0>;
+			status = "disabled";
+		};
+
+		led_P8_09 {
+			gpios = <&gpio2 5 0>;
+			status = "disabled";
+		};
+
+		led_P8_10 {
+			gpios = <&gpio2 4 0>;
+			status = "disabled";
+		};
+
+		led_P8_11 {
+			gpios = <&gpio1 13 0>;
+			status = "disabled";
+		};
+
+		led_P8_12 {
+			gpios = <&gpio1 12 0>;
+			status = "disabled";
+		};
+
+		led_P8_13 {
+			gpios = <&gpio0 23 0>;
+			status = "disabled";
+		};
+
+		led_P8_14 {
+			gpios = <&gpio0 26 0>;
+			status = "disabled";
+		};
+
+		led_P8_15 {
+			gpios = <&gpio1 15 0>;
+			status = "disabled";
+		};
+
+		led_P8_16 {
+			gpios = <&gpio1 14 0>;
+			status = "disabled";
+		};
+
+		led_P8_17 {
+			gpios = <&gpio0 27 0>;
+			status = "disabled";
+		};
+
+		led_P8_18 {
+			gpios = <&gpio2 1 0>;
+			status = "disabled";
+		};
+
+		led_P8_19 {
+			gpios = <&gpio0 22 0>;
+			status = "disabled";
+		};
+
+		led_P8_20 {
+			gpios = <&gpio1 31 0>;
+			status = "disabled";
+		};
+
+		led_P8_21 {
+			gpios = <&gpio1 30 0>;
+			status = "disabled";
+		};
+
+		led_P8_22 {
+			gpios = <&gpio1 5 0>;
+			status = "disabled";
+		};
+
+		led_P8_23 {
+			gpios = <&gpio1 4 0>;
+			status = "disabled";
+		};
+
+		led_P8_24 {
+			gpios = <&gpio1 1 0>;
+			status = "disabled";
+		};
+
+		led_P8_25 {
+			gpios = <&gpio1 0 0>;
+			status = "disabled";
+		};
+
+		led_P8_26 {
+			gpios = <&gpio1 29 0>;
+			status = "disabled";
+		};
+
+		led_P8_27 {
+			gpios = <&gpio2 22 0>;
+			status = "disabled";
+		};
+
+		led_P8_28 {
+			gpios = <&gpio2 24 0>;
+			status = "disabled";
+		};
+
+		led_P8_29 {
+			gpios = <&gpio2 23 0>;
+			status = "disabled";
+		};
+
+		led_P8_30 {
+			gpios = <&gpio2 25 0>;
+			status = "disabled";
+		};
+
+		led_P8_31 {
+			gpios = <&gpio0 10 0>;
+			status = "disabled";
+		};
+
+		led_P8_32 {
+			gpios = <&gpio0 11 0>;
+			status = "disabled";
+		};
+
+		led_P8_33 {
+			gpios = <&gpio0 9 0>;
+			status = "disabled";
+		};
+
+		led_P8_34 {
+			gpios = <&gpio2 17 0>;
+			status = "disabled";
+		};
+
+		led_P8_35 {
+			gpios = <&gpio0 8 0>;
+			status = "disabled";
+		};
+
+		led_P8_36 {
+			gpios = <&gpio2 16 0>;
+			status = "disabled";
+		};
+
+		led_P8_37 {
+			gpios = <&gpio2 14 0>;
+			status = "disabled";
+		};
+
+		led_P8_38 {
+			gpios = <&gpio2 15 0>;
+			status = "disabled";
+		};
+
+		led_P8_39 {
+			gpios = <&gpio2 12 0>;
+			status = "disabled";
+		};
+
+		led_P8_40 {
+			gpios = <&gpio2 13 0>;
+			status = "disabled";
+		};
+
+		led_P8_41 {
+			gpios = <&gpio2 10 0>;
+			status = "disabled";
+		};
+
+		led_P8_42 {
+			gpios = <&gpio2 11 0>;
+			status = "disabled";
+		};
+
+		led_P8_43 {
+			gpios = <&gpio2 8 0>;
+			status = "disabled";
+		};
+
+		led_P8_44 {
+			gpios = <&gpio2 9 0>;
+			status = "disabled";
+		};
+
+		led_P8_45 {
+			gpios = <&gpio2 6 0>;
+			status = "disabled";
+		};
+
+		led_P8_46 {
+			gpios = <&gpio2 7 0>;
+			status = "disabled";
+		};
+
+		led_P9_11 {
+			gpios = <&gpio0 30 0>;
+			status = "disabled";
+		};
+
+		led_P9_12 {
+			gpios = <&gpio1 28 0>;
+			status = "disabled";
+		};
+
+		led_P9_13 {
+			gpios = <&gpio0 31 0>;
+			status = "disabled";
+		};
+
+		led_P9_14 {
+			gpios = <&gpio1 18 0>;
+			status = "disabled";
+		};
+
+		led_P9_15 {
+			gpios = <&gpio1 16 0>;
+			status = "disabled";
+		};
+
+		led_P9_16 {
+			gpios = <&gpio1 19 0>;
+			status = "disabled";
+		};
+
+		led_P9_17 {
+			gpios = <&gpio0 5 0>;
+			status = "disabled";
+		};
+
+		led_P9_18 {
+			gpios = <&gpio0 4 0>;
+			status = "disabled";
+		};
+
+		led_P9_19 {
+			gpios = <&gpio0 13 0>;
+			status = "disabled";
+		};
+
+		led_P9_20 {
+			gpios = <&gpio0 12 0>;
+			status = "disabled";
+		};
+
+		led_P9_21 {
+			gpios = <&gpio0 3 0>;
+			status = "disabled";
+		};
+
+		led_P9_22 {
+			gpios = <&gpio0 2 0>;
+			status = "disabled";
+		};
+
+		led_P9_23 {
+			gpios = <&gpio1 17 0>;
+			status = "disabled";
+		};
+
+		led_P9_24 {
+			gpios = <&gpio0 15 0>;
+			status = "disabled";
+		};
+
+		led_P9_25 {
+			gpios = <&gpio3 21 0>;
+			status = "disabled";
+		};
+
+		led_P9_26 {
+			gpios = <&gpio0 14 0>;
+			status = "disabled";
+		};
+
+		led_P9_27 {
+			gpios = <&gpio3 19 0>;
+			status = "disabled";
+		};
+
+		led_P9_28 {
+			gpios = <&gpio3 17 0>;
+			status = "disabled";
+		};
+
+		led_P9_29 {
+			gpios = <&gpio3 15 0>;
+			status = "disabled";
+		};
+
+		led_P9_30 {
+			gpios = <&gpio3 16 0>;
+			status = "disabled";
+		};
+
+		led_P9_31 {
+			gpios = <&gpio3 14 0>;
+			status = "disabled";
+		};
+
+		led_P9_41 {
+			gpios = <&gpio0 20 0>;
+			status = "disabled";
+		};
+
+		led_P9_91 {
+			gpios = <&gpio3 20 0>;
+			status = "disabled";
+		};
+
+		led_P9_42 {
+			gpios = <&gpio0 7 0>;
+			status = "disabled";
+		};
+
+		led_P9_92 {
+			gpios = <&gpio3 18 0>;
+			status = "disabled";
+		};
+
+		led_A15 {
+			gpios = <&gpio0 19 0>;
+			status = "disabled";
+		};
+	};
+};
+
 &am33xx_pinmux {
 	// UARTs
 	bone_uart_1_pins: pinmux_bone_uart_1_pins {
