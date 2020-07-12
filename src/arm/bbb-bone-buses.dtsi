@@ -368,128 +368,34 @@
 	};
 };
 
-&am33xx_pinmux {
-	// UARTs
-	bone_uart_1_pins: pinmux_bone_uart_1_pins {
-		pinctrl-single,pins = <
-			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE0)	/* uart1_txd */
-			P9_26( PIN_INPUT_PULLUP | MUX_MODE0)	/* uart1_rxd */
-		>;
-	};
-
-	bone_uart_2_pins: pinmux_bone_uart_2_pins {
-		pinctrl-single,pins = <
-			P9_21( PIN_OUTPUT_PULLUP | MUX_MODE1)	/* spi0_d0 */
-			P9_22( PIN_INPUT_PULLUP  | MUX_MODE1)	/* spi0_sclk */
-		>;
-	};
-
-	bone_uart_3_pins: pinmux_bone_uart_3_pins {
-		pinctrl-single,pins = <
-			P9_42A (PIN_OUTPUT_PULLUP | MUX_MODE1)	/* P0_in_PWM0_out */
-		>;
-	};
-
-	bone_uart_4_pins: pinmux_bone_uart_4_pins {
-		pinctrl-single,pins = <
-			P9_13(PIN_OUTPUT_PULLUP | MUX_MODE6)	/* gpmc_wpn */
-			P9_11(PIN_OUTPUT_PULLUP | MUX_MODE6)	/* gpmc_wait0 */
-		>;
-	};
-
-	bone_uart_5_pins: pinmux_bone_uart_5_pins {
-		pinctrl-single,pins = <
-			P8_37( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* lcd_data8 */
-			P8_38( PIN_INPUT_PULLUP | MUX_MODE4)	/* lcd_data9 */
-		>;
-	};
-
-	// I2Cs
-	bone_i2c_1_pins: pinmux_bone_i2c_1_pins {
-		pinctrl-single,pins = <
-			P9_18( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_d1.i2c1_sda */
-			P9_17( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_cs0.i2c1_scl */
-		>;
-	};
-
-	bone_i2c_2_pins: pinmux_bone_i2c_2_pins {
-		pinctrl-single,pins = <
-			P9_20( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_ctsn.i2c2_sda */
-			P9_19( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_rtsn.i2c2_scl */
-		>;
-	};
-
-	// use only when bone_i2c_2 is not in use
-	bone_i2c_2a_pins: pinmux_bone_i2c_2a_pins {
-		pinctrl-single,pins = <
-			P9_22( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_sclk.i2c2_sda */
-			P9_21( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2)	/* spi0_d0.i2c2_scl */
-		>;
-	};	
-
-	// use only when bone_i2c_1 is not in use
-	bone_i2c_3_pins: pinmux_bone_i2c_3_pins {
-		pinctrl-single,pins = <
-			P9_26( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_rxd.i2c1_sda */
-			P9_24( SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE3)	/* uart1_txd.i2c1_scl */
-		>;
-	};
-
-	// SPIs
-	bone_spi_0_pins: pinmux_bone_spi_0_pins {
-		pinctrl-single,pins = <
-			P9_22( PIN_INPUT | MUX_MODE0)	/* spi0_sclk.spi0_sclk */
-			P9_21( PIN_INPUT | MUX_MODE0)	/* spi0_d0.spi0_d0 */
-			P9_18( PIN_INPUT | MUX_MODE0)	/* spi0_d1.spi0_d1 */
-			P9_17( PIN_INPUT | MUX_MODE0)	/* spi0_cs0.spi0_cs0 */
-		>;
-	};
-
-	bone_spi_1_pins: pinmux_bone_spi_1_pins {
-		pinctrl-single,pins = <
-			P9_31( PIN_INPUT | MUX_MODE3)	/* mcasp0_aclkx.spi1_sclk */
-			P9_29( PIN_INPUT | MUX_MODE3)	/* mcasp0_fsx.spi1_d0 */
-			P9_30( PIN_INPUT | MUX_MODE3)	/* mcasp0_axr0.spi1_d1 */
-			P9_28( PIN_INPUT | MUX_MODE3)	/* mcasp0_ahclkr.spi1_cs0 */
-			P9_42A( PIN_INPUT | MUX_MODE2)	/* eCAP0_in_PWM0_out.spi1_cs1 */
-		>;
-	};
-
-};
-
 // UARTs
 bone_uart_1: &uart1 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_1_pins>;
 	symlink = "bone/uart/1";
 };
 
 bone_uart_2: &uart2 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_2_pins>;
 	symlink = "bone/uart/2";
 };
 
 bone_uart_3: &uart3 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_3_pins>;
 	symlink = "bone/uart/3";
 };
 
 bone_uart_4: &uart4 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_4_pins>;
 	symlink = "bone/uart/4";
 };
 
 bone_uart_5: &uart5 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_5_pins>;
 	symlink = "bone/uart/5";
 };
 
@@ -497,14 +403,12 @@ bone_uart_5: &uart5 {
 bone_i2c_1: &i2c1 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_i2c_1_pins>;
 	symlink = "bone/i2c/1";
 };
 
 bone_i2c_2: &i2c2 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_i2c_2_pins>;
 	symlink = "bone/i2c/2";
 };
 
@@ -512,7 +416,6 @@ bone_i2c_2: &i2c2 {
 bone_i2c_2a: &i2c2 {
 	// status = "disabled";
 	// pinctrl-names = "default";
-	// pinctrl-0 = <&bone_i2c_2a_pins>;
 	// symlink = "bone/i2c/2a";
 };
 
@@ -520,7 +423,6 @@ bone_i2c_2a: &i2c2 {
 bone_i2c_3: &i2c1 {
 	// status = "disabled";
 	// pinctrl-names = "default";
-	// pinctrl-0 = <&bone_i2c_3_pins>;
 	// symlink = "bone/i2c/3";
 };
 
@@ -531,7 +433,6 @@ bone_spi_0: &spi0 {
 
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_spi_0_pins>;
 
 	channel@0 {
 		#address-cells = <1>;
@@ -552,7 +453,6 @@ bone_spi_1: &spi1 {
 
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_spi_1_pins>;
 	ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 	channel@0 {
