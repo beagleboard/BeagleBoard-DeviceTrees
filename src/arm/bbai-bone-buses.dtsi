@@ -353,123 +353,17 @@
 	};
 };
 
-&dra7_pmx_core {
-	// Uarts
-	bone_uart_1_pins: pinmux_bone_uart_1_pins {
-		pinctrl-single,pins = <
-			P9_24( PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpio6_15.uart10_txd */
-			P9_26A( PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio6_14.uart10_rxd */
-			/* unused pins */
-			P9_26B( PIN_OUTPUT | MUX_MODE15)		/* vin1a_d20.off */
-		>;
-	};
-
-	bone_uart_2_pins: pinmux_bone_uart_2_pins {
-		pinctrl-single,pins = <
-			P9_21B( PIN_OUTPUT_PULLUP | MUX_MODE1)	/* spi2_d1.uart3_txd */
-			P9_22B( PIN_INPUT_PULLUP  | MUX_MODE1)	/* spi2_sclk.uart3_rxd */
-			/* unused pins */
-			P9_21A( PIN_OUTPUT | MUX_MODE15)		/* vin1a_vsync0.off */
-			P9_22A( PIN_OUTPUT | MUX_MODE15)		/* xref_clk2.off */
-		>;
-	};
-
-	bone_uart_4_pins: pinmux_bone_uart_4_pins {
-		pinctrl-single,pins = <
-			P9_13A( PIN_OUTPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr1.uart5_txd */
-			P9_11A( PIN_INPUT_PULLUP | MUX_MODE4)	/* mcasp3_axr0.uart5_rxd */
-			/* unused pins */
-			P9_13B( PIN_OUTPUT | MUX_MODE15)		/* usb1_drvvbus */
-			P9_11B( PIN_OUTPUT | MUX_MODE15)		/* vout1_d17.off */
-		>;
-	};
-
-	bone_uart_5_pins: pinmux_bone_uart_5_pins {
-		pinctrl-single,pins = <
-			P8_37B( PIN_OUTPUT_PULLUP | MUX_MODE3)	/* uart8_txd */
-			P8_38B( PIN_INPUT_PULLUP | MUX_MODE3)	/* uart8_rxd */
-			/* unused pins */
-			P8_37A( PIN_OUTPUT | MUX_MODE15)		/* vout1_d8.off */
-			P8_38A( PIN_OUTPUT | MUX_MODE15)		/* vout1_d9.off */			
-		>;
-	};
-
-	// I2Cs
-	bone_i2c_1_pins: pinmux_bone_i2c_1_pins {
-		pinctrl-single,pins = <
-			P9_18B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr0.i2c5_sda */
-			P9_17B( PIN_INPUT_PULLUP | MUX_MODE10)	/* mcasp1_axr1.i2c5_scl */
-			/* unused pins */
-			P9_18A( PIN_OUTPUT | MUX_MODE15)		/* spi2_d0.off */
-			P9_17A( PIN_OUTPUT | MUX_MODE15)		/* spi2_cs0.off */
-		>;
-	};
-
-	bone_i2c_2_pins: pinmux_bone_i2c_2_pins {
-		pinctrl-single,pins = <
-			P9_20A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a1.i2c4_sda */
-			P9_19A( PIN_INPUT_PULLUP | MUX_MODE7)	/* gpmc_a0.i2c4_scl */
-			/* unused pins */
-			P9_20B( PIN_OUTPUT | MUX_MODE15)		/* vin2a_d4.off */
-			P9_19B( PIN_OUTPUT | MUX_MODE15)		/* vin2a_d5.off */
-		>;
-	};
-
-	bone_i2c_3_pins: pinmux_bone_i2c_3_pins {
-		pinctrl-single,pins = <
-			P9_26A( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_14.i2c3_sda */
-			P9_24( PIN_INPUT_PULLUP | MUX_MODE9)	/* gpio6_15.i2c3_scl */
-			/* unused pins*/
-			P9_26B( PIN_OUTPUT | MUX_MODE15)		/* gpio6_14.off */
-		>;
-	};
-
-	// SPIs
-	bone_spi_0_pins: pinmux_bone_spi_0_pins {
-		pinctrl-single,pins = <
-			P9_22B( PIN_INPUT | MUX_MODE0)	/* spi2_sclk.spi2_sclk */
-			P9_21B( PIN_INPUT | MUX_MODE0)	/* spi2_d1.spi2_d1 */
-			P9_18A( PIN_INPUT | MUX_MODE0)	/* spi2_d0.spi2_d0 */
-			P9_17A( PIN_INPUT | MUX_MODE0)	/* spi2_cs0.spi2_cs0 */
-			/* unused pins */
-			P9_22A( PIN_INPUT | MUX_MODE15)	/* xref_clk2.off */
-			P9_21A( PIN_INPUT | MUX_MODE15)	/* vin1a_vsync0.off */
-			P9_18B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr0.off */
-			P9_17B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr1.off */
-		>;
-	};
-
-	bone_spi_1_pins: pinmux_bone_spi_1_pins {
-		pinctrl-single,pins = <
-			P9_31A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr8.spi3_sclk */
-			P9_29A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr9.spi3_d1 */
-			P9_30( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr10.spi3_d0 */
-			P9_28( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr11.spi3_cs0 */
-			P9_42A( PIN_INPUT | MUX_MODE3)	/* mcasp1_axr12.spi3_cs1 */
-			// P8_45A( PIN_INPUT | MUX_MODE8)	/* vout1_d0.spi3_cs2 */
-			// P8_46B( PIN_INPUT | MUX_MODE8)	/* vout1_d23.spi3_cs3 */
-			/* unused pins */
-			P9_31B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr8.off */
-			P9_29B( PIN_INPUT | MUX_MODE15)	/* mcasp1_axr9.off */
-			P9_42B( PIN_INPUT | MUX_MODE15)	/* vin2a_d13.off */
-			// P8_45B( PIN_INPUT | MUX_MODE8)	/* vout1_d16.off */
-			// P8_46A( PIN_INPUT | MUX_MODE8)	/* vout1_d1.off */
-		>;
-	};	
-};
 
 // UARTs
 bone_uart_1: &uart10 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_1_pins>;
 	symlink = "bone/uart/1";
 };
 
 bone_uart_2: &uart3 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_2_pins>;
 	symlink = "bone/uart/2";
 };
 
@@ -480,14 +374,12 @@ bone_uart_3: &ocp{
 bone_uart_4: &uart5 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_4_pins>;
 	symlink = "bone/uart/4";
 };
 
 bone_uart_5: &uart8 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_uart_5_pins>;
 	symlink = "bone/uart/5";
 };
 
@@ -495,14 +387,12 @@ bone_uart_5: &uart8 {
 bone_i2c_1: &i2c5 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_i2c_1_pins>;
 	symlink = "bone/i2c/1";
 };
 
 bone_i2c_2: &i2c4 {
 	// status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_i2c_2_pins>;
 	// symlink = "bone/i2c/2";
 };
 
@@ -513,7 +403,6 @@ bone_i2c_2a: &ocp {
 bone_i2c_3: &i2c3 {
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_i2c_3_pins>;
 	symlink = "bone/i2c/3";
 };
 
@@ -524,7 +413,6 @@ bone_spi_0: &mcspi2 {
 
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_spi_0_pins>;
 
 	channel@0 {
 		#address-cells = <1>;
@@ -545,7 +433,6 @@ bone_spi_1: &mcspi3 {
 
 	status = "disabled";
 	pinctrl-names = "default";
-	pinctrl-0 = <&bone_spi_1_pins>;
 	ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 	channel@0 {
