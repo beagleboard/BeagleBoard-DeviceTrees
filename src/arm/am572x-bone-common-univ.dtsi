@@ -2672,7 +2672,7 @@
 
 		P9_27 {
 			gpio-name = "P9_27";
-			gpio = <&gpio6 15 0>;
+			gpio = <&gpio4 15 0>;
 			input;
 			dir-changeable;
 		};
