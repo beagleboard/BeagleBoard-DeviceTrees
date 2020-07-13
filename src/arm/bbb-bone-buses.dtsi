@@ -370,59 +370,41 @@
 
 // UARTs
 bone_uart_1: &uart1 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/uart/1";
 };
 
 bone_uart_2: &uart2 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/uart/2";
 };
 
 bone_uart_3: &uart3 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/uart/3";
 };
 
 bone_uart_4: &uart4 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/uart/4";
 };
 
 bone_uart_5: &uart5 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/uart/5";
 };
 
 // I2Cs 
 bone_i2c_1: &i2c1 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/i2c/1";
 };
 
 bone_i2c_2: &i2c2 {
-	status = "disabled";
-	pinctrl-names = "default";
 	symlink = "bone/i2c/2";
 };
 
 // use only when bone_i2c_2 is not in use
 bone_i2c_2a: &i2c2 {
-	// status = "disabled";
-	// pinctrl-names = "default";
 	// symlink = "bone/i2c/2a";
 };
 
 // use only when bone_i2c_1 is not in use
 bone_i2c_3: &i2c1 {
-	// status = "disabled";
-	// pinctrl-names = "default";
 	// symlink = "bone/i2c/3";
 };
 
@@ -430,9 +412,6 @@ bone_i2c_3: &i2c1 {
 bone_spi_0: &spi0 {
 	#address-cells = <1>;
 	#size-cells = <0>;
-
-	status = "disabled";
-	pinctrl-names = "default";
 
 	channel@0 {
 		#address-cells = <1>;
@@ -451,8 +430,6 @@ bone_spi_1: &spi1 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	status = "disabled";
-	pinctrl-names = "default";
 	ti,pio-mode; /* disable dma when used as an overlay, dma gets stuck at 160 bits... */
 
 	channel@0 {
