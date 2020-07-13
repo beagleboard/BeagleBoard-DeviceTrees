@@ -455,3 +455,20 @@ bone_spi_1: &spi1 {
 		spi-max-frequency = <16000000>;
 	};
 };
+
+// PWMs & TIMERs
+bone_pwm_1: &ehrpwm1 {
+
+};
+
+bone_pwmss_1: &epwmss1 {
+
+};
+
+bone_pwm_2: &ehrpwm2 {
+
+};
+
+bone_pwmss_2: &epwmss2 {
+
+};
