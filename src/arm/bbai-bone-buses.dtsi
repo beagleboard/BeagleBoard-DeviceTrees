@@ -440,3 +440,18 @@ bone_spi_1: &mcspi3 {
 		spi-max-frequency = <16000000>;
 	};
 };
+
+// PWMs & TIMERs
+bone_pwm_1: &ehrpwm2 {
+	
+};
+
+bone_pwmss_1: &epwmss2 {
+};
+
+bone_pwm_2: &ehrpwm1 {
+	
+};
+
+bone_pwmss_2: &epwmss1 {
+};
