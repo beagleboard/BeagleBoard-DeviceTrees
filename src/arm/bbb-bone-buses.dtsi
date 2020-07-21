@@ -455,7 +455,15 @@ bone_i2c_3: &i2c1 {
 	};
 };
 
-// PWMs & TIMERs
+// PWMs
+bone_pwm_0: &ehrpwm0 {
+	symlink = "bone/pwm/0";
+};
+
+bone_pwmss_0: &epwmss0 {
+
+};
+
 bone_pwm_1: &ehrpwm1 {
 	symlink = "bone/pwm/1";
 };
