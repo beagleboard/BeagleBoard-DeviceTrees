@@ -448,7 +448,7 @@ bone_pwmss_0: &not_available {
 };
 
 bone_pwm_1: &ehrpwm2 {
-	symlink = "bone/pwm/1";
+
 };
 
 bone_pwmss_1: &epwmss2 {
@@ -456,7 +456,7 @@ bone_pwmss_1: &epwmss2 {
 };
 
 bone_pwm_2: &ehrpwm1 {
-	symlink = "bone/pwm/2";
+
 };
 
 bone_pwmss_2: &epwmss1 {
@@ -469,5 +469,5 @@ bone_can_0: &not_available {
 };
 
 bone_can_1: &dcan2 {
-	symlink = "bone/can/1";
+
 };
