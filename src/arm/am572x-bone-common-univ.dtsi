@@ -1109,6 +1109,11 @@
 		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
 		P9_21A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14)
 		P9_21B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin1a_vsync0.gpio3_3,spi2_d1.off */
+	P9_21_pwm_pin: pinmux_P9_21_default_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-PWM0-00A0.dtbo */
+		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
+		P9_21A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14)
+		P9_21B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin1a_vsync0.gpio3_3,spi2_d1.off */
 
 	/* P9_22a (ball B26) gpio6_19 */
 	P9_22_default_pin: pinmux_P9_22_default_pin { pinctrl-single,pins = <
@@ -1138,6 +1143,11 @@
 	/* P9_22 dummy nodes for unavailable bone bus */
 	P9_22_i2c_pin: pinmux_P9_22_default_pin { pinctrl-single,pins = <
 		/* To avoid FDT_ERROR on BBAI when using BONE-I2C2A-00A0.dtbo */
+		/* Default pinmux configuration of P9_22 (P9_22_default_pin) */
+		P9_22A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14)
+		P9_22B( PIN_OUTPUT | MUX_MODE15) >; };	/* xref_clk2.gpio6_19, spi2_sclk.off */
+	P9_22_pwm_pin: pinmux_P9_22_default_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-PWM0-00A0.dtbo */
 		/* Default pinmux configuration of P9_22 (P9_22_default_pin) */
 		P9_22A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14)
 		P9_22B( PIN_OUTPUT | MUX_MODE15) >; };	/* xref_clk2.gpio6_19, spi2_sclk.off */
