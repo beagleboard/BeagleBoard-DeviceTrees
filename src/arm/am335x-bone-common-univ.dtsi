@@ -922,6 +922,12 @@
 		P9_21( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3) >; };	/* spi0_d0.ehrpwm0b */
 	P9_21_pru_uart_pin: pinmux_P9_21_pru_uart_pin { pinctrl-single,pins = <
 		P9_21( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* spi0_d0.pr1_uart0_rts_n */
+	
+	/* P9_21 dummy nodes for unavailable bone bus */
+	P9_21_timer_pin: pinmux_P9_21_default_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-TIMER_PWM_3.dtbo */
+		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
+		P9_21( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* spi0_d0.gpio0_3 */
 
 	/* P9_22 (ZCZ ball A17) gpio0_2 */
 	P9_22_default_pin: pinmux_P9_22_default_pin { pinctrl-single,pins = <
@@ -944,7 +950,13 @@
 		P9_22( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3) >; };	/* spi0_sclk.ehrpwm0a */
 	P9_22_pru_uart_pin: pinmux_P9_22_pru_uart_pin { pinctrl-single,pins = <
 		P9_22( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* spi0_sclk.pr1_uart0_cts_n */
-
+	
+	/* P9_22 dummy nodes for unavailable bone bus */
+	P9_22_timer_pin: pinmux_P9_22_default_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-TIMER_PWM_5.dtbo */
+		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
+		P9_22( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* spi0_sclk.gpio0_2 */
+	
 	/* P9_23 (ZCZ ball V14) gpio1_17 */
 	P9_23_default_pin: pinmux_P9_23_default_pin { pinctrl-single,pins = <
 		P9_23( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a1.gpio1_17 */
