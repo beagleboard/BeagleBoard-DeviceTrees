@@ -404,38 +404,12 @@ bone_i2c_3: &i2c3 {
 };
 
 // SPIs
-&mcspi2 {
-	#address-cells = <1>;
-	#size-cells = <0>;
+bone_spi_0: &mcspi2 {
 
-	bone_spi_0: channel@0 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		compatible = "spidev";
-		symlink = "bone/spi/0.0";
-		reg = <0>;
-	};
 };
 
-&mcspi3 {
-	#address-cells = <1>;
-	#size-cells = <0>;
+bone_spi_1: &mcspi3 {
 
-	bone_spi_1_0: channel@0 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		compatible = "spidev";
-		symlink = "bone/spi/1.0";
-		reg = <0>;
-	};
-
-	bone_spi_1_1: channel@1 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		compatible = "spidev";
-		symlink = "bone/spi/1.1";
-		reg = <1>;
-	};
 };
 
 // PWMs
@@ -469,5 +443,30 @@ bone_can_0: &not_available {
 };
 
 bone_can_1: &dcan2 {
+
+};
+
+// PWM_TIMERs
+bone_timer_0: &timer10 {
+
+};
+
+bone_timer_1: &timer11 {
+
+};
+
+bone_timer_2: &timer12 {
+
+};
+
+bone_timer_3: &timer13 {
+
+};
+
+bone_timer_4: &timer14 {
+
+};
+
+bone_timer_5: &timer15 {
 
 };
