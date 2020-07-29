@@ -1094,6 +1094,9 @@
 	P9_21_qep_pin: pinmux_P9_21_qep_pin { pinctrl-single,pins = <
 		P9_21A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE10)
 		P9_21B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin1a_vsync0.eQEP1_strobe,spi2_d1.off */
+	P9_21_timer_pin: pinmux_P9_21_timer_pin { pinctrl-single,pins = <
+		P9_21A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7)
+		P9_21B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin1a_vsync0.timer13,spi2_d1.off */
 
 	/* P9_21b (ball B22) gpio7_15 */
 	P9_21_spi_pin: pinmux_P9_21_spi_pin { pinctrl-single,pins = <
@@ -1131,6 +1134,9 @@
 	P9_22_gpio_input_pin: pinmux_P9_22_gpio_input_pin { pinctrl-single,pins = <
 		P9_22A( PIN_INPUT | MUX_MODE14)
 		P9_22B( PIN_OUTPUT | MUX_MODE15) >; };	/* xref_clk2.gpio6_19, spi2_sclk.off */
+	P9_22_timer_pin: pinmux_P9_22_timer_pin { pinctrl-single,pins = <
+		P9_22A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE10)
+		P9_22B( PIN_OUTPUT | MUX_MODE15) >; };	/* xref_clk2.timer15, spi2_sclk.off */
 	
 	/* P9_22b (ball A26) gpio7_14 */
 	P9_22_spi_sclk_pin: pinmux_P9_22_spi_sclk_pin { pinctrl-single,pins = <
