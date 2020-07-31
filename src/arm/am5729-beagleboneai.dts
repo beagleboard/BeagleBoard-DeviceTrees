@@ -928,3 +928,9 @@
 	clock-frequency = <100000>;
 	symlink = "bone-i2c2";
 };
+
+&cpu0_opp_table {
+	opp_slow-500000000 {
+		opp-shared;
+	};
+};
