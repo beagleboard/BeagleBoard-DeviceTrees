@@ -10,8 +10,6 @@ dtbo-$(CONFIG_SOC_AM33XX) += \
 	BBORG_MOTOR-00A2.dtbo \
 	BBORG_RELAY-00A2.dtbo \
 	BBORG_SERVO-00A2.dtbo \
-	BB-SPIDEV0-00A0.dtbo \
-	BB-SPIDEV1-00A0.dtbo \
 	BONE-CAN0.dtbo \
 	BONE-CAN1.dtbo \
 	BONE-I2C1.dtbo \
