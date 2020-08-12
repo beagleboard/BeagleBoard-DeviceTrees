@@ -70,10 +70,6 @@
 	};
 };
 
-&cape_pins {
-	status = "disabled";
-};
-
 &dra7_pmx_core {
 	cape_pins_rc: cape_pins_rc {
 		pinctrl-single,pins = <
