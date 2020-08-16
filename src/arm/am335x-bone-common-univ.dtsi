@@ -760,6 +760,8 @@
 		P9_12( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_be1n.gpio1_28 */
 	P9_12_gpio_input_pin: pinmux_P9_12_gpio_input_pin { pinctrl-single,pins = <
 		P9_12( PIN_INPUT | MUX_MODE7) >; };			/* gpmc_be1n.gpio1_28 */
+	P9_12_mcasp_aclkr_pin: pinmux_P9_12_mcasp_aclkr_pin { pinctrl-single,pins = <
+		P9_12( PIN_INPUT_PULLDOWN | MUX_MODE6) >; };			/* gpmc_be1n.mcasp0_aclkr */
 
 	/* P9_13 (ZCZ ball U17) gpio0_31 */
 	P9_13_default_pin: pinmux_P9_13_default_pin { pinctrl-single,pins = <
@@ -1010,6 +1012,8 @@
 		P9_25( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_ahclkx.pru0_out7 */
 	P9_25_pruin_pin: pinmux_P9_25_pruin_pin { pinctrl-single,pins = <
 		P9_25( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_ahclkx.pru0_in7 */
+	P9_25_mcasp_ahclkx_pin: pinmux_P9_25_mcasp_ahclkx_pin { pinctrl-single,pins = <
+		P9_25( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };			/* mcasp0_ahclkx.mcasp0_ahclkx */
 
 	/* P9_26 (ZCZ ball D16) gpio0_14 */
 	P9_26_default_pin: pinmux_P9_26_default_pin { pinctrl-single,pins = <
@@ -1050,6 +1054,8 @@
 		P9_27( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_fsr.pru0_out5 */
 	P9_27_pruin_pin: pinmux_P9_27_pruin_pin { pinctrl-single,pins = <
 		P9_27( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_fsr.pru0_in5 */
+	P9_27_mcasp_fsr_pin: pinmux_P9_27_mcasp_fsr_pin { pinctrl-single,pins = <
+		P9_27( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };			/* mcasp0_fsr.mcasp0_fsr */
 
 	/* P9_28 (ZCZ ball C12) audio */
 	P9_28_default_pin: pinmux_P9_28_default_pin { pinctrl-single,pins = <
@@ -1072,6 +1078,8 @@
 		P9_28( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_ahclkr.pru0_out3 */
 	P9_28_pruin_pin: pinmux_P9_28_pruin_pin { pinctrl-single,pins = <
 		P9_28( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_ahclkr.pru0_in3 */
+	P9_28_mcasp_axr_pin: pinmux_P9_28_mcasp_axr_pin { pinctrl-single,pins = <
+		P9_28( PIN_INPUT_PULLDOWN | MUX_MODE2) >; };			/* mcasp0_ahclkr.mcasp0_axr2 */
 
 	/* P9_29 (ZCZ ball B13) audio */
 	P9_29_default_pin: pinmux_P9_29_default_pin { pinctrl-single,pins = <
@@ -1092,6 +1100,8 @@
 		P9_29( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_fsx.pru0_out1 */
 	P9_29_pruin_pin: pinmux_P9_29_pruin_pin { pinctrl-single,pins = <
 		P9_29( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_fsx.pru0_in1 */
+	P9_29_mcasp_fsx_pin: pinmux_P9_29_mcasp_fsx_pin { pinctrl-single,pins = <
+		P9_29( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };			/* mcasp0_fsx.mcasp0_fsx */
 
 	/* P9_30 (ZCZ ball D12) gpio3_16 */
 	P9_30_default_pin: pinmux_P9_30_default_pin { pinctrl-single,pins = <
@@ -1112,6 +1122,8 @@
 		P9_30( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_axr0.pru0_out2 */
 	P9_30_pruin_pin: pinmux_P9_30_pruin_pin { pinctrl-single,pins = <
 		P9_30( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_axr0.pru0_in2 */
+	P9_30_mcasp_axr_pin: pinmux_P9_30_mcasp_axr_pin { pinctrl-single,pins = <
+		P9_30( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };			/* mcasp0_axr0.mcasp0_axr0 */
 
 	/* P9_31 (ZCZ ball A13) audio */
 	P9_31_default_pin: pinmux_P9_31_default_pin { pinctrl-single,pins = <
@@ -1132,6 +1144,8 @@
 		P9_31( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_aclkx.pru0_out0 */
 	P9_31_pruin_pin: pinmux_P9_31_pruin_pin { pinctrl-single,pins = <
 		P9_31( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_aclkx.pru0_in0 */
+	P9_31_mcasp_aclkx_pin: pinmux_P9_31_mcasp_aclkx_pin { pinctrl-single,pins = <
+		P9_31( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };			/* mcasp0_aclkx.mcasp0_aclkx */
 
 	/* P9_32                VADC */
 
@@ -2119,6 +2133,7 @@
 		pinctrl-2 = <&P9_12_gpio_pu_pin>;
 		pinctrl-3 = <&P9_12_gpio_pd_pin>;
 		pinctrl-4 = <&P9_12_gpio_input_pin>;
+		pinctrl-5 = <&P9_12_mcasp_aclkr_pin>;
 	};
 
 	/* P9_13 (ZCZ ball U17) */
@@ -2316,6 +2331,7 @@
 		pinctrl-5 = <&P9_25_qep_pin>;
 		pinctrl-6 = <&P9_25_pruout_pin>;
 		pinctrl-7 = <&P9_25_pruin_pin>;
+		pinctrl-8 = <&P9_25_mcasp_ahclkx_pin>;
 	};
 
 	/* P9_26 (ZCZ ball D16) */
@@ -2348,6 +2364,7 @@
 		pinctrl-5 = <&P9_27_qep_pin>;
 		pinctrl-6 = <&P9_27_pruout_pin>;
 		pinctrl-7 = <&P9_27_pruin_pin>;
+		pinctrl-8 = <&P9_27_mcasp_fsr_pin>;
 	};
 
 	/* P9_28 (ZCZ ball C12) audio */
@@ -2365,6 +2382,7 @@
 		pinctrl-7 = <&P9_28_pwm2_pin>;
 		pinctrl-8 = <&P9_28_pruout_pin>;
 		pinctrl-9 = <&P9_28_pruin_pin>;
+		pinctrl-10 = <&P9_28_mcasp_axr_pin>;
 	};
 
 	/* P9_29 (ZCZ ball B13) audio */
@@ -2381,6 +2399,7 @@
 		pinctrl-6 = <&P9_29_pwm_pin>;
 		pinctrl-7 = <&P9_29_pruout_pin>;
 		pinctrl-8 = <&P9_29_pruin_pin>;
+		pinctrl-9 = <&P9_29_mcasp_fsx_pin>;
 	};
 
 	/* P9_30 (ZCZ ball D12) */
@@ -2397,6 +2416,7 @@
 		pinctrl-6 = <&P9_30_pwm_pin>;
 		pinctrl-7 = <&P9_30_pruout_pin>;
 		pinctrl-8 = <&P9_30_pruin_pin>;
+		pinctrl-9 = <&P9_30_mcasp_axr_pin>;
 	};
 
 	/* P9_31 (ZCZ ball A13) audio */
@@ -2413,6 +2433,7 @@
 		pinctrl-6 = <&P9_31_pwm_pin>;
 		pinctrl-7 = <&P9_31_pruout_pin>;
 		pinctrl-8 = <&P9_31_pruin_pin>;
+		pinctrl-9 = <&P9_31_mcasp_aclkx_pin>;
 	};
 
 	/* P9_32                VADC */
