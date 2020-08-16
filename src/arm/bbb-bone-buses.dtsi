@@ -487,3 +487,8 @@ bone_timer_4: &timer5 {
 bone_timer_5: &not_available {
 	// Not available on BBBWL/BBB
 };
+
+// McASP
+bone_mcasp_0: &mcasp0 {
+
+}
