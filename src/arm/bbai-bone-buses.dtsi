@@ -470,3 +470,8 @@ bone_timer_4: &timer14 {
 bone_timer_5: &timer15 {
 
 };
+
+// McASP
+bone_mcasp0: &mcasp1 {
+
+}
