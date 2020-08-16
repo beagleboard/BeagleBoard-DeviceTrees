@@ -1023,6 +1023,8 @@
 		P9_12( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* mcasp1_aclkr.gpio5_0 */
 	P9_12_gpio_input_pin: pinmux_P9_12_gpio_input_pin { pinctrl-single,pins = <
 		P9_12( PIN_INPUT | MUX_MODE14) >; };	/* mcasp1_aclkr.gpio5_0 */
+	P9_12_mcasp_aclkr_pin: pinmux_P9_12_mcasp_aclkr_pin { pinctrl-single,pins = <
+		P9_12( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };	/* mcasp1_aclkr.mcasp1_aclkr */
 
 	/* P9_13a (ball C17) */
 	P9_13_uart_pin: pinmux_P9_13_uart_pin { pinctrl-single,pins = <
@@ -1374,6 +1376,8 @@
 		P9_25( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* xref_clk0.pr2_pru1_gpo5 */
 	P9_25_pruin_pin: pinmux_P9_25_pruin_pin { pinctrl-single,pins = <
 		P9_25( PIN_INPUT | MUX_MODE12) >; };	/* xref_clk0.pr2_pru1_gpi5 */
+	P9_25_mcasp_ahclkx_pin: pinmux_P9_25_mcasp_ahclkx_pin { pinctrl-single,pins = <
+		P9_25( PIN_INPUT_PULLDOWN | MUX_MODE3) >; };	/* xref_clk0.mcasp1_ahclkx */
 
 	/* P9_26a (ball E21) gpio6_14 */
 	P9_26_default_pin: pinmux_P9_26_default_pin { pinctrl-single,pins = <
@@ -1436,7 +1440,9 @@
 		P9_27B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d14.pr1_pru1_gpi11, mcasp1_fsr.off */
 
 	/* P9_27b (ball J14) gpio5_1 */
-	
+	P9_27_mcasp_fsr_pin: pinmux_P9_27_mcasp_fsr_pin { pinctrl-single,pins = <
+		P9_27B( PIN_INPUT_PULLDOWN | MUX_MODE0)
+		P9_27A( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp1_fsr.mcasp1_fsr, vin2a_d14.off */
 	
 	/* P9_28  (ball A12) gpio4_17 */
 	P9_28_default_pin: pinmux_P9_28_default_pin { pinctrl-single,pins = <
@@ -1455,6 +1461,8 @@
 		P9_28( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* mcasp1_axr11.pr2_pru1_gpo13 */
 	P9_28_pruin_pin: pinmux_P9_28_pruin_pin { pinctrl-single,pins = <
 		P9_28( PIN_INPUT | MUX_MODE12) >; };	/* mcasp1_axr11.pr2_pru1_gpi13 */
+	P9_28_mcasp_axr_pin: pinmux_P9_28_mcasp_axr_pin { pinctrl-single,pins = <
+		P9_28( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };	/* mcasp1_axr11.mcasp1_axr11 */
 
 	/* P9_29a (ball A11) gpio5_11*/
 	P9_29_default_pin: pinmux_P9_29_default_pin { pinctrl-single,pins = <
@@ -1483,7 +1491,9 @@
 		P9_29B( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp1_axr9.pr2_pru1_gpi11, mcasp1_fsx.off */
 
 	/* P9_29b (ball D14) gpio7_30 */
-	
+	P9_29_mcasp_fsx_pin: pinmux_P9_29_mcasp_fsx_pin { pinctrl-single,pins = <
+		P9_29B( PIN_INPUT_PULLDOWN | MUX_MODE0)
+		P9_29A( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp1_fsx.mcasp1_fsx, mcasp1_axr9.off */
 
 	/* P9_30  (ball B13) gpio5_12*/
 	P9_30_default_pin: pinmux_P9_30_default_pin { pinctrl-single,pins = <
@@ -1502,6 +1512,8 @@
 		P9_30( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* mcasp1_axr10.pr2_pru1_gpo12 */
 	P9_30_pruin_pin: pinmux_P9_30_pruin_pin { pinctrl-single,pins = <
 		P9_30( PIN_INPUT | MUX_MODE12) >; };	/* mcasp1_axr10.pr2_pru1_gpi12 */
+	P9_30_mcasp_axr_pin: pinmux_P9_30_mcasp_axr_pin { pinctrl-single,pins = <
+		P9_30( PIN_INPUT_PULLDOWN | MUX_MODE0) >; };	/* mcasp1_axr10.mcasp1_axr10 */
 
 	/* P9_31a (ball B12) gpio5_10 */
 	P9_31_default_pin: pinmux_P9_31_default_pin { pinctrl-single,pins = <
@@ -1530,6 +1542,9 @@
 		P9_31B( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp1_axr8.pr2_pru1_gpi10, mcasp1_aclkx.off */
 
 	/* P9_31b (ball C14) gpio7_31*/
+	P9_31_mcasp_aclkx_pin: pinmux_P9_31_mcasp_aclkx_pin { pinctrl-single,pins = <
+		P9_31B( PIN_INPUT_PULLDOWN | MUX_MODE0)
+		P9_31A( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp1_aclkx.mcasp1_aclkx, mcasp1_axr8.off */
 
 	/* P9_32                VADC */
 
@@ -2213,6 +2228,7 @@
 		pinctrl-2 = <&P9_12_gpio_pu_pin>;
 		pinctrl-3 = <&P9_12_gpio_pd_pin>;
 		pinctrl-4 = <&P9_12_gpio_input_pin>;
+		pinctrl-5 = <&P9_12_mcasp_aclkr_pin>;
 	};
 
 	P9_13_pinmux {
@@ -2379,6 +2395,7 @@
 		pinctrl-4 = <&P9_25_gpio_input_pin>;
 		pinctrl-5 = <&P9_25_pruout_pin>;
 		pinctrl-6 = <&P9_25_pruin_pin>;
+		pinctrl-7 = <&P9_25_mcasp_ahclkx_pin>;
 	};
 
 	P9_26_pinmux {
@@ -2409,6 +2426,7 @@
 		pinctrl-5 = <&P9_27_qep_pin>;
 		pinctrl-6 = <&P9_27_pruout_pin>;
 		pinctrl-7 = <&P9_27_pruin_pin>;
+		pinctrl-8 = <&P9_27_mcasp_fsr_pin>;
 	};
 
 	P9_28_pinmux {
@@ -2423,6 +2441,7 @@
 		pinctrl-5 = <&P9_28_spi_cs_pin>;
 		pinctrl-8 = <&P9_28_pruout_pin>;
 		pinctrl-9 = <&P9_28_pruin_pin>;
+		pinctrl-10 = <&P9_28_mcasp_axr_pin>;
 	};
 
 	P9_29_pinmux {
@@ -2437,6 +2456,7 @@
 		pinctrl-5 = <&P9_29_spi_pin>;
 		pinctrl-6 = <&P9_29_pruout_pin>;
 		pinctrl-7 = <&P9_29_pruin_pin>;
+		pinctrl-8 = <&P9_29_mcasp_fsx_pin>;
 	};
 
 	P9_30_pinmux {
@@ -2451,6 +2471,7 @@
 		pinctrl-5 = <&P9_30_spi_pin>;
 		pinctrl-6 = <&P9_30_pruout_pin>;
 		pinctrl-7 = <&P9_30_pruin_pin>;
+		pinctrl-8 = <&P9_30_mcasp_axr_pin>
 	};
 
 	P9_31_pinmux {
@@ -2465,6 +2486,7 @@
 		pinctrl-5 = <&P9_31_spi_sclk_pin>;
 		pinctrl-6 = <&P9_31_pruout_pin>;
 		pinctrl-7 = <&P9_31_pruin_pin>;
+		pinctrl-8 = <&P9_31_mcasp_aclkx_pin>;
 	};
 
 	/* P9_32                VADC */
