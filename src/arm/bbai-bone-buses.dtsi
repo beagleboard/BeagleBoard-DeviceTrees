@@ -475,3 +475,16 @@ bone_timer_5: &timer15 {
 bone_mcasp_0: &mcasp1 {
 
 };
+
+// eQEP
+bone_eqep_0: &eqep2{
+
+};
+
+bone_eqep_1: &eqep0{
+
+};
+
+bone_eqep_2: &eqep1{
+
+};
