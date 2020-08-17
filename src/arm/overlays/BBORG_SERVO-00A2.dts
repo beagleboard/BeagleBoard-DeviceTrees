@@ -56,9 +56,9 @@
 &bone_i2c_2 {
     // bone_i2c_2 is enabled by default on BBB and BBAI for cape EEPROM
     // status = "okay";
-    // clock-frequency = <100000>;
-    // #address-cells = <1>;
-    // #size-cells = <0>;
+    clock-frequency = <100000>;
+    #address-cells = <1>;
+    #size-cells = <0>;
 
     pca: pca@70 {
         compatible = "nxp,pca9685-pwm";

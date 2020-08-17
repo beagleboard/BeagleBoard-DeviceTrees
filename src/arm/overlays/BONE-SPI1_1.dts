@@ -40,7 +40,9 @@
  */
 &bone_spi_1 {
 	status = "okay";
-    
+    #address-cells = <1>;
+    #size-cells = <0>;
+	
 	channel@1 {
 		reg = <1>;
 		compatible = "spidev";
