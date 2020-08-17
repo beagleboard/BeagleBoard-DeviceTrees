@@ -488,3 +488,8 @@ bone_eqep_1: &eqep0{
 bone_eqep_2: &eqep1{
 
 };
+
+// ADC
+// No internal ADC, STMPE811 Touch Controller is used!
+// bone_adc label is created in am5729-beagleboneai.dts
+
