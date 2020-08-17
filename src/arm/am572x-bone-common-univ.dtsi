@@ -49,6 +49,8 @@
 		P8_04( PIN_INPUT | MUX_MODE12) >; };		/* mmc3_dat7.pr2_pru0_gpi11 */
 	P8_04_pruout_pin: pinmux_P8_04_pruout_pin { pinctrl-single,pins = <
 		P8_04( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };		/* mmc3_dat7.pr2_pru0_gpo11 */
+	P8_04_ecap_pwm_pin: pinmux_P8_04_ecap_pwm_pin { pinctrl-single,pins = <
+		P8_04( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };		/* mmc3_dat7.eCAP3_in_PWM3_out */
 
 	/* P8_05  (ball AC9) gpio7_1 */
 	P8_05_default_pin: pinmux_P8_05_default_pin { pinctrl-single,pins = <
@@ -219,7 +221,7 @@
 		P8_14( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };		/* vin2a_d12.gpio4_13 */
 	P8_14_gpio_input_pin: pinmux_P8_14_gpio_input_pin { pinctrl-single,pins = <
 		P8_14( PIN_INPUT | MUX_MODE14) >; };							/* vin2a_d12.gpio4_13 */
-	P8_14_pwm_pin: pinmux_P8_14_pwm_pin { pinctrl-single,pins = <
+	P8_14_ecap_pwm_pin: pinmux_P8_14_ecap_pwm_pin { pinctrl-single,pins = <
 		P8_14( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };		/* vin2a_d12.eCAP2_in_PWM2_out */
 	P8_14_pruin_pin: pinmux_P8_14_pruin_pin { pinctrl-single,pins = <
 		P8_14( PIN_INPUT | MUX_MODE12) >; };	/* vin2a_d12.pr1_pru1_gpi9 */
@@ -242,9 +244,12 @@
 	P8_15_gpio_input_pin: pinmux_P8_15_gpio_input_pin { pinctrl-single,pins = <
 		P8_15A( PIN_INPUT | MUX_MODE14)
 		P8_15B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d2.gpio4_3,  vin2a_d19.off */
-	P8_15_pru_ecap_pin: pinmux_P8_15_pru_ecap_pin { pinctrl-single,pins = <
+	P8_15_pru_ecap_pwm_pin: pinmux_P8_15_pru_ecap_pwm_pin { pinctrl-single,pins = <
 		P8_15A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE11)
 		P8_15B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d2.pr1_ecap0_ecap_capin_apwm_o, vin2a_d19.off */
+	P8_15_ecap_pwm_pin: pinmux_P8_15_ecap_pwm_pin { pinctrl-single,pins = <
+		P8_15A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10)
+		P8_15B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d2.eCAP1_in_PWM1_out, vin2a_d19.off */
 	
 	/* P8_15b (ball  A3) gpio4_27 */
 	P8_15_pruin_pin: pinmux_P8_15_pruin_pin { pinctrl-single,pins = <
@@ -337,6 +342,8 @@
 		P8_20( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* mmc3_cmd.pr2_pru0_gpo3 */
 	P8_20_pruin_pin: pinmux_P8_20_pruin_pin { pinctrl-single,pins = <
 		P8_20( PIN_INPUT | MUX_MODE12) >; };	/* mmc3_cmd.pr2_pru0_gpi3 */
+	P8_20_ecap_pwm_pin: pinmux_P8_20_ecap_pwm_pin { pinctrl-single,pins = <
+		P8_20( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };		/* mmc3_cmd.eCAP2_in_PWM2_out */
 
 	/* P8_21  (ball AD4) gpio6_29 */
 	P8_21_default_pin: pinmux_P8_21_default_pin { pinctrl-single,pins = <
@@ -433,6 +440,8 @@
 		P8_26( PIN_INPUT | MUX_MODE12) >; };	/* vin2a_d20.pr1_pru1_gpi17 */
 	P8_26_pruout_pin: pinmux_P8_26_pruout_pin { pinctrl-single,pins = <
 		P8_26( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* vin2a_d20.pr1_pru1_gpo17 */
+	P8_26_ecap_pwm_pin: pinmux_P8_26_ecap_pwm_pin { pinctrl-single,pins = <
+		P8_26( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE10) >; };		/* vin2a_d20.eCAP3_in_PWM3_out */
 
 	/* P8_27a (ball E11) gpio4_23 */
 	P8_27_default_pin: pinmux_P8_27_default_pin { pinctrl-single,pins = <
@@ -1663,12 +1672,13 @@
 	P8_04_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "ecap_pwm";
 		pinctrl-0 = <&P8_04_default_pin>;
 		pinctrl-1 = <&P8_04_gpio_pin>;
 		pinctrl-2 = <&P8_04_gpio_pu_pin>;
 		pinctrl-3 = <&P8_04_gpio_pd_pin>;
 		pinctrl-4 = <&P8_04_gpio_input_pin>;
+		pinctrl-5 = <&P8_04_ecap_pwm_pin>;
 	};
 
 	P8_05_pinmux {
@@ -1782,26 +1792,27 @@
 	P8_14_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pwm";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pwm", "ecap_pwm";
 		pinctrl-0 = <&P8_14_default_pin>;
 		pinctrl-1 = <&P8_14_gpio_pin>;
 		pinctrl-2 = <&P8_14_gpio_pu_pin>;
 		pinctrl-3 = <&P8_14_gpio_pd_pin>;
 		pinctrl-4 = <&P8_14_gpio_input_pin>;
-		pinctrl-5 = <&P8_14_pwm_pin>;
+		pinctrl-5 = <&P8_14_ecap_pwm_pin>;
 	};
 
 	P8_15_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pru_ecap", "pruin";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pru_ecap", "pruin", "ecap_pwm";
 		pinctrl-0 = <&P8_15_default_pin>;
 		pinctrl-1 = <&P8_15_gpio_pin>;
 		pinctrl-2 = <&P8_15_gpio_pu_pin>;
 		pinctrl-3 = <&P8_15_gpio_pd_pin>;
 		pinctrl-4 = <&P8_15_gpio_input_pin>;
-		pinctrl-5 = <&P8_15_pru_ecap_pin>;
+		pinctrl-5 = <&P8_15_pru_ecap_pwm_pin>;
 		pinctrl-6 = <&P8_15_pruin_pin>;
+		pinctrl-7 = <&P8_15_ecap_pwm_pin>;
 	};
 
 	P8_16_pinmux {
@@ -1854,7 +1865,7 @@
 	P8_20_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pruout", "pruin";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "pruout", "pruin", "ecap-pwm";
 		pinctrl-0 = <&P8_20_default_pin>;
 		pinctrl-1 = <&P8_20_gpio_pin>;
 		pinctrl-2 = <&P8_20_gpio_pu_pin>;
@@ -1862,6 +1873,7 @@
 		pinctrl-4 = <&P8_20_gpio_input_pin>;
 		pinctrl-5 = <&P8_20_pruout_pin>;
 		pinctrl-6 = <&P8_20_pruin_pin>;
+		pinctrl-7 = <&P8_20_ecap_pwm_pin>;
 	};
 
 	P8_21_pinmux {
@@ -1924,12 +1936,13 @@
 	P8_26_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "ecap_pwm";
 		pinctrl-0 = <&P8_26_default_pin>;
 		pinctrl-1 = <&P8_26_gpio_pin>;
 		pinctrl-2 = <&P8_26_gpio_pu_pin>;
 		pinctrl-3 = <&P8_26_gpio_pd_pin>;
 		pinctrl-4 = <&P8_26_gpio_input_pin>;
+		pinctrl-5 = <&P8_26_ecap_pwm_pin>;
 	};
 
 	P8_27_pinmux {
