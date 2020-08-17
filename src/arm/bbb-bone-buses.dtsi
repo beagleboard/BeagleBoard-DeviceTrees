@@ -492,3 +492,16 @@ bone_timer_5: &not_available {
 bone_mcasp_0: &mcasp0 {
 
 };
+
+// eQEP
+bone_eqep_0: &eqep0{
+
+};
+
+bone_eqep_1: &eqep1{
+
+};
+
+bone_eqep_2: &eqep2{
+
+};
