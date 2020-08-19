@@ -36,10 +36,6 @@
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbai-bone-buses.dtsi
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbb-bone-buses.dtsi
  */
-&bone_pwmss_0 {
-    status = "okay";
-};
-
 &bone_pwm_0 {
     status = "okay";
 };

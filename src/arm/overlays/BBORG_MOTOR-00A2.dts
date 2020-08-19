@@ -52,19 +52,11 @@
 };
 
 // Motor 1, 2
-&bone_pwmss_1 {
-	status = "okay";
-};
-
 &bone_pwm_1 {
 	status = "okay";
 };
 
 // Motor 3, 4
-&bone_pwmss_2 {
-	status = "okay";
-};
-
 &bone_pwm_2 {
 	status = "okay";
 };
