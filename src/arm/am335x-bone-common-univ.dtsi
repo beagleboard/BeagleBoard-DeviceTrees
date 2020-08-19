@@ -51,6 +51,12 @@
 	P8_05_gpio_input_pin: pinmux_P8_05_gpio_input_pin { pinctrl-single,pins = <
 		P8_05( PIN_INPUT | MUX_MODE7) >; };			/* gpmc_ad2.gpio1_2 */
 
+	/* P8_05 dummy nodes for unavailable bone bus pins*/
+	P8_05_eqep_pin: pinmux_P8_05_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-EQEP0.dtbo */
+		/* Default pinmux configuration of P8_05 (P8_05_default_pin) */
+		P8_05( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad2.gpio1_2 */
+
 	/* P8_06 (ZCZ ball T8) emmc */
 	P8_06_default_pin: pinmux_P8_06_default_pin { pinctrl-single,pins = <
 		P8_06( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad3.gpio1_3 */
@@ -62,6 +68,12 @@
 		P8_06( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad3.gpio1_3 */
 	P8_06_gpio_input_pin: pinmux_P8_06_gpio_input_pin { pinctrl-single,pins = <
 		P8_06( PIN_INPUT | MUX_MODE7) >; };			/* gpmc_ad3.gpio1_3 */
+
+	/* P8_06 dummy nodes for unavailable bone bus pins*/
+	P8_06_eqep_pin: pinmux_P8_06_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-EQEP0.dtbo */
+		/* Default pinmux configuration of P8_06 (P8_06_default_pin) */
+		P8_06( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad3.gpio1_3 */
 
 	/* P8_07 (ZCZ ball R7) gpio2_2 */
 	P8_07_default_pin: pinmux_P8_07_default_pin { pinctrl-single,pins = <
@@ -238,6 +250,12 @@
 		P8_18( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_clk.gpio2_1 */
 	P8_18_gpio_input_pin: pinmux_P8_18_gpio_input_pin { pinctrl-single,pins = <
 		P8_18( PIN_INPUT | MUX_MODE7) >; };			/* gpmc_clk.gpio2_1 */
+
+	/* P8_18 dummy nodes for unavailable bone bus pins*/
+	P8_18_eqep_pin: pinmux_P8_18_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-EQEP2.dtbo */
+		/* Default pinmux configuration of P8_18 (P8_18_default_pin) */
+		P8_18( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_clk.gpio2_1 */
 
 	/* P8_19 (ZCZ ball U10) gpio0_22 */
 	P8_19_default_pin: pinmux_P8_19_default_pin { pinctrl-single,pins = <
@@ -805,6 +823,12 @@
 	P9_15_pwm_pin: pinmux_P9_15_pwm_pin { pinctrl-single,pins = <
 		P9_15( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE6) >; };	/* gpmc_a0.ehrpwm1_tripzone_input */
 
+	/* P9_15 dummy nodes for unavailable bone bus pins*/
+	P9_15_eqep_pin: pinmux_P9_15_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-EQEP2.dtbo */
+		/* Default pinmux configuration of P9_15 (P9_15_default_pin) */
+		P9_15( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a0.gpio1_16 */
+
 	/* P9_16 (ZCZ ball T14) gpio1_19 */
 	P9_16_default_pin: pinmux_P9_16_default_pin { pinctrl-single,pins = <
 		P9_16( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_a3.gpio1_19 */
@@ -925,9 +949,14 @@
 	P9_21_pru_uart_pin: pinmux_P9_21_pru_uart_pin { pinctrl-single,pins = <
 		P9_21( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* spi0_d0.pr1_uart0_rts_n */
 	
-	/* P9_21 dummy nodes for unavailable bone bus */
+	/* P9_21 dummy nodes for unavailable bone bus pins*/
 	P9_21_timer_pin: pinmux_P9_21_default_pin { pinctrl-single,pins = <
 		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-TIMER_PWM_3.dtbo */
+		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
+		P9_21( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* spi0_d0.gpio0_3 */
+
+	P9_21_eqep_pin: pinmux_P9_21_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBBWL/BBB when using BONE-EQEP1.dtbo */
 		/* Default pinmux configuration of P9_21 (P9_21_default_pin) */
 		P9_21( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7) >; };	/* spi0_d0.gpio0_3 */
 
@@ -1199,6 +1228,10 @@
 		P9_91( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_axr1.pru0_out6 */
 	P9_91_pruin_pin: pinmux_P9_91_pruin_pin { pinctrl-single,pins = <
 		P9_91( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_axr1.pru0_in6 */
+	
+	/* Compatibility nodes*/
+	P9_41_eqep_pin: pinmux_P9_41_eqep_pin { pinctrl-single,pins = <
+		P9_41B( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE1) >; };	/* mcasp0_axr1.eqep0_index */
 
 	/* P9_42 (ZCZ ball C18) gpio0_7 */
 	P9_42_default_pin: pinmux_P9_42_default_pin { pinctrl-single,pins = <
@@ -1240,6 +1273,10 @@
 		P9_92( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* mcasp0_aclkr.pru0_out4 */
 	P9_92_pruin_pin: pinmux_P9_92_pruin_pin { pinctrl-single,pins = <
 		P9_92( PIN_INPUT | MUX_MODE6) >; };			/* mcasp0_aclkr.pru0_in4 */
+
+	/* Compatibility nodes*/
+	P9_42_eqep_pin: pinmux_P9_42_eqep_pin { pinctrl-single,pins = <
+		P9_42B( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE1) >; };	/* mcasp0_aclkr.eqep0a_in */
 
 	/* P9_43                GND */
 
