@@ -24,47 +24,28 @@
 };
 
 /*
- * Free up the pins used by the cape from the pinmux helpers.
+ * Update the default pinmux of the pins.
+ * See these files for the phandles (&P9_* & &P8_*)
+ * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am335x-bone-common-univ.dtsi
+ * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-	P8_13_pinmux { status = "disabled"; };	/* motor3 speed */
-	P8_14_pinmux { status = "disabled"; };	/* motor3 direction */
-	P8_16_pinmux { status = "disabled"; };  /* motor2 direction */
-	P8_18_pinmux { status = "disabled"; };	/* motor1 direction */
-	P8_19_pinmux { status = "disabled"; };	/* motor4 speed */
-	P8_26_pinmux { status = "disabled"; };  /* motor4 direction */
-	P9_14_pinmux { status = "disabled"; };	/* motor2 speed */
-	P9_16_pinmux { status = "disabled"; };	/* motor1 speed */
-};
-
-/*
- * Enable and Update the default state of the pins
- */
-&ocp {
-	P8_13_pinmux { status = "okay"; pinctrl-0 = <&P8_13_pwm_pin>; };	/* motor3 speed */
-	P8_14_pinmux { status = "okay"; pinctrl-0 = <&P8_14_gpio_pin>; };	/* motor3 direction */
-	P8_16_pinmux { status = "okay"; pinctrl-0 = <&P8_16_gpio_pin>; };	/* motor2 direction */
-	P8_18_pinmux { status = "okay"; pinctrl-0 = <&P8_18_gpio_pin>; };	/* motor1 direction */
-	P8_19_pinmux { status = "okay"; pinctrl-0 = <&P8_19_pwm_pin>; };	/* motor4 speed */
-	P8_26_pinmux { status = "okay"; pinctrl-0 = <&P8_26_gpio_pin>; };	/* motor4 direction */
-	P9_14_pinmux { status = "okay"; pinctrl-0 = <&P9_14_pwm_pin>; };	/* motor2 speed */
-	P9_16_pinmux { status = "okay"; pinctrl-0 = <&P9_16_pwm_pin>; };	/* motor1 speed */
+	P8_13_pinmux { pinctrl-0 = <&P8_13_pwm_pin>; };	/* motor3 speed */
+	P8_14_pinmux { pinctrl-0 = <&P8_14_gpio_pin>; };	/* motor3 direction */
+	P8_16_pinmux { pinctrl-0 = <&P8_16_gpio_pin>; };	/* motor2 direction */
+	P8_18_pinmux { pinctrl-0 = <&P8_18_gpio_pin>; };	/* motor1 direction */
+	P8_19_pinmux { pinctrl-0 = <&P8_19_pwm_pin>; };	/* motor4 speed */
+	P8_26_pinmux { pinctrl-0 = <&P8_26_gpio_pin>; };	/* motor4 direction */
+	P9_14_pinmux { pinctrl-0 = <&P9_14_pwm_pin>; };	/* motor2 speed */
+	P9_16_pinmux { pinctrl-0 = <&P9_16_pwm_pin>; };	/* motor1 speed */
 };
 
 // Motor 1, 2
-&bone_pwmss_1 {
-	status = "okay";
-};
-
 &bone_pwm_1 {
 	status = "okay";
 };
 
 // Motor 3, 4
-&bone_pwmss_2 {
-	status = "okay";
-};
-
 &bone_pwm_2 {
 	status = "okay";
 };

@@ -434,23 +434,11 @@ bone_pwm_0: &ehrpwm0 {
 
 };
 
-bone_pwmss_0: &epwmss0 {
-
-};
-
 bone_pwm_1: &ehrpwm1 {
 
 };
 
-bone_pwmss_1: &epwmss1 {
-
-};
-
 bone_pwm_2: &ehrpwm2 {
-
-};
-
-bone_pwmss_2: &epwmss2 {
 
 };
 
@@ -486,4 +474,45 @@ bone_timer_4: &timer5 {
 
 bone_timer_5: &not_available {
 	// Not available on BBBWL/BBB
+};
+
+// McASP
+bone_mcasp_0: &mcasp0 {
+
+};
+
+// eQEP
+bone_eqep_0: &eqep0{
+
+};
+
+bone_eqep_1: &eqep1{
+
+};
+
+bone_eqep_2: &eqep2{
+
+};
+
+// ADC
+bone_adc: &tscadc {
+	adc {
+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+		ti,chan-step-avg = <16 16 16 16 16 16 16 16>;
+		ti,chan-step-opendelay = <0x98 0x98 0x98 0x98 0x98 0x98 0x98 0x98>;
+		ti,chan-step-sampledelay = <0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0>;
+	};
+};
+
+// Enable all pwmss
+&epwmss0 {
+	status = "okay";
+};
+
+&epwmss1 {
+	status = "okay";
+};
+
+&epwmss2 {
+	status = "okay";
 };

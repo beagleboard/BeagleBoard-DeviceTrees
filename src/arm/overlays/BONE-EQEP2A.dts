@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
  *
- * Virtual cape for /dev/bone/spi/0.0
+ * Virtual cape for Bone eQEP2A (BBBWL/BBB, Not available on BBAI)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 */
 &{/chosen} {
     overlays {
-        BONE-SPI0_0 = __TIMESTAMP__;
+        BONE-EQEP2A = __TIMESTAMP__;
     };
 };
 
@@ -27,10 +27,10 @@
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-    P9_17_pinmux { pinctrl-0 = <&P9_17_spi_cs_pin>; }; /* CS*/
-    P9_18_pinmux { pinctrl-0 = <&P9_18_spi_pin>; }; /* MOSI */
-    P9_21_pinmux { pinctrl-0 = <&P9_21_spi_pin>; }; /* MISO */
-    P9_22_pinmux { pinctrl-0 = <&P9_22_spi_sclk_pin>; }; /* CLK */
+	P8_41_pinmux { pinctrl-0 = <&P8_41_eqep_pin>; };	/* A_in */
+	P8_42_pinmux { pinctrl-0 = <&P8_42_eqep_pin>; };	/* B_in */
+	P8_39_pinmux { pinctrl-0 = <&P8_39_eqep_pin>; };	/* index */
+	P8_40_pinmux { pinctrl-0 = <&P8_40_eqep_pin>; };	/* strobe */
 };
 
 /*
@@ -38,16 +38,19 @@
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbai-bone-buses.dtsi
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbb-bone-buses.dtsi
  */
-&bone_spi_0 {
-	status = "okay";
-    #address-cells = <1>;
-    #size-cells = <0>;
 
-	channel@0 {
-		reg = <0>;
-		compatible = "spidev";
-		symlink = "bone/spi/0.0";
-		spi-max-frequency = <16000000>;
-        spi-cpha;
-	};
+&bone_eqep_2 {
+	status = "okay";
+	count_mode = <1>;	// count_mode is not userspace op_mode
+	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.
+	// 1 -> Direction mode.  cha input = clock, chb input = direction
+	// 2 -> UP count mode for frequency measurement QDIR=1, ignore direction input
+	// 3 -> DOWN count mode for frequency measurement QDIR=0, ignore direction input
+
+	swap_inputs = <0>;	// swap channel A and B? (0 - no, 1 - yes)
+	invert_qa = <0>;	// invert channel A input?
+	invert_qb = <0>;	// invert channel B input?
+	invert_qi = <0>;	// invert index input?
+	invert_qs = <0>;	// invert strobe input?
+	omit_interrupt = <0>;	// 1 -> do not install interrupt handler, 0 -> do install
 };

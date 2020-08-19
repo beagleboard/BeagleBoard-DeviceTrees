@@ -19,31 +19,20 @@
 };
 
 /*
- * Free up the pins used by the cape from the pinmux helpers.
+ * Update the default pinmux of the pins.
+ * See these files for the phandles (&P9_* & &P8_*)
+ * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am335x-bone-common-univ.dtsi
+ * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-	P9_42_pinmux { status = "disabled"; };  /* Sink1 */
-	P9_41_pinmux { status = "disabled"; };  /* Sink2 */
-	P9_30_pinmux { status = "disabled"; };  /* Sink3 */
-	P9_27_pinmux { status = "disabled"; };	/* Sink4 */
-	P8_12_pinmux { status = "disabled"; };  /* Sink5 */
-	P8_11_pinmux { status = "disabled"; };	/* Sink6 */
-	P8_15_pinmux { status = "disabled"; };  /* Sink7 */
-	P8_17_pinmux { status = "disabled"; };	/* Sink8 */
-};
-
-/*
- * Enable and Update the default state of the pins
- */
-&ocp {
-	P9_42_pinmux { status = "okay"; pinctrl-0 = <&P9_42_gpio_pin>; };	/* Sink1 */
-	P9_41_pinmux { status = "okay"; pinctrl-0 = <&P9_41_gpio_pin>; };	/* Sink2 */
-	P9_30_pinmux { status = "okay"; pinctrl-0 = <&P9_30_gpio_pin>; };	/* Sink3 */
-	P9_27_pinmux { status = "okay"; pinctrl-0 = <&P9_27_gpio_pin>; };	/* Sink4 */
-	P8_12_pinmux { status = "okay"; pinctrl-0 = <&P8_12_gpio_pin>; };	/* Sink5 */
-	P8_11_pinmux { status = "okay"; pinctrl-0 = <&P8_11_gpio_pin>; };	/* Sink6 */
-	P8_15_pinmux { status = "okay"; pinctrl-0 = <&P8_15_gpio_pin>; };	/* Sink7 */
-	P8_17_pinmux { status = "okay"; pinctrl-0 = <&P8_17_gpio_pin>; };	/* Sink8 */
+	P9_42_pinmux { pinctrl-0 = <&P9_42_gpio_pin>; };	/* Sink1 */
+	P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_pin>; };	/* Sink2 */
+	P9_30_pinmux { pinctrl-0 = <&P9_30_gpio_pin>; };	/* Sink3 */
+	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>; };	/* Sink4 */
+	P8_12_pinmux { pinctrl-0 = <&P8_12_gpio_pin>; };	/* Sink5 */
+	P8_11_pinmux { pinctrl-0 = <&P8_11_gpio_pin>; };	/* Sink6 */
+	P8_15_pinmux { pinctrl-0 = <&P8_15_gpio_pin>; };	/* Sink7 */
+	P8_17_pinmux { pinctrl-0 = <&P8_17_gpio_pin>; };	/* Sink8 */
 };
 
 /*

@@ -417,24 +417,12 @@ bone_pwm_0: &not_available {
 	// Not available on BBAI
 };
 
-bone_pwmss_0: &not_available {
-	// Not available on BBAI
-};
-
 bone_pwm_1: &ehrpwm2 {
-
-};
-
-bone_pwmss_1: &epwmss2 {
 
 };
 
 bone_pwm_2: &ehrpwm1 {
 
-};
-
-bone_pwmss_2: &epwmss1 {
-	
 };
 
 // CAN
@@ -469,4 +457,39 @@ bone_timer_4: &timer14 {
 
 bone_timer_5: &timer15 {
 
+};
+
+// McASP
+bone_mcasp_0: &mcasp1 {
+
+};
+
+// eQEP
+bone_eqep_0: &eqep2{
+
+};
+
+bone_eqep_1: &eqep0{
+
+};
+
+bone_eqep_2: &eqep1{
+
+};
+
+// ADC
+// No internal ADC, STMPE811 Touch Controller is used!
+// bone_adc label is created in am5729-beagleboneai.dts
+
+// Enable all pwmss
+&epwmss0 {
+	status = "okay";
+};
+
+&epwmss1 {
+	status = "okay";
+};
+
+&epwmss2 {
+	status = "okay";
 };

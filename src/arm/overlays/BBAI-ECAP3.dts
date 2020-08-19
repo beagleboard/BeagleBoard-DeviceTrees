@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
  *
- * Virtual cape for /dev/bone/spi/0.0
+ * Virtual cape for BBAI ECAP3
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 */
 &{/chosen} {
     overlays {
-        BONE-SPI0_0 = __TIMESTAMP__;
+        BBAI-ECAP3 = __TIMESTAMP__;
     };
 };
 
@@ -27,10 +27,7 @@
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-    P9_17_pinmux { pinctrl-0 = <&P9_17_spi_cs_pin>; }; /* CS*/
-    P9_18_pinmux { pinctrl-0 = <&P9_18_spi_pin>; }; /* MOSI */
-    P9_21_pinmux { pinctrl-0 = <&P9_21_spi_pin>; }; /* MISO */
-    P9_22_pinmux { pinctrl-0 = <&P9_22_spi_sclk_pin>; }; /* CLK */
+	P8_04_pinmux { pinctrl-0 = <&P8_04_ecap_pwm_pin>; };	/* eCAP3_in_PWM3_out */
 };
 
 /*
@@ -38,16 +35,6 @@
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbai-bone-buses.dtsi
  * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/bbb-bone-buses.dtsi
  */
-&bone_spi_0 {
+&ecap2 {
 	status = "okay";
-    #address-cells = <1>;
-    #size-cells = <0>;
-
-	channel@0 {
-		reg = <0>;
-		compatible = "spidev";
-		symlink = "bone/spi/0.0";
-		spi-max-frequency = <16000000>;
-        spi-cpha;
-	};
 };

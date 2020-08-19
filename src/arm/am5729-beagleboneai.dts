@@ -691,7 +691,8 @@
 	};
 
 	/* STMPE811 touch screen controller */
-	stmpe811@41 {
+	bone_adc: stmpe811@41 {
+		status = "disabled";
 		compatible = "st,stmpe811";
 		reg = <0x41>;
 		interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
