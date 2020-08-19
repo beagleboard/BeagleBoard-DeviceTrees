@@ -263,6 +263,13 @@
 		P8_15B( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13)
 		P8_15A( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d19.pr1_pru1_gp016, vin2a_d2.off */
 
+	/* P8_15 dummy nodes for unavailable bone bus pins*/
+	P8_15_eqep_pin: pinmux_P8_15_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2.dtbo */
+		/* Default pinmux configuration of P8_15 (P8_15_default_pin) */
+		P8_15A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14)
+		P8_15B( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d2.gpio4_3, vin2a_d19.off */
+
 	/* P8_16  (ball  B4) gpio4_29 */
 	P8_16_default_pin: pinmux_P8_16_default_pin { pinctrl-single,pins = <
 		P8_16( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vin2a_d21.gpio4_29 */
@@ -278,6 +285,12 @@
 		P8_16( PIN_INPUT | MUX_MODE12) >; };	/* vin2a_d21.pr1_pru1_gpi18 */
 	P8_16_pruout_pin: pinmux_P8_16_pruout_pin { pinctrl-single,pins = <
 		P8_16( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE13) >; };	/* vin2a_d21.pr1_pru1_gpo18 */
+
+	/* P8_16 dummy nodes for unavailable bone bus pins*/
+	P8_16_eqep_pin: pinmux_P8_16_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2.dtbo */
+		/* Default pinmux configuration of P8_16 (P8_16_default_pin) */
+		P8_16( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vin2a_d21.gpio4_29 */
 		
 	/* P8_17  (ball  A7) gpio8_18 */
 	P8_17_default_pin: pinmux_P8_17_default_pin { pinctrl-single,pins = <
@@ -591,6 +604,13 @@
 		P8_31B( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4)		
 		P8_31A( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp4_axr0.uart4_rxd,vout1_d14.off */
 
+	/* P8_31 dummy nodes for unavailable bone bus pins*/
+	P8_31_eqep_pin: pinmux_P8_31_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP1.dtbo */
+		/* Default pinmux configuration of P8_31 (P8_31_default_pin) */
+		P8_31A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14)	
+		P8_31B( PIN_OUTPUT | MUX_MODE15) >; };	/* vout1_d14.gpio8_14, mcasp4_axr0.off */
+
 	/* P8_32a (ball  C7) gpio8_15 */
 	P8_32_default_pin: pinmux_P8_32_default_pin { pinctrl-single,pins = <
 		P8_32A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14)	
@@ -621,6 +641,13 @@
 	P8_32_pruin_pin: pinmux_P8_32_pruin_pin { pinctrl-single,pins = <
 		P8_32B( PIN_INPUT | MUX_MODE12)							
 		P8_32A( PIN_OUTPUT | MUX_MODE15) >; };	/* mcasp4_axr1.pr2_pru1_gpi0, vout1_d15.off */
+
+	/* P8_32 dummy nodes for unavailable bone bus pins*/
+	P8_32_eqep_pin: pinmux_P8_32_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP1.dtbo */
+		/* Default pinmux configuration of P8_32 (P8_32_default_pin) */
+		P8_32A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14)	
+		P8_32B( PIN_OUTPUT | MUX_MODE15) >; };	/* vout1_d15.gpio8_15, mcasp4_axr1.off */
 
 	/* P8_33a (ball  C6) gpio8_13 */
 	P8_33_default_pin: pinmux_P8_33_default_pin { pinctrl-single,pins = <
@@ -827,6 +854,12 @@
 	P8_39_lcd_pin: pinmux_P8_39_lcd_pin { pinctrl-single,pins = <
 		P8_39( PIN_OUTPUT | MUX_MODE0) >; };	/* vout1_d6.vout1_d6 */
 
+	/* P8_39 dummy nodes for unavailable bone bus pins*/
+	P8_39_eqep_pin: pinmux_P8_39_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2A.dtbo */
+		/* Default pinmux configuration of P8_39 (P8_39_default_pin) */
+		P8_39( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d6.gpio8_6 */
+
 	/* P8_40  (ball  E7) gpio8_7 */
 	P8_40_default_pin: pinmux_P8_40_default_pin { pinctrl-single,pins = <
 		P8_40( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d7.gpio8_7 */
@@ -844,6 +877,12 @@
 		P8_40( PIN_INPUT | MUX_MODE12) >; };	/* vout1_d7.pr2_pru0_gpi4 */
 	P8_40_lcd_pin: pinmux_P8_40_lcd_pin { pinctrl-single,pins = <
 		P8_40( PIN_OUTPUT | MUX_MODE0) >; };	/* vout1_d7.vout1_d7 */
+
+	/* P8_40 dummy nodes for unavailable bone bus pins*/
+	P8_40_eqep_pin: pinmux_P8_40_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2A.dtbo */
+		/* Default pinmux configuration of P8_40 (P8_40_default_pin) */
+		P8_40( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d7.gpio8_7 */
 
 	/* P8_41  (ball  E9) gpio8_4 */
 	P8_41_default_pin: pinmux_P8_41_default_pin { pinctrl-single,pins = <
@@ -863,6 +902,12 @@
 	P8_41_lcd_pin: pinmux_P8_41_lcd_pin { pinctrl-single,pins = <
 		P8_41( PIN_OUTPUT | MUX_MODE0) >; };	/* vout1_d4.vout1_d4 */
 
+	/* P8_41 dummy nodes for unavailable bone bus pins*/
+	P8_41_eqep_pin: pinmux_P8_41_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2A.dtbo */
+		/* Default pinmux configuration of P8_41 (P8_41_default_pin) */
+		P8_41( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d4.gpio8_4 */
+
 	/* P8_42  (ball  F9) gpio8_5 */
 	P8_42_default_pin: pinmux_P8_42_default_pin { pinctrl-single,pins = <
 		P8_42( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d5.gpio8_5 */
@@ -880,6 +925,12 @@
 		P8_42( PIN_INPUT | MUX_MODE12) >; };	/* vout1_d5.pr2_pru0_gpi2 */
 	P8_42_lcd_pin: pinmux_P8_42_lcd_pin { pinctrl-single,pins = <
 		P8_42( PIN_OUTPUT | MUX_MODE0) >; };	/* vout1_d5.vout1_d5 */
+
+	/* P8_42 dummy nodes for unavailable bone bus pins*/
+	P8_42_eqep_pin: pinmux_P8_42_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP2A.dtbo */
+		/* Default pinmux configuration of P8_42 (P8_42_default_pin) */
+		P8_42( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* vout1_d5.gpio8_5 */
 
 	/* P8_43  (ball F10) gpio8_2 */
 	P8_43_default_pin: pinmux_P8_43_default_pin { pinctrl-single,pins = <
@@ -1394,6 +1445,12 @@
 	P9_25_mcasp_pin: pinmux_P9_25_mcasp_pin { pinctrl-single,pins = <
 		P9_25( PIN_INPUT_PULLDOWN | MUX_MODE3) >; };	/* xref_clk0.mcasp1_ahclkx */
 
+	/* P9_25 dummy nodes for unavailable bone bus pins*/
+	P9_25_eqep_pin: pinmux_P9_25_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP0.dtbo */
+		/* Default pinmux configuration of P9_25 (P9_25_default_pin) */
+		P9_25( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* xref_clk0.gpio6_17 */
+
 	/* P9_26a (ball E21) gpio6_14 */
 	P9_26_default_pin: pinmux_P9_26_default_pin { pinctrl-single,pins = <
 		P9_26A( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14)
@@ -1603,6 +1660,13 @@
 	P9_41_pruin_pin: pinmux_P9_41_pruin_pin { pinctrl-single,pins = <
 		P9_41B( PIN_INPUT | MUX_MODE12)
 		P9_41A( PIN_OUTPUT | MUX_MODE15) >; };	/* vin2a_d6.pr1_pru1_gpi3, xref_clk3.off */
+
+	/* P9_41 dummy nodes for unavailable bone bus pins*/
+	P9_41_eqep_pin: pinmux_P9_41_eqep_pin { pinctrl-single,pins = <
+		/* To avoid FDT_ERROR on BBAI when using BONE-EQEP0.dtbo */
+		/* Default pinmux configuration of P9_41 (P9_41_default_pin) */
+		P9_41A( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14)
+		P9_41B( PIN_OUTPUT | MUX_MODE15) >; };	/* xref_clk3.gpio6_20, vin2a_d6.off */
 
 	/* P9_42a (ball E14) gpio4_18 */
 	P9_42_default_pin: pinmux_P9_42_default_pin { pinctrl-single,pins = <
