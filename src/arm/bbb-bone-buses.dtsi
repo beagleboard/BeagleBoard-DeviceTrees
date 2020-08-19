@@ -434,23 +434,11 @@ bone_pwm_0: &ehrpwm0 {
 
 };
 
-bone_pwmss_0: &epwmss0 {
-
-};
-
 bone_pwm_1: &ehrpwm1 {
 
 };
 
-bone_pwmss_1: &epwmss1 {
-
-};
-
 bone_pwm_2: &ehrpwm2 {
-
-};
-
-bone_pwmss_2: &epwmss2 {
 
 };
 
@@ -514,4 +502,17 @@ bone_adc: &tscadc {
 		ti,chan-step-opendelay = <0x98 0x98 0x98 0x98 0x98 0x98 0x98 0x98>;
 		ti,chan-step-sampledelay = <0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0>;
 	};
+};
+
+// Enable all pwmss
+&epwmss0 {
+	status = "okay";
+};
+
+&epwmss1 {
+	status = "okay";
+};
+
+&epwmss2 {
+	status = "okay";
 };
