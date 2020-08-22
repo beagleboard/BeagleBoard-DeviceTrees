@@ -6,7 +6,7 @@
  * published by the Free Software Foundation.
  */
 
-#include <dt-bindings/board/am5729-bone-pins.h>
+#include <dt-bindings/board/am572x-bone-pins.h>
 
 &dra7_pmx_core {
 	/************************/
