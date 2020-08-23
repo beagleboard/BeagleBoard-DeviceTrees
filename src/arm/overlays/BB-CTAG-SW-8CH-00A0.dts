@@ -64,7 +64,7 @@
 	rx-num-evt = <1>;
 };
 
-&bone_spi_gpio_ad1938 {
+&bone_spi_gpio_ad193x {
 	status = "okay";
 };
 
