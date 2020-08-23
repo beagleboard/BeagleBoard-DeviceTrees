@@ -3,7 +3,7 @@
  * See Cape Interface Spec page for more info on Bone Buses
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
- * Virtual cape for BBAI ECAP1
+ * Virtual cape for BBWL/BBB eCAP2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -18,7 +18,7 @@
 */
 &{/chosen} {
     overlays {
-        BBAI-ECAP1 = __TIMESTAMP__;
+        BBB-eCAP2 = __TIMESTAMP__;
     };
 };
 
@@ -29,7 +29,7 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-	P8_15_pinmux { pinctrl-0 = <&P8_15_ecap_pwm_pin>; };	/* eCAP1_in_PWM1_out */
+	P9_28_pinmux { pinctrl-0 = <&P9_28_ecap_pwm_pin>; };	/* eCAP2_in_PWM2_out */
 };
 
 /*
@@ -37,6 +37,6 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/bbai-bone-buses.dtsi
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/bbb-bone-buses.dtsi
  */
-&ecap0 {
+&ecap2 {
 	status = "okay";
 };

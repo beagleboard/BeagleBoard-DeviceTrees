@@ -3,7 +3,7 @@
  * See Cape Interface Spec page for more info on Bone Buses
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
- * Virtual cape for Bone eQEP2A (BBBWL/BBB, Not available on BBAI)
+ * Virtual cape for Bone eQEP0 (BBBWL/BBB/BBAI)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -18,7 +18,7 @@
 */
 &{/chosen} {
     overlays {
-        BONE-EQEP2A = __TIMESTAMP__;
+        BONE-eQEP0 = __TIMESTAMP__;
     };
 };
 
@@ -29,10 +29,14 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-	P8_41_pinmux { pinctrl-0 = <&P8_41_eqep_pin>; };	/* A_in */
-	P8_42_pinmux { pinctrl-0 = <&P8_42_eqep_pin>; };	/* B_in */
-	P8_39_pinmux { pinctrl-0 = <&P8_39_eqep_pin>; };	/* index */
-	P8_40_pinmux { pinctrl-0 = <&P8_40_eqep_pin>; };	/* strobe */
+	P9_42_pinmux { pinctrl-0 = <&P9_42_eqep_pin>; };	/* A_in */
+	P9_27_pinmux { pinctrl-0 = <&P9_27_eqep_pin>; };	/* B_in */
+	// BBWL/BBB
+	P9_41_pinmux { pinctrl-0 = <&P9_41_eqep_pin>; };	/* index */
+	P9_25_pinmux { pinctrl-0 = <&P9_25_eqep_pin>; };	/* strobe */
+	// BBAI
+	P8_05_pinmux { pinctrl-0 = <&P8_05_eqep_pin>; };	/* index */
+	P8_06_pinmux { pinctrl-0 = <&P8_06_eqep_pin>; };	/* strobe */
 };
 
 /*
@@ -41,7 +45,7 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/bbb-bone-buses.dtsi
  */
 
-&bone_eqep_2 {
+&bone_eqep_0 {
 	status = "okay";
 	count_mode = <1>;	// count_mode is not userspace op_mode
 	// 0 -> Quadrature mode, normal 90 phase offset cha & chb.

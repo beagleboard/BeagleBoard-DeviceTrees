@@ -3,7 +3,7 @@
  * See Cape Interface Spec page for more info on Bone Buses
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
- * Virtual cape for BBAI ECAP3A
+ * Virtual cape for BBAI eCAP3A
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -18,7 +18,7 @@
 */
 &{/chosen} {
     overlays {
-        BBAI-ECAP3A = __TIMESTAMP__;
+        BBAI-eCAP3A = __TIMESTAMP__;
     };
 };
 
