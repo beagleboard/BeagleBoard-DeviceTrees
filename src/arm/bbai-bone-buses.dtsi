@@ -366,6 +366,11 @@
 	};
 };
 
+// For compatible bone pinmuxing
+bone_pinmux: &dra7_pmx_core {
+
+};
+
 // UARTs
 bone_uart_1: &uart10 {
 	symlink = "bone/uart/1";
