@@ -381,6 +381,11 @@
 	};
 };
 
+// For compatible bone pinmuxing
+bone_pinmux: &am33xx_pinmux {
+
+};
+
 // UARTs
 bone_uart_1: &uart1 {
 	symlink = "bone/uart/1";
