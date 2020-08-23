@@ -583,6 +583,9 @@
 	P8_32_lcd_pin: pinmux_P8_32_lcd_pin { pinctrl-single,pins = <
 		P8_32A( PIN_OUTPUT | MUX_MODE0) 
 		P8_32B( PIN_OUTPUT | MUX_MODE15) >; };	/* vout1_d15.vout1_d15, mcasp4_axr1.off */
+	P8_32_pru_ecap_pin: pinmux_P8_32_pru_ecap_pin { pinctrl-single,pins = <
+		P8_32A( PIN_OUTPUT | MUX_MODE10) 
+		P8_32B( PIN_OUTPUT | MUX_MODE15) >; };	/* vout1_d15.pr2_ecap0_ecap_capin_apwm_o, mcasp4_axr1.off */
 	
 	/* P8_32b (ball D17) */
 	P8_32_uart_pin: pinmux_P8_32_uart_pin { pinctrl-single,pins = <
