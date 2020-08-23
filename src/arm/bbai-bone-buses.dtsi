@@ -463,7 +463,8 @@ bone_timer_5: &timer15 {
 
 // McASP
 bone_mcasp_0: &mcasp1 {
-
+	assigned-clocks = <&ipu_clkctrl DRA7_MCASP1_CLKCTRL 24>;
+	assigned-clock-parents = <&sys_clkin2>; /* 22579200 Hz (see dra7xx-clocks.dtsi) */
 };
 
 // eQEP
@@ -494,4 +495,35 @@ bone_eqep_2: &eqep1{
 
 &epwmss2 {
 	status = "okay";
+};
+
+// spi_gpio (bit banged SPI)
+&{/} {
+	// For CTAG SW 8ch overlay
+	bone_spi_gpio_ad193x: bone_spi_gpio_ad193x {
+		status = "disabled";
+		compatible = "spi-gpio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		sck-gpios = <gpio_P8_32 GPIO_ACTIVE_HIGH>;
+		mosi-gpios = <gpio_P8_33 GPIO_ACTIVE_HIGH>;
+		miso-gpios = <gpio_P8_14 GPIO_ACTIVE_HIGH>;
+		cs-gpios = <gpio_P8_17 GPIO_ACTIVE_HIGH>;
+		num-chipselects = <1>;
+
+		ad193x: ad193x@0{
+			compatible = "analog,ad1938";
+			reset-gpio = <gpio_P8_34 GPIO_ACTIVE_HIGH>;
+			reg = <0>; //corresponds to cs
+			spi-max-frequency = <100000>;
+		};
+	};
+};
+
+// Bone sound
+&ocp {
+	bone_sound {
+		bb-device = <1>; //BBx15/BBAI
+	};
 };
