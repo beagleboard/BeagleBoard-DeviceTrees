@@ -29,5 +29,5 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-	P9_42_pinmux { pinctrl-0 = <&P9_42_pru_ecap_pin>; };	/* pr1_ecap0_ecap_capin_apwm_o */
+	P9_42_pinmux { pinctrl-0 = <&P9_42_pru_ecap_pwm_pin>; };	/* pr1_ecap0_ecap_capin_apwm_o */
 };

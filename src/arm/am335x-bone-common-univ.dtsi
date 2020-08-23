@@ -186,7 +186,7 @@
 		P8_15( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7) >; };	/* gpmc_ad15.gpio1_15 */
 	P8_15_eqep_pin: pinmux_P8_15_eqep_pin { pinctrl-single,pins = <
 		P8_15( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* gpmc_ad15.eqep2_strobe */
-	P8_15_pru_ecap_pin: pinmux_P8_15_pru_ecap_pin { pinctrl-single,pins = <
+	P8_15_pru_ecap_pwm_pin: pinmux_P8_15_pru_ecap_pwm_pin { pinctrl-single,pins = <
 		P8_15( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5) >; };	/* gpmc_ad15.pr1_ecap0_ecap_capin_apwm_o */
 	P8_15_pruin_pin: pinmux_P8_15_pruin_pin { pinctrl-single,pins = <
 		P8_15( PIN_INPUT | MUX_MODE6) >; };			/* gpmc_ad15.pru0_in15 */
@@ -1134,7 +1134,7 @@
 		P9_42( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE1) >; };	/* eCAP0_in_PWM0_out.uart3_txd */
 	P9_42_spi_cs_pin: pinmux_P9_42_spi_cs_pin { pinctrl-single,pins = <
 		P9_42( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE2) >; };	/* eCAP0_in_PWM0_out.spi1_cs1 */
-	P9_42_pru_ecap_pin: pinmux_P9_42_pru_ecap_pin { pinctrl-single,pins = <
+	P9_42_pru_ecap_pwm_pin: pinmux_P9_42_pru_ecap_pwm_pin { pinctrl-single,pins = <
 		P9_42( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3) >; };	/* eCAP0_in_PWM0_out.pr1_ecap0_ecap_capin_apwm_o */
 	P9_42_spi_sclk_pin: pinmux_P9_42_spi_sclk_pin { pinctrl-single,pins = <
 		P9_42( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4) >; };	/* eCAP0_in_PWM0_out.spi1_sclk */
@@ -1559,13 +1559,13 @@
 	P8_15_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "eqep", "pru_ecap", "pruin";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "eqep", "pru_ecap_pwm", "pruin";
 		pinctrl-0 = <&P8_15_default_pin>;
 		pinctrl-1 = <&P8_15_gpio_pin>;
 		pinctrl-2 = <&P8_15_gpio_pu_pin>;
 		pinctrl-3 = <&P8_15_gpio_pd_pin>;
 		pinctrl-4 = <&P8_15_eqep_pin>;
-		pinctrl-5 = <&P8_15_pru_ecap_pin>;
+		pinctrl-5 = <&P8_15_pru_ecap_pwm_pin>;
 		pinctrl-6 = <&P8_15_pruin_pin>;
 	};
 
@@ -2340,7 +2340,7 @@
 	P9_42_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi_cs", "spi_sclk", "uart", "pwm", "pru_ecap";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "spi_cs", "spi_sclk", "uart", "pwm", "pru_ecap_pwm";
 		pinctrl-0 = <&P9_42_default_pin>;
 		pinctrl-1 = <&P9_42_gpio_pin>;
 		pinctrl-2 = <&P9_42_gpio_pu_pin>;
@@ -2349,7 +2349,7 @@
 		pinctrl-5 = <&P9_42_spi_sclk_pin>;
 		pinctrl-6 = <&P9_42_uart_pin>;
 		pinctrl-7 = <&P9_42_ecap_pwm_pin>;
-		pinctrl-8 = <&P9_42_pru_ecap_pin>;
+		pinctrl-8 = <&P9_42_pru_ecap_pwm_pin>;
 	};
 
 	/* P9_42.1 */
