@@ -527,3 +527,10 @@ bone_eqep_2: &eqep1{
 		bb-device = <1>; //BBx15/BBAI
 	};
 };
+
+// eMMC
+bone_emmc: &mmc3 {
+	status = "disabled";
+	vmmc-supply = <&vdd_1v8>;
+	bus-width = <8>;
+};
