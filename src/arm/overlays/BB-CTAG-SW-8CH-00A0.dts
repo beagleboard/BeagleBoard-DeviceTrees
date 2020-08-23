@@ -4,7 +4,7 @@
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  * Device Tree Overlay for CTAG face2|4 multichannel soundcard - 8 audio channels
  * 
- * Based on the BB-CTAG-SW-16CH-00A0.dts for kernel <4.14 written by 
+ * Based on the BB-CTAG-SW-8CH-00A0.dts for kernel <4.14 written by 
  * Copyright (C) Henrik Langer <henni19790@googlemail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 &{/chosen} {
 	overlays {
-		BB-CTAG-SW-16CH-00A0 = __TIMESTAMP__;
+		BB-CTAG-SW-8CH-00A0 = __TIMESTAMP__;
 	};
 };
 
@@ -41,7 +41,7 @@
 	P8_33_pinmux { pinctrl-0 = <&P8_33_gpio_pu_pin>; }; /* spi_mosi */
 	P8_14_pinmux { pinctrl-0 = <&P8_14_gpio_pu_pin>; }; /* spi_miso */
 	P8_17_pinmux { pinctrl-0 = <&P8_17_gpio_pu_pin>; }; /* spi_cs0 */
-	P8_31_pinmux { pinctrl-0 = <&P8_31_gpio_pu_pin>; }; /* spi_cs1 */
+	P8_34_pinmux { pinctrl-0 = <&P8_34_gpio_pd_pin>; }; /* spi_reset-gpio */
 };
 
 /*
@@ -52,7 +52,7 @@
 &bone_mcasp_0 {
 	status = "okay";
 	op-mode = <0>;	/* MCASP_IIS_MODE */
-	tdm-slots = <16>;
+	tdm-slots = <8>;
 	num-serializer = <16>;
 	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
 		2 0 1 0
@@ -64,60 +64,30 @@
 	rx-num-evt = <1>;
 };
 
-&ocp {
-	sound {
-		compatible = "ctag,face-2-4";
-		model = "CTAG face-2-4 16CH";
-		audio-codec = <&ad193x_master>;
-		audio-codec-aux = <&ad193x_aux>;
-		mcasp-controller = <&bone_mcasp_0>;
-		audiocard-tdm-slots = <16>;
-		codec-clock-rate = <24576000>;
-		cpu-clock-rate = <24576000>;
-		audio-codec-bit-delay-dac = <1>; //currently only supports 1 or 0 bit delay
-		audio-codec-bit-delay-adc = <1>;
-		audio-codec-aux-bit-delay-dac = <1>;
-		audio-codec-aux-bit-delay-adc = <1>;
-		mcasp-controller-bit-delay-tx = <1>;
-		mcasp-controller-bit-delay-rx = <1>;
-		bb-device = <0>; //BBB/BBG
-		audio-routing =
-			"Line Out",             "DAC1OUT",
-			"Line Out",             "DAC2OUT",
-			"Line Out",             "DAC3OUT",
-			"Line Out",             "DAC4OUT",
-			//"Line Out",             "DAC5OUT",
-			//"Line Out",             "DAC6OUT",
-			//"Line Out",             "DAC7OUT",
-			//"Line Out",             "DAC8OUT",
-			"ADC1IN",               "Line In",
-			"ADC2IN",               "Line In",
-			"ADC3IN",               "Line In",
-			"ADC4IN",               "Line In";
-	};
+&bone_spi_gpio_ad1938 {
+	status = "okay";
 };
 
-&{/} {
-	spi_gpio: spi_gpio {
-		compatible = "spi-gpio";
-		/* avoid dtc warnings */
-		#address-cells = <1>;
-		#size-cells = <0>;
+&bone_sound {
+	compatible = "ctag,face-2-4";
+	ti,model = "CTAG face-2-4 8CH";
+	ti,audio-codec = <&ad193x>;
+	ti,mcasp-controller = <&bone_mcasp_0>;
+	ti,audiocard-tdm-slots = <8>;
+	ti,codec-clock-rate = <24576000>;
+	ti,cpu-clock-rate = <24576000>;
+	status = "okay";
+	
+	ti,audio-codec-bit-delay-dac = <1>; //currently only supports 1 or 0 bit delay
+	ti,audio-codec-bit-delay-adc = <1>;
+	ti,mcasp-controller-bit-delay-tx = <1>;
+	ti,mcasp-controller-bit-delay-rx = <1>;
 
-		ad193x_master: ad193x@0{
-			#address-cells = <1>;
-			#size-cells = <0>;
-			compatible = "analog,ad1938";
-			reg = <0>; //corresponds to cs
-			spi-max-frequency = <100000>;
-		};
-
-		ad193x_aux: ad193x@1{
-			#address-cells = <1>;
-			#size-cells = <0>;
-			compatible = "analog,ad1938-dc";
-			reg = <1>;
-			spi-max-frequency = <100000>;
-		};
-	};
+	audio-routing =
+		"Line Out",             "DAC1OUT",
+		"Line Out",             "DAC2OUT",
+		"Line Out",             "DAC3OUT",
+		"Line Out",             "DAC4OUT",
+		"ADC1IN",               "Line In",
+		"ADC2IN",               "Line In";
 };

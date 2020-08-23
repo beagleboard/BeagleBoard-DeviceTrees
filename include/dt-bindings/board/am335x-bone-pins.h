@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
+ * See Cape Interface Spec page for more info on Bone Buses
+ * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
  * This program is free software you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
