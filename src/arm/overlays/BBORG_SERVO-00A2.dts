@@ -27,12 +27,12 @@
  * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
-    P8_12_pinmux { pinctrl-0 = <&P8_12_gpio_input_pin>; }; /* IN1 */
-    P8_11_pinmux { pinctrl-0 = <&P8_11_gpio_input_pin>; }; /* IN2 */
-    P9_30_pinmux { pinctrl-0 = <&P9_30_gpio_input_pin>; }; /* IN3 */
-    P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_input_pin>; }; /* IN4 */
-    P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_input_pin>; }; /* IN5 */
-    P9_42_pinmux { pinctrl-0 = <&P9_42_gpio_input_pin>; }; /* IN6 */
+    P8_12_pinmux { pinctrl-0 = <&P8_12_gpio_pd_pin>; }; /* IN1 */
+    P8_11_pinmux { pinctrl-0 = <&P8_11_gpio_pd_pin>; }; /* IN2 */
+    P9_30_pinmux { pinctrl-0 = <&P9_30_gpio_pd_pin>; }; /* IN3 */
+    P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pd_pin>; }; /* IN4 */
+    P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_pd_pin>; }; /* IN5 */
+    P9_42_pinmux { pinctrl-0 = <&P9_42_gpio_pd_pin>; }; /* IN6 */
 
     P9_19_pinmux { pinctrl-0 = <&P9_19_i2c_pin>; }; /* i2c_scl */
     P9_20_pinmux { pinctrl-0 = <&P9_20_i2c_pin>; }; /* i2c_sda */
