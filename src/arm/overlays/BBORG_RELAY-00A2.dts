@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
+ * See Cape Interface Spec page for more info on Bone Buses
+ * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
  * Based on the BBORG_RELAY-00A2.dts written by 
  * Robert Nelson & Amilcar Lucas for kernel <4.14
@@ -26,8 +28,8 @@
 /*
  * Update the default pinmux of the pins.
  * See these files for the phandles (&P9_* & &P8_*)
- * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am335x-bone-common-univ.dtsi
- * https://github.com/lorforlinux/BeagleBoard-DeviceTrees/blob/compatibility/src/arm/am572x-bone-common-univ.dtsi
+ * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am335x-bone-common-univ.dtsi
+ * BeagleBoard-DeviceTrees/v4.19.x-ti-overlays/src/arm/am572x-bone-common-univ.dtsi
  */
 &ocp {
 	P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_pin>;};

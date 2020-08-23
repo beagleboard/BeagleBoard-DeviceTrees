@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
+ * See Cape Interface Spec page for more info on Bone Buses
+ * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
  * This program is free software you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -8,6 +10,84 @@
 
 #ifndef _DT_BINDINGS_BOARD_AM335X_BONE_PINS_H
 #define _DT_BINDINGS_BOARD_AM335X_BONE_PINS_H
+
+#define bb_device 0
+#define board_soc AM335X
+
+#define gpio_P8_03 &gpio1 6
+#define gpio_P8_04 &gpio1 7
+#define gpio_P8_05 &gpio1 2
+#define gpio_P8_06 &gpio1 3
+#define gpio_P8_07 &gpio2 2
+#define gpio_P8_08 &gpio2 3
+#define gpio_P8_09 &gpio2 5
+#define gpio_P8_10 &gpio2 4
+#define gpio_P8_11 &gpio1 13
+#define gpio_P8_12 &gpio1 12
+#define gpio_P8_13 &gpio0 23
+#define gpio_P8_14 &gpio0 26
+#define gpio_P8_15 &gpio1 15
+#define gpio_P8_16 &gpio1 14
+#define gpio_P8_17 &gpio0 27
+#define gpio_P8_18 &gpio2 1
+#define gpio_P8_19 &gpio0 22
+#define gpio_P8_20 &gpio1 31
+#define gpio_P8_21 &gpio1 30
+#define gpio_P8_22 &gpio1 5
+#define gpio_P8_23 &gpio1 4
+#define gpio_P8_24 &gpio1 1
+#define gpio_P8_25 &gpio1 0
+#define gpio_P8_26 &gpio1 29
+#define gpio_P8_27 &gpio2 22
+#define gpio_P8_28 &gpio2 24
+#define gpio_P8_29 &gpio2 23
+#define gpio_P8_30 &gpio2 25
+#define gpio_P8_31 &gpio0 10
+#define gpio_P8_32 &gpio0 11
+#define gpio_P8_33 &gpio0 9
+#define gpio_P8_34 &gpio2 17
+#define gpio_P8_35 &gpio0 8
+#define gpio_P8_36 &gpio2 16
+#define gpio_P8_37 &gpio2 14
+#define gpio_P8_38 &gpio2 15
+#define gpio_P8_39 &gpio2 12
+#define gpio_P8_40 &gpio2 13
+#define gpio_P8_41 &gpio2 10
+#define gpio_P8_42 &gpio2 11
+#define gpio_P8_43 &gpio2 8
+#define gpio_P8_44 &gpio2 9
+#define gpio_P8_45 &gpio2 6
+#define gpio_P8_46 &gpio2 7
+#define gpio_P9_11 &gpio0 30
+#define gpio_P9_12 &gpio1 28
+#define gpio_P9_13 &gpio0 31
+#define gpio_P9_14 &gpio1 18
+#define gpio_P9_15 &gpio1 16
+#define gpio_P9_16 &gpio1 19
+#define gpio_P9_17 &gpio0 5
+#define gpio_P9_18 &gpio0 4
+#define gpio_P9_19 &gpio0 13
+#define gpio_P9_20 &gpio0 12
+#define gpio_P9_21 &gpio0 3
+#define gpio_P9_22 &gpio0 2
+#define gpio_P9_23 &gpio1 17
+#define gpio_P9_24 &gpio0 15
+#define gpio_P9_25 &gpio3 21
+#define gpio_P9_26 &gpio0 14
+#define gpio_P9_27 &gpio3 19
+#define gpio_P9_28 &gpio3 17
+#define gpio_P9_29 &gpio3 15
+#define gpio_P9_30 &gpio3 16
+#define gpio_P9_31 &gpio3 14
+#define gpio_P9_41 &gpio0 20
+#define gpio_P9_41A &gpio0 20
+#define gpio_P9_41B &gpio3 20
+#define gpio_P9_91 &gpio3 20
+#define gpio_P9_42 &gpio0 7
+#define gpio_P9_42A &gpio0 7
+#define gpio_P9_42B &gpio3 18
+#define gpio_P9_92 &gpio3 18
+#define gpio_A15 &gpio0 19
 
 #define P8_03(mode) AM33XX_IOPAD(0x0818, mode)  /* R9: gpmc_ad6 */
 #define P8_04(mode) AM33XX_IOPAD(0x081c, mode)  /* T9: gpmc_ad7 */

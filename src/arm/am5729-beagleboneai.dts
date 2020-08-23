@@ -714,7 +714,7 @@
 			st,norequest-mask = <0x00>; /* mask any channels to be used by touchscreen */
 			adc0: iio-device@0 {
 				#io-channel-cells = <1>;
-				iio-channels = <&adc0 4>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>, <&adc0 6>;
+				iio-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>, <&adc0 6>;
 				iio-channel-names = "AIN0_P9_39", "AIN1_P9_40", "AIN2_P9_37", "AIN3_P9_38",
 					"AIN4_P9_33", "AIN5_P9_36", "AIN6_P9_35";
 			};
