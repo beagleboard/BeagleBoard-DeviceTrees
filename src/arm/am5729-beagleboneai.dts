@@ -747,6 +747,11 @@
 			#pwm-cells = <2>;
 		};
 	};
+
+	eeprom: eeprom@50 {
+		compatible = "atmel,24c32";
+		reg = <0x50>;
+	};
 };
 
 &mcspi3 {
