@@ -22,6 +22,7 @@ dtbo-$(CONFIG_SOC_AM33XX) += \
 	BBB-eCAP2.dtbo \
 	BBB-PRU_eCAP.dtbo \
 	BBORG_COMMS-00A2.dtbo \
+	BBORG_FAN-A000.dtbo \
 	BBORG_LOAD-00A2.dtbo \
 	BBORG_MOTOR-00A2.dtbo \
 	BBORG_RELAY-00A2.dtbo \
