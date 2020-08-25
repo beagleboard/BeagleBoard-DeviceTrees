@@ -528,7 +528,7 @@ bone_eqep_2: &eqep1{
 
 // Bone sound
 &ocp {
-	bone_sound {
+	bone_sound: bone_sound {
 		bb-device = <1>; //BBx15/BBAI
 	};
 };
