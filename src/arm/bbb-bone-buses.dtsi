@@ -550,7 +550,7 @@ bone_adc: &tscadc {
 
 // Bone sound
 &ocp {
-	bone_sound {
+	bone_sound: bone_sound {
 		bb-device = <0>; //BBB/BBG
 	};
 };
