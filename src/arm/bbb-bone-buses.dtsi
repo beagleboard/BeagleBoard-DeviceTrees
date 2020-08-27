@@ -485,7 +485,12 @@ bone_timer_5: &not_available {
 
 // McASP
 bone_mcasp_0: &mcasp0 {
-
+        serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+		2 0 1 0
+		0 0 0 0
+		0 0 0 0
+		0 0 0 0
+	>;
 };
 
 // eQEP
@@ -550,6 +555,17 @@ bone_adc: &tscadc {
 
 // Bone sound
 &ocp {
+        clk_mcasp0_fixed: clk_mcasp0_fixed {
+                #clock-cells = <0>;
+                compatible = "fixed-clock";
+                clock-frequeny = <24576000>;
+        };
+        clk_mcasp0: clk_mcasp0 {
+                #clock-cells = <0>;
+                compatible = "gpio-gate-clock";
+                clocks = <&clk_mcasp0_fixed>;
+                enable-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
+        };
 	bone_sound: bone_sound {
 		bb-device = <0>; //BBB/BBG
 	};
