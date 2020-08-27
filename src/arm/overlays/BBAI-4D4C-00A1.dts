@@ -48,7 +48,7 @@
 	P8_28_pinmux { pinctrl-0 = <&P8_28_lcd_pin>;};	/* lcd: lcd_pclk */
 	P8_30_pinmux { pinctrl-0 = <&P8_30_lcd_pin>;};	/* lcd: lcd_ac_bias_en */
  
-	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};	/* lcd: gpio3_19 DISPEN */
+	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};	/* lcd: gpio4_15 DISPEN */
  
 	P9_14_pinmux { pinctrl-0 = <&P9_14_pwm_pin>;};	/* pwm: ehrpwm1a PWM_BL */
  
