@@ -15,7 +15,7 @@
  
 &{/chosen} {
 	overlays {
-		BBAI-BB-BONE-4D4C-01-00A1 = __TIMESTAMP__;
+		BBAI-4D4C-00A1 = __TIMESTAMP__;
 	};
 };
  
