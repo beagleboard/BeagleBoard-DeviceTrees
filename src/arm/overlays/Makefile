@@ -1,8 +1,8 @@
 # Overlays for the BeagleBone platform
 
 dtbo-$(CONFIG_SOC_AM33XX) += \
-	BB-SPIDEV0-00A0.dtbo \
-	BB-SPIDEV1-00A0.dtbo
+	BBORG_FAN-A000.dtbo \
+	BONE-ADC.dtbo
 
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
