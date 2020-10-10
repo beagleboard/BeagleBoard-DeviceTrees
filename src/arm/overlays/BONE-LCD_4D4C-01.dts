@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2020 BeagleBoard.org Foundation - https://beagleboard.org
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -9,16 +10,91 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/pinctrl/am33xx.h>
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BONE-LCD_4D4C-01 = __TIMESTAMP__;
+	};
+};
+
+/*
+ * See these files for the phandles (&bone_*, &P9_* & &P8_*) and other
+ * bone bus nodes:
+ * /src/arm/bbai-bone-buses.dtsi
+ * /src/arm/bbb-bone-buses.dtsi
+ */
+
+&ocp {
+	P8_45_pinmux { pinctrl-0 = <&P8_45_lcd_pin>;};	/* lcd: lcd_data0 */
+	P8_46_pinmux { pinctrl-0 = <&P8_46_lcd_pin>;};	/* lcd: lcd_data1 */
+	P8_43_pinmux { pinctrl-0 = <&P8_43_lcd_pin>;};	/* lcd: lcd_data2 */
+	P8_44_pinmux { pinctrl-0 = <&P8_44_lcd_pin>;};	/* lcd: lcd_data3 */
+	P8_41_pinmux { pinctrl-0 = <&P8_41_lcd_pin>;};	/* lcd: lcd_data4 */
+	P8_42_pinmux { pinctrl-0 = <&P8_42_lcd_pin>;};	/* lcd: lcd_data5 */
+	P8_39_pinmux { pinctrl-0 = <&P8_39_lcd_pin>;};	/* lcd: lcd_data6 */
+	P8_40_pinmux { pinctrl-0 = <&P8_40_lcd_pin>;};	/* lcd: lcd_data7 */
+	P8_37_pinmux { pinctrl-0 = <&P8_37_lcd_pin>;};	/* lcd: lcd_data8 */
+	P8_38_pinmux { pinctrl-0 = <&P8_38_lcd_pin>;};	/* lcd: lcd_data9 */
+	P8_36_pinmux { pinctrl-0 = <&P8_36_lcd_pin>;};	/* lcd: lcd_data10 */
+	P8_34_pinmux { pinctrl-0 = <&P8_34_lcd_pin>;};	/* lcd: lcd_data11 */
+	P8_35_pinmux { pinctrl-0 = <&P8_35_lcd_pin>;};	/* lcd: lcd_data12 */
+	P8_33_pinmux { pinctrl-0 = <&P8_33_lcd_pin>;};	/* lcd: lcd_data13 */
+	P8_31_pinmux { pinctrl-0 = <&P8_31_lcd_pin>;};	/* lcd: lcd_data14 */
+	P8_32_pinmux { pinctrl-0 = <&P8_32_lcd_pin>;};	/* lcd: lcd_data15 */
+ 
+	P8_27_pinmux { pinctrl-0 = <&P8_27_lcd_pin>;};	/* lcd: lcd_vsync */
+	P8_29_pinmux { pinctrl-0 = <&P8_29_lcd_pin>;};	/* lcd: lcd_hsync */
+	P8_28_pinmux { pinctrl-0 = <&P8_28_lcd_pin>;};	/* lcd: lcd_pclk */
+	P8_30_pinmux { pinctrl-0 = <&P8_30_lcd_pin>;};	/* lcd: lcd_ac_bias_en */
+ 
+	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};	/* lcd: DISPEN (BBAI gpio3_19) */
+ 
+	P9_14_pinmux { pinctrl-0 = <&P9_14_pwm_pin>;};	/* pwm: PWM_BL (BBAI ehrpwm1a) */
+ 
+	P9_18_pinmux { pinctrl-0 = <&P9_18_i2c_pin>;};	/* i2c1_sda */
+	P9_17_pinmux { pinctrl-0 = <&P9_17_i2c_pin>;};	/* i2c1_scl */
+	P9_26_pinmux { pinctrl-0 = <&P9_26_gpio_pin>;};	/* touch interrupt (BBAI gpio6_14) */
+}
+
+// PWM Backlight
+&bone_pwm_1{
+	status = "okay";
+};
+
+// Touch Controller
+&bone_i2c_1 {
+	status = "okay";
+	clock-frequency = <100000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	polytouch: edt-ft5x06@38 {
+		compatible = "edt,edt-ft5x06";
+		reg = <0x38>;
+		interrupt-parent = <&gpio6>;
+		interrupts = <14 2>;
+		touchscreen-size-y = <480>;
+		touchscreen-size-x = <272>;
+		touchscreen-swapped-x-y;
+	};
+};
+
+&bone_lcd {
+	status = "okay";
+};
+
+&{/} {
+	aliases {
+		display0 = &lcd0;
+	};
 
 / {
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
 	/* identification */
-	part-number = "BB-BONE-4D4C-01";
-	version = "00A1";
+	part-number = "BONE-LCD_4D4C-01";
 
 	/* state the resources this cape uses */
 	exclusive-use =

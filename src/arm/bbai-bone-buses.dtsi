@@ -432,6 +432,53 @@ bone_pwm_2: &ehrpwm1 {
 
 };
 
+// Backlights
+bone_lcd_backlight_0: &not_available {
+	// Not available on BBAI
+};
+
+&{/} {
+	bone_lcd_blacklight_1: backlight1 {
+		status = "disabled";
+		compatible = "pwm-backlight";
+		pwms = <&bone_pwm_1 0 500000 0>;
+		brightness-levels = <
+			0  1  2  3  4  5  6  7  8  9
+			10 11 12 13 14 15 16 17 18 19
+			20 21 22 23 24 25 26 27 28 29
+			30 31 32 33 34 35 36 37 38 39
+			40 41 42 43 44 45 46 47 48 49
+			50 51 52 53 54 55 56 57 58 59
+			60 61 62 63 64 65 66 67 68 69
+			70 71 72 73 74 75 76 77 78 79
+			80 81 82 83 84 85 86 87 88 89
+			90 91 92 93 94 95 96 97 98 99
+			100
+		>;
+		default-brightness-level = <100>;
+	};
+
+	bone_lcd_blacklight_2: backlight2 {
+		status = "disabled";
+		compatible = "pwm-backlight";
+		pwms = <&bone_pwm_2 0 500000 0>;
+		brightness-levels = <
+			0  1  2  3  4  5  6  7  8  9
+			10 11 12 13 14 15 16 17 18 19
+			20 21 22 23 24 25 26 27 28 29
+			30 31 32 33 34 35 36 37 38 39
+			40 41 42 43 44 45 46 47 48 49
+			50 51 52 53 54 55 56 57 58 59
+			60 61 62 63 64 65 66 67 68 69
+			70 71 72 73 74 75 76 77 78 79
+			80 81 82 83 84 85 86 87 88 89
+			90 91 92 93 94 95 96 97 98 99
+			100
+		>;
+		default-brightness-level = <100>;
+	};
+};
+
 // CAN
 bone_can_0: &not_available {
 	// Not available on BBAI
@@ -440,6 +487,8 @@ bone_can_0: &not_available {
 bone_can_1: &dcan2 {
 
 };
+
+//TODO: Add extra CAN for BBAI rev A2
 
 // PWM_TIMERs
 bone_timer_0: &timer10 {
@@ -545,4 +594,12 @@ bone_emmc: &mmc3 {
 	status = "disabled";
 	vmmc-supply = <&vdd_1v8>;
 	bus-width = <8>;
+};
+
+// LCD display
+&{/} {
+	bone_lcd: display {
+		compatible = "qiaodian,qd43003c0-40", "panel-dpi";
+		label = "lcd";
+	};
 };
