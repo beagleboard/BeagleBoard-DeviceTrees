@@ -468,10 +468,10 @@ bone_timer_5: &timer15 {
 
 // McASP
 bone_mcasp_0: &mcasp1 {
-    #sound-dai-cells= <0>;
+	#sound-dai-cells= <0>;
 	assigned-clocks = <&ipu_clkctrl DRA7_MCASP1_CLKCTRL 24>;
 	assigned-clock-parents = <&sys_clkin2>; /* 22579200 Hz (see dra7xx-clocks.dtsi) */
-        serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+		serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
 		0 0 0 0
 		0 0 0 0
 		0 0 2 1
