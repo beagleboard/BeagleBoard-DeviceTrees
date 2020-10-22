@@ -7,6 +7,7 @@ dtbo-$(CONFIG_SOC_AM33XX) += \
 	BBAI-eCAP2A.dtbo \
 	BBAI-eCAP3.dtbo \
 	BBAI-eCAP3A.dtbo \
+	BBAI-4D4C-00A1.dtbo \
 	BBAI-PR1_UART0.dtbo \
 	BBAI-PR2_UART0.dtbo \
 	BBAI-PRU_eCAP.dtbo \
