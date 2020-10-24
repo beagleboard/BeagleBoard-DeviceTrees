@@ -53,13 +53,13 @@
 	P8_28_pinmux { pinctrl-0 = <&P8_28_lcd_pin>;};	/* lcd: lcd_pclk */
 	P8_30_pinmux { pinctrl-0 = <&P8_30_lcd_pin>;};	/* lcd: lcd_ac_bias_en */
  
-	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};	/* lcd: DISPEN */
+	P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};	/* lcd: gpio3_19 DISPEN */
  
 	P9_14_pinmux { pinctrl-0 = <&P9_14_pwm_pin>;};	/* pwm: ehrpwm1a PWM_BL */
  
 	P9_18_pinmux { pinctrl-0 = <&P9_18_i2c_pin>;};	/* i2c1_sda */
 	P9_17_pinmux { pinctrl-0 = <&P9_17_i2c_pin>;};	/* i2c1_scl */
-	P9_26_pinmux { pinctrl-0 = <&P9_26_gpio_pin>;};	/* touch interrupt on gpio6_14 */
+	P9_26_pinmux { pinctrl-0 = <&P9_26_gpio_pin>;};	/* touch interrupt on gpio0_14 */
 };
 
 /*
@@ -99,7 +99,7 @@
 &{/} {
 
 	// Backlight
-	lcd_bl: backlight {
+	backlight {
 		status = "okay";
 		compatible = "pwm-backlight";
 		pwms = <&bone_pwm_1 0 500000 0>;
