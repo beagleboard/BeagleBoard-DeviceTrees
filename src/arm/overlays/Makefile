@@ -1,6 +1,7 @@
 # Overlays for the BeagleBone platform
 
 dtbo-$(CONFIG_SOC_AM33XX) += \
+	BB-BONE-4D4C-01-00A1.dtbo \
 	BB-CTAG-SW-8CH-00A0.dtbo \
 	BBAI-eCAP1.dtbo \
 	BBAI-eCAP2.dtbo \
@@ -19,6 +20,7 @@ dtbo-$(CONFIG_SOC_AM33XX) += \
 	BBAI-PRUOUT_PRU1_1.dtbo \
 	BBAI-PRUOUT_PRU2_0.dtbo \
 	BBAI-PRUOUT_PRU2_1.dtbo \
+	BBB-4D4C-00A1.dtbo \
 	BBB-eCAP0.dtbo \
 	BBB-eCAP2.dtbo \
 	BBB-PRU_eCAP.dtbo \
@@ -41,6 +43,8 @@ dtbo-$(CONFIG_SOC_AM33XX) += \
 	BONE-I2C2.dtbo \
 	BONE-I2C2A.dtbo \
 	BONE-I2C3.dtbo \
+	BONE-LED_P8_03.dtbo \
+	BONE-LED_P9_11.dtbo \
 	BONE-PRU_eCAP.dtbo \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
