@@ -1,9 +1,14 @@
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
+ * https://lorforlinux.github.io/GSoC2020_BeagleBoard.org/
+ *
  * See Cape Interface Spec page for more info on Bone Buses
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  *
- * Overlay for 4D Systems GEN4-4DCAPE-43CT-CLB and similar Displays
+ * BBBAI Overlay for 4D Systems GEN4-4DCAPE-43CT-CLB Cape and similar Displays
+ *
+ * Based on older BB-BONE-4D4C-01-00A1.dts from TI for kernel < 4.14
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
