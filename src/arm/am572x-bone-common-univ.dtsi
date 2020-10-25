@@ -1316,6 +1316,8 @@
 		P9_23( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE14) >; };	/* spi1_cs1.gpio7_11 */
 	P9_23_gpio_pd_pin: pinmux_P9_23_gpio_pd_pin { pinctrl-single,pins = <
 		P9_23( PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE14) >; };	/* spi1_cs1.gpio7_11 */
+	P9_23_spi_cs_pin: pinmux_P9_23_spi_cs_pin { pinctrl-single,pins = <
+		P9_23( PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE3) >; };	/* spi1_cs1.spi2_cs1 */
 
 	/* P9_24  (ball F20) gpio6_15*/
 	P9_24_default_pin: pinmux_P9_24_default_pin { pinctrl-single,pins = <
