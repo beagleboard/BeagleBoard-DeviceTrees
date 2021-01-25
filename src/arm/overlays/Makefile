@@ -1,6 +1,6 @@
 # Overlays for the BeagleBone platform
 
-dtbo-$(CONFIG_SOC_AM33XX) += \
+dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BB-BONE-4D4C-01-00A1.dtbo \
 	BB-CTAG-SW-8CH-00A0.dtbo \
 	BBAI-eCAP1.dtbo \
