@@ -492,7 +492,7 @@
 	reset-gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
 	reset-delay-us = <2>;
 
-	phy0: ethernet-phy@1 {
+	phy0: ethernet-phy@4 {
 		reg = <4>;
 		eee-broken-100tx;
 		eee-broken-1000t;
