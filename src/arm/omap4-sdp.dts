@@ -523,13 +523,13 @@
 &emif1 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &emif2 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &keypad {
@@ -652,11 +652,11 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 };
 
 &dsi1 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -681,7 +681,7 @@
 };
 
 &dsi2 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -706,7 +706,7 @@
 };
 
 &hdmi {
-	status = "ok";
+	status = "okay";
 	vdda-supply = <&vdac>;
 
 	port {
