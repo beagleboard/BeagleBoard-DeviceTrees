@@ -15,11 +15,11 @@
 &emif1 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &emif2 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
