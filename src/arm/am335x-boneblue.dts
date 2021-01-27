@@ -5,6 +5,7 @@
 /dts-v1/;
 
 #include "am33xx.dtsi"
+#include "am335x-osd335x-common.dtsi"
 #include <dt-bindings/interrupt-controller/irq.h>
 
 / {
@@ -12,23 +13,9 @@
 	compatible = "ti,am335x-bone-blue", "ti,am33xx";
 
 	chosen {
+		stdout-path = &uart0;
 		base_dtb = "am335x-boneblue.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
-	};
-
-	cpus {
-		cpu@0 {
-			cpu0-supply = <&dcdc2_reg>;
-		};
-	};
-
-	memory@80000000 {
-		device_type = "memory";
-		reg = <0x80000000 0x20000000>; /* 512 MB */
-	};
-
-	chosen {
-		stdout-path = &uart0;
 	};
 
 	leds {
@@ -126,33 +113,6 @@
 		/* WL_EN */
 		gpio = <&gpio3 9 0>;
 		enable-active-high;
-	};
-
-	bt_en {
-		pinctrl-names = "default";
-		pinctrl-0 = <&bt_pins>;
-		compatible = "gpio-leds";
-
-		wl18xx_bt_en {
-			label = "wl18xx_bt_en";
-			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-	};
-};
-
-&cpu0_opp_table {
-	/*
-	* Octavo Systems:
-	* The EFUSE_SMA register is not programmed for any of the AM335x wafers
-	* we get and we are not programming them during our production test.
-	* Therefore, from a DEVICE_ID revision point of view, the silicon looks
-	* like it is Revision 2.1.  However, from an EFUSE_SMA point of view for
-	* the HW OPP table, the silicon looks like it is Revision 1.0 (ie the
-	* EFUSE_SMA register reads as all zeros).
-	*/
-	oppnitro-1000000000 {
-		opp-supported-hw = <0x06 0x0100>;
 	};
 };
 
@@ -321,13 +281,6 @@
 		>;
 	};
 
-	i2c0_pins: pinmux_i2c0_pins {
-		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_I2C0_SDA, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C17) I2C0_SDA.I2C0_SDA */
-			AM33XX_PADCONF(AM335X_PIN_I2C0_SCL, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C16) I2C0_SCL.I2C0_SCL */
-		>;
-	};
-
 	i2c2_pins: pinmux_i2c2_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D18) uart1_ctsn.I2C2_SDA */
@@ -438,6 +391,30 @@
 		>;
 	};
 
+	/* E1 */
+	eqep0_pins: pinmux_eqep0_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR0, PIN_INPUT, MUX_MODE1)		/* (B12) mcasp0_aclkr.eQEP0A_in */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_INPUT, MUX_MODE1)		/* (C13) mcasp0_fsr.eQEP0B_in */
+		>;
+	};
+
+	/* E2 */
+	eqep1_pins: pinmux_eqep1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT, MUX_MODE2)		/* (V2) lcd_data12.eQEP1A_in */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_INPUT, MUX_MODE2)		/* (V3) lcd_data13.eQEP1B_in */
+		>;
+	};
+
+	/* E3 */
+	eqep2_pins: pinmux_eqep2_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD12, PIN_INPUT, MUX_MODE4)		/* (T12) gpmc_ad12.eQEP2A_in */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD13, PIN_INPUT, MUX_MODE4)		/* (R12) gpmc_ad13.eQEP2B_in */
+		>;
+	};
+
 	ehrpwm1_pins: pinmux_ehrpwm1_pins {
 		pinctrl-single,pins = <
 			0x020  0x24 /* P8_19_pwm_pin */
@@ -449,27 +426,6 @@
 		pinctrl-single,pins = <
 			0x048  0x26 /* P9_14_pwm_pin */
 			0x04c  0x26 /* P9_16_pwm_pin */
-		>;
-	};
-
-	eqep0_pins: pinmux_eqep0_pins {
-		pinctrl-single,pins = <
-			0x1a0  0x21 /* P9_92_qep_pin */
-			0x1a4  0x21 /* P9_27_qep_pin */
-		>;
-	};
-
-	eqep1_pins: pinmux_eqep1_pins {
-		pinctrl-single,pins = <
-			0x0d4  0x22 /* P8_33_qep_pin */
-			0x0d0  0x22 /* P8_35_qep_pin */
-		>;
-	};
-
-	eqep2_pins: pinmux_eqep2_pins {
-		pinctrl-single,pins = <
-			0x030  0x24 /* P8_12_qep_pin */
-			0x034  0x24 /* P8_11_qep_pin */
 		>;
 	};
 
@@ -552,16 +508,6 @@
 };
 
 &i2c0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c0_pins>;
-
-	status = "okay";
-	clock-frequency = <400000>;
-
-	tps: tps@24 {
-		reg = <0x24>;
-	};
-
 	baseboard_eeprom: baseboard_eeprom@50 {
 		compatible = "atmel,24c256";
 		reg = <0x50>;
@@ -605,67 +551,12 @@
 /include/ "tps65217.dtsi"
 
 &tps {
-	interrupts = <7>; /* NMI */
-	interrupt-parent = <&intc>;
-
-	ti,pmic-shutdown-controller;
+	/delete-property/ ti,pmic-shutdown-controller;
 
 	charger {
 		interrupts = <0>, <1>;
 		interrupt-names = "USB", "AC";
 		status = "okay";
-	};
-
-	pwrbutton {
-		interrupts = <2>;
-		status = "okay";
-	};
-
-	regulators {
-		dcdc1_reg: regulator@0 {
-			regulator-name = "vdds_dpr";
-			regulator-always-on;
-		};
-
-		dcdc2_reg: regulator@1 {
-			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
-			regulator-name = "vdd_mpu";
-			regulator-min-microvolt = <925000>;
-			regulator-max-microvolt = <1351500>;
-			regulator-boot-on;
-			regulator-always-on;
-		};
-
-		dcdc3_reg: regulator@2 {
-			/* VDD_CORE voltage limits 0.95V - 1.1V with +/-4% tolerance */
-			regulator-name = "vdd_core";
-			regulator-min-microvolt = <925000>;
-			regulator-max-microvolt = <1150000>;
-			regulator-boot-on;
-			regulator-always-on;
-		};
-
-		ldo1_reg: regulator@3 {
-			regulator-name = "vio,vrtc,vdds";
-			regulator-always-on;
-		};
-
-		ldo2_reg: regulator@4 {
-			regulator-name = "vdd_3v3aux";
-			regulator-always-on;
-		};
-
-		ldo3_reg: regulator@5 {
-			regulator-name = "vdd_1v8";
-			regulator-min-microvolt = <1800000>;
-			regulator-max-microvolt = <1800000>;
-			regulator-always-on;
-		};
-
-		ldo4_reg: regulator@6 {
-			regulator-name = "vdd_3v3a";
-			regulator-always-on;
-		};
 	};
 };
 
@@ -719,22 +610,13 @@
 
 &uart3 {
 	pinctrl-names = "default";
-	//pinctrl-0 = <&uart3_pins &bt_pins>;
-	pinctrl-0 = <&uart3_pins>;
+	pinctrl-0 = <&uart3_pins &bt_pins>;
 	status = "okay";
 
-//	bluetooth {
-//		compatible = "ti,wl1835-st";
-//		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-//	};
-};
-
-&aes {
-	status = "okay";
-};
-
-&sham {
-	status = "okay";
+	bluetooth {
+		compatible = "ti,wl1835-st";
+		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
 };
 
 &rtc {
@@ -758,6 +640,36 @@
 		output-high;
 		line-name = "LS_BUF_EN";
 	};
+};
+
+&epwmss0 {
+	status = "okay";
+};
+
+&eqep0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep0_pins>;
+	status = "okay";
+};
+
+&epwmss1 {
+	status = "okay";
+};
+
+&eqep1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep1_pins>;
+	status = "okay";
+};
+
+&epwmss2 {
+	status = "okay";
+};
+
+&eqep2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep2_pins>;
+	status = "okay";
 };
 
 &ocp {
@@ -874,18 +786,6 @@
 /*******************************************************************************
 *	PWMSS
 *******************************************************************************/
-&epwmss0 {
-	status = "okay";
-};
-
-&epwmss1 {
-	status = "okay";
-};
-
-&epwmss2 {
-	status = "okay";
-};
-
 &ehrpwm0 {
 	status = "okay";
 };
@@ -899,48 +799,6 @@
 &ehrpwm2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&ehrpwm2_pins>;
-	status = "okay";
-};
-
-/*******************************************************************************
-* EQEP
-*******************************************************************************/
-&eqep0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep0_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
-	status = "okay";
-};
-
-&eqep1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep1_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
-	status = "okay";
-};
-
-&eqep2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep2_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
 	status = "okay";
 };
 
