@@ -521,13 +521,13 @@
 &emif1 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &emif2 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &keypad {
@@ -650,11 +650,11 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 };
 
 &dsi1 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -664,8 +664,9 @@
 		};
 	};
 
-	lcd0: display {
+	lcd0: panel@0 {
 		compatible = "tpo,taal", "panel-dsi-cm";
+		reg = <0>;
 		label = "lcd0";
 
 		reset-gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>;	/* 102 */
@@ -679,7 +680,7 @@
 };
 
 &dsi2 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -689,8 +690,9 @@
 		};
 	};
 
-	lcd1: display {
+	lcd1: panel@0 {
 		compatible = "tpo,taal", "panel-dsi-cm";
+		reg = <0>;
 		label = "lcd1";
 
 		reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;	/* 104 */
@@ -704,7 +706,7 @@
 };
 
 &hdmi {
-	status = "ok";
+	status = "okay";
 	vdda-supply = <&vdac>;
 
 	port {
