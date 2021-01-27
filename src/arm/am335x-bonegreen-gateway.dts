@@ -35,6 +35,17 @@
 		gpio = <&gpio3 9 0>;
 		enable-active-high;
 	};
+
+	leds {
+		pinctrl-0 = <&user_leds_s0 &extra_led_pins>;
+
+		led6 {
+			label = "beaglebone:green:usr4";
+			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "netdev";
+			default-state = "off";
+		};
+	};
 };
 
 &cpu0_opp_table {
@@ -73,12 +84,25 @@
 		>;
 	};
 
+	uart2_grove_pins: pinmux_uart2_grove_pins {
+		pinctrl-single,pins = <
+			AM33XX_IOPAD(0x90c, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+			AM33XX_IOPAD(0x910, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+		>;
+	};
+
 	uart3_pins: pinmux_uart3_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT_PULLUP, MUX_MODE1)	/* gmii1_rxd3.uart3_rxd */
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD2, PIN_OUTPUT_PULLDOWN, MUX_MODE1)	/* gmii1_rxd2.uart3_txd */
 			AM33XX_PADCONF(AM335X_PIN_MDIO, PIN_INPUT, MUX_MODE3)		/* mdio_data.uart3_ctsn */
 			AM33XX_PADCONF(AM335X_PIN_MDC, PIN_OUTPUT_PULLDOWN, MUX_MODE3)	/* mdio_clk.uart3_rtsn */
+		>;
+	};
+
+	extra_led_pins: pinmux_extra_led_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_OUTPUT, MUX_MODE7)	/* WL_Active_LED / USR4 */
 		>;
 	};
 
@@ -123,6 +147,12 @@
 		interrupt-parent = <&gpio0>;
 		interrupts = <29 IRQ_TYPE_EDGE_RISING>;
 	};
+};
+
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart2_grove_pins>;
+	status = "okay";
 };
 
 &uart3 {
