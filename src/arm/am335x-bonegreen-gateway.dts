@@ -100,12 +100,11 @@
 		>;
 	};
 
-        extra_led_pins: pinmux_extra_led_pins {
+	extra_led_pins: pinmux_extra_led_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_OUTPUT, MUX_MODE7)	/* WL_Active_LED / USR4 */
 		>;
 	};
-
 
 	wl18xx_pins: pinmux_wl18xx_pins {
 		pinctrl-single,pins = <
