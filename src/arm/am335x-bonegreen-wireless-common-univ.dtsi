@@ -1128,6 +1128,18 @@
 	/* P9_45                GND */
 
 	/* P9_46                GND */
+
+	/*       (ZCZ ball A15) */
+	A15_default_pin: pinmux_A15_default_pin {
+		pinctrl-single,pins = <0x1b0  (PIN_OUTPUT_PULLUP | MUX_MODE7)>; };     /* Mode 7, Pull-Up */
+	A15_clkout_pin: pinmux_A15_clkout_pin {
+		pinctrl-single,pins = <0x1b0  0x0b>; };     /* Mode 3 */
+	A15_gpio_pin: pinmux_A15_gpio_pin {
+		pinctrl-single,pins = <0x1b0  0x2f>; };     /* Mode 7, RxActive */
+	A15_gpio_pu_pin: pinmux_A15_gpio_pu_pin {
+		pinctrl-single,pins = <0x1b0  0x37>; };     /* Mode 7, Pull-Up, RxActive */
+	A15_gpio_pd_pin: pinmux_A15_gpio_pd_pin {
+		pinctrl-single,pins = <0x1b0  0x27>; };     /* Mode 7, Pull-Down, RxActive */
 };
 
 &i2c1 {
@@ -2328,6 +2340,17 @@
 
 	/* P9_46                GND */
 
+	/*       (ZCZ ball A15) */
+	A15_pinmux {
+		compatible = "bone-pinmux-helper";
+		status = "okay";
+		pinctrl-names = "default", "clkout", "gpio", "gpio_pu", "gpio_pd";
+		pinctrl-0 = <&A15_default_pin>;
+		pinctrl-1 = <&A15_clkout_pin>;
+		pinctrl-2 = <&A15_gpio_pin>;
+		pinctrl-3 = <&A15_gpio_pu_pin>;
+		pinctrl-4 = <&A15_gpio_pd_pin>;
+	};
 
 	cape-universal {
 		compatible = "gpio-of-helper";
@@ -2790,5 +2813,11 @@
 			dir-changeable;
 		};
 
+		A15 {
+			gpio-name = "A15";
+			gpio = <&gpio0 19 0>;
+			input;
+			dir-changeable;
+		};
 	};
 };
