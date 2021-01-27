@@ -649,9 +649,9 @@
 };
 
 &eqep0 {
-	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&eqep0_pins>;
+	status = "okay";
 };
 
 &epwmss1 {
@@ -659,9 +659,9 @@
 };
 
 &eqep1 {
-	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&eqep1_pins>;
+	status = "okay";
 };
 
 &epwmss2 {
@@ -669,9 +669,9 @@
 };
 
 &eqep2 {
-	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&eqep2_pins>;
+	status = "okay";
 };
 
 &ocp {
