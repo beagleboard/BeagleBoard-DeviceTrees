@@ -585,13 +585,17 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 
 	vdda_video-supply = <&ldoln_reg>;
 };
 
+&bb2d {
+	status = "okay";
+};
+
 &hdmi {
-	status = "ok";
+	status = "okay";
 	vdda-supply = <&ldo4_reg>;
 
 	port {
@@ -602,7 +606,7 @@
 };
 
 &pcie1_rc {
-	status = "ok";
+	status = "okay";
 	gpios = <&gpio2 8 GPIO_ACTIVE_LOW>;
 };
 
@@ -648,8 +652,4 @@
 &dsp2 {
 	status = "okay";
 	memory-region = <&dsp2_memory_region>;
-};
-
-&bb2d {
-	status = "okay";
 };
