@@ -411,7 +411,7 @@
 
 	/*
 	 * Temperature Sensor
-	 * http://www.ti.com/lit/ds/symlink/tmp105.pdf
+	 * https://www.ti.com/lit/ds/symlink/tmp105.pdf
 	 */
 	tmp105@48 {
 		compatible = "ti,tmp105";
@@ -436,7 +436,7 @@
 
 	/*
 	 * 3-Axis Digital Compass
-	 * http://www.sparkfun.com/datasheets/Sensors/Magneto/HMC5843.pdf
+	 * https://www.sparkfun.com/datasheets/Sensors/Magneto/HMC5843.pdf
 	 */
 	hmc5843@1e {
 		compatible = "honeywell,hmc5843";
@@ -500,13 +500,13 @@
 &emif1 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &emif2 {
 	cs1-used;
 	device-handle = <&elpida_ECB240ABACN>;
-	status = "ok";
+	status = "okay";
 };
 
 &keypad {
@@ -639,11 +639,11 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 };
 
 &dsi1 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -668,7 +668,7 @@
 };
 
 &dsi2 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 
 	port {
@@ -693,7 +693,7 @@
 };
 
 &hdmi {
-	status = "ok";
+	status = "okay";
 	vdda-supply = <&vdac>;
 
 	port {
