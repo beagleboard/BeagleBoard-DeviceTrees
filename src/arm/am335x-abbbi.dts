@@ -11,6 +11,11 @@
 / {
 	model = "Arrow BeagleBone Black Industrial";
 	compatible = "arrow,am335x-abbbi", "ti,am335x-bone", "ti,am33xx";
+
+	chosen {
+		base_dtb = "am335x-abbbi.dts";
+		base_dtb_timestamp = __TIMESTAMP__;
+	};
 };
 
 &ldo3_reg {
