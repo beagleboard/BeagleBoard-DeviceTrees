@@ -456,6 +456,7 @@
 			};
 		};
 
+		/* d2d mdm */
 		target-module@36000 {			/* 0x4a0b6000, ap 69 60.0 */
 			compatible = "ti,sysc";
 			status = "disabled";
@@ -464,6 +465,7 @@
 			ranges = <0x0 0x36000 0x1000>;
 		};
 
+		/* d2d mpu */
 		target-module@4d000 {			/* 0x4a0cd000, ap 78 58.0 */
 			compatible = "ti,sysc";
 			status = "disabled";
