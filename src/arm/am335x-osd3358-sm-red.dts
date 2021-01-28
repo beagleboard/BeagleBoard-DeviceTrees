@@ -12,10 +12,6 @@
 #include <dt-bindings/display/tda998x.h>
 /* #include "am335x-bone-jtag.dtsi" */
 
-&sgx {
-	status = "okay";
-};
-
 / {
 	model = "Octavo Systems OSD3358-SM-RED";
 	compatible = "oct,osd3358-sm-refdesign", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
@@ -24,6 +20,10 @@
 		base_dtb = "am335x-osd3358-sm-red.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
 	};
+};
+
+&sgx {
+	status = "okay";
 };
 
 &ldo3_reg {

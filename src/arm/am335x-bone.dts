@@ -18,6 +18,10 @@
 	};
 };
 
+&sgx {
+	status = "okay";
+};
+
 &ldo3_reg {
 	regulator-min-microvolt = <1800000>;
 	regulator-max-microvolt = <3300000>;
@@ -26,8 +30,4 @@
 
 &mmc1 {
 	vmmc-supply = <&ldo3_reg>;
-};
-
-&sgx {
-	status = "okay";
 };
