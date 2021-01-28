@@ -11,6 +11,11 @@
 	model = "TI AM335x BeagleBone Blue";
 	compatible = "ti,am335x-bone-blue", "ti,am33xx";
 
+	chosen {
+		base_dtb = "am335x-boneblue.dts";
+		base_dtb_timestamp = __TIMESTAMP__;
+	};
+
 	cpus {
 		cpu@0 {
 			cpu0-supply = <&dcdc2_reg>;
