@@ -380,16 +380,6 @@
 			ti,hwmods = "dmm";
 		};
 
-		bb2d: bb2d@59000000 {
-			compatible = "ti,dra7-bb2d","vivante,gc";
-			reg = <0x59000000 0x0700>;
-			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-			ti,hwmods = "bb2d";
-			clocks = <&dpll_core_h24x2_ck>;
-			clock-names = "fclk";
-			status = "disabled";
-		};
-
 		mmu0_dsp1: mmu@40d01000 {
 			compatible = "ti,dra7-dsp-iommu";
 			reg = <0x40d01000 0x100>;
@@ -622,6 +612,16 @@
 			ti,irqs-reserved = <0 1 2 3 5 6 131 132>;
 			ti,irqs-skip = <10 133 139 140>;
 			ti,irqs-safe-map = <0>;
+		};
+
+		bb2d: bb2d@59000000 {
+			compatible = "ti,dra7-bb2d","vivante,gc";
+			reg = <0x59000000 0x0700>;
+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+			ti,hwmods = "bb2d";
+			clocks = <&dpll_core_h24x2_ck>;
+			clock-names = "fclk";
+			status = "disabled";
 		};
 
 		dss: dss@58000000 {
