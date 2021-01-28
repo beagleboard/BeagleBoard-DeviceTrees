@@ -164,10 +164,6 @@
 	};
 };
 
-&bb2d {
-	status = "okay";
-};
-
 &i2c1 {
 	status = "okay";
 	clock-frequency = <400000>;
@@ -533,6 +529,10 @@
 	status = "okay";
 
 	vdda_video-supply = <&ldoln_reg>;
+};
+
+&bb2d {
+	status = "okay";
 };
 
 &hdmi {
