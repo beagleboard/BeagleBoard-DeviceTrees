@@ -704,7 +704,6 @@
 };
 
 &dwc3 {
-	extcon = <&extcon_usb3>;
 	dr_mode = "otg";
 };
 
