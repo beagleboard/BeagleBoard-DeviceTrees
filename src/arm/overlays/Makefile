@@ -21,7 +21,6 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BBAI-PRUOUT_PRU2_0.dtbo \
 	BBAI-PRUOUT_PRU2_1.dtbo \
 	BBAI-SPI0_1.dtbo \
-	BBB-4D4C-00A1.dtbo \
 	BBB-eCAP0.dtbo \
 	BBB-eCAP2.dtbo \
 	BBB-PRU_eCAP.dtbo \
