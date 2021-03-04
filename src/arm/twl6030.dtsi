@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2011 Texas Instruments Incorporated - https://www.ti.com/
  */
 
 /*
@@ -77,6 +77,11 @@
 
 	v2v1: regulator-v2v1 {
 		compatible = "ti,twl6030-v2v1";
+		regulator-always-on;
+	};
+
+	clk32kg: regulator-clk32kg {
+		compatible = "ti,twl6030-clk32kg";
 		regulator-always-on;
 	};
 
