@@ -18,7 +18,7 @@
 
 #define SYSC_DRA7_MCAN_ENAWAKEUP	(1 << 4)
 
-/* SYSCONFIG specific to PRUSS */
+/* PRUSS sysc found on AM33xx/AM43xx/AM57xx */
 #define SYSC_PRUSS_SUB_MWAIT		(1 << 5)
 #define SYSC_PRUSS_STANDBY_INIT		(1 << 4)
 
