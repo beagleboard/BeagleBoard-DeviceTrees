@@ -456,6 +456,7 @@
 			};
 		};
 
+		/* d2d mdm */
 		target-module@36000 {			/* 0x4a0b6000, ap 69 60.0 */
 			compatible = "ti,sysc";
 			status = "disabled";
@@ -464,6 +465,7 @@
 			ranges = <0x0 0x36000 0x1000>;
 		};
 
+		/* d2d mpu */
 		target-module@4d000 {			/* 0x4a0cd000, ap 78 58.0 */
 			compatible = "ti,sysc";
 			status = "disabled";
@@ -1120,7 +1122,7 @@
 			};
 		};
 
-		target-module@8000 {			/* 0x4a318000, ap 9 1c.0 */
+		timer1_target: target-module@8000 {	/* 0x4a318000, ap 9 1c.0 */
 			compatible = "ti,sysc-omap2-timer", "ti,sysc";
 			ti,hwmods = "timer1";
 			reg = <0x8000 0x4>,
@@ -1516,6 +1518,7 @@
 			};
 		};
 
+		/* Unused DSS L4 access, see L3 instead */
 		target-module@40000 {			/* 0x48040000, ap 13 0a.0 */
 			compatible = "ti,sysc";
 			status = "disabled";
