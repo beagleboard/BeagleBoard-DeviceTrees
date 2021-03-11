@@ -1535,6 +1535,7 @@
 			reg = <0x20 0x4>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	ipu_cm: ipu_cm@500 {
