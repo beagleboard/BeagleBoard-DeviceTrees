@@ -645,11 +645,50 @@
 	status = "okay";
 };
 
+&eqep0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep0_pins>;
+
+	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
+	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+	invert_qa = <1>;   /* Should we invert the channel A input?  */
+	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+	invert_qi = <0>;   /* Should we invert the index input? */
+	invert_qs = <0>;   /* Should we invert the strobe input? */
+	status = "okay";
+};
+
 &epwmss1 {
 	status = "okay";
 };
 
+&eqep1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep1_pins>;
+
+	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
+	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+	invert_qa = <1>;   /* Should we invert the channel A input?  */
+	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+	invert_qi = <0>;   /* Should we invert the index input? */
+	invert_qs = <0>;   /* Should we invert the strobe input? */
+	status = "okay";
+};
+
 &epwmss2 {
+	status = "okay";
+};
+
+&eqep2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&eqep2_pins>;
+
+	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
+	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
+	invert_qa = <1>;   /* Should we invert the channel A input?  */
+	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
+	invert_qi = <0>;   /* Should we invert the index input? */
+	invert_qs = <0>;   /* Should we invert the strobe input? */
 	status = "okay";
 };
 
@@ -780,48 +819,6 @@
 &ehrpwm2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&ehrpwm2_pins>;
-	status = "okay";
-};
-
-/*******************************************************************************
-* EQEP
-*******************************************************************************/
-&eqep0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep0_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
-	status = "okay";
-};
-
-&eqep1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep1_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
-	status = "okay";
-};
-
-&eqep2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&eqep2_pins>;
-
-	count_mode = <0>;  /* 0 - Quadrature mode, normal 90 phase offset cha & chb.  1 - Direction mode.  cha input = clock, chb input = direction */
-	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
-	invert_qa = <1>;   /* Should we invert the channel A input?  */
-	invert_qb = <1>;   /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
-	invert_qi = <0>;   /* Should we invert the index input? */
-	invert_qs = <0>;   /* Should we invert the strobe input? */
 	status = "okay";
 };
 
