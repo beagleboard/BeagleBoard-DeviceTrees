@@ -806,7 +806,7 @@
 			ranges = <0x0 0x200000 0x80000>;
 		};
 
-		target-module@300000 {			/* 0x4a300000, ap 9 04.0 */
+		pruss_tm: target-module@300000 {	/* 0x4a300000, ap 9 04.0 */
 			compatible = "ti,sysc-pruss", "ti,sysc";
 			reg = <0x326000 0x4>,
 			      <0x326004 0x4>;
