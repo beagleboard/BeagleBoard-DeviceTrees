@@ -203,6 +203,13 @@
 };
 
 &dra7_pmx_core {
+	ethphy_extra_pins_default: ethphy_extra_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x34c4, PIN_OUTPUT_PULLUP | MUX_MODE14) /* N1: gpmc_advn_ale.gpio2_23 - RGMII_RST */
+			DRA7XX_CORE_IOPAD(0x364c, PIN_INPUT | MUX_MODE14) /* Y1: uart3_txd.gpio5_19 - MII0_INT */
+		>;
+	};
+
 	pmic_pins_default: pmic_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x3690, PIN_INPUT_PULLUP | MUX_MODE14) /* F21: gpio6_16.gpio6_16 - PMIC_INT */
