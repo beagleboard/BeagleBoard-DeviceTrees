@@ -6,13 +6,18 @@
 
 #include "am33xx.dtsi"
 #include "am335x-bone-common-no-capemgr.dtsi"
+/* #include "am335x-boneblack-common.dtsi" */
+/* #include "am335x-bone-jtag.dtsi" */
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/* RoboticsCape */
 #include "am335x-bone-common-universal-pins.dtsi"
 #include "am335x-boneblack-wl1835.dtsi"
 #include "am335x-roboticscape.dtsi"
 
 / {
 	model = "TI AM335x BeagleBone Black Wireless RoboticsCape";
-	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+	compatible = "ti,am335x-bone-black-wireless", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 };
 
 &ldo3_reg {

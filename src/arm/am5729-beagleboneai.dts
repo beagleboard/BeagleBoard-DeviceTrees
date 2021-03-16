@@ -223,8 +223,8 @@
 		compatible = "mmc-pwrseq-simple";
 		pinctrl-names = "default";
 		pinctrl-0 = <&brcmf_pwrseq_pins_default>;
-		reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>,     // BT-REG-ON
-				<&gpio3 18 GPIO_ACTIVE_LOW>;   // WL-REG-ON
+		reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>,	/* BT-REG-ON */
+				<&gpio3 18 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
 	};
 
 	unused_pins: unused_pins {

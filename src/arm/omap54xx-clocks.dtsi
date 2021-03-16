@@ -617,6 +617,7 @@
 		reg = <0x1940>;
 	};
 };
+
 &cm_core_clocks {
 
 	dpll_per_byp_mux: dpll_per_byp_mux@14c {

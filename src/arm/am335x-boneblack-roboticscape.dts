@@ -6,6 +6,10 @@
 
 #include "am33xx.dtsi"
 #include "am335x-bone-common-no-capemgr.dtsi"
+/* #include "am335x-boneblack-common.dtsi" */
+/* #include "am335x-bone-jtag.dtsi" */
+
+/* RoboticsCape */
 #include "am335x-bone-common-universal-pins.dtsi"
 #include "am335x-roboticscape.dtsi"
 
@@ -14,6 +18,7 @@
 	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 };
 
+/* needed from: am335x-boneblack-common.dtsi */
 &ldo3_reg {
 	regulator-min-microvolt = <1800000>;
 	regulator-max-microvolt = <1800000>;
