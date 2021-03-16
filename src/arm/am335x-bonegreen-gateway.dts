@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 /dts-v1/;
 
@@ -37,6 +37,8 @@
 	};
 
 	leds {
+		pinctrl-0 = <&user_leds_s0 &extra_led_pins>;
+
 		led6 {
 			label = "beaglebone:green:usr4";
 			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
@@ -44,6 +46,10 @@
 			default-state = "off";
 		};
 	};
+};
+
+&sgx {
+	status = "okay";
 };
 
 &cpu0_opp_table {
@@ -59,10 +65,6 @@
 	oppnitro-1000000000 {
 		opp-supported-hw = <0x06 0x0100>;
 	};
-};
-
-&sgx {
-	status = "okay";
 };
 
 &am33xx_pinmux {
@@ -99,6 +101,12 @@
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD2, PIN_OUTPUT_PULLDOWN, MUX_MODE1)	/* gmii1_rxd2.uart3_txd */
 			AM33XX_PADCONF(AM335X_PIN_MDIO, PIN_INPUT, MUX_MODE3)		/* mdio_data.uart3_ctsn */
 			AM33XX_PADCONF(AM335X_PIN_MDC, PIN_OUTPUT_PULLDOWN, MUX_MODE3)	/* mdio_clk.uart3_rtsn */
+		>;
+	};
+
+	extra_led_pins: pinmux_extra_led_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_OUTPUT, MUX_MODE7)	/* WL_Active_LED / USR4 */
 		>;
 	};
 

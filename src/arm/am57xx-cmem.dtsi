@@ -1,4 +1,5 @@
-/* https://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/tree/recipes-kernel/linux/files/dra7xx/cmem.dtsi?h=rocko */
+/* https://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/tree/recipes-kernel/linux/files/dra7xx/cmem.dtsi?h=thud */
+/* 0x0c000000 -> 0x18000000 for tild */
 
 / {
         reserved-memory {

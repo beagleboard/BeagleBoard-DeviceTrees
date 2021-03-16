@@ -262,10 +262,6 @@
 	status = "okay";
 };
 
-&vip1 {
-	status = "okay";
-};
-
 &mmc4 {
 	bus-width = <4>;
 	cap-power-off-card;
@@ -280,3 +276,8 @@
 		interrupts = <7 IRQ_TYPE_EDGE_RISING>;
 	};
 };
+
+&vip1 {
+	status = "okay";
+};
+

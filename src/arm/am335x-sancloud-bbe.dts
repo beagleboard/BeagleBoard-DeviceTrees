@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 /dts-v1/;
 
@@ -106,12 +106,14 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&cpsw_default>;
 	pinctrl-1 = <&cpsw_sleep>;
+	status = "okay";
 };
 
 &davinci_mdio {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&davinci_mdio_default>;
 	pinctrl-1 = <&davinci_mdio_sleep>;
+	status = "okay";
 };
 
 &cpsw_emac0 {
@@ -120,19 +122,19 @@
 };
 
 &i2c0 {
-	lps331ap: lps331ap@5C {
-		compatible = "st,lps331ap";
+	lps331ap: barometer@5c {
+		compatible = "st,lps331ap-press";
 		st,drdy-int-pin = <1>;
-		reg = <0x5C>;
+		reg = <0x5c>;
 		interrupt-parent = <&gpio1>;
-		interrupts = <27 IRQ_TYPE_EDGE_RISING>;
+		interrupts = <26 IRQ_TYPE_EDGE_RISING>;
 	};
 
-	mpu6050: mpu6050@68 {
+	mpu6050: accelerometer@68 {
 		compatible = "invensense,mpu6050";
 		reg = <0x68>;
 		interrupt-parent = <&gpio0>;
 		interrupts = <2 IRQ_TYPE_EDGE_RISING>;
-		//orientation = <0xff 0 0 0 1 0 0 0 0xff>;
+		orientation = <0xff 0 0 0 1 0 0 0 0xff>;
 	};
 };
