@@ -500,7 +500,6 @@
 		pinctrl-9 = <&P9_20_timer_pin>;
 	};
 
-
 	cape-universal {
 		compatible = "gpio-of-helper";
 		status = "okay";
@@ -520,6 +519,5 @@
 			input;
 			dir-changeable;
 		};
-
 	};
 };

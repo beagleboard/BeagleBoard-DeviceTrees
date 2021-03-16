@@ -744,11 +744,11 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 };
 
 &hdmi {
-	status = "ok";
+	status = "okay";
 
 	/* vdda-supply populated in board specific dts file */
 
