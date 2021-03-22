@@ -224,6 +224,7 @@
 	pinctrl-0 = <&uart0_pins>;
 
 	status = "okay";
+	symlink = "bone/uart/0";
 };
 
 &usb {
@@ -264,6 +265,7 @@
 
 	status = "okay";
 	clock-frequency = <400000>;
+	symlink = "bone/i2c/0";
 
 	tps: tps@24 {
 		reg = <0x24>;
@@ -288,6 +290,7 @@
 
 	status = "okay";
 	clock-frequency = <100000>;
+	symlink = "bone/i2c/2";
 
 	cape_eeprom0: cape_eeprom0@54 {
 		compatible = "atmel,24c256";
