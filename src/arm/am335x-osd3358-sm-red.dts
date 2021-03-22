@@ -41,6 +41,7 @@
 	pinctrl-0 = <&emmc_pins>;
 	bus-width = <8>;
 	status = "okay";
+	non-removable;
 };
 
 &am33xx_pinmux {
@@ -371,6 +372,7 @@
 	pinctrl-0 = <&uart0_pins>;
 
 	status = "okay";
+	symlink = "bone/uart/0";
 };
 
 &usb0 {
@@ -388,6 +390,7 @@
 	pinctrl-0 = <&i2c2_pins>;
 	status = "okay";
 	clock-frequency = <100000>;
+	symlink = "bone/i2c/2";
 };
 
 &cpsw_emac0 {
