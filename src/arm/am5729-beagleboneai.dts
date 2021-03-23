@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2014-2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2014-2020 Texas Instruments Incorporated - http://www.ti.com/
  */
 
 /dts-v1/;
@@ -930,7 +930,7 @@
 
 /* thermal hacks */
 &cpu0_opp_table {
-	opp_slow-400000000 {
+	opp_slow-500000000 {
 		opp-hz = /bits/ 64 <400000000>;
 		opp-microvolt = <860000 850000 1100000>,
 				<860000 850000 1100000>;

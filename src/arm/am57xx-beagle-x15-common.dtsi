@@ -590,10 +590,6 @@
 	vdda_video-supply = <&ldoln_reg>;
 };
 
-&bb2d {
-	status = "okay";
-};
-
 &hdmi {
 	status = "okay";
 	vdda-supply = <&ldo4_reg>;
