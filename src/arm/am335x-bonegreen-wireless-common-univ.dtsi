@@ -1213,6 +1213,7 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone/eqep/0";
 
 	count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
 	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
@@ -1220,13 +1221,13 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone/eqep/0";
 };
 
 &eqep1 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone/eqep/1";
 
 	count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
 	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
@@ -1234,13 +1235,13 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone/eqep/1";
 };
 
 &eqep2 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <>;
+	symlink = "bone/eqep/2";
 
 	count_mode = <0>; /* 0 - Quadrature mode, normal 90 phase offset cha & chb. 1 - Direction mode. cha input = clock, chb input = direction */
 	swap_inputs = <0>; /* Are channel A and channel B swapped? (0 - no, 1 - yes) */
@@ -1248,7 +1249,6 @@
 	invert_qb = <1>; /* Should we invert the channel B input? I invert these because my encoder outputs drive transistors that pull down the pins */
 	invert_qi = <0>; /* Should we invert the index input? */
 	invert_qs = <0>; /* Should we invert the strobe input? */
-	symlink = "bone/eqep/2";
 };
 
 &epwmss0 {
@@ -1309,7 +1309,7 @@
 		#size-cells = <0>;
 
 		compatible = "spidev";
-		symlink = "spi/0.0";
+		symlink = "bone/spi/0.0";
 
 		reg = <0>;
 		spi-max-frequency = <16000000>;
@@ -1321,7 +1321,7 @@
 		#size-cells = <0>;
 
 		compatible = "spidev";
-		symlink = "spi/0.1";
+		symlink = "bone/spi/0.1";
 
 		reg = <1>;
 		spi-max-frequency = <16000000>;
@@ -1338,7 +1338,7 @@
 		#size-cells = <0>;
 
 		compatible = "spidev";
-		symlink = "spi/1.0";
+		symlink = "bone/spi/1.0";
 
 		reg = <0>;
 		spi-max-frequency = <16000000>;
@@ -1350,7 +1350,7 @@
 		#size-cells = <0>;
 
 		compatible = "spidev";
-		symlink = "spi/1.1";
+		symlink = "bone/spi/1.1";
 
 		reg = <1>;
 		spi-max-frequency = <16000000>;
