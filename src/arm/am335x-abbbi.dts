@@ -3,6 +3,7 @@
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  * Copyright 2015 Konsulko Group
  */
+
 /dts-v1/;
 
 #include "am33xx.dtsi"
@@ -34,6 +35,7 @@
 	pinctrl-0 = <&emmc_pins>;
 	bus-width = <8>;
 	status = "okay";
+	non-removable;
 };
 
 &am33xx_pinmux {
