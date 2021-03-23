@@ -153,6 +153,7 @@
 		spi-max-frequency = <24000000>;
 		reg = <0>;
 		compatible = "spidev";
+		symlink = "bone/spi/0.0";
 	};
 };
 
@@ -167,6 +168,7 @@
 		reg = <0>;
 		spi-max-frequency = <24000000>;
 		compatible = "spidev";
+		symlink = "bone/spi/1.0";
 	};
 
 	spi1@1 {
@@ -175,6 +177,7 @@
 		reg = <1>;
 		spi-max-frequency = <24000000>;
 		compatible = "spidev";
+		symlink = "bone/spi/1.1";
 	};
 };
 
