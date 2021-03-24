@@ -33,6 +33,27 @@
 		reg = <0x0 0x80000000 0x0 0x80000000>;
 	};
 
+	main_12v0: fixedregulator-main_12v0 {
+		/* main supply */
+		compatible = "regulator-fixed";
+		regulator-name = "main_12v0";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	evm_5v0: fixedregulator-evm_5v0 {
+		/* Output of TPS54531D */
+		compatible = "regulator-fixed";
+		regulator-name = "evm_5v0";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&main_12v0>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
 	reserved-memory {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -65,27 +86,6 @@
 			reusable;
 			status = "okay";
 		};
-	};
-
-	main_12v0: fixedregulator-main_12v0 {
-		/* main supply */
-		compatible = "regulator-fixed";
-		regulator-name = "main_12v0";
-		regulator-min-microvolt = <12000000>;
-		regulator-max-microvolt = <12000000>;
-		regulator-always-on;
-		regulator-boot-on;
-	};
-
-	evm_5v0: fixedregulator-evm_5v0 {
-		/* Output of TPS54531D */
-		compatible = "regulator-fixed";
-		regulator-name = "evm_5v0";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
-		vin-supply = <&main_12v0>;
-		regulator-always-on;
-		regulator-boot-on;
 	};
 
 	vdd_3v3: fixedregulator-vdd_3v3 {
