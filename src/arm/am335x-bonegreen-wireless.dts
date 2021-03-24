@@ -8,16 +8,10 @@
 #include "am335x-bone-common.dtsi"
 #include "am335x-bonegreen-common.dtsi"
 #include <dt-bindings/interrupt-controller/irq.h>
-/* #include "am335x-bone-jtag.dtsi" */
 
 / {
 	model = "TI AM335x BeagleBone Green Wireless";
 	compatible = "ti,am335x-bone-green-wireless", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
-
-	chosen {
-		base_dtb = "am335x-bonegreen-wireless.dts";
-		base_dtb_timestamp = __TIMESTAMP__;
-	};
 
 	wlan_en_reg: fixedregulator@2 {
 		compatible = "regulator-fixed";
@@ -81,7 +75,6 @@
 	bus-width = <4>;
 	non-removable;
 	cap-power-off-card;
-	ti,needs-special-hs-handling;
 	keep-power-in-suspend;
 	pinctrl-names = "default";
 	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;

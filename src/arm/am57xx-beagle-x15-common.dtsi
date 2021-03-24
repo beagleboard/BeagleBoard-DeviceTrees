@@ -19,9 +19,6 @@
 		rtc1 = &tps659038_rtc;
 		rtc2 = &rtc;
 		display0 = &hdmi0;
-
-		sound0 = &sound0;
-		sound1 = &hdmi;
 	};
 
 	chosen {
@@ -31,6 +28,27 @@
 	memory@0 {
 		device_type = "memory";
 		reg = <0x0 0x80000000 0x0 0x80000000>;
+	};
+
+	main_12v0: fixedregulator-main_12v0 {
+		/* main supply */
+		compatible = "regulator-fixed";
+		regulator-name = "main_12v0";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	evm_5v0: fixedregulator-evm_5v0 {
+		/* Output of TPS54531D */
+		compatible = "regulator-fixed";
+		regulator-name = "evm_5v0";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&main_12v0>;
+		regulator-always-on;
+		regulator-boot-on;
 	};
 
 	reserved-memory {
@@ -65,27 +83,6 @@
 			reusable;
 			status = "okay";
 		};
-	};
-
-	main_12v0: fixedregulator-main_12v0 {
-		/* main supply */
-		compatible = "regulator-fixed";
-		regulator-name = "main_12v0";
-		regulator-min-microvolt = <12000000>;
-		regulator-max-microvolt = <12000000>;
-		regulator-always-on;
-		regulator-boot-on;
-	};
-
-	evm_5v0: fixedregulator-evm_5v0 {
-		/* Output of TPS54531D */
-		compatible = "regulator-fixed";
-		regulator-name = "evm_5v0";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
-		vin-supply = <&main_12v0>;
-		regulator-always-on;
-		regulator-boot-on;
 	};
 
 	vdd_3v3: fixedregulator-vdd_3v3 {
@@ -454,7 +451,7 @@
 			      <&dra7_pmx_core 0x3f8>;
 };
 
-&davinci_mdio {
+&davinci_mdio_sw {
 	phy0: ethernet-phy@1 {
 		reg = <1>;
 	};
@@ -464,21 +461,20 @@
 	};
 };
 
-&mac {
+&mac_sw {
 	status = "okay";
-	dual_emac;
 };
 
-&cpsw_emac0 {
+&cpsw_port1 {
 	phy-handle = <&phy0>;
-	phy-mode = "rgmii";
-	dual_emac_res_vlan = <1>;
+	phy-mode = "rgmii-rxid";
+	ti,dual-emac-pvid = <1>;
 };
 
-&cpsw_emac1 {
+&cpsw_port2 {
 	phy-handle = <&phy1>;
-	phy-mode = "rgmii";
-	dual_emac_res_vlan = <2>;
+	phy-mode = "rgmii-rxid";
+	ti,dual-emac-pvid = <2>;
 };
 
 &mmc1 {
@@ -622,14 +618,6 @@
 	rx-num-evt = <32>;
 };
 
-&pruss1_tm {
-	status = "okay";
-};
-
-&pruss2_tm {
-	status = "okay";
-};
-
 &ipu2 {
 	status = "okay";
 	memory-region = <&ipu2_memory_region>;
@@ -648,8 +636,4 @@
 &dsp2 {
 	status = "okay";
 	memory-region = <&dsp2_memory_region>;
-};
-
-&bb2d {
-	status = "okay";
 };
