@@ -505,6 +505,7 @@
 &i2c1 {
 	status = "okay";
 	clock-frequency = <400000>;
+	symlink = "bone/i2c/0";
 
 	tps659038: tps659038@58 {
 		compatible = "ti,tps659038";
@@ -745,6 +746,7 @@
 
 &uart1 {
 	status = "okay";
+	symlink = "bone/uart/0";
 };
 
 &davinci_mdio {
@@ -926,6 +928,7 @@
 &i2c4 {
 	status = "okay";
 	clock-frequency = <100000>;
+	symlink = "bone/i2c/2";
 };
 
 /* thermal hacks */
