@@ -69,7 +69,6 @@ ifeq "$(DTCVERSION)" "1.4.7"
 	DTC_FLAGS += -Wno-alias_paths
 	#Debian: 1.4.7-3 (Buster)
 	DTC_FLAGS += -Wno-unique_unit_address
-	DTC_FLAGS += -Wno-phys_property
 endif
 
 ifeq "$(DTCVERSION)" "1.5.0"
