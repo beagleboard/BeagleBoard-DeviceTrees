@@ -147,39 +147,61 @@ all_%:
 	$(Q)$(MAKE) ARCH=$* all_arch
 
 clean_%:
-	$(Q)$(MAKE) ARCH=$* clean_arch
+	$(Q)$(MAKE) ARCH=$* clean_all
 
 install_%:
 	$(Q)$(MAKE) ARCH=$* install_arch
 
 ifeq ($(ARCH),)
 
+# Device Tree
 ALL_DTS		:= $(shell find src/* -name \*.dts)
-
 ALL_DTB		:= $(patsubst %.dts,%.dtb,$(ALL_DTS))
-
 $(ALL_DTB): ARCH=$(word 2,$(subst /, ,$@))
 $(ALL_DTB): FORCE
 	$(Q)$(MAKE) ARCH=$(ARCH) $@
 
+# DT overlays
+ALL_DTS_OVERLAYS	:= $(shell find src/*/overlays -name \*.dts)
+ALL_DTB_OVERLAYS	:= $(patsubst %.dtbo,%.dtb,$(ALL_DTS))
+$(ALL_DTB_OVERLAYS): ARCH=$(word 2,$(subst /, ,$@))
+$(ALL_DTB_OVERLAYS): FORCE
+	$(Q)$(MAKE) ARCH=$(ARCH) $@
+
 else
 
-ARCH_DTS	:= $(shell find src/$(ARCH) -name \*.dts)
-
+# Device Tree
+ARCH_DTS	:= $(shell find src/$(ARCH) -maxdepth 1 -name \*.dts)
 ARCH_DTB	:= $(patsubst %.dts,%.dtb,$(ARCH_DTS))
-
-src	:= src/$(ARCH)
-obj	:= src/$(ARCH)
-
-include scripts/Kbuild.include
-
-cmd_files := $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir $(f)).cmd))
+src			:= src/$(ARCH)
+obj			:= src/$(ARCH)
+cmd_files 	:= $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir $(f)).cmd))
 
 ifneq ($(cmd_files),)
   include $(cmd_files)
 endif
 
-quiet_cmd_clean    = CLEAN   $(obj)
+$(obj)/%.dtb: $(src)/%.dts FORCE
+	$(call if_changed_dep,dtc)
+
+# Overlays
+ARCH_DTS_OVERLAYS	:= $(shell find src/$(ARCH)/overlays -name \*.dts)
+ARCH_DTB_OVERLAYS	:= $(patsubst %.dts,%.dtbo,$(ARCH_DTS_OVERLAYS))
+src_overlays		:= src/$(ARCH)/overlays
+obj_overlays		:= src/$(ARCH)/overlays
+cmd_files_overlays 	:= $(wildcard $(foreach f,$(ARCH_DTB_OVERLAYS),$(dir $(f)).$(notdir $(f)).cmd))
+
+ifneq ($(cmd_files_overlays),)
+  include $(cmd_files_overlays)
+endif
+
+$(obj_overlays)/%.dtbo: $(src_overlays)/%.dts FORCE
+	$(call if_changed_dep,dtc)
+
+
+include scripts/Kbuild.include
+
+quiet_cmd_clean    = CLEAN   $(obj) & $(obj_overlays)
       cmd_clean    = rm -f $(__clean-files)
 
 dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
@@ -195,24 +217,25 @@ cmd_dtc = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
                 -d $(depfile).dtc.tmp $(dtc-tmp) ; \
         cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
 
-$(obj)/%.dtb: $(src)/%.dts FORCE
-	$(call if_changed_dep,dtc)
-
 PHONY += all_arch
-all_arch: $(ARCH_DTB)
+all_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	@:
 
 PHONY += install_arch
-install_arch: $(ARCH_DTB)
+install_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
+	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/
 	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/
+	# install DT overlays
+	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/overlays/
+	cp -v $(obj_overlays)/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/overlays
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
 
-PHONY += clean_arch
-clean_arch: __clean-files = $(ARCH_DTB)
-clean_arch: FORCE
+PHONY += clean_all
+clean_all: __clean-files = $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
+clean_all : FORCE
 	$(call cmd,clean)
 	@find . $(RCS_FIND_IGNORE) \
 		\( -name '.*.cmd' \
