@@ -1218,6 +1218,7 @@
 		reg = <0x1880>;
 	};
 };
+
 &cm_core_clocks {
 	dpll_pcie_ref_ck: dpll_pcie_ref_ck@200 {
 		#clock-cells = <0>;
