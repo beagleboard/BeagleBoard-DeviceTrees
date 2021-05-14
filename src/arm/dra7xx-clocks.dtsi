@@ -1525,6 +1525,7 @@
 			reg = <0x20 0x4>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	dsp1_cm: dsp1_cm@400 {
@@ -1539,6 +1540,7 @@
 			reg = <0x20 0x4>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	ipu1_cm: ipu1_cm@500 {
@@ -1570,6 +1572,7 @@
 			reg = <0x0 0x44>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	dsp2_cm: dsp2_cm@600 {
@@ -1584,6 +1587,7 @@
 			reg = <0x20 0x4>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	rtc_cm: rtc_cm@700 {
@@ -1629,6 +1633,7 @@
 			reg = <0x20 0x74>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	ipu2_cm: ipu2_cm@900 {
@@ -1643,6 +1648,7 @@
 			reg = <0x20 0x4>;
 			#clock-cells = <2>;
 		};
+
 	};
 
 	dma_cm: dma_cm@a00 {
