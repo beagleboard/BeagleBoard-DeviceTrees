@@ -161,10 +161,6 @@
 	spi1 = &spi1;
 };
 
-&sgx {
-	status = "okay";
-};
-
 &cpu0_opp_table {
 	/*
 	* Octavo Systems:

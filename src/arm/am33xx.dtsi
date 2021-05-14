@@ -1306,6 +1306,10 @@
 			interrupts = <111>;
 		};
 
+			/*
+			 * Closed source PowerVR driver, no child device
+			 * binding or driver in mainline
+			 */
 		sgx: sgx@56000000 {
 			compatible = "ti,am3352-sgx530", "img,sgx530";
 			ti,hwmods = "gfx";
@@ -1313,7 +1317,7 @@
 			interrupts = <37>;
 			clocks = <&gfx_fck_div_ck>;
 			clock-names = "fclk";
-			status = "disabled";
+			status = "okay";
 		};
 	};
 };

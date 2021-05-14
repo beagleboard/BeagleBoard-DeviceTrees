@@ -19,10 +19,6 @@
 	};
 };
 
-&sgx {
-	status = "okay";
-};
-
 &am33xx_pinmux {
 	pinctrl-names = "default";
 

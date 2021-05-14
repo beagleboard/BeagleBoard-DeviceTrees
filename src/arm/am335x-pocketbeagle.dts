@@ -205,10 +205,6 @@
 		"NC";
 };
 
-&sgx {
-	status = "okay";
-};
-
 &am33xx_pinmux {
 //	i2c2_pins: pinmux-i2c2-pins {
 //		pinctrl-single,pins = <
