@@ -868,6 +868,26 @@
 					reg-names = "dram0", "dram1", "shrdram2";
 				};
 
+				pruss_cfg: cfg@26000 {
+					compatible = "ti,pruss-cfg", "syscon";
+					#address-cells = <1>;
+					#size-cells = <1>;
+					reg = <0x26000 0x2000>;
+					ranges = <0x00 0x26000 0x2000>;
+
+					clocks {
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						pruss_iepclk_mux: iepclk-mux@30 {
+							reg = <0x30>;
+							#clock-cells = <0>;
+							clocks = <&l3_gclk>,        /* icss_iep */
+								 <&pruss_ocp_gclk>; /* icss_ocp */
+						};
+					};
+				};
+
 				pruss_intc: interrupt-controller@20000 {
 					compatible = "ti,pruss-intc";
 					reg = <0x20000 0x2000>;
