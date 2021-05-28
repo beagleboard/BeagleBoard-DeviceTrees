@@ -868,6 +868,18 @@
 					reg-names = "dram0", "dram1", "shrdram2";
 				};
 
+				pruss_intc: interrupt-controller@20000 {
+					compatible = "ti,pruss-intc";
+					reg = <0x20000 0x2000>;
+					interrupts = <20 21 22 23 24 25 26 27>;
+					interrupt-names = "host_intr0", "host_intr1",
+							  "host_intr2", "host_intr3",
+							  "host_intr4", "host_intr5",
+							  "host_intr6", "host_intr7";
+					interrupt-controller;
+					#interrupt-cells = <3>;
+				};
+
 				pru0: pru@34000 {
 					compatible = "ti,am3356-pru";
 					reg = <0x34000 0x2000>,
