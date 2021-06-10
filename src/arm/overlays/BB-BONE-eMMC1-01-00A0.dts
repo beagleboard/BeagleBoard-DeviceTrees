@@ -17,7 +17,7 @@
  */
 &{/chosen} {
 	overlays {
-		__FILE_NAME__ = __TIMESTAMP__;
+		BB-BONE-eMMC1-01-00A0.kernel = __TIMESTAMP__;
 	};
 };
 

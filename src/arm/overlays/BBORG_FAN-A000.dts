@@ -14,7 +14,7 @@
  */
 &{/chosen} {
 	overlays {
-		__FILE_NAME__ = __TIMESTAMP__;
+		BBORG_FAN-A000.kernel = __TIMESTAMP__;
 	};
 };
 
