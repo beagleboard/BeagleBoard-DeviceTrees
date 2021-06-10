@@ -1,46 +1,62 @@
-// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
- * Copyright 2015 Konsulko Group
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
  */
 
 /dts-v1/;
+/plugin/;
 
-#include "am33xx.dtsi"
-#include "am335x-bone-common.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/display/tda998x.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
-/ {
-	model = "Arrow BeagleBone Black Industrial";
-	compatible = "arrow,am335x-abbbi", "ti,am335x-bone", "ti,am33xx";
-
-	chosen {
-		base_dtb = "am335x-abbbi.dts";
-		base_dtb_timestamp = __TIMESTAMP__;
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-HDMI-TDA998x-00A0.kernel = __TIMESTAMP__;
 	};
 };
 
-&ldo3_reg {
-	regulator-min-microvolt = <1800000>;
-	regulator-max-microvolt = <1800000>;
-	regulator-always-on;
-};
-
-&mmc1 {
-	vmmc-supply = <&vmmcsd_fixed>;
-};
-
-&mmc2 {
-	vmmc-supply = <&vmmcsd_fixed>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&emmc_pins>;
-	bus-width = <8>;
-	status = "okay";
-	non-removable;
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_25_pinmux { status = "disabled"; };	/* mcasp0_ahclkx */
+	P9_28_pinmux { status = "disabled"; };	/* mcasp0_axr2 */
+	P9_29_pinmux { status = "disabled"; };	/* mcasp0_fsx */
+	P9_31_pinmux { status = "disabled"; };	/* mcasp0_aclkx */
+	P8_45_pinmux { status = "disabled"; };	/* lcd_data0 */
+	P8_46_pinmux { status = "disabled"; };	/* lcd_data1 */
+	P8_43_pinmux { status = "disabled"; };	/* lcd_data2 */
+	P8_44_pinmux { status = "disabled"; };	/* lcd_data3 */
+	P8_41_pinmux { status = "disabled"; };	/* lcd_data4 */
+	P8_42_pinmux { status = "disabled"; };	/* lcd_data5 */
+	P8_39_pinmux { status = "disabled"; };	/* lcd_data6 */
+	P8_40_pinmux { status = "disabled"; };	/* lcd_data7 */
+	P8_37_pinmux { status = "disabled"; };	/* lcd_data8 */
+	P8_38_pinmux { status = "disabled"; };	/* lcd_data9 */
+	P8_36_pinmux { status = "disabled"; };	/* lcd_data10 */
+	P8_34_pinmux { status = "disabled"; };	/* lcd_data11 */
+	P8_35_pinmux { status = "disabled"; };	/* lcd_data12 */
+	P8_33_pinmux { status = "disabled"; };	/* lcd_data13 */
+	P8_31_pinmux { status = "disabled"; };	/* lcd_data14 */
+	P8_32_pinmux { status = "disabled"; };	/* lcd_data15 */
+	P8_27_pinmux { status = "disabled"; };	/* lcd_vsync */
+	P8_29_pinmux { status = "disabled"; };	/* lcd_hsync */
+	P8_28_pinmux { status = "disabled"; };	/* lcd_pclk */
+	P8_30_pinmux { status = "disabled"; };	/* lcd_ac_bias_en */
 };
 
 &am33xx_pinmux {
-	adi_hdmi_bbbi_pins: adi_hdmi_bbbi_pins {
+	nxp_hdmi_bonelt_pins: nxp_hdmi_bonelt_pins {
 		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLUP, MUX_MODE7)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE0)
@@ -64,6 +80,12 @@
 		>;
 	};
 
+	nxp_hdmi_bonelt_off_pins: nxp_hdmi_bonelt_off_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE7)
+		>;
+	};
+
 	mcasp0_pins: mcasp0_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT_PULLUP, MUX_MODE0) /* mcasp0_ahcklx.mcasp0_ahclkx */
@@ -82,10 +104,7 @@
 	 * current 16 bit RGB and 24 BGR modes, set the propety
 	 * below to "crossed" and uncomment the video-ports -property
 	 * in tda19988 node.
-	 * AM335x errata for wiring:
-	 * https://www.ti.com/lit/er/sprz360i/sprz360i.pdf
 	 */
-
 	blue-and-red-wiring = "straight";
 
 	port {
@@ -96,17 +115,23 @@
 };
 
 &i2c0 {
-	adv7511: adv7511@39 {
-		compatible = "adi,adv7511";
-		reg = <0x39>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	tda19988: tda19988@70 {
+		compatible = "nxp,tda998x";
+		reg = <0x70>;
+		nxp,calib-gpios = <&gpio1 25 0>;
+		interrupts-extended = <&gpio1 25 IRQ_TYPE_LEVEL_LOW>;
 
-		pinctrl-names = "default";
-		pinctrl-0 = <&adi_hdmi_bbbi_pins>;
+		pinctrl-names = "default", "off";
+		pinctrl-0 = <&nxp_hdmi_bonelt_pins>;
+		pinctrl-1 = <&nxp_hdmi_bonelt_off_pins>;
 
 		/* Convert 24bit BGR to RGB, e.g. cross red and blue wiring */
 		/* video-ports = <0x234501>; */
 
 		#sound-dai-cells = <0>;
+		audio-ports = <	TDA998x_I2S	0x03>;
 
 		ports {
 			port@0 {
@@ -118,11 +143,7 @@
 	};
 };
 
-&rtc {
-	system-power-controller;
-};
-
-&mcasp0	{
+&mcasp0 {
 	#sound-dai-cells = <0>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcasp0_pins>;
@@ -132,11 +153,11 @@
 	serial-dir = <	/* 0: INACTIVE, 1: TX, 2: RX */
 			0 0 1 0
 		>;
-	tx-num-evt = <1>;
-	rx-num-evt = <1>;
+	tx-num-evt = <32>;
+	rx-num-evt = <32>;
 };
 
-/ {
+&{/} {
 	clk_mcasp0_fixed: clk_mcasp0_fixed {
 		#clock-cells = <0>;
 		compatible = "fixed-clock";
@@ -163,7 +184,7 @@
 		};
 
 		simple-audio-card,codec {
-			sound-dai = <&adv7511>;
+			sound-dai = <&tda19988>;
 		};
 	};
 };
