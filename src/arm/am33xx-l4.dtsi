@@ -1326,10 +1326,6 @@
 
 			gpio1: gpio@0 {
 				compatible = "ti,omap4-gpio";
-				gpio-ranges =   <&am33xx_pinmux  0  0  8>,
-						<&am33xx_pinmux  8 90  4>,
-						<&am33xx_pinmux 12 12 16>,
-						<&am33xx_pinmux 28 30  4>;
 				gpio-controller;
 				#gpio-cells = <2>;
 				interrupt-controller;
@@ -1775,9 +1771,6 @@
 
 			gpio2: gpio@0 {
 				compatible = "ti,omap4-gpio";
-                                gpio-ranges =	<&am33xx_pinmux  0 34 18>,
-						<&am33xx_pinmux 18 77  4>,
-						<&am33xx_pinmux 22 56 10>;
 				gpio-controller;
 				#gpio-cells = <2>;
 				interrupt-controller;
@@ -1845,11 +1838,6 @@
 
 			gpio3: gpio@0 {
 				compatible = "ti,omap4-gpio";
-				gpio-ranges =	<&am33xx_pinmux  0  66 5>,
-						<&am33xx_pinmux  5  98 2>,
-						<&am33xx_pinmux  7  75 2>,
-						<&am33xx_pinmux 13 141 1>,
-						<&am33xx_pinmux 14 100 8>;
 				gpio-controller;
 				#gpio-cells = <2>;
 				interrupt-controller;
