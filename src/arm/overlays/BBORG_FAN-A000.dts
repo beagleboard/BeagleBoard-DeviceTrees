@@ -10,11 +10,11 @@
 /plugin/;
 
 /*
-* Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
-*/
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
 &{/chosen} {
 	overlays {
-		BBORG_FAN-A000 = __TIMESTAMP__;
+		BBORG_FAN-A000.kernel = __TIMESTAMP__;
 	};
 };
 
@@ -28,4 +28,3 @@
 		opp-suspend;
 	};
 };
-
