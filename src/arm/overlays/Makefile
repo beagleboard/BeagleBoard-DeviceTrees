@@ -12,5 +12,5 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
 
-always-y	:= $(dtbo-y)
+always		:= $(dtbo-y)
 clean-files	:= *.dtbo
