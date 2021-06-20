@@ -1,6 +1,18 @@
- 
+/*
+ * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
+ * See Cape Interface Spec page for more info on Bone Buses
+ * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
+ *
+ * Overlay for Audio DTS 
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
 /dts-v1/;
 /plugin/;
+
 /*
 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
 */
@@ -9,6 +21,7 @@
         AUDI-TEST = __TIMESTAMP__;
     };
 };
+
 /*
  * Update the default pinmux of the pins.
  * See this files for the phandles (&P9_* & &P8_*)
