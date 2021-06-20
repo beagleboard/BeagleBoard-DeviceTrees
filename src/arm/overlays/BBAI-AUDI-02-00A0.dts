@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
- * See Cape Interface Spec page for more info on Bone Buses
- * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
+ * Copyright (C) 2021 Dhruva Gole <goledhruva@gmail.com>
  *
  * Overlay for Audio DTS 
  *
