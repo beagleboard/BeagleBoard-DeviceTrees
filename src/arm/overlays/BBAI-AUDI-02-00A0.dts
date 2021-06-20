@@ -58,7 +58,7 @@ sound {
 		sound_master: simple-audio-card,codec {
 			#sound-dai-cells = <0>;
 			sound-dai = <&tlv320aic3104>;
-			clocks = <&sys_clkin2>;
+			clocks = <&sys_clkin1>;
 			clock-frequency = <22579200>;
 			clock-names = "mclk";
 		};
