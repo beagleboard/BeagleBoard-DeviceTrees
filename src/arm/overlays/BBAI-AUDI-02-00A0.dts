@@ -66,19 +66,18 @@
 };
 
 &bone_i2c_2 {
-	status = "okay";
-	#address-cells = <1>;
-	#size-cells = <0>;
-	clock-frequency = <100000>;
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+    clock-frequency = <100000>;
 
-	tlv320aic3104: tlv320aic3104@18 {
-		#sound-dai-cells = <0>;
-		compatible = "ti,tlv320aic3104";
-		reg = <0x18>;
-	};
+    tlv320aic3104: tlv320aic3104@18 {
+        #sound-dai-cells = <0>;
+        compatible = "ti,tlv320aic3104";
+        reg = <0x18>;
+    };
 };
 
 &mcasp1 {
-	status = "okay";
-	// <&sys_clkin2>;
+    status = "okay";
 };
