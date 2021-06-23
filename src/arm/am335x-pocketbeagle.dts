@@ -452,10 +452,6 @@
 	system-power-controller;
 };
 
-&pruss_tm {
-	status = "okay";
-};
-
 &tscadc {
 	status = "okay";
 	adc {
