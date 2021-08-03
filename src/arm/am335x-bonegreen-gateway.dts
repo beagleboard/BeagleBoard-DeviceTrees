@@ -173,7 +173,7 @@
 
 // (K16) gmii1_txd1.gpio0[21]
 &gpio0 {
-	usb_reset {
+	usb-reset-hog {
 		gpio-hog;
 		gpios = <21 GPIO_ACTIVE_HIGH>;
 		output-high;
@@ -182,7 +182,7 @@
 };
 
 &gpio3 {
-	ls_buf_en {
+	ls-buf-en-hog {
 		gpio-hog;
 		gpios = <10 GPIO_ACTIVE_HIGH>;
 		output-high;
