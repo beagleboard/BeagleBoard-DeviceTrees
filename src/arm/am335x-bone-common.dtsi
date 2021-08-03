@@ -401,6 +401,10 @@
 	clock-names = "ext-clk", "int-clk";
 };
 
+&pruss_tm {
+	status = "okay";
+};
+
 &tscadc {
 	adc {
 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
