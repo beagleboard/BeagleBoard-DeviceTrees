@@ -637,11 +637,3 @@
 	status = "okay";
 	memory-region = <&dsp2_memory_region>;
 };
-
-&pruss1_mdio {
-	status = "disabled";
-};
-
-&pruss2_mdio {
-	status = "disabled";
-};
