@@ -393,7 +393,10 @@
 &rtc {
 	clocks = <&clk_32768_ck>, <&clk_24mhz_clkctrl AM3_CLK_24MHZ_CLKDIV32K_CLKCTRL 0>;
 	clock-names = "ext-clk", "int-clk";
-	system-power-controller;
+};
+
+&pruss_tm {
+	status = "okay";
 };
 
 &tscadc {
@@ -403,8 +406,4 @@
 		ti,chan-step-opendelay = <0x98 0x98 0x98 0x98 0x98 0x98 0x98 0x98>;
 		ti,chan-step-sampledelay = <0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0>;
 	};
-};
-
-&pruss_tm {
-	status = "okay";
 };

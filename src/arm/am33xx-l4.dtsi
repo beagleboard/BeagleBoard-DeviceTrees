@@ -851,14 +851,15 @@
 					reg = <0x0 0x2000>,
 					      <0x2000 0x2000>,
 					      <0x10000 0x3000>;
-					reg-names = "dram0", "dram1", "shrdram2";
+					reg-names = "dram0", "dram1",
+						    "shrdram2";
 				};
 
 				pruss_cfg: cfg@26000 {
 					compatible = "ti,pruss-cfg", "syscon";
+					reg = <0x26000 0x2000>;
 					#address-cells = <1>;
 					#size-cells = <1>;
-					reg = <0x26000 0x2000>;
 					ranges = <0x0 0x26000 0x2000>;
 
 					clocks {
