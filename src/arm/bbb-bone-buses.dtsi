@@ -424,6 +424,11 @@ bone_i2c_3: &i2c1 {
 	symlink = "bone/i2c/3";
 };
 
+// gpmc:
+bone_gpmc: &gpmc {
+
+};
+
 // SPIs
 bone_spi_0: &spi0 {
 
