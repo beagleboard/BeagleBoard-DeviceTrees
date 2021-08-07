@@ -2069,7 +2069,7 @@
 	P9_12_pinmux {
 		compatible = "bone-pinmux-helper";
 		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpmc_pd";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpmc_pin";
 		pinctrl-0 = <&P9_12_default_pin>;
 		pinctrl-1 = <&P9_12_gpio_pin>;
 		pinctrl-2 = <&P9_12_gpio_pu_pin>;
