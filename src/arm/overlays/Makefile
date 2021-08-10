@@ -62,8 +62,9 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BONE-UART2.dtbo \
 	BONE-UART3.dtbo \
 	BONE-UART4.dtbo \
-	BONE-UART5.dtbo
-
+	BONE-UART5.dtbo \
+	BW-ICE40Cape-00A0.dtbo 
+	
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
 
