@@ -5,7 +5,7 @@
  * See Cape Interface Spec page for more info on Bone Buses
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  */
- 
+
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 
