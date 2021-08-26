@@ -22,14 +22,14 @@
 &am33xx_pinmux {
 	bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 		pinctrl-single,pins = <
-			0x048 0x06	/* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A2, PIN_OUTPUT, MUX_MODE6) /* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
 		>;
 	};
 
 	bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 		pinctrl-single,pins = <
 			/*LCD enable */
-			0x1a4 0x17	/* mcasp0_fsr.gpio3_19, OUTPUT | MODE7  LCD DISEN */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_OUTPUT, MUX_MODE7) /* mcasp0_fsr.gpio3_19, OUTPUT | MODE7  LCD DISEN */
 
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
@@ -57,14 +57,14 @@
 
 	bb_i2c1_pins: pinmux_bb_i2c1_pins {
 		pinctrl-single,pins = <
-			0x158 0x72	// spi0_d1.i2c1_sda, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
-			0x15C 0x72	// spi0_cs0.i2c1_scl, SLEWCTRL_SLOW | INPUT_PULLUP | MODE2
+			AM33XX_IOPAD(0x958, PIN_INPUT_PULLUP | SLEWCTRL_SLOW | MUX_MODE2) /* spi0_d1.i2c1_sda */
+			AM33XX_IOPAD(0x95C, PIN_INPUT_PULLUP | SLEWCTRL_SLOW | MUX_MODE2) /* spi0_cs0.i2c1_scl */
 		>;
 	};
 
 	ar1021_pins: pinmux_ar1021_pins {
 		pinctrl-single,pins = <
-			0x180 0x37	// INPUT_PULLUP | MODE7
+			AM33XX_PADCONF(AM335X_PIN_UART1_RXD, PIN_INPUT, MUX_MODE7)
 		>;
 	};
 };
