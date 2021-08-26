@@ -111,10 +111,11 @@
 		pinctrl-0 = <&edt_ft5x06_pins>;
 		interrupt-parent = <&gpio3>;
 		interrupts = <19 0>;
+		//reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
 
 		touchscreen-size-x = <800>;
 		touchscreen-size-y = <480>;
-//		touchscreen-swapped-x-y;
+		//touchscreen-swapped-x-y;
 	};
 };
 
