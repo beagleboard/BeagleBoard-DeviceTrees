@@ -21,18 +21,49 @@
 		compatible = "gpio-keys";
 		autorepeat;
 		pinctrl-names = "default";
-		pinctrl-0 = <&sw10_button_pins_default &sw11_button_pins_default>;
-
-		sw10: sw10 {
-			label = "GPIO Key USER1";
+		pinctrl-0 = <&sw_pwr_pins_default>;
+		sw2: sw2 {
+			label = "GPIO Key USER2";
 			linux,code = <BTN_0>;
-			gpios = <&main_gpio0 0 GPIO_ACTIVE_LOW>;
+			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
+		};
+	};
+
+	gpio_leds: gpio-leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&led_pins_default>;
+
+		usr_led0: usr_led0 {
+			label = "usr_led0";
+			default-state = "keep";
+			linux,default-trigger = "mmc0";
+			gpios = <&main_gpio0 96 GPIO_ACTIVE_HIGH>;
 		};
 
-		sw11: sw11 {
-			label = "GPIO Key USER2";
-			linux,code = <BTN_1>;
-			gpios = <&wkup_gpio0 7 GPIO_ACTIVE_LOW>;
+		usr_led1: usr_led1 {
+			label = "usr_led1";
+			default-state = "keep";
+			linux,default-trigger = "mmc1";
+			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
+		};
+
+		usr_led2: usr_led2 {
+			label = "usr_led2";
+			linux,default-trigger = "default-off";
+			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
+		};
+
+		usr_led3: usr_led3 {
+			label = "usr_led3";
+			linux,default-trigger = "default-off";
+			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
+		};
+
+		usr_led4: usr_led4 {
+			label = "usr_led4";
+			linux,default-trigger = "default-off";
+			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
 		};
 	};
 
@@ -191,9 +222,13 @@
 };
 
 &main_pmx0 {
-	sw10_button_pins_default: sw10-button-pins-default {
+	led_pins_default: led-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x0, PIN_INPUT, 7) /* (AC18) EXTINTn.GPIO0_0 */
+			J721E_IOPAD(0x184, PIN_INPUT, 7) /* (T23) RGMII5_RD0.GPIO0_96 */
+			J721E_IOPAD(0x180, PIN_INPUT, 7) /* (R23) RGMII5_RD1.GPIO0_95 */
+			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
+			J721E_IOPAD(0x1bc, PIN_INPUT, 7) /* (V24) MDIO0_MDC.GPIO0_110 */
+			J721E_IOPAD(0x1b8, PIN_INPUT, 7) /* (V26) MDIO0_MDIO.GPIO0_109 */
 		>;
 	};
 
@@ -304,9 +339,9 @@
 };
 
 &wkup_pmx0 {
-	sw11_button_pins_default: sw11-button-pins-default {
+	sw_pwr_pins_default: sw-pwr-pins-default {
 		pinctrl-single,pins = <
-			J721E_WKUP_IOPAD(0xcc, PIN_INPUT, 7) /* (G28) WKUP_GPIO0_7 */
+			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
 		>;
 	};
 
