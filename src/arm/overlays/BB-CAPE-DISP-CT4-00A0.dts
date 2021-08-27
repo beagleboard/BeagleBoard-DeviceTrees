@@ -7,6 +7,7 @@
 /plugin/;
 
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 
 /*
@@ -43,6 +44,7 @@
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_OUTPUT, MUX_MODE0)
+
 			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE0)
@@ -70,6 +72,15 @@
 
 &lcdc {
 	status = "okay";
+
+	blue-and-red-wiring = "straight";
+
+	//FIXME - LCD doesn't init...
+	//port {
+	//	lcdc_0: endpoint@0 {
+	//		remote-endpoint = <&panel_0>;
+	//	};
+	//};
 };
 
 &i2c2 {
@@ -84,10 +95,9 @@
 	edt-ft5336@38 {
 		status = "okay";
 		compatible = "edt,edt-ft5336", "edt,edt-ft5306", "edt,edt-ft5x06";
+		reg = <0x38>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&edt_ft5336_ts_pins>;
-
-		reg = <0x38>;
 		interrupt-parent = <&gpio3>;
 		interrupts = <15 0>;
 		reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
@@ -99,7 +109,7 @@
 };
 
 &{/} {
-	backlight {
+	backlight: backlight {
 		status = "okay";
 		compatible = "pwm-backlight";
 		pwms = <&ecap2 0 500000 0>;
@@ -124,6 +134,15 @@
 		compatible = "ti,tilcdc,panel";
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_lcd_lcd_pins>;
+		backlight = <&backlight>;
+
+		//FIXME - LCD doesn't init...
+		//port {
+		//	panel_0: endpoint@0 {
+		//		remote-endpoint = <&lcdc_0>;
+		//	};
+		//};
+
 		panel-info {
 			ac-bias           = <255>;
 			ac-bias-intrpt    = <0>;
@@ -152,7 +171,7 @@
 				vfront-porch = <8>;
 				vsync-len = <1>;
 				hsync-active = <0>;
-				vsync-active  = <0>;
+				vsync-active = <0>;
 			};
 		};
 	};
