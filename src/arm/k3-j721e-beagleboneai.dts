@@ -258,16 +258,9 @@
 		>;
 	};
 
-	main_usbss0_pins_default: main-usbss0-pins-default {
-		pinctrl-single,pins = <
-			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
-			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 */
-		>;
-	};
-
 	main_usbss1_pins_default: main-usbss1-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x214, PIN_OUTPUT, 4) /* (V4) MCAN1_TX.USB1_DRVVBUS */
+			J721E_IOPAD(0x290, PIN_OUTPUT, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
 		>;
 	};
 
@@ -376,6 +369,12 @@
 			J721E_WKUP_IOPAD(0x4c, PIN_INPUT, 0) /* (C23) MCU_OSPI1_D3 */
 			J721E_WKUP_IOPAD(0x3c, PIN_INPUT, 0) /* (B23) MCU_OSPI1_DQS */
 			J721E_WKUP_IOPAD(0x38, PIN_INPUT, 0) /* (A23) MCU_OSPI1_LBCLKO */
+		>;
+	};
+
+	sw_pwr_pins_default: sw-pwr-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
 		>;
 	};
 
@@ -549,8 +548,6 @@
 };
 
 &usbss0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_usbss0_pins_default>;
 	ti,vbus-divider;
 };
 
@@ -787,13 +784,13 @@
 	 */
 
 	assigned-clocks = <&k3_clks 152 1>,
-			  <&k3_clks 152 4>,
-			  <&k3_clks 152 9>,
-			  <&k3_clks 152 13>;
+				<&k3_clks 152 4>,
+				<&k3_clks 152 9>,
+				<&k3_clks 152 13>;
 	assigned-clock-parents = <&k3_clks 152 2>,	/* PLL16_HSDIV0 */
-				 <&k3_clks 152 6>,	/* PLL19_HSDIV0 */
-				 <&k3_clks 152 11>,	/* PLL18_HSDIV0 */
-				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
+				<&k3_clks 152 6>,	/* PLL19_HSDIV0 */
+				<&k3_clks 152 11>,	/* PLL18_HSDIV0 */
+				<&k3_clks 152 18>;	/* PLL23_HSDIV0 */
 };
 
 &dss_ports {
