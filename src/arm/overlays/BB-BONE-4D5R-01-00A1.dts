@@ -15,48 +15,22 @@
  */
 &{/chosen} {
 	overlays {
-		BB-CAPE-DISP-CT4-00A0.kernel = __TIMESTAMP__;
+		BB-BONE-4D5R-01-00A1.kernel = __TIMESTAMP__;
 	};
-};
-
-/*
- * Free up the pins used by the cape from the pinmux helpers.
- */
-&ocp {
-	P9_28_pinmux { status = "disabled"; };	/* pwm: eCAP2_in_PWM2_out */
-	P8_45_pinmux { status = "disabled"; };	/* lcd_data0 */
-	P8_46_pinmux { status = "disabled"; };	/* lcd_data1 */
-	P8_43_pinmux { status = "disabled"; };	/* lcd_data2 */
-	P8_44_pinmux { status = "disabled"; };	/* lcd_data3 */
-	P8_41_pinmux { status = "disabled"; };	/* lcd_data4 */
-	P8_42_pinmux { status = "disabled"; };	/* lcd_data5 */
-	P8_39_pinmux { status = "disabled"; };	/* lcd_data6 */
-	P8_40_pinmux { status = "disabled"; };	/* lcd_data7 */
-	P8_37_pinmux { status = "disabled"; };	/* lcd_data8 */
-	P8_38_pinmux { status = "disabled"; };	/* lcd_data9 */
-	P8_36_pinmux { status = "disabled"; };	/* lcd_data10 */
-	P8_34_pinmux { status = "disabled"; };	/* lcd_data11 */
-	P8_35_pinmux { status = "disabled"; };	/* lcd_data12 */
-	P8_33_pinmux { status = "disabled"; };	/* lcd_data13 */
-	P8_31_pinmux { status = "disabled"; };	/* lcd_data14 */
-	P8_32_pinmux { status = "disabled"; };	/* lcd_data15 */
-	P8_27_pinmux { status = "disabled"; };	/* lcd_vsync */
-	P8_29_pinmux { status = "disabled"; };	/* lcd_hsync */
-	P8_28_pinmux { status = "disabled"; };	/* lcd_pclk */
-	P8_30_pinmux { status = "disabled"; };	/* lcd_ac_bias_en */
-	P9_29_pinmux { status = "disabled"; };	/* ft5336: gpio3_15 */
-	P9_31_pinmux { status = "disabled"; };	/* ft5336: gpio3_14 */
 };
 
 &am33xx_pinmux {
 	bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_OUTPUT_PULLDOWN,  MUX_MODE4) /* mcasp0_ahclkr.eCAP2_in_PWM2_out */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A2, PIN_OUTPUT, MUX_MODE6) /* gpmc_a2.ehrpwm1a, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
 		>;
 	};
 
 	bb_lcd_lcd_pins: pinmux_bb_lcd_lcd_pins {
 		pinctrl-single,pins = <
+			/*LCD enable */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_OUTPUT, MUX_MODE7) /* mcasp0_fsr.gpio3_19, OUTPUT | MODE7  LCD DISEN */
+
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE0)
@@ -81,19 +55,25 @@
 		>;
 	};
 
-	edt_ft5336_ts_pins: pinmux_edt_ft5336_ts_pins {
+	bb_i2c1_pins: pinmux_bb_i2c1_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* mcasp0_fsx.gpio3_15 */
-			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* mcasp0_aclkx.gpio3_14 */
+			AM33XX_IOPAD(0x958, PIN_INPUT_PULLUP | SLEWCTRL_SLOW | MUX_MODE2) /* spi0_d1.i2c1_sda */
+			AM33XX_IOPAD(0x95C, PIN_INPUT_PULLUP | SLEWCTRL_SLOW | MUX_MODE2) /* spi0_cs0.i2c1_scl */
+		>;
+	};
+
+	ar1021_pins: pinmux_ar1021_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_UART1_RXD, PIN_INPUT, MUX_MODE7)
 		>;
 	};
 };
 
-&epwmss2 {
+&epwmss1 {
 	status = "okay";
 };
 
-&ecap2 {
+&ehrpwm1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_lcd_pwm_backlight_pins>;
 	status = "okay";
@@ -112,28 +92,29 @@
 	//};
 };
 
-&i2c2 {
+&i2c1 {
 	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_i2c1_pins>;
 
-	/* this is the configuration part */
 	clock-frequency = <100000>;
 
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	edt-ft5336@38 {
+	ar1021: ar1021@4d {
 		status = "okay";
-		compatible = "edt,edt-ft5336", "edt,edt-ft5306", "edt,edt-ft5x06";
-		reg = <0x38>;
+		compatible = "microchip,ar1021-i2c";
+		reg = <0x4d>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&edt_ft5336_ts_pins>;
-		interrupt-parent = <&gpio3>;
-		interrupts = <15 0>;
-		reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
+		pinctrl-0 = <&ar1021_pins>;
+		interrupt-parent = <&gpio0>;
+		interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
 
-		touchscreen-size-x = <272>;
-		touchscreen-size-y = <480>;
-		touchscreen-swapped-x-y;
+		touchscreen-offset-x=<250>;
+		touchscreen-offset-y=<300>;
+
+		touchscreen-inverted-y;
 	};
 };
 
@@ -141,7 +122,7 @@
 	backlight: backlight {
 		status = "okay";
 		compatible = "pwm-backlight";
-		pwms = <&ecap2 0 500000 0>;
+		pwms = <&ehrpwm1 0 500000 0>;
 		brightness-levels = <
 			0  1  2  3  4  5  6  7  8  9
 			10 11 12 13 14 15 16 17 18 19
@@ -155,7 +136,7 @@
 			90 91 92 93 94 95 96 97 98 99
 			100
 		>;
-		default-brightness-level = <50>;
+		default-brightness-level = <100>;
 	};
 
 	panel {
@@ -164,6 +145,7 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_lcd_lcd_pins>;
 		backlight = <&backlight>;
+		enable-gpios = <&gpio3 19 0>;
 
 		//FIXME - LCD doesn't init...
 		//port {
@@ -178,29 +160,29 @@
 			dma-burst-sz      = <16>;
 			bpp               = <16>;
 			fdd               = <0x80>;
-			tft-alt-mode      = <0>;
-			stn-565-mode      = <0>;
-			mono-8bit-mode    = <0>;
 			sync-edge         = <0>;
 			sync-ctrl         = <1>;
 			raster-order      = <0>;
 			fifo-th           = <0>;
 		};
-		/* ILI6480 */
+
 		display-timings {
 			native-mode = <&timing0>;
-			timing0: 480x272 {
-				clock-frequency = <9000000>;
-				hactive = <480>;
-				vactive = <272>;
-				hfront-porch = <5>;
+			/* Settings for ThreeFive S9700RTWV35TR / LCD7 cape: */
+			timing0: 800x480 {
+				clock-frequency = <30000000>;
+				hactive = <800>;
+				vactive = <480>;
+				hfront-porch = <40>;
 				hback-porch = <40>;
-				hsync-len = <1>;
-				vback-porch = <8>;
-				vfront-porch = <8>;
-				vsync-len = <1>;
+				hsync-len = <48>;
+				vback-porch = <30>;
+				vfront-porch = <13>;
+				vsync-len = <3>;
 				hsync-active = <0>;
 				vsync-active = <0>;
+				de-active = <1>;
+				pixelclk-active = <0>;
 			};
 		};
 	};
