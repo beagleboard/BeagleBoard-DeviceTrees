@@ -70,13 +70,15 @@
 
 	vdd_mmc1: fixedregulator-sd {
 		compatible = "regulator-fixed";
+		pinctrl-names = "default";
+		pinctrl-0 = <&sd_pwr_en_pins_default>;
 		regulator-name = "vdd_mmc1";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		enable-active-high;
 		vin-supply = <&vsys_3v3>;
-		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
+		gpios = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
 	};
 
 	vdd_sd_dv_alt: gpio-regulator-TLV71033 {
@@ -204,6 +206,12 @@
 			J721E_IOPAD(0x240, PIN_INPUT, 0) /* (R26) MMC1_DAT3 */
 			J721E_IOPAD(0x258, PIN_INPUT, 0) /* (P23) MMC1_SDCD */
 			J721E_IOPAD(0x25c, PIN_INPUT, 0) /* (R28) MMC1_SDWP */
+		>;
+	};
+
+	sd_pwr_en_pins_default: sd-pwr-en-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
 		>;
 	};
 
