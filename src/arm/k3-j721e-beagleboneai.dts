@@ -158,10 +158,12 @@
 
 	dp_pwr_3v3: fixedregulator-dp-prw {
 		compatible = "regulator-fixed";
+		pinctrl-names = "default";
+		pinctrl-0 = <&dp0_3v3_en_pins_default>;
 		regulator-name = "dp-pwr";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		gpio = <&exp4 0 0>;	/* P0 - DP0_PWR_SW_EN */
+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
 
 		/* Always on for now, until dp-connector driver can handle this */
@@ -234,9 +236,15 @@
 		>;
 	};
 
+	dp0_3v3_en_pins_default:dp0-3v3-en-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0xc8, PIN_INPUT, 7) /* (AE26) PRG0_PRU0_GPO6.GPIO0_49 */
+		>;
+	};
+
 	dp0_pins_default: dp0-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* (Y4) SPI0_CS1.DP0_HPD */
 		>;
 	};
 
