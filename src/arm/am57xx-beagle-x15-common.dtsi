@@ -638,6 +638,10 @@
 	memory-region = <&dsp2_memory_region>;
 };
 
+&bb2d {
+	status = "okay";
+};
+
 &pruss1_mdio {
 	status = "disabled";
 };
