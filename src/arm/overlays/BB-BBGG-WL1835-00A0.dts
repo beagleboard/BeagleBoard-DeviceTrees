@@ -41,6 +41,8 @@
 	};
 
 	leds {
+		pinctrl-0 = <&user_leds_s0 &extra_led_pins>;
+
 		led6 {
 			label = "beaglebone:green:usr4";
 			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
@@ -71,12 +73,25 @@
 		>;
 	};
 
+	uart2_grove_pins: pinmux_uart2_grove_pins {
+		pinctrl-single,pins = <
+			AM33XX_IOPAD(0x90c, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+			AM33XX_IOPAD(0x910, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+		>;
+	};
+
 	uart3_pins: pinmux_uart3_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT_PULLUP, MUX_MODE1)	/* gmii1_rxd3.uart3_rxd */
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD2, PIN_OUTPUT_PULLDOWN, MUX_MODE1)	/* gmii1_rxd2.uart3_txd */
 			AM33XX_PADCONF(AM335X_PIN_MDIO, PIN_INPUT, MUX_MODE3)		/* mdio_data.uart3_ctsn */
 			AM33XX_PADCONF(AM335X_PIN_MDC, PIN_OUTPUT_PULLDOWN, MUX_MODE3)	/* mdio_clk.uart3_rtsn */
+		>;
+	};
+
+	extra_led_pins: pinmux_extra_led_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_OUTPUT, MUX_MODE7)	/* WL_Active_LED / USR4 */
 		>;
 	};
 
@@ -96,16 +111,6 @@
 	};
 };
 
-&i2c0 {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	extrtc: rtc@68 {
-		compatible = "dallas,ds1340";
-		reg = <0x68>;
-	};
-};
-
 &mac {
 	status = "disabled";
 };
@@ -119,7 +124,6 @@
 	bus-width = <4>;
 	non-removable;
 	cap-power-off-card;
-	ti,needs-special-hs-handling;
 	keep-power-in-suspend;
 	pinctrl-names = "default";
 	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
@@ -134,6 +138,12 @@
 	};
 };
 
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart2_grove_pins>;
+	status = "okay";
+};
+
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart3_pins &bt_pins>;
@@ -142,6 +152,35 @@
 	bluetooth {
 		compatible = "ti,wl1835-st";
 		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&i2c0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	extrtc: rtc@68 {
+		compatible = "dallas,ds1340";
+		reg = <0x68>;
+	};
+};
+
+// (K16) gmii1_txd1.gpio0[21]
+&gpio0 {
+	usb-reset-hog {
+		gpio-hog;
+		gpios = <21 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb_reset";
+	};
+};
+
+&gpio3 {
+	ls-buf-en-hog {
+		gpio-hog;
+		gpios = <10 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "LS_BUF_EN";
 	};
 };
 
@@ -160,23 +199,5 @@
 			compatible = "usb424,ec00";
 			reg = <1>;
 		};
-	};
-};
-
-&gpio0 {
-	usb-reset-hog {
-		gpio-hog;
-		gpios = <21 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "usb_reset";
-	};
-};
-
-&gpio3 {
-	ls-buf-en-hog {
-		gpio-hog;
-		gpios = <10 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "LS_BUF_EN";
 	};
 };
