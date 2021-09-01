@@ -23,6 +23,11 @@
 	model = "SeeedStudio BeagleBone Green Gateway";
 	compatible = "ti,am335x-bone-green-gateway", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
+	aliases {
+		rtc0 = &extrtc;
+		rtc1 = "/ocp/rtc@44e3e000";
+	};
+
 	wlan_en_reg: fixedregulator@2 {
 		compatible = "regulator-fixed";
 		regulator-name = "wlan-en-regulator";
@@ -83,6 +88,22 @@
 			AM33XX_IOPAD(0x940, PIN_OUTPUT | MUX_MODE7)		/* gmii1_rxd0.gpio2[21] WL_Active_LED*/
 		>;
 	};
+
+	usbhost_pins: pinmux_usbhost_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_TXD1, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_txd1.gpio0[21] */
+		>;
+	};
+};
+
+&i2c0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	extrtc: rtc@68 {
+		compatible = "dallas,ds1340";
+		reg = <0x68>;
+	};
 };
 
 &mac {
@@ -121,6 +142,33 @@
 	bluetooth {
 		compatible = "ti,wl1835-st";
 		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&usb1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	hub@1 {
+		compatible = "usb424,9512";
+		reg = <1>;
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		ethernet: ethernet@1 {
+			compatible = "usb424,ec00";
+			reg = <1>;
+		};
+	};
+};
+
+&gpio0 {
+	usb-reset-hog {
+		gpio-hog;
+		gpios = <21 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb_reset";
 	};
 };
 
