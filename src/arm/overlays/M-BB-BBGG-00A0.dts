@@ -1,0 +1,82 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		M-BB-BBGG-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+&{/} {
+	model = "SeeedStudio BeagleBone Green Gateway";
+	compatible = "ti,am335x-bone-green-gateway", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+
+	aliases {
+		rtc0 = &extrtc;
+		rtc1 = "/ocp/rtc@44e3e000";
+	};
+};
+
+&am33xx_pinmux {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usbhost_pins>;
+
+	usbhost_pins: pinmux_usbhost_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_TXD1, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_txd1.gpio0[21] */
+		>;
+	};
+};
+
+&mac {
+	status = "disabled";
+};
+
+&i2c0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	extrtc: rtc@68 {
+		compatible = "dallas,ds1340";
+		reg = <0x68>;
+	};
+};
+
+&gpio0 {
+	usb-reset-hog {
+		gpio-hog;
+		gpios = <21 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb_reset";
+	};
+};
+
+&usb1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	hub@1 {
+		compatible = "usb424,9512";
+		reg = <1>;
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		ethernet: ethernet@1 {
+			compatible = "usb424,ec00";
+			reg = <1>;
+		};
+	};
+};
