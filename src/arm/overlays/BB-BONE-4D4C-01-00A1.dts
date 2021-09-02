@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
  * https://lorforlinux.github.io/GSoC2020_BeagleBoard.org/
@@ -10,18 +11,14 @@
  *
  * Based on older BB-BONE-4D4C-01-00A1.dts from TI for kernel < 4.14
  * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  */
- 
+
 /dts-v1/;
 /plugin/;
- 
+
 &{/chosen} {
 	overlays {
-		BB-BONE-4D4C-01-00A1 = __TIMESTAMP__;
+		BB-BONE-4D4C-01-00A1.kernel = __TIMESTAMP__;
 	};
 };
  

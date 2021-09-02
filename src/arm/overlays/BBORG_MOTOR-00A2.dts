@@ -21,7 +21,7 @@
  */
 &{/chosen} {
 	overlays {
-		BBORG_MOTOR-00A2 = __TIMESTAMP__;
+		BBORG_MOTOR-00A2.kernel = __TIMESTAMP__;
 	};
 };
 
