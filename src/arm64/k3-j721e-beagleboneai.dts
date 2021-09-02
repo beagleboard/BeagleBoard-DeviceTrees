@@ -37,34 +37,34 @@
 		pinctrl-0 = <&led_pins_default>;
 
 		usr_led0: usr_led0 {
-			label = "usr_led0";
+			label = "beaglebone:green:usr0";
 			default-state = "keep";
-			linux,default-trigger = "mmc0";
+			linux,default-trigger = "heartbeat";
 			gpios = <&main_gpio0 96 GPIO_ACTIVE_HIGH>;
 		};
 
 		usr_led1: usr_led1 {
-			label = "usr_led1";
+			label = "beaglebone:green:usr1";
 			default-state = "keep";
-			linux,default-trigger = "mmc1";
+			linux,default-trigger = "mmc0";
 			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
 		};
 
 		usr_led2: usr_led2 {
-			label = "usr_led2";
-			linux,default-trigger = "default-off";
+			label = "beaglebone:green:usr2";
+			linux,default-trigger = "cpu";
 			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
 		};
 
 		usr_led3: usr_led3 {
-			label = "usr_led3";
-			linux,default-trigger = "default-off";
+			label = "beaglebone:green:usr3";
+			linux,default-trigger = "mmc1";
 			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
 		};
 
 		usr_led4: usr_led4 {
-			label = "usr_led4";
-			linux,default-trigger = "default-off";
+			label = "beaglebone:green:usr4";
+			linux,default-trigger = "netdev";
 			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
 		};
 	};
