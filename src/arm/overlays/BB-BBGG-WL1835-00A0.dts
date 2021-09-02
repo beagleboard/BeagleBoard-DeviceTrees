@@ -56,6 +56,54 @@
 	};
 };
 
+&mac {
+	status = "disabled";
+};
+
+&mmc3 {
+	dmas = <&edma_xbar 12 0 1
+		&edma_xbar 13 0 2>;
+	dma-names = "tx", "rx";
+	status = "okay";
+	vmmc-supply = <&wlan_en_reg>;
+	bus-width = <4>;
+	non-removable;
+	cap-power-off-card;
+	ti,needs-special-hs-handling;
+	keep-power-in-suspend;
+	pinctrl-names = "default";
+	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+	wlcore: wlcore@2 {
+		compatible = "ti,wl1835";
+		reg = <2>;
+		interrupt-parent = <&gpio0>;
+		interrupts = <29 IRQ_TYPE_EDGE_RISING>;
+	};
+};
+
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart3_pins &bt_pins>;
+	status = "okay";
+
+	bluetooth {
+		compatible = "ti,wl1835-st";
+		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&gpio3 {
+	ls-buf-en-hog {
+		gpio-hog;
+		gpios = <10 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "LS_BUF_EN";
+	};
+};
+
 / {
 	fragment@0 {
 		target-path="/";
@@ -82,66 +130,6 @@
 					linux,default-trigger = "netdev";
 					default-state = "off";
 				};
-			};
-		};
-	};
-
-	fragment@2 {
-		target = <&mac>;
-		__overlay__ {
-			status = "disabled";
-		};
-	};
-
-	fragment@3 {
-		target = <&mmc3>;
-		__overlay__ {
-			dmas = <&edma_xbar 12 0 1
-				&edma_xbar 13 0 2>;
-			dma-names = "tx", "rx";
-			status = "okay";
-			vmmc-supply = <&wlan_en_reg>;
-			bus-width = <4>;
-			non-removable;
-			cap-power-off-card;
-			ti,needs-special-hs-handling;
-			keep-power-in-suspend;
-			pinctrl-names = "default";
-			pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
-
-			#address-cells = <1>;
-			#size-cells = <0>;
-			wlcore: wlcore@2 {
-				compatible = "ti,wl1835";
-				reg = <2>;
-				interrupt-parent = <&gpio0>;
-				interrupts = <29 IRQ_TYPE_EDGE_RISING>;
-			};
-		};
-	};
-
-	fragment@4 {
-		target = <&uart3>;
-		__overlay__ {
-			pinctrl-names = "default";
-			pinctrl-0 = <&uart3_pins &bt_pins>;
-			status = "okay";
-
-			bluetooth {
-				compatible = "ti,wl1835-st";
-				enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-			};
-		};
-	};
-
-	fragment@7 {
-		target = <&gpio3>;
-		__overlay__ {
-			ls_buf_en {
-				gpio-hog;
-				gpios = <10 GPIO_ACTIVE_HIGH>;
-				output-high;
-				line-name = "LS_BUF_EN";
 			};
 		};
 	};

@@ -30,6 +30,15 @@
 	};
 };
 
+&gpio0 {
+	usb-reset-hog {
+		gpio-hog;
+		gpios = <21 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb_reset";
+	};
+};
+
 / {
 	fragment@0 {
 		target-path="/";
@@ -44,31 +53,12 @@
 		};
 	};
 
-	fragment@2 {
-		target = <&mac>;
-		__overlay__ {
-			status = "disabled";
-		};
-	};
-
 	fragment@5 {
 		target = <&i2c0>;
 		__overlay__ {
 			extrtc: rtc@68 {
 				compatible = "dallas,ds1340";
 				reg = <0x68>;
-			};
-		};
-	};
-
-	fragment@6 {
-		target = <&gpio0>;
-		__overlay__ {
-			usb_reset {
-				gpio-hog;
-				gpios = <21 GPIO_ACTIVE_HIGH>;
-				output-high;
-				line-name = "usb_reset";
 			};
 		};
 	};
