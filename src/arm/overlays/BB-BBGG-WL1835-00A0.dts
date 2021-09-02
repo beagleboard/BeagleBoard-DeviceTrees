@@ -20,6 +20,9 @@
 };
 
 &am33xx_pinmux {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usbhost_pins>;
+
 	bt_pins: pinmux_bt_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_TXD0, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_txd0.gpio0_28 - BT_EN */
@@ -37,6 +40,13 @@
 		>;
 	};
 
+	uart2_grove_pins: pinmux_uart2_grove_pins {
+		pinctrl-single,pins = <
+			AM33XX_IOPAD(0x90c, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+			AM33XX_IOPAD(0x910, PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE6)
+		>;
+	};
+
 	uart3_pins: pinmux_uart3_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT_PULLUP, MUX_MODE1)	/* gmii1_rxd3.uart3_rxd */
@@ -46,12 +56,18 @@
 		>;
 	};
 
+	usbhost_pins: pinmux_usbhost_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MII1_TXD1, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_txd1.gpio0[21] */
+		>;
+	};
+
 	wl18xx_pins: pinmux_wl18xx_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_MII1_TX_CLK, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* gmii1_txclk.gpio3_9 WL_EN */
 			AM33XX_PADCONF(AM335X_PIN_RMII1_REF_CLK, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* rmii1_refclk.gpio0_29 WL_IRQ */
 			AM33XX_PADCONF(AM335X_PIN_MII1_RX_CLK, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_rxclk.gpio3_10 LS_BUF_EN */
-			AM33XX_IOPAD(0x940, PIN_OUTPUT | MUX_MODE7)		/* gmii1_rxd0.gpio2[21] WL_Active_LED*/
+			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_OUTPUT, MUX_MODE7)		/* gmii1_rxd0.gpio2[21] WL_Active_LED*/
 		>;
 	};
 };
@@ -84,6 +100,12 @@
 	};
 };
 
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart2_grove_pins>;
+	status = "okay";
+};
+
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart3_pins &bt_pins>;
@@ -92,6 +114,15 @@
 	bluetooth {
 		compatible = "ti,wl1835-st";
 		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&gpio0 {
+	usb-reset-hog {
+		gpio-hog;
+		gpios = <21 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb_reset";
 	};
 };
 

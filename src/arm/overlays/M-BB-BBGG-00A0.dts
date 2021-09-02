@@ -19,26 +19,6 @@
 	};
 };
 
-&am33xx_pinmux {
-	pinctrl-names = "default";
-	pinctrl-0 = <&usbhost_pins>;
-
-	usbhost_pins: pinmux_usbhost_pins {
-		pinctrl-single,pins = <
-			AM33XX_IOPAD(0x924, PIN_OUTPUT_PULLUP | MUX_MODE7) /* gmii1_txd1.gpio0[21] */
-		>;
-	};
-};
-
-&gpio0 {
-	usb-reset-hog {
-		gpio-hog;
-		gpios = <21 GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "usb_reset";
-	};
-};
-
 / {
 	fragment@0 {
 		target-path="/";
