@@ -158,6 +158,7 @@
 	};
 };
 
+// (K16) gmii1_txd1.gpio0[21]
 &gpio0 {
 	usb-reset-hog {
 		gpio-hog;
@@ -173,5 +174,23 @@
 		gpios = <10 GPIO_ACTIVE_HIGH>;
 		output-high;
 		line-name = "LS_BUF_EN";
+	};
+};
+
+&usb1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	hub@1 {
+		compatible = "usb424,9512";
+		reg = <1>;
+
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		ethernet: ethernet@1 {
+			compatible = "usb424,ec00";
+			reg = <1>;
+		};
 	};
 };

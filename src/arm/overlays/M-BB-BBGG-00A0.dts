@@ -19,32 +19,6 @@
 	};
 };
 
-/ {
-	fragment@0 {
-		target-path="/";
-		__overlay__ {
-			model = "SeeedStudio BeagleBone Green Gateway";
-			compatible = "ti,am335x-bone-green-gateway", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
-		};
-	};
-
-	fragment@8 {
-		target = <&usb1>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			hub@1 {
-				compatible = "usb424,9512";
-				reg = <1>;
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-				ethernet: ethernet@1 {
-					compatible = "usb424,ec00";
-					reg = <1>;
-				};
-			};
-		};
-	};
+&{/} {
+	model = "SeeedStudio BeagleBone Green Gateway";
 };
