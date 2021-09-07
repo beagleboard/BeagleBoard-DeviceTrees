@@ -4,24 +4,28 @@
  */
 
 /dts-v1/;
+/plugin/;
 
-#include "am33xx.dtsi"
-#include "am335x-bone-common.dtsi"
-#include "am335x-bonegreen-common.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
-/ {
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-BBGG-WL1835-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+&{/} {
 	model = "SeeedStudio BeagleBone Green Gateway";
 	compatible = "ti,am335x-bone-green-gateway", "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 
 	aliases {
 		rtc0 = &extrtc;
-		rtc1 = &rtc;
-	};
-
-	chosen {
-		base_dtb = "am335x-bonegreen-gateway.dts";
-		base_dtb_timestamp = __TIMESTAMP__;
+		rtc1 = "/ocp/rtc@44e3e000";
 	};
 
 	wlan_en_reg: fixedregulator@2 {
@@ -76,21 +80,6 @@
 			linux,default-trigger = "netdev";
 			default-state = "off";
 		};
-	};
-};
-
-&cpu0_opp_table {
-	/*
-	 * Octavo Systems:
-	 * The EFUSE_SMA register is not programmed for any of the AM335x wafers
-	 * we get and we are not programming them during our production test.
-	 * Therefore, from a DEVICE_ID revision point of view, the silicon looks
-	 * like it is Revision 2.1.  However, from an EFUSE_SMA point of view for
-	 * the HW OPP table, the silicon looks like it is Revision 1.0 (ie the
-	 * EFUSE_SMA register reads as all zeros).
-	 */
-	oppnitro-1000000000 {
-		opp-supported-hw = <0x06 0x0100>;
 	};
 };
 
