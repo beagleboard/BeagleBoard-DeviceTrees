@@ -708,3 +708,7 @@
 	status = "okay";
 	memory-region = <&dsp2_memory_region>;
 };
+
+&bb2d {
+	status = "okay";
+};
