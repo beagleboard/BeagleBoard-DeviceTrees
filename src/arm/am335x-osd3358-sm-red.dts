@@ -30,10 +30,6 @@
 	regulator-always-on;
 };
 
-&mmc1 {
-	vmmc-supply = <&vmmcsd_fixed>;
-};
-
 &mmc2 {
 	vmmc-supply = <&vmmcsd_fixed>;
 	pinctrl-names = "default";
@@ -163,10 +159,6 @@
 		compatible = "bosch,bmp280";
 		reg = <0x76>;
 	};
-};
-
-&rtc {
-	system-power-controller;
 };
 
 &mcasp0 {
@@ -436,6 +428,7 @@
 
 &mmc1 {
 	status = "okay";
+	vmmc-supply = <&vmmcsd_fixed>;
 	bus-width = <0x4>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&mmc1_pins>;
@@ -443,6 +436,7 @@
 };
 
 &rtc {
+	system-power-controller;
 	clocks = <&clk_32768_ck>, <&l4_per_clkctrl AM3_CLKDIV32K_CLKCTRL 0>;
 	clock-names = "ext-clk", "int-clk";
 };
