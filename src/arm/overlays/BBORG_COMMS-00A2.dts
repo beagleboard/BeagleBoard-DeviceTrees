@@ -20,6 +20,16 @@
 	};
 };
 
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_24_pinmux { status = "disabled"; };	/* P9_24: uart1_txd.d_can1_rx */
+	P9_26_pinmux { status = "disabled"; };	/* P9_26: uart1_rxd.d_can1_tx */
+	P9_13_pinmux { status = "disabled"; };	/* P9_13: gpmc_wpn.uart4_txd_mux2 */
+	P9_11_pinmux { status = "disabled"; };	/* P9_11: gpmc_wait0.uart4_rxd_mux2 */
+};
+
 &am33xx_pinmux {
 	bborg_comms_can_pins: pinmux_comms_can_pins {
 		pinctrl-single,pins = <
