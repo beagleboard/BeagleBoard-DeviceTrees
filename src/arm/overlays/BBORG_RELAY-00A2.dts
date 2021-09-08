@@ -19,6 +19,16 @@
 	};
 };
 
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_41_pinmux { status = "disabled"; };	/* P9_41: gpmc_a0.gpio0_20 */
+	P9_42_pinmux { status = "disabled"; };	/* P9_42: gpmc_a1.gpio0_07 */
+	P9_30_pinmux { status = "disabled"; };	/* P9_30: gpmc_be1n.gpio3_16 */
+	P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr.gpio3_19 */
+};
+
 &am33xx_pinmux {
 	bb_gpio_relay_pins: pinmux_bb_gpio_relay_pins {
 		pinctrl-single,pins = <
