@@ -19,6 +19,45 @@
 	};
 };
 
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_12_pinmux { status = "disabled"; };	/* P9_12: gpmc_ben1.gpio1_28, INPUT | PULLDIS | MODE7 */
+
+	P9_14_pinmux { status = "disabled"; };	/* P9_14: gpmc_a2.ehrpwm1a */
+
+	P9_27_pinmux { status = "disabled"; };	/* P9_27: mcasp0_fsr.gpio3_19 */
+
+	P8_45_pinmux { status = "disabled"; };	/* P8_45: lcd_data0.lcd_data0 */
+	P8_46_pinmux { status = "disabled"; };	/* P8_46: lcd_data1.lcd_data1 */
+	P8_43_pinmux { status = "disabled"; };	/* P8_43: lcd_data2.lcd_data2 */
+	P8_44_pinmux { status = "disabled"; };	/* P8_44: lcd_data3.lcd_data3 */
+	P8_41_pinmux { status = "disabled"; };	/* P8_41: lcd_data4.lcd_data4 */
+	P8_42_pinmux { status = "disabled"; };	/* P8_42: lcd_data5.lcd_data5 */
+	P8_39_pinmux { status = "disabled"; };	/* P8_39: lcd_data6.lcd_data6 */
+	P8_40_pinmux { status = "disabled"; };	/* P8_40: lcd_data7.lcd_data7 */
+	P8_37_pinmux { status = "disabled"; };	/* P8_37: lcd_data8.lcd_data8 */
+	P8_38_pinmux { status = "disabled"; };	/* P8_38: lcd_data9.lcd_data9 */
+	P8_36_pinmux { status = "disabled"; };	/* P8_36: lcd_data10.lcd_data10 */
+	P8_34_pinmux { status = "disabled"; };	/* P8_34: lcd_data11.lcd_data11 */
+	P8_35_pinmux { status = "disabled"; };	/* P8_35: lcd_data12.lcd_data12 */
+	P8_33_pinmux { status = "disabled"; };	/* P8_33: lcd_data13.lcd_data13 */
+	P8_31_pinmux { status = "disabled"; };	/* P8_31: lcd_data14.lcd_data14 */
+	P8_32_pinmux { status = "disabled"; };	/* P8_32: lcd_data15.lcd_data15 */
+
+	P8_27_pinmux { status = "disabled"; };	/* P8_27: lcd_vsync.lcd_vsync */
+	P8_29_pinmux { status = "disabled"; };	/* P8_29: lcd_hsync.lcd_hsync */
+	P8_28_pinmux { status = "disabled"; };	/* P8_28: lcd_pclk.lcd_pclk */
+	P8_30_pinmux { status = "disabled"; };	/* P8_30: lcd_ac_bias_en.lcd_ac_bias_en */
+
+	P9_15_pinmux { status = "disabled"; };	/* P9_15: gpmc_a0.gpio1_16 */
+	P9_23_pinmux { status = "disabled"; };	/* P9_23: gpmc_a1.gpio1_17 */
+	P9_16_pinmux { status = "disabled"; };	/* P9_16: gpmc_a3.gpio1_19 */
+	P9_30_pinmux { status = "disabled"; };	/* P9_30: mcasp0_axr0.gpio3_16 */
+	P9_24_pinmux { status = "disabled"; };	/* P9_24: uart1_txd.gpio0_15 */
+};
+
 &am33xx_pinmux {
 	bb_lcd_led_pins: pinmux_bb_lcd_led_pins {
 		pinctrl-single,pins = <
