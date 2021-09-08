@@ -7,6 +7,7 @@
 /plugin/;
 
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 
 /*
@@ -22,27 +23,30 @@
  * Free up the pins used by the cape from the pinmux helpers.
  */
 &ocp {
+	P8_45_pinmux { status = "disabled"; };	/* lcd: lcd_data0 */
+	P8_46_pinmux { status = "disabled"; };	/* lcd: lcd_data1 */
+	P8_43_pinmux { status = "disabled"; };	/* lcd: lcd_data2 */
+	P8_44_pinmux { status = "disabled"; };	/* lcd: lcd_data3 */
+	P8_41_pinmux { status = "disabled"; };	/* lcd: lcd_data4 */
+	P8_42_pinmux { status = "disabled"; };	/* lcd: lcd_data5 */
+	P8_39_pinmux { status = "disabled"; };	/* lcd: lcd_data6 */
+	P8_40_pinmux { status = "disabled"; };	/* lcd: lcd_data7 */
+	P8_37_pinmux { status = "disabled"; };	/* lcd: lcd_data8 */
+	P8_38_pinmux { status = "disabled"; };	/* lcd: lcd_data9 */
+	P8_36_pinmux { status = "disabled"; };	/* lcd: lcd_data10 */
+	P8_34_pinmux { status = "disabled"; };	/* lcd: lcd_data11 */
+	P8_35_pinmux { status = "disabled"; };	/* lcd: lcd_data12 */
+	P8_33_pinmux { status = "disabled"; };	/* lcd: lcd_data13 */
+	P8_31_pinmux { status = "disabled"; };	/* lcd: lcd_data14 */
+	P8_32_pinmux { status = "disabled"; };	/* lcd: lcd_data15 */
+
+	P8_27_pinmux { status = "disabled"; };	/* lcd: lcd_vsync */
+	P8_29_pinmux { status = "disabled"; };	/* lcd: lcd_hsync */
+	P8_28_pinmux { status = "disabled"; };	/* lcd: lcd_pclk */
+	P8_30_pinmux { status = "disabled"; };	/* lcd: lcd_ac_bias_en */
+
 	P9_28_pinmux { status = "disabled"; };	/* pwm: eCAP2_in_PWM2_out */
-	P8_45_pinmux { status = "disabled"; };	/* lcd_data0 */
-	P8_46_pinmux { status = "disabled"; };	/* lcd_data1 */
-	P8_43_pinmux { status = "disabled"; };	/* lcd_data2 */
-	P8_44_pinmux { status = "disabled"; };	/* lcd_data3 */
-	P8_41_pinmux { status = "disabled"; };	/* lcd_data4 */
-	P8_42_pinmux { status = "disabled"; };	/* lcd_data5 */
-	P8_39_pinmux { status = "disabled"; };	/* lcd_data6 */
-	P8_40_pinmux { status = "disabled"; };	/* lcd_data7 */
-	P8_37_pinmux { status = "disabled"; };	/* lcd_data8 */
-	P8_38_pinmux { status = "disabled"; };	/* lcd_data9 */
-	P8_36_pinmux { status = "disabled"; };	/* lcd_data10 */
-	P8_34_pinmux { status = "disabled"; };	/* lcd_data11 */
-	P8_35_pinmux { status = "disabled"; };	/* lcd_data12 */
-	P8_33_pinmux { status = "disabled"; };	/* lcd_data13 */
-	P8_31_pinmux { status = "disabled"; };	/* lcd_data14 */
-	P8_32_pinmux { status = "disabled"; };	/* lcd_data15 */
-	P8_27_pinmux { status = "disabled"; };	/* lcd_vsync */
-	P8_29_pinmux { status = "disabled"; };	/* lcd_hsync */
-	P8_28_pinmux { status = "disabled"; };	/* lcd_pclk */
-	P8_30_pinmux { status = "disabled"; };	/* lcd_ac_bias_en */
+
 	P9_29_pinmux { status = "disabled"; };	/* ft5336: gpio3_15 */
 	P9_31_pinmux { status = "disabled"; };	/* ft5336: gpio3_14 */
 };
@@ -72,6 +76,7 @@
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_OUTPUT, MUX_MODE0)
+
 			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT, MUX_MODE0)
 			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE0)
@@ -99,6 +104,15 @@
 
 &lcdc {
 	status = "okay";
+
+	blue-and-red-wiring = "straight";
+
+	//FIXME - LCD doesn't init...
+	//port {
+	//	lcdc_0: endpoint@0 {
+	//		remote-endpoint = <&panel_0>;
+	//	};
+	//};
 };
 
 &i2c2 {
@@ -113,10 +127,9 @@
 	edt-ft5336@38 {
 		status = "okay";
 		compatible = "edt,edt-ft5336", "edt,edt-ft5306", "edt,edt-ft5x06";
+		reg = <0x38>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&edt_ft5336_ts_pins>;
-
-		reg = <0x38>;
 		interrupt-parent = <&gpio3>;
 		interrupts = <15 0>;
 		reset-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
@@ -128,7 +141,7 @@
 };
 
 &{/} {
-	backlight {
+	backlight: backlight {
 		status = "okay";
 		compatible = "pwm-backlight";
 		pwms = <&ecap2 0 500000 0>;
@@ -153,6 +166,15 @@
 		compatible = "ti,tilcdc,panel";
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_lcd_lcd_pins>;
+		backlight = <&backlight>;
+
+		//FIXME - LCD doesn't init...
+		//port {
+		//	panel_0: endpoint@0 {
+		//		remote-endpoint = <&lcdc_0>;
+		//	};
+		//};
+
 		panel-info {
 			ac-bias           = <255>;
 			ac-bias-intrpt    = <0>;
@@ -181,7 +203,7 @@
 				vfront-porch = <8>;
 				vsync-len = <1>;
 				hsync-active = <0>;
-				vsync-active  = <0>;
+				vsync-active = <0>;
 			};
 		};
 	};
