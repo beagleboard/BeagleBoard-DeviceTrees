@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
+
 /dts-v1/;
 
 #include "am33xx.dtsi"
