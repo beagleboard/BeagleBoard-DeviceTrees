@@ -863,40 +863,6 @@
 	status = "disabled";
 };
 
-&cmn_refclk1 {
-	clock-frequency = <100000000>;
-};
-
-&wiz0_pll1_refclk {
-	assigned-clocks = <&wiz0_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz0_refclk_dig {
-	assigned-clocks = <&wiz0_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz1_pll1_refclk {
-	assigned-clocks = <&wiz1_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz1_refclk_dig {
-	assigned-clocks = <&wiz1_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz2_pll1_refclk {
-	assigned-clocks = <&wiz2_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz2_refclk_dig {
-	assigned-clocks = <&wiz2_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
 &serdes0 {
 	serdes0_pcie_link: phy@0 {
 		reg = <0>;
