@@ -57,13 +57,13 @@
 
 		usr_led3: usr_led3 {
 			label = "usr_led3";
-			linux,default-trigger = "default-off";
+			linux,default-trigger = "panic-indicator";
 			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
 		};
 
 		usr_led4: usr_led4 {
 			label = "usr_led4";
-			linux,default-trigger = "default-off";
+			linux,default-trigger = "heartbeat";
 			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
 		};
 	};
