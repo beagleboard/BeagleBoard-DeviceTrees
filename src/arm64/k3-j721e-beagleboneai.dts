@@ -361,8 +361,6 @@
 			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
 			J721E_IOPAD(0x140, PIN_INPUT, 7) /* (AG29) PRG0_PRU1_GPO16.GPIO0_79 */
 			J721E_IOPAD(0x144, PIN_INPUT, 7) /* (Y25) PRG0_PRU1_GPO17.GPIO0_80 */
-
-			J721E_IOPAD(0x5c, PIN_INPUT, 7) /* (AG23) PRG1_PRU1_GPO1.GPIO0_22 */
 		>;
 	};
 
@@ -934,7 +932,6 @@
 };
 
 &pcie1_rc {
-	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <2>;
