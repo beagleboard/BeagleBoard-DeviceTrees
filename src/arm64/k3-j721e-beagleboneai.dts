@@ -420,6 +420,12 @@
 			J721E_IOPAD(0x4c, PIN_INPUT, 7) /* (AJ21) PRG1_PRU0_GPO17.GPIO0_18 */
 		>;
 	};
+
+	pcie1_rst_pins_default: pcie1-rst-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x5c, PIN_INPUT, 7) /* (AG23) PRG1_PRU1_GPO1.GPIO0_22 */
+		>;
+	};
 };
 
 &wkup_pmx0 {
@@ -898,9 +904,12 @@
 };
 
 &pcie1_rc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pcie1_rst_pins_default>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <2>;
+	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
 };
 
 &pcie2_rc {
