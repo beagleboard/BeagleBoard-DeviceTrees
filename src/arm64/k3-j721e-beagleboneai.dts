@@ -9,7 +9,6 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/net/ti-dp83867.h>
-#include <dt-bindings/phy/phy-cadence.h>
 
 / {
 	chosen {
@@ -52,7 +51,8 @@
 
 		usr_led2: usr_led2 {
 			label = "beaglebone:green:usr2";
-			linux,default-trigger = "cpu";
+			//linux,default-trigger = "cpu";
+			linux,default-trigger = "panic-indicator";
 			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
 		};
 
@@ -278,6 +278,16 @@
 		>;
 	};
 
+	main_spi6_pins_default: main-spi6-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x74, PIN_OUTPUT, 4) /* (AC21) PRG1_PRU1_GPO7.SPI6_CS0 */
+			J721E_IOPAD(0x28, PIN_OUTPUT, 4) /* (AG20) PRG1_PRU0_GPO9.SPI6_CS1 */
+			J721E_IOPAD(0x9c, PIN_OUTPUT, 4) /* (AC22) PRG1_PRU1_GPO17.SPI6_CLK */
+			J721E_IOPAD(0xa0, PIN_OUTPUT, 4) /* (AJ22) PRG1_PRU1_GPO18.SPI6_D0 */
+			J721E_IOPAD(0xa4, PIN_INPUT, 4) /* (AH22) PRG1_PRU1_GPO19.SPI6_D1 */
+		>;
+	};
+
 	csi0_gpio_pins_default: csi0-gpio-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x19c, PIN_INPUT_PULLDOWN, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
@@ -364,9 +374,9 @@
 			J721E_IOPAD(0xc0, PIN_INPUT, 7) /* (AD25) PRG0_PRU0_GPO4.GPIO0_47 */
 			J721E_IOPAD(0x17c, PIN_INPUT, 7) /* (U24) RGMII5_RD2.GPIO0_94 */
 
-			J721E_IOPAD(0x74, PIN_INPUT, 7) /* (AC21) PRG1_PRU1_GPO7.GPIO0_28 */
+/*			J721E_IOPAD(0x74, PIN_INPUT, 7)*/ /* (AC21) PRG1_PRU1_GPO7.GPIO0_28 */
 			J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-			J721E_IOPAD(0xa4, PIN_INPUT, 7) /* (AH22) PRG1_PRU1_GPO19.GPIO0_40 */
+/*			J721E_IOPAD(0xa4, PIN_INPUT, 7)*/ /* (AH22) PRG1_PRU1_GPO19.GPIO0_40 */
 			J721E_IOPAD(0x1e4, PIN_INPUT, 7) /* (Y2) SPI1_D1.GPIO0_120 */
 
 			J721E_IOPAD(0x208, PIN_INPUT, 7) /* (W5) MCAN0_RX.GPIO1_1 */
@@ -374,12 +384,12 @@
 			J721E_IOPAD(0x20c, PIN_INPUT, 7) /* (W6) MCAN0_TX.GPIO1_2 */
 			J721E_IOPAD(0x138, PIN_INPUT, 7) /* (AE25) PRG0_PRU1_GPO14.GPIO0_77 */
 
-			J721E_IOPAD(0xa0, PIN_INPUT, 7) /* (AJ22) PRG1_PRU1_GPO18.GPIO0_39 */
+/*			J721E_IOPAD(0xa0, PIN_INPUT, 7)*/ /* (AJ22) PRG1_PRU1_GPO18.GPIO0_39 */
 			J721E_IOPAD(0x16c, PIN_INPUT, 7) /* (U28) RGMII5_TD0.GPIO0_90 */
-			J721E_IOPAD(0x9c, PIN_INPUT, 7) /* (AC22) PRG1_PRU1_GPO17.GPIO0_38 */
+/*			J721E_IOPAD(0x9c, PIN_INPUT, 7)*/ /* (AC22) PRG1_PRU1_GPO17.GPIO0_38 */
 			J721E_IOPAD(0x170, PIN_INPUT, 7) /* (U29) RGMII5_TXC.GPIO0_91 */
 
-			J721E_IOPAD(0x28, PIN_INPUT, 7) /* (AG20) PRG1_PRU0_GPO9.GPIO0_10 */
+/*			J721E_IOPAD(0x28, PIN_INPUT, 7)*/ /* (AG20) PRG1_PRU0_GPO9.GPIO0_10 */
 			J721E_IOPAD(0x1e0, PIN_INPUT, 7) /* (Y5) SPI1_D0.GPIO0_119 */
 			J721E_IOPAD(0x34, PIN_INPUT, 7) /* (AJ24) PRG1_PRU0_GPO12.GPIO0_13 */
 
@@ -409,6 +419,12 @@
 			J721E_IOPAD(0x204, PIN_INPUT, 7) /* (AD5) UART1_RTSn.GPIO1_0 */
 			J721E_IOPAD(0x1f0, PIN_INPUT, 7) /* (AC2) UART0_CTSn.GPIO0_123 */
 			J721E_IOPAD(0x4c, PIN_INPUT, 7) /* (AJ21) PRG1_PRU0_GPO17.GPIO0_18 */
+		>;
+	};
+
+	pcie1_rst_pins_default: pcie1-rst-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x5c, PIN_INPUT, 7) /* (AG23) PRG1_PRU1_GPO1.GPIO0_22 */
 		>;
 	};
 };
@@ -707,6 +723,29 @@
 	};
 };
 
+&main_spi6 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_spi6_pins_default>;
+	ti,spi-num-cs = <2>;
+	ti,pindir-d0-out-d1-in;
+
+	spidev0: spidev@0{
+		compatible = "spidev";
+		reg = <0>;	/* CE0 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		spi-max-frequency = <125000000>;
+	};
+
+	spidev1: spidev@1{
+		compatible = "spidev";
+		reg = <1>;	/* CE1 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		spi-max-frequency = <125000000>;
+	};
+};
+
 &main_i2c6 {
 	status = "disabled";
 };
@@ -831,44 +870,7 @@
 	status = "disabled";
 };
 
-&cmn_refclk1 {
-	clock-frequency = <100000000>;
-};
-
-&wiz0_pll1_refclk {
-	assigned-clocks = <&wiz0_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz0_refclk_dig {
-	assigned-clocks = <&wiz0_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz1_pll1_refclk {
-	assigned-clocks = <&wiz1_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz1_refclk_dig {
-	assigned-clocks = <&wiz1_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz2_pll1_refclk {
-	assigned-clocks = <&wiz2_pll1_refclk>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
-&wiz2_refclk_dig {
-	assigned-clocks = <&wiz2_refclk_dig>;
-	assigned-clock-parents = <&cmn_refclk1>;
-};
-
 &serdes0 {
-	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>;
-	assigned-clock-parents = <&wiz0_pll1_refclk>;
-
 	serdes0_pcie_link: phy@0 {
 		reg = <0>;
 		cdns,num-lanes = <1>;
@@ -879,9 +881,6 @@
 };
 
 &serdes1 {
-	assigned-clocks = <&serdes1 CDNS_SIERRA_PLL_CMNLC>;
-	assigned-clock-parents = <&wiz1_pll1_refclk>;
-
 	serdes1_pcie_link: phy@0 {
 		reg = <0>;
 		cdns,num-lanes = <2>;
@@ -892,9 +891,6 @@
 };
 
 &serdes2 {
-	assigned-clocks = <&serdes2 CDNS_SIERRA_PLL_CMNLC>;
-	assigned-clock-parents = <&wiz2_pll1_refclk>;
-
 	serdes2_pcie_link: phy@0 {
 		reg = <0>;
 		cdns,num-lanes = <2>;
@@ -909,9 +905,12 @@
 };
 
 &pcie1_rc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pcie1_rst_pins_default>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <2>;
+	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
 };
 
 &pcie2_rc {
