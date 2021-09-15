@@ -11,6 +11,10 @@
 #include <dt-bindings/net/ti-dp83867.h>
 
 / {
+
+	model = "BeagleBoard.org BeagleBone AI64";
+	compatible = "beagle,j721e-beagleboneai64", "ti,j721e";
+
 	chosen {
 		stdout-path = "serial2:115200n8";
 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
