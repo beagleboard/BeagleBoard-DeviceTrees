@@ -3,10 +3,19 @@
 dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	AM335X-PRU-RPROC-4-19-TI-00A0.dtbo	\
 	BB-ADC-00A0.dtbo	\
+	BB-BBBW-WL1835-00A0.dtbo	\
 	BB-BBGG-WL1835-00A0.dtbo	\
+	BB-BBGW-WL1835-00A0.dtbo	\
 	BB-BONE-4D4C-01-00A1.dtbo	\
+	BB-BONE-4D5R-01-00A1.dtbo	\
 	BB-BONE-eMMC1-01-00A0.dtbo	\
+	BB-BONE-LCD4-01-00A1.dtbo	\
+	BB-BONE-NH7C-01-A0.dtbo	\
+	BB-CAPE-DISP-CT4-00A0.dtbo	\
 	BB-CTAG-SW-8CH-00A0.dtbo	\
+	BB-HDMI-TDA998x-00A0.dtbo	\
+	BB-SPIDEV0-00A0.dtbo	\
+	BB-SPIDEV1-00A0.dtbo	\
 	BBAI-4D4C-00A1.dtbo	\
 	BBAI-eCAP1.dtbo	\
 	BBAI-eCAP2.dtbo	\
@@ -69,8 +78,9 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BONE-UART5.dtbo	\
 	BW-ICE40Cape-00A0.dtbo	\
 	BW-ICE40Cape-00A0_LKM.dtbo	\
+	M-BB-BBG-00A0.dtbo	\
 	M-BB-BBGG-00A0.dtbo
-	
+
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
 
