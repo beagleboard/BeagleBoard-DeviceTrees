@@ -52,18 +52,6 @@
 		gpio = <&gpio0 26 0>;
 		enable-active-high;
 	};
-
-	leds {
-		pinctrl-names = "default";
-		pinctrl-0 = <&bt_pins>;
-		compatible = "gpio-leds";
-
-		wl18xx_bt_en {
-			label = "wl18xx_bt_en";
-			gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-	};
 };
 
 &am33xx_pinmux {
