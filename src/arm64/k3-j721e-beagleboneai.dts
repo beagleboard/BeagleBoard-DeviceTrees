@@ -688,7 +688,7 @@
 		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
 
 		port {
-			csi2_cam1: endpoint {
+			csi2rx1_cam0: endpoint {
 				remote-endpoint = <&csi2rx1_in_sensor>;
 				clock-lanes = <0>;
 				data-lanes = <1 2>;
@@ -718,7 +718,7 @@
 		reset-gpios = <&main_gpio0 102 GPIO_ACTIVE_LOW>;
 
 		port {
-			csi2_cam0: endpoint {
+			csi2rx0_cam0: endpoint {
 				remote-endpoint = <&csi2rx0_in_sensor>;
 				clock-lanes = <0>;
 				data-lanes = <1 2>;
@@ -1021,7 +1021,7 @@
 
 &csi0_port0 {
 	csi2rx0_in_sensor: endpoint {
-		remote-endpoint = <&csi2_cam0>;
+		remote-endpoint = <&csi2rx0_cam0>;
 		bus-type = <4>; /* CSI2 DPHY. */
 		clock-lanes = <0>;
 		data-lanes = <1 2>;
@@ -1029,12 +1029,7 @@
 };
 
 &csi0_port1 {
-	csi2rx1_in_sensor: endpoint {
-		remote-endpoint = <&csi2_cam1>;
-		bus-type = <4>; /* CSI2 DPHY. */
-		clock-lanes = <0>;
-		data-lanes = <1 2>;
-	};
+	status = "disabled";
 };
 
 &csi0_port2 {
@@ -1046,5 +1041,30 @@
 };
 
 &csi0_port4 {
+	status = "disabled";
+};
+
+&csi1_port0 {
+	csi2rx1_in_sensor: endpoint {
+		remote-endpoint = <&csi2rx1_cam0>;
+		bus-type = <4>; /* CSI2 DPHY. */
+		clock-lanes = <0>;
+		data-lanes = <1 2>;
+	};
+};
+
+&csi1_port1 {
+	status = "disabled";
+};
+
+&csi1_port2 {
+	status = "disabled";
+};
+
+&csi1_port3 {
+	status = "disabled";
+};
+
+&csi1_port4 {
 	status = "disabled";
 };
