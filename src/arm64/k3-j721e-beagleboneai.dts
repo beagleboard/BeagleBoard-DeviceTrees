@@ -635,13 +635,14 @@
 
 &usbss0 {
 	ti,vbus-divider;
+	ti,usb2-only;
 };
 
 &usb0 {
 	dr_mode = "otg";
-	maximum-speed = "super-speed";
-	phys = <&serdes3_usb_link>;
-	phy-names = "cdns3,usb3-phy";
+	maximum-speed = "high-speed";
+	//phys = <&serdes3_usb_link>;
+	//phy-names = "cdns3,usb3-phy";
 };
 
 &usbss1 {
