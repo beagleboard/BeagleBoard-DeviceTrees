@@ -18,7 +18,7 @@
 	chosen {
 		stdout-path = "serial2:115200n8";
 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-		base_dtb = "k3-j721e-beagleboneai.dts";
+		base_dtb = "k3-j721e-beagleboneai64.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
 	};
 
@@ -434,6 +434,13 @@
 };
 
 &wkup_pmx0 {
+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
+			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+		>;
+	};
+
 	mcu_adc0_pins_default: mcu_adc0_pins_default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x130, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN0 */
@@ -665,6 +672,17 @@
 &tscadc1 {
 	adc {
 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+	};
+};
+
+&wkup_i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_i2c0_pins_default>;
+	clock-frequency = <400000>;
+
+	eeprom@50 {
+		compatible = "atmel,24c04";
+		reg = <0x50>;
 	};
 };
 
