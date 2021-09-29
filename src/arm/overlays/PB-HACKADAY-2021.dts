@@ -25,6 +25,8 @@
 &ocp {
 	P1_28_pinmux { status = "disabled"; };
 	P1_26_pinmux { status = "disabled"; };
+	P2_05_pinmux { status = "disabled"; };
+	P2_07_pinmux { status = "disabled"; };
 };
 
 &am33xx_pinmux {
@@ -33,6 +35,41 @@
 			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D17) uart1_rtsn.I2C2_SCL */
 			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D18) uart1_ctsn.I2C2_SDA */
 		>;
+	};
+
+	grove_button_uart4_pins: pinmux_grove_button_uart4_pins {
+		pinctrl-single,pins = <
+			/* slot UART4 */
+			AM33XX_IOPAD(0x0870, PIN_INPUT | MUX_MODE7)		/* gpmc_wait0.gpio0_30 */
+			AM33XX_IOPAD(0x0874, PIN_INPUT | MUX_MODE7)		/* gpmc_wpn.gpio0_31 */
+		>;
+	};
+};
+
+&{/gpio_keys} {
+	compatible = "gpio-keys";
+	pinctrl-names = "default";
+	pinctrl-0 = <&grove_button_uart4_pins>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	grove_button_uart4_0@6 {
+		debounce_interval = <50>;
+		linux,code = <0x106>;
+		label = "grove:usr6";
+		gpios = <&gpio0 30 0x0>;
+		gpio-key,wakeup;
+		autorepeat;
+	};
+
+	grove_button_uart4_1@7 {
+		debounce_interval = <50>;
+		linux,code = <0x107>;
+		label = "grove:usr7";
+		gpios = <&gpio0 31 0x1>;
+		gpio-key,wakeup;
+		autorepeat;
 	};
 };
 
