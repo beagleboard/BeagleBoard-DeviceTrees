@@ -46,30 +46,32 @@
 	};
 };
 
-&{/gpio_keys} {
-	compatible = "gpio-keys";
-	pinctrl-names = "default";
-	pinctrl-0 = <&grove_button_uart4_pins>;
+&{/} {
+	gpio_keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&grove_button_uart4_pins>;
 
-	#address-cells = <1>;
-	#size-cells = <0>;
+		#address-cells = <1>;
+		#size-cells = <0>;
 
-	grove_button_uart4_0@6 {
-		debounce_interval = <50>;
-		linux,code = <0x106>;
-		label = "grove:usr6";
-		gpios = <&gpio0 30 0x0>;
-		gpio-key,wakeup;
-		autorepeat;
-	};
+		grove_button_uart4_0@6 {
+			debounce_interval = <50>;
+			linux,code = <0x106>;
+			label = "grove:usr6";
+			gpios = <&gpio0 30 0x0>;
+			gpio-key,wakeup;
+			autorepeat;
+		};
 
-	grove_button_uart4_1@7 {
-		debounce_interval = <50>;
-		linux,code = <0x107>;
-		label = "grove:usr7";
-		gpios = <&gpio0 31 0x1>;
-		gpio-key,wakeup;
-		autorepeat;
+		grove_button_uart4_1@7 {
+			debounce_interval = <50>;
+			linux,code = <0x107>;
+			label = "grove:usr7";
+			gpios = <&gpio0 31 0x1>;
+			gpio-key,wakeup;
+			autorepeat;
+		};
 	};
 };
 
