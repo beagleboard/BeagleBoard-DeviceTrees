@@ -306,10 +306,33 @@
 		>;
 	};
 
+/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro>, <pin_name_in_mode>) */
+#define BONE_PIN(XX,ZZ,QQ,NN) \
+	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
+
+	/* Full P8/P9 header mode definitions */
+	/* P8_01 - GND */
+	/* P8_02 - GND */
+	BONE_PIN(P8_03, default,   P8_03(PIN_INPUT, 7),                 gpio0_20)
+	BONE_PIN(P8_03, pruout,    P8_03(PIN_OUTPUT, 0),                pru1_0_19)
+	BONE_PIN(P8_03, pruin,     P8_03(PIN_INPUT, 1),                 pru1_0_19)
+	BONE_PIN(P8_03, can,       P8_03(PIN_OUTPUT, 6),                can6_tx)
+	BONE_PIN(P8_03, gpio,      P8_03(PIN_OUTPUT, 7),                gpio0_20)
+	BONE_PIN(P8_03, gpio_pu,   P8_03(PIN_OUTPUT_PULLUP, 7),         gpio0_20)
+	BONE_PIN(P8_03, gpio_pd,   P8_03(PIN_OUTPUT_PULLDOWN, 7),       gpio0_20)
+	BONE_PIN(P8_03, mcasp,     P8_03(PIN_OUTPUT, 12),               mcasp4_afsx)
+
+	BONE_PIN(P8_04, default,   P8_04(PIN_INPUT, 7),                 gpio0_48)
+	BONE_PIN(P8_04, pruout,    P8_04(PIN_OUTPUT, 0),                pru0_0_5)
+	BONE_PIN(P8_04, pruin,     P8_04(PIN_INPUT, 1),                 pru0_0_5)
+
+	BONE_PIN(P8_05, default,   P8_05(PIN_INPUT, 7),                 gpio0_33)
+	BONE_PIN(P8_06, default,   P8_06(PIN_INPUT, 7),                 gpio0_34)
+
 	main_p8_pins_default: main-p8-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x54, PIN_INPUT, 7) /* (AH21) PRG1_PRU0_GPO19.GPIO0_20 */
-			J721E_IOPAD(0xc4, PIN_INPUT, 7) /* (AC29) PRG0_PRU0_GPO5.GPIO0_48 */
+			/* J721E_IOPAD(0xc4, PIN_INPUT, 7) /* (AC29) PRG0_PRU0_GPO5.GPIO0_48 */
 			J721E_IOPAD(0x88, PIN_INPUT, 7) /* (AH25) PRG1_PRU1_GPO12.GPIO0_33 */
 			J721E_IOPAD(0x8c, PIN_INPUT, 7) /* (AG25) PRG1_PRU1_GPO13.GPIO0_34 */
 			J721E_IOPAD(0x3c, PIN_INPUT, 7) /* (AD24) PRG1_PRU0_GPO14.GPIO0_15 */
@@ -425,29 +448,6 @@
 			J721E_IOPAD(0x4c, PIN_INPUT, 7) /* (AJ21) PRG1_PRU0_GPO17.GPIO0_18 */
 		>;
 	};
-
-/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro>, <pin_name_in_mode>) */
-#define BONE_PIN(XX,YY,ZZ,QQ,NN) \
-	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
-
-	/* Full P8/P9 header mode definitions */
-	/* P8_01 - GND */
-	/* P8_02 - GND */
-	BONE_PIN(P8_03, default,   P8_03(PIN_INPUT, 7),                 gpio0_20)
-	BONE_PIN(P8_03, pruout,    P8_03(PIN_OUTPUT, 0),                pru1_0_19)
-	BONE_PIN(P8_03, pruin,     P8_03(PIN_INPUT, 1),                 pru1_0_19)
-	BONE_PIN(P8_03, can,       P8_03(PIN_OUTPUT, 6),                can6_tx)
-	BONE_PIN(P8_03, gpio,      P8_03(PIN_OUTPUT, 7),                gpio0_20)
-	BONE_PIN(P8_03, gpio_pu,   P8_03(PIN_OUTPUT_PULLUP, 7),         gpio0_20)
-	BONE_PIN(P8_03, gpio_pd,   P8_03(PIN_OUTPUT_PULLDOWN, 7),       gpio0_20)
-	BONE_PIN(P8_03, mcasp,     P8_03(PIN_OUTPUT, 12),               mcasp4_afsx)
-
-	BONE_PIN(P8_04, default,   P8_04(PIN_INPUT, 7),                 gpio0_48)
-	BONE_PIN(P8_04, pruout,    P8_04(PIN_OUTPUT, 0),                pru0_0_5)
-	BONE_PIN(P8_04, pruin,     P8_04(PIN_INPUT, 1),                 pru0_0_5)
-
-	BONE_PIN(P8_05, default,   P8_05(PIN_INPUT, 7),                 gpio0_33)
-	BONE_PIN(P8_06, default,   P8_06(PIN_INPUT, 7),                 gpio0_34)
 
 	pcie1_rst_pins_default: pcie1-rst-pins-default {
 		pinctrl-single,pins = <
@@ -620,6 +620,7 @@
 &main_gpio0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_p8_pins_default &main_p9_pins_default
+		&P8_04_pruout_pin
 		&ehrpwm0_pins_default &ehrpwm1_pins_default &ehrpwm2_pins_default
 		&ehrpwm4_pins_default &ehrpwm5_pins_default>;
 };
