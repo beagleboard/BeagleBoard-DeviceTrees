@@ -125,8 +125,8 @@
 #define P8_35A(mode, mux) J721E_IOPAD(0x064, mode, mux)       /* AD23 */
 #define P8_35B(mode, mux) J721E_IOPAD(0x1D4, mode, mux)       /* Y3 */
 #define P8_36(mode, mux)  J721E_IOPAD(0x020, mode, mux)       /* AE20 */
-#define P8_37A(mode, mux) J721E_IOPAD(0x1AC, mode, mux)       /* Y27 */
-#define P8_37B(mode, mux) J721E_IOPAD(0x02C, mode, mux)       /* AD21 */
+#define P8_37A(mode, mux) J721E_IOPAD(0x02C, mode, mux)       /* AD21 */
+#define P8_37B(mode, mux) J721E_IOPAD(0x1AC, mode, mux)       /* Y27 */
 #define P8_38A(mode, mux) J721E_IOPAD(0x024, mode, mux)       /* AJ20 */
 #define P8_38B(mode, mux) J721E_IOPAD(0x1A8, mode, mux)       /* Y29 */
 #define P8_39(mode, mux)  J721E_IOPAD(0x118, mode, mux)       /* AC26 */
