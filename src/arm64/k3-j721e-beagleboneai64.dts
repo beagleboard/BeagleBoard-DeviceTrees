@@ -307,32 +307,324 @@
 	};
 
 /* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro>, <pin_name_in_mode>) */
-#define BONE_PIN(XX,ZZ,QQ,NN) \
+#define BONE_PIN(XX,ZZ,QQ) \
 	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
 
 	/* Full P8/P9 header mode definitions */
 	/* P8_01 - GND */
 	/* P8_02 - GND */
-	BONE_PIN(P8_03, default,   P8_03(PIN_INPUT, 7),                 gpio0_20)
-	BONE_PIN(P8_03, pruout,    P8_03(PIN_OUTPUT, 0),                pru1_0_19)
-	BONE_PIN(P8_03, pruin,     P8_03(PIN_INPUT, 1),                 pru1_0_19)
-	BONE_PIN(P8_03, can,       P8_03(PIN_OUTPUT, 6),                can6_tx)
-	BONE_PIN(P8_03, gpio,      P8_03(PIN_OUTPUT, 7),                gpio0_20)
-	BONE_PIN(P8_03, gpio_pu,   P8_03(PIN_OUTPUT_PULLUP, 7),         gpio0_20)
-	BONE_PIN(P8_03, gpio_pd,   P8_03(PIN_OUTPUT_PULLDOWN, 7),       gpio0_20)
-	BONE_PIN(P8_03, mcasp,     P8_03(PIN_OUTPUT, 12),               mcasp4_afsx)
+	BONE_PIN(P8_03, default,   P8_03(PIN_INPUT, 7))
+	BONE_PIN(P8_03, pruout,    P8_03(PIN_OUTPUT, 0))
+	BONE_PIN(P8_03, pruin,     P8_03(PIN_INPUT, 1))
+	BONE_PIN(P8_03, can,       P8_03(PIN_OUTPUT, 6))
+	BONE_PIN(P8_03, gpio,      P8_03(PIN_OUTPUT, 7))
+	BONE_PIN(P8_03, gpio_pu,   P8_03(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_03, gpio_pd,   P8_03(PIN_OUTPUT_PULLDOWN, 7))
 
-	BONE_PIN(P8_04, default,   P8_04(PIN_INPUT, 7),                 gpio0_48)
-	BONE_PIN(P8_04, pruout,    P8_04(PIN_OUTPUT, 0),                pru0_0_5)
-	BONE_PIN(P8_04, pruin,     P8_04(PIN_INPUT, 1),                 pru0_0_5)
+	BONE_PIN(P8_04, default,   P8_04(PIN_INPUT, 7))
+	BONE_PIN(P8_04, pruout,    P8_04(PIN_OUTPUT, 0))
+	BONE_PIN(P8_04, pruin,     P8_04(PIN_INPUT, 1))
+	BONE_PIN(P8_04, gpio,      P8_04(PIN_OUTPUT, 7))
+	BONE_PIN(P8_04, gpio_pu,   P8_04(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_04, gpio_pd,   P8_04(PIN_OUTPUT_PULLDOWN, 7))
 
-	BONE_PIN(P8_05, default,   P8_05(PIN_INPUT, 7),                 gpio0_33)
-	BONE_PIN(P8_06, default,   P8_06(PIN_INPUT, 7),                 gpio0_34)
+	BONE_PIN(P8_05, default,   P8_05(PIN_INPUT, 7))
+	BONE_PIN(P8_05, pruout,    P8_05(PIN_OUTPUT, 0))
+	BONE_PIN(P8_05, pruin,     P8_05(PIN_INPUT, 1))
+	BONE_PIN(P8_05, gpio,      P8_05(PIN_OUTPUT, 7))
+	BONE_PIN(P8_05, gpio_pu,   P8_05(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_05, gpio_pd,   P8_05(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_06, default,   P8_06(PIN_INPUT, 7))
+	BONE_PIN(P8_06, pruout,    P8_06(PIN_OUTPUT, 0))
+	BONE_PIN(P8_06, pruin,     P8_06(PIN_INPUT, 1))
+	BONE_PIN(P8_06, gpio,      P8_06(PIN_OUTPUT, 7))
+	BONE_PIN(P8_06, gpio_pu,   P8_06(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_06, gpio_pd,   P8_06(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_07, default,   P8_07(PIN_INPUT, 7))
+	BONE_PIN(P8_07, pruout,    P8_07(PIN_OUTPUT, 0))
+	BONE_PIN(P8_07, pruin,     P8_07(PIN_INPUT, 1))
+	BONE_PIN(P8_07, gpio,      P8_07(PIN_OUTPUT, 7))
+	BONE_PIN(P8_07, gpio_pu,   P8_07(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_07, gpio_pd,   P8_07(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_08, default,   P8_08(PIN_INPUT, 7))
+	BONE_PIN(P8_08, pruout,    P8_08(PIN_OUTPUT, 0))
+	BONE_PIN(P8_08, pruin,     P8_08(PIN_INPUT, 1))
+	BONE_PIN(P8_08, gpio,      P8_08(PIN_OUTPUT, 7))
+	BONE_PIN(P8_08, gpio_pu,   P8_08(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_08, gpio_pd,   P8_08(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_09, default,   P8_09(PIN_INPUT, 7))
+	BONE_PIN(P8_09, pruout,    P8_09(PIN_OUTPUT, 0))
+	BONE_PIN(P8_09, pruin,     P8_09(PIN_INPUT, 1))
+	BONE_PIN(P8_06, gpio,      P8_09(PIN_OUTPUT, 7))
+	BONE_PIN(P8_09, gpio_pu,   P8_09(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_09, gpio_pd,   P8_09(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_10, default,   P8_10(PIN_INPUT, 7))
+	BONE_PIN(P8_10, pruout,    P8_10(PIN_OUTPUT, 0))
+	BONE_PIN(P8_10, pruin,     P8_10(PIN_INPUT, 1))
+	BONE_PIN(P8_10, gpio,      P8_10(PIN_OUTPUT, 7))
+	BONE_PIN(P8_10, gpio_pu,   P8_10(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_10, gpio_pd,   P8_10(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_11, default,   P8_11(PIN_INPUT, 7))
+	BONE_PIN(P8_11, pruout,    P8_11(PIN_OUTPUT, 0))
+	BONE_PIN(P8_11, pruin,     P8_11(PIN_INPUT, 1))
+	BONE_PIN(P8_11, gpio,      P8_11(PIN_OUTPUT, 7))
+	BONE_PIN(P8_11, gpio_pu,   P8_11(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_11, gpio_pd,   P8_11(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_12, default,   P8_12(PIN_INPUT, 7))
+	BONE_PIN(P8_12, pruout,    P8_12(PIN_OUTPUT, 0))
+	BONE_PIN(P8_12, pruin,     P8_12(PIN_INPUT, 1))
+	BONE_PIN(P8_12, gpio,      P8_12(PIN_OUTPUT, 7))
+	BONE_PIN(P8_12, gpio_pu,   P8_12(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_12, gpio_pd,   P8_12(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_13, default,   P8_13(PIN_INPUT, 7))
+	//BONE_PIN(P8_13, i2c,       P8_13(PIN_OUTPUT_PULLUP, 2))
+	BONE_PIN(P8_13, pwm,       P8_13(PIN_OUTPUT, 6))
+	BONE_PIN(P8_13, gpio,      P8_13(PIN_OUTPUT, 7))
+	BONE_PIN(P8_13, gpio_pu,   P8_13(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_13, gpio_pd,   P8_13(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_14, default,   P8_14(PIN_INPUT, 7))
+	BONE_PIN(P8_14, pruout,    P8_14(PIN_OUTPUT, 0))
+	BONE_PIN(P8_14, pruin,     P8_14(PIN_INPUT, 1))
+	BONE_PIN(P8_14, gpio,      P8_14(PIN_OUTPUT, 7))
+	BONE_PIN(P8_14, gpio_pu,   P8_14(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_14, gpio_pd,   P8_14(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_15, default,   P8_15(PIN_INPUT, 7))
+	BONE_PIN(P8_15, pruout,    P8_15(PIN_OUTPUT, 0))
+	BONE_PIN(P8_15, pruin,     P8_15(PIN_INPUT, 1))
+	BONE_PIN(P8_15, gpio,      P8_15(PIN_OUTPUT, 7))
+	BONE_PIN(P8_15, gpio_pu,   P8_15(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_15, gpio_pd,   P8_15(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_16, default,   P8_16(PIN_INPUT, 7))
+	BONE_PIN(P8_16, pruout,    P8_16(PIN_OUTPUT, 0))
+	BONE_PIN(P8_16, pruin,     P8_16(PIN_INPUT, 1))
+	BONE_PIN(P8_16, gpio,      P8_16(PIN_OUTPUT, 7))
+	BONE_PIN(P8_16, gpio_pu,   P8_16(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_16, gpio_pd,   P8_16(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_17, default,   P8_17(PIN_INPUT, 7))
+	BONE_PIN(P8_17, pruout,    P8_17(PIN_OUTPUT, 0))
+	BONE_PIN(P8_17, pruin,     P8_17(PIN_INPUT, 1))
+	BONE_PIN(P8_17, gpio,      P8_17(PIN_OUTPUT, 7))
+	BONE_PIN(P8_17, gpio_pu,   P8_17(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_17, gpio_pd,   P8_17(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_18, default,   P8_18(PIN_INPUT, 7))
+	BONE_PIN(P8_18, pruout,    P8_18(PIN_OUTPUT, 0))
+	BONE_PIN(P8_18, pruin,     P8_18(PIN_INPUT, 1))
+	BONE_PIN(P8_18, gpio,      P8_18(PIN_OUTPUT, 7))
+	BONE_PIN(P8_18, gpio_pu,   P8_18(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_18, gpio_pd,   P8_18(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_19, default,   P8_19(PIN_INPUT, 7))
+	BONE_PIN(P8_19, pwm,       P8_19(PIN_OUTPUT, 6))
+	BONE_PIN(P8_19, gpio,      P8_19(PIN_OUTPUT, 7))
+	BONE_PIN(P8_19, gpio_pu,   P8_19(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_19, gpio_pd,   P8_19(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_20, default,   P8_20(PIN_INPUT, 7))
+	BONE_PIN(P8_20, pruout,    P8_20(PIN_OUTPUT, 0))
+	BONE_PIN(P8_20, pruin,     P8_20(PIN_INPUT, 1))
+	BONE_PIN(P8_20, gpio,      P8_20(PIN_OUTPUT, 7))
+	BONE_PIN(P8_20, gpio_pu,   P8_20(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_20, gpio_pd,   P8_20(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_21, default,   P8_21(PIN_INPUT, 7))
+	BONE_PIN(P8_21, pruout,    P8_21(PIN_OUTPUT, 0))
+	BONE_PIN(P8_21, pruin,     P8_21(PIN_INPUT, 1))
+	BONE_PIN(P8_21, gpio,      P8_21(PIN_OUTPUT, 7))
+	BONE_PIN(P8_21, gpio_pu,   P8_21(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_21, gpio_pd,   P8_21(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_22, default,   P8_22(PIN_INPUT, 7))
+	BONE_PIN(P8_22, pruout,    P8_22(PIN_OUTPUT, 0))
+	BONE_PIN(P8_22, pruin,     P8_22(PIN_INPUT, 1))
+	BONE_PIN(P8_22, gpio,      P8_22(PIN_OUTPUT, 7))
+	BONE_PIN(P8_22, gpio_pu,   P8_22(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_22, gpio_pd,   P8_22(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_23, default,   P8_23(PIN_INPUT, 7))
+	BONE_PIN(P8_23, pruout,    P8_23(PIN_OUTPUT, 0))
+	BONE_PIN(P8_23, pruin,     P8_23(PIN_INPUT, 1))
+	BONE_PIN(P8_23, gpio,      P8_23(PIN_OUTPUT, 7))
+	BONE_PIN(P8_23, gpio_pu,   P8_23(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_23, gpio_pd,   P8_23(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_24, default,   P8_24(PIN_INPUT, 7))
+	BONE_PIN(P8_24, pruout,    P8_24(PIN_OUTPUT, 0))
+	BONE_PIN(P8_24, pruin,     P8_24(PIN_INPUT, 1))
+	BONE_PIN(P8_24, gpio,      P8_24(PIN_OUTPUT, 7))
+	BONE_PIN(P8_24, gpio_pu,   P8_24(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_24, gpio_pd,   P8_24(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_25, default,   P8_25(PIN_INPUT, 7))
+	BONE_PIN(P8_25, pruout,    P8_25(PIN_OUTPUT, 0))
+	BONE_PIN(P8_25, pruin,     P8_25(PIN_INPUT, 1))
+	BONE_PIN(P8_25, gpio,      P8_25(PIN_OUTPUT, 7))
+	BONE_PIN(P8_25, gpio_pu,   P8_25(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_25, gpio_pd,   P8_25(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_26, default,   P8_26(PIN_INPUT, 7))
+	BONE_PIN(P8_26, pruout,    P8_26(PIN_OUTPUT, 0))
+	BONE_PIN(P8_26, pruin,     P8_26(PIN_INPUT, 1))
+	BONE_PIN(P8_26, gpio,      P8_26(PIN_OUTPUT, 7))
+	BONE_PIN(P8_26, gpio_pu,   P8_26(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_26, gpio_pd,   P8_26(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_27, default,   P8_27(PIN_INPUT, 7))
+	BONE_PIN(P8_27, pruout,    P8_27(PIN_OUTPUT, 0))
+	BONE_PIN(P8_27, pruin,     P8_27(PIN_INPUT, 1))
+	BONE_PIN(P8_27, gpio,      P8_27(PIN_OUTPUT, 7))
+	BONE_PIN(P8_27, gpio_pu,   P8_27(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_27, gpio_pd,   P8_27(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_28, default,   P8_28(PIN_INPUT, 7))
+	BONE_PIN(P8_28, pruout,    P8_28(PIN_OUTPUT, 0))
+	BONE_PIN(P8_28, pruin,     P8_28(PIN_INPUT, 1))
+	BONE_PIN(P8_28, gpio,      P8_28(PIN_OUTPUT, 7))
+	BONE_PIN(P8_28, gpio_pu,   P8_28(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_28, gpio_pd,   P8_28(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_29, default,   P8_29(PIN_INPUT, 7))
+	BONE_PIN(P8_29, pruout,    P8_29(PIN_OUTPUT, 0))
+	BONE_PIN(P8_29, pruin,     P8_29(PIN_INPUT, 1))
+	BONE_PIN(P8_29, gpio,      P8_29(PIN_OUTPUT, 7))
+	BONE_PIN(P8_29, gpio_pu,   P8_29(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_29, gpio_pd,   P8_29(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_30, default,   P8_30(PIN_INPUT, 7))
+	BONE_PIN(P8_30, pruout,    P8_30(PIN_OUTPUT, 0))
+	BONE_PIN(P8_30, pruin,     P8_30(PIN_INPUT, 1))
+	BONE_PIN(P8_30, gpio,      P8_30(PIN_OUTPUT, 7))
+	BONE_PIN(P8_30, gpio_pu,   P8_30(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_30, gpio_pd,   P8_30(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_31, default,   P8_31A(PIN_INPUT, 7) P8_31B(PIN_INPUT, 7))
+	BONE_PIN(P8_31, pruout,    P8_31A(PIN_OUTPUT, 0) P8_31B(PIN_INPUT, 7))
+	BONE_PIN(P8_31, pruin,     P8_31A(PIN_INPUT, 1) P8_31B(PIN_INPUT, 7))
+	BONE_PIN(P8_31, gpio,      P8_31A(PIN_OUTPUT, 7) P8_31B(PIN_INPUT, 7))
+	BONE_PIN(P8_31, gpio_pu,   P8_31A(PIN_OUTPUT_PULLUP, 7) P8_31B(PIN_INPUT, 7))
+	BONE_PIN(P8_31, gpio_pd,   P8_31A(PIN_OUTPUT_PULLDOWN, 7) P8_31B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_32, default,   P8_32A(PIN_INPUT, 7) P8_32B(PIN_INPUT, 7))
+	BONE_PIN(P8_32, pruout,    P8_32A(PIN_OUTPUT, 0) P8_32B(PIN_INPUT, 7))
+	BONE_PIN(P8_32, pruin,     P8_32A(PIN_INPUT, 1) P8_32B(PIN_INPUT, 7))
+	BONE_PIN(P8_32, gpio,      P8_32A(PIN_OUTPUT, 7) P8_32B(PIN_INPUT, 7))
+	BONE_PIN(P8_32, gpio_pu,   P8_32A(PIN_OUTPUT_PULLUP, 7) P8_32B(PIN_INPUT, 7))
+	BONE_PIN(P8_32, gpio_pd,   P8_32A(PIN_OUTPUT_PULLDOWN, 7) P8_32B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_33, default,   P8_33A(PIN_INPUT, 7) P8_33B(PIN_INPUT, 7))
+	BONE_PIN(P8_33, pruout,    P8_33A(PIN_OUTPUT, 0) P8_33B(PIN_INPUT, 7))
+	BONE_PIN(P8_33, pruin,     P8_33A(PIN_INPUT, 1) P8_33B(PIN_INPUT, 7))
+	BONE_PIN(P8_33, gpio,      P8_33A(PIN_OUTPUT, 7) P8_33B(PIN_INPUT, 7))
+	BONE_PIN(P8_33, gpio_pu,   P8_33A(PIN_OUTPUT_PULLUP, 7) P8_33B(PIN_INPUT, 7))
+	BONE_PIN(P8_33, gpio_pd,   P8_33A(PIN_OUTPUT_PULLDOWN, 7) P8_33B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_34, default,   P8_34(PIN_INPUT, 7))
+	BONE_PIN(P8_34, pruout,    P8_34(PIN_OUTPUT, 0))
+	BONE_PIN(P8_34, pruin,     P8_34(PIN_INPUT, 1))
+	BONE_PIN(P8_34, gpio,      P8_34(PIN_OUTPUT, 7))
+	BONE_PIN(P8_34, gpio_pu,   P8_34(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_34, gpio_pd,   P8_34(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_35, default,   P8_35A(PIN_INPUT, 7) P8_35B(PIN_INPUT, 7))
+	BONE_PIN(P8_35, pruout,    P8_35A(PIN_OUTPUT, 0) P8_35B(PIN_INPUT, 7))
+	BONE_PIN(P8_35, pruin,     P8_35A(PIN_INPUT, 1) P8_35B(PIN_INPUT, 7))
+	BONE_PIN(P8_35, gpio,      P8_35A(PIN_OUTPUT, 7) P8_35B(PIN_INPUT, 7))
+	BONE_PIN(P8_35, gpio_pu,   P8_35A(PIN_OUTPUT_PULLUP, 7) P8_35B(PIN_INPUT, 7))
+	BONE_PIN(P8_35, gpio_pd,   P8_35A(PIN_OUTPUT_PULLDOWN, 7) P8_35B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_36, default,   P8_36(PIN_INPUT, 7))
+	BONE_PIN(P8_36, pruout,    P8_36(PIN_OUTPUT, 0))
+	BONE_PIN(P8_36, pruin,     P8_36(PIN_INPUT, 1))
+	BONE_PIN(P8_36, gpio,      P8_36(PIN_OUTPUT, 7))
+	BONE_PIN(P8_36, gpio_pu,   P8_36(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_36, gpio_pd,   P8_36(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_37, default,   P8_37A(PIN_INPUT, 7) P8_37B(PIN_INPUT, 7))
+	BONE_PIN(P8_37, pruout,    P8_37A(PIN_OUTPUT, 0) P8_37B(PIN_INPUT, 7))
+	BONE_PIN(P8_37, pruin,     P8_37A(PIN_INPUT, 1) P8_37B(PIN_INPUT, 7))
+	BONE_PIN(P8_37, gpio,      P8_37A(PIN_OUTPUT, 7) P8_37B(PIN_INPUT, 7))
+	BONE_PIN(P8_37, gpio_pu,   P8_37A(PIN_OUTPUT_PULLUP, 7) P8_37B(PIN_INPUT, 7))
+	BONE_PIN(P8_37, gpio_pd,   P8_37A(PIN_OUTPUT_PULLDOWN, 7) P8_37B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_38, default,   P8_38A(PIN_INPUT, 7) P8_38B(PIN_INPUT, 7))
+	BONE_PIN(P8_38, pruout,    P8_38A(PIN_OUTPUT, 0) P8_38B(PIN_INPUT, 7))
+	BONE_PIN(P8_38, pruin,     P8_38A(PIN_INPUT, 1) P8_38B(PIN_INPUT, 7))
+	BONE_PIN(P8_38, gpio,      P8_38A(PIN_OUTPUT, 7) P8_38B(PIN_INPUT, 7))
+	BONE_PIN(P8_38, gpio_pu,   P8_38A(PIN_OUTPUT_PULLUP, 7) P8_38B(PIN_INPUT, 7))
+	BONE_PIN(P8_38, gpio_pd,   P8_38A(PIN_OUTPUT_PULLDOWN, 7) P8_38B(PIN_INPUT, 7))
+
+	BONE_PIN(P8_39, default,   P8_39(PIN_INPUT, 7))
+	BONE_PIN(P8_39, pruout,    P8_39(PIN_OUTPUT, 0))
+	BONE_PIN(P8_39, pruin,     P8_39(PIN_INPUT, 1))
+	BONE_PIN(P8_39, gpio,      P8_39(PIN_OUTPUT, 7))
+	BONE_PIN(P8_39, gpio_pu,   P8_39(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_39, gpio_pd,   P8_39(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_40, default,   P8_40(PIN_INPUT, 7))
+	BONE_PIN(P8_40, pruout,    P8_40(PIN_OUTPUT, 0))
+	BONE_PIN(P8_40, pruin,     P8_40(PIN_INPUT, 1))
+	BONE_PIN(P8_40, gpio,      P8_40(PIN_OUTPUT, 7))
+	BONE_PIN(P8_40, gpio_pu,   P8_40(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_40, gpio_pd,   P8_40(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_41, default,   P8_41(PIN_INPUT, 7))
+	BONE_PIN(P8_41, pruout,    P8_41(PIN_OUTPUT, 0))
+	BONE_PIN(P8_41, pruin,     P8_41(PIN_INPUT, 1))
+	BONE_PIN(P8_41, gpio,      P8_41(PIN_OUTPUT, 7))
+	BONE_PIN(P8_41, gpio_pu,   P8_41(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_41, gpio_pd,   P8_41(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_42, default,   P8_42(PIN_INPUT, 7))
+	BONE_PIN(P8_42, pruout,    P8_42(PIN_OUTPUT, 0))
+	BONE_PIN(P8_42, pruin,     P8_42(PIN_INPUT, 1))
+	BONE_PIN(P8_42, gpio,      P8_42(PIN_OUTPUT, 7))
+	BONE_PIN(P8_42, gpio_pu,   P8_42(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_42, gpio_pd,   P8_42(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_43, default,   P8_43(PIN_INPUT, 7))
+	BONE_PIN(P8_43, pruout,    P8_43(PIN_OUTPUT, 0))
+	BONE_PIN(P8_43, pruin,     P8_43(PIN_INPUT, 1))
+	BONE_PIN(P8_43, gpio,      P8_43(PIN_OUTPUT, 7))
+	BONE_PIN(P8_43, gpio_pu,   P8_43(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_43, gpio_pd,   P8_43(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_44, default,   P8_44(PIN_INPUT, 7))
+	BONE_PIN(P8_44, pruout,    P8_44(PIN_OUTPUT, 0))
+	BONE_PIN(P8_44, pruin,     P8_44(PIN_INPUT, 1))
+	BONE_PIN(P8_44, gpio,      P8_44(PIN_OUTPUT, 7))
+	BONE_PIN(P8_44, gpio_pu,   P8_44(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_44, gpio_pd,   P8_44(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_45, default,   P8_45(PIN_INPUT, 7))
+	BONE_PIN(P8_45, pruout,    P8_45(PIN_OUTPUT, 0))
+	BONE_PIN(P8_45, pruin,     P8_45(PIN_INPUT, 1))
+	BONE_PIN(P8_45, gpio,      P8_45(PIN_OUTPUT, 7))
+	BONE_PIN(P8_45, gpio_pu,   P8_45(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_45, gpio_pd,   P8_45(PIN_OUTPUT_PULLDOWN, 7))
+
+	BONE_PIN(P8_46, default,   P8_46(PIN_INPUT, 7))
+	BONE_PIN(P8_46, pruout,    P8_46(PIN_OUTPUT, 0))
+	BONE_PIN(P8_46, pruin,     P8_46(PIN_INPUT, 1))
+	BONE_PIN(P8_46, gpio,      P8_46(PIN_OUTPUT, 7))
+	BONE_PIN(P8_46, gpio_pu,   P8_46(PIN_OUTPUT_PULLUP, 7))
+	BONE_PIN(P8_46, gpio_pd,   P8_46(PIN_OUTPUT_PULLDOWN, 7))
 
 	main_p8_pins_default: main-p8-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x54, PIN_INPUT, 7) /* (AH21) PRG1_PRU0_GPO19.GPIO0_20 */
-			/* J721E_IOPAD(0xc4, PIN_INPUT, 7) /* (AC29) PRG0_PRU0_GPO5.GPIO0_48 */
+			J721E_IOPAD(0xc4, PIN_INPUT, 7) /* (AC29) PRG0_PRU0_GPO5.GPIO0_48 */
 			J721E_IOPAD(0x88, PIN_INPUT, 7) /* (AH25) PRG1_PRU1_GPO12.GPIO0_33 */
 			J721E_IOPAD(0x8c, PIN_INPUT, 7) /* (AG25) PRG1_PRU1_GPO13.GPIO0_34 */
 			J721E_IOPAD(0x3c, PIN_INPUT, 7) /* (AD24) PRG1_PRU0_GPO14.GPIO0_15 */
@@ -619,10 +911,72 @@
 
 &main_gpio0 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_p8_pins_default &main_p9_pins_default
+	pinctrl-0 = <
+		&P8_03_pruout_pin
 		&P8_04_pruout_pin
-		&ehrpwm0_pins_default &ehrpwm1_pins_default &ehrpwm2_pins_default
-		&ehrpwm4_pins_default &ehrpwm5_pins_default>;
+		&P8_05_pruout_pin
+		&P8_06_pruout_pin
+		&P8_07_pruout_pin
+		&P8_08_pruout_pin
+		&P8_09_pruout_pin
+		&P8_10_pruout_pin
+		&P8_11_pruout_pin
+		&P8_12_pruout_pin
+		&P8_13_pwm_pin
+		&P8_14_pruout_pin
+		&P8_15_pruout_pin
+		&P8_16_pruout_pin
+		&P8_17_pruout_pin
+		&P8_18_pruout_pin
+		&P8_19_pwm_pin
+		&P8_20_pruout_pin
+		&P8_21_pruout_pin
+		&P8_22_pruout_pin
+		&P8_23_pruout_pin
+		&P8_24_pruout_pin
+		&P8_25_pruout_pin
+		&P8_26_pruout_pin
+		&P8_27_pruout_pin
+		&P8_28_pruout_pin
+		&P8_29_pruout_pin
+		&P8_30_pruout_pin
+		&P8_31_pruout_pin
+		&P8_32_pruout_pin
+		&P8_33_pruout_pin
+		&P8_34_pruout_pin
+		&P8_35_pruout_pin
+		&P8_36_pruout_pin
+		&P8_37_pruout_pin
+		&P8_38_pruout_pin
+		&P8_39_pruout_pin
+		&P8_40_pruout_pin
+		&P8_41_pruout_pin
+		&P8_42_pruout_pin
+		&P8_43_pruout_pin
+		&P8_44_pruout_pin
+		&P8_45_pruout_pin
+		&P8_46_pruout_pin
+/*
+		&P9_09_pruout_pin
+		&P9_10_pruout_pin
+		&P9_11_pruout_pin
+		&P9_12_pruout_pin
+		&P9_13_pruout_pin
+		&P9_14_pwm_pin
+		&P9_15_pruout_pin
+		&P9_16_pwm_pin
+		&P9_17_pruout_pin
+		&P9_18_pruout_pin
+		&P9_19_pruout_pin
+		&P9_20_pruout_pin
+		&P9_21_pwm_pin
+		&P9_22_pwm_pin
+		&P9_23_pruout_pin
+		&P9_24_pruout_pin
+		&P9_25_gpio_pin
+*/
+		&main_p9_pins_default
+	>;
 };
 
 &main_gpio2 {
