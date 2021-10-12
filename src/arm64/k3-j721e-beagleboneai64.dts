@@ -1119,7 +1119,7 @@
 	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
 	clock-frequency = <400000>;
 
-#if 0
+#if 1
 	ov5640_1: camera1@3c {
 		compatible = "ovti,ov5640";
 		reg = <0x3c>;
@@ -1169,7 +1169,7 @@
 	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
 	clock-frequency = <400000>;
 
-#if 0
+#if 1
 	ov5640: camera@3c {
 		compatible = "ovti,ov5640";
 		reg = <0x3c>;
