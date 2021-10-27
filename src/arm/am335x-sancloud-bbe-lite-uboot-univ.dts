@@ -136,3 +136,21 @@
 		spi-cpha;
 	};
 };
+
+&ocp {
+	P9_17_pinmux {
+		status = "disabled";
+	};
+
+	P9_18_pinmux {
+		status = "disabled";
+	};
+
+	P9_21_pinmux {
+		status = "disabled";
+	};
+
+	P9_22_pinmux {
+		status = "disabled";
+	};
+};
