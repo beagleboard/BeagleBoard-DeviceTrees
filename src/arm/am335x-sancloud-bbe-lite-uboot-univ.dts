@@ -19,6 +19,16 @@
 	};
 };
 
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_17_pinmux { status = "disabled"; };	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+	P9_18_pinmux { status = "disabled"; };	/* P9_18 (B16) spi0_d1.spi0_d1 */
+	P9_21_pinmux { status = "disabled"; };	/* P9_21 (B17) spi0_d0.spi0_d0 */
+	P9_22_pinmux { status = "disabled"; };	/* P9_22 (A17) spi0_sclk.spi0_sclk */
+};
+
 &am33xx_pinmux {
 	pinctrl-names = "default";
 
@@ -134,23 +144,5 @@
 		reg = <0>;
 		spi-max-frequency = <16000000>;
 		spi-cpha;
-	};
-};
-
-&ocp {
-	P9_17_pinmux {
-		status = "disabled";
-	};
-
-	P9_18_pinmux {
-		status = "disabled";
-	};
-
-	P9_21_pinmux {
-		status = "disabled";
-	};
-
-	P9_22_pinmux {
-		status = "disabled";
 	};
 };
