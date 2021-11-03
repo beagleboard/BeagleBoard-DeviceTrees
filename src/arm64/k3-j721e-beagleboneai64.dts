@@ -798,6 +798,12 @@
 		>;
 	};
 
+	eeprom_wp_pins_default: eeprom-wp-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc4, PIN_OUTPUT_PULLUP, 7) /* (G24) WKUP_GPIO0_5 */
+		>;
+	};
+
 	mcu_adc0_pins_default: mcu_adc0_pins_default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x130, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN0 */
@@ -1099,7 +1105,7 @@
 
 &wkup_i2c0 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&wkup_i2c0_pins_default>;
+	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
 	clock-frequency = <400000>;
 
 	eeprom@50 {
