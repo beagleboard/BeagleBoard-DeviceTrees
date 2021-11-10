@@ -238,14 +238,14 @@
 
 	main_usbss0_pins_default: main-usbss0-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
+			/*J721E_IOPAD(0x290, PIN_OUTPUT, 0)*/ /* (U6) USB0_DRVVBUS */
 			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 */
 		>;
 	};
 
 	main_usbss1_pins_default: main-usbss1-pins-default {
 		pinctrl-single,pins = <
-			/*J721E_IOPAD(0x290, PIN_OUTPUT, 1)*/ /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
+			J721E_IOPAD(0x290, PIN_OUTPUT, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
 			J721E_IOPAD(0x214, PIN_INPUT, 7) /* (V4) MCAN1_TX.GPIO1_4 */
 		>;
 	};
