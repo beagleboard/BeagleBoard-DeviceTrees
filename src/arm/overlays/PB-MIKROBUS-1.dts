@@ -63,12 +63,12 @@
 			&P1_30_gpio_pin
 		>;
 		pinctrl-5 = <
-			&P1_26_i2c_pin 
-			&P1_28_i2c_pin	
+			&P1_26_i2c_pin
+			&P1_28_i2c_pin
 		>;
 		pinctrl-6 = <
-			&P1_26_gpio_pin 
-			&P1_28_gpio_pin	
+			&P1_26_gpio_pin
+			&P1_28_gpio_pin
 		>;
 		pinctrl-7 = <
 			&P2_25_spi_pin

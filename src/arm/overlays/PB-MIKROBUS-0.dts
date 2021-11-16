@@ -63,12 +63,12 @@
 			&P2_07_gpio_pin
 		>;
 		pinctrl-5 = <
-			&P2_09_i2c_pin 
-			&P2_11_i2c_pin	
+			&P2_09_i2c_pin
+			&P2_11_i2c_pin
 		>;
 		pinctrl-6 = <
-			&P2_09_gpio_pin 
-			&P2_11_gpio_pin	
+			&P2_09_gpio_pin
+			&P2_11_gpio_pin
 		>;
 		pinctrl-7 = <
 			&P1_12_spi_pin
@@ -90,9 +90,9 @@
 		mikrobus-gpios = <&gpio1 18 0> , <&gpio0 23 0>,
 				 <&gpio0 30 0> , <&gpio0 31 0>,
 				 <&gpio0 15 0> , <&gpio0 14 0>,
-				 <&gpio0 4 0> , <&gpio0 3 0>,
-				 <&gpio0 2 0> , <&gpio0 5 0>,
-				 <&gpio2 25 0>  , <&gpio2 3 0>;
+				 <&gpio0 4 0>  , <&gpio0 3 0>,
+				 <&gpio0 2 0>  , <&gpio0 5 0>,
+				 <&gpio2 25 0> , <&gpio2 3 0>;
 	};
 };
 
