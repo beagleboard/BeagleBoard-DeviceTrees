@@ -197,6 +197,8 @@
 
 	brcmf_pwrseq: brcmf_pwrseq {
 		compatible = "mmc-pwrseq-simple";
+		pinctrl-names = "default";
+		pinctrl-0 = <&brcmf_pwrseq_pins_default>;
 		reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>,	/* BT-REG-ON */
 				<&gpio3 18 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
 	};
@@ -205,10 +207,18 @@
 		compatible = "linux,extcon-usb-gpio";
 		ti,enable-id-detection;
 		id-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&extcon_usb1_pins_default>;
 	};
 };
 
 &dra7_pmx_core {
+	extcon_usb1_pins_default: extcon_usb1_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x3518, PIN_INPUT | MUX_MODE14) /* AG2: vin1a_d9.gpio3_13  - USR0 */
+		>;
+	};
+
 	led_pins_default: led_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x3528, PIN_OUTPUT | MUX_MODE14) /* AF6: vin1a_d13.gpio3_17  - USR0 */
@@ -222,6 +232,13 @@
 	emmc_pwrseq_pins_default: emmc_pwrseq_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x36c8, PIN_OUTPUT_PULLUP | MUX_MODE14) /* F13: mcasp1_axr5.gpio5_7 - eMMC_RSTn */
+		>;
+	};
+
+	brcmf_pwrseq_pins_default: brcmf_pwrseq_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x352c, PIN_OUTPUT_PULLUP | MUX_MODE14) /* AF3: vin1a_d14.gpio3_18 - WL_REG_ON */
+			DRA7XX_CORE_IOPAD(0x353c, PIN_OUTPUT_PULLUP | MUX_MODE14) /* AE5: vin1a_d18.gpio3_22 - BT_REG_ON */
 		>;
 	};
 
