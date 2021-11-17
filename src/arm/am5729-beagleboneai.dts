@@ -245,6 +245,13 @@
 		>;
 	};
 
+	adc_pins_default: adc_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x3550, PIN_OUTPUT | MUX_MODE14) /* AD3: vin1a_d23.gpio3_27 - VDD_ADC_SEL */
+			DRA7XX_CORE_IOPAD(0x34DC, PIN_INPUT_PULLUP | MUX_MODE14) /* AG8: vin1a_clk0.gpio2_30 - INT_ADC */
+		>;
+	};
+
 	pmic_pins_default: pmic_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x3690, PIN_INPUT_PULLUP | MUX_MODE14) /* F21: gpio6_16.gpio6_16 - PMIC_INT */
@@ -479,12 +486,15 @@
 		st,adc-freq = <1>; /* 3.25 MHz ADC clock speed */
 		st,sample-time = <4>; /* ADC converstion time: 80 clocks */
 
+		pinctrl-names = "default";
+		pinctrl-0 = <&adc_pins_default>;
+
 		stmpe_adc {
 			compatible = "st,stmpe-adc";
 			st,norequest-mask = <0x00>; /* mask any channels to be used by touchscreen */
 			adc0: iio-device@0 {
 				#io-channel-cells = <1>;
-				iio-channels = <&adc0 4>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>, <&adc0 6>;
+				iio-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>, <&adc0 6>;
 				iio-channel-names = "AIN0_P9_39", "AIN1_P9_40", "AIN2_P9_37", "AIN3_P9_38",
 					"AIN4_P9_33", "AIN5_P9_36", "AIN6_P9_35";
 			};
