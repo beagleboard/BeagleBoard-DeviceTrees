@@ -245,6 +245,18 @@
 		>;
 	};
 
+	wifibt_extra_pins_default: wifibt_extra_pins_default {
+		pinctrl-single,pins = <
+			DRA7XX_CORE_IOPAD(0x3540, PIN_INPUT | MUX_MODE14) /* AE1: vin1a_d19.gpio3_23 - WL_HOST_WAKE */
+			DRA7XX_CORE_IOPAD(0x3450, PIN_INPUT | MUX_MODE8) /* P6: vin1a_d20.uart6_rxd - UART6_RXD */
+			DRA7XX_CORE_IOPAD(0x3454, PIN_INPUT | MUX_MODE8) /* R9: vin1a_d21.uart6_txd - UART6_TXD */
+			DRA7XX_CORE_IOPAD(0x3458, PIN_INPUT | MUX_MODE8) /* R5: vin1a_d22.uart6_ctsn - UART6_CTSN */
+			DRA7XX_CORE_IOPAD(0x345c, PIN_INPUT | MUX_MODE8) /* P5: vin1a_d23.uart6_rtsn - UART6_RTSN */
+			DRA7XX_CORE_IOPAD(0x3534, PIN_INPUT_PULLDOWN | MUX_MODE14) /* AF1: vin1a_d16.gpio3_20 - BT_HOST_WAKE */
+			DRA7XX_CORE_IOPAD(0x3538, PIN_OUTPUT_PULLDOWN | MUX_MODE14) /* AE3: vin1a_d6.gpio3_21 - BT_WAKE */
+		>;
+	};
+
 	adc_pins_default: adc_pins_default {
 		pinctrl-single,pins = <
 			DRA7XX_CORE_IOPAD(0x3550, PIN_OUTPUT | MUX_MODE14) /* AD3: vin1a_d23.gpio3_27 - VDD_ADC_SEL */
@@ -650,6 +662,10 @@
 	/* SDR104: SDR up to 208 MHz (1.8 V signaling) */
 	/* DDR50: DDR up to 50 MHz (1.8 V signaling). */
 	status = "okay";
+
+	pinctrl-names = "default", "hs";
+	pinctrl-0 = <&mmc4_pins_default &wifibt_extra_pins_default>;
+	pinctrl-1 = <&mmc4_pins_hs &wifibt_extra_pins_default>;
 
 	ti,needs-special-reset;
 	vmmc-supply = <&vdd_3v3>;
