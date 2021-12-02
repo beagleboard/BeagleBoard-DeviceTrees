@@ -98,7 +98,6 @@
 
 &spi0 {
 	status = "okay";
-	cs-gpios = <0>, <&gpio2 25 GPIO_ACTIVE_HIGH>;
 	channel@0{ status = "disabled"; };
 };
 
