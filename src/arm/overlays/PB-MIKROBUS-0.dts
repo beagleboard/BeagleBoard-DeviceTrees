@@ -106,3 +106,7 @@
 	status = "okay";
 	force-empty-serdev-controller;
 };
+
+&ehrpwm1 {
+	pinctrl-0 = <>;
+};
