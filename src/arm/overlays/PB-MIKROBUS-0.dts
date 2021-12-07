@@ -103,10 +103,5 @@
 
 &uart4 {
 	status = "okay";
-	pinctrl-0 = <>;
 	force-empty-serdev-controller;
-};
-
-&ehrpwm1 {
-	pinctrl-0 = <>;
 };
