@@ -760,6 +760,10 @@
 			#size-cells = <1>;
 			ranges = <0 0x56000000 0x2000000>;
 
+			/*
+			 * Closed source PowerVR driver, no child device
+			 * binding or driver in mainline
+			 */
 			gpu: gpu@0 {
 				compatible = "ti,dra7-sgx544", "img,sgx544";
 				reg = <0x0 0x10000>;
