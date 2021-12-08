@@ -22,8 +22,6 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	PB-MIKROBUS-0.dtbo	\
 	PB-MIKROBUS-1.dtbo
 
-
-
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
 
