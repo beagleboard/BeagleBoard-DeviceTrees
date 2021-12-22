@@ -22,6 +22,7 @@
 	chosen {
 		base_dtb = "am335x-bonegreen-gateway.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
+		wl1835_bt = "S3-texas-300000";
 	};
 
 	wlan_en_reg: fixedregulator@2 {
@@ -38,7 +39,8 @@
 
 	leds {
 		pinctrl-names = "default";
-		pinctrl-0 = <&user_leds_s0>;
+		//pinctrl-0 = <&user_leds_s0>;
+		pinctrl-0 = <&user_leds_s0 &bt_pins>;
 
 		compatible = "gpio-leds";
 
@@ -76,6 +78,12 @@
 			linux,default-trigger = "netdev";
 			default-state = "off";
 		};
+
+		wl18xx_bt_en: led7 {
+			label = "wl18xx_bt_en";
+			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
 	};
 };
 
@@ -110,7 +118,7 @@
 
 	bt_pins: pinmux_bt_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_MII1_TXD0, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gmii1_txd0.gpio0_28 - BT_EN */
+			AM33XX_PADCONF(AM335X_PIN_MII1_TXD0, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* gmii1_txd0.gpio0_28 - BT_EN */
 		>;
 	};
 
@@ -191,13 +199,14 @@
 
 &uart3 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&uart3_pins &bt_pins>;
+	pinctrl-0 = <&uart3_pins>;
+	//pinctrl-0 = <&uart3_pins &bt_pins>;
 	status = "okay";
 
-	bluetooth {
-		compatible = "ti,wl1835-st";
-		enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-	};
+	//bluetooth {
+	//	compatible = "ti,wl1835-st";
+	//	enable-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	//};
 };
 
 &i2c0 {
