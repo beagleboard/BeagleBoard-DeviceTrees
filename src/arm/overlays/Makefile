@@ -18,7 +18,9 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BBORG_RELAY-00A2.dtbo	\
 	BONE-ADC.dtbo	\
 	M-BB-BBG-00A0.dtbo	\
-	M-BB-BBGG-00A0.dtbo
+	M-BB-BBGG-00A0.dtbo	\
+	PB-MIKROBUS-0.dtbo	\
+	PB-MIKROBUS-1.dtbo
 
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
