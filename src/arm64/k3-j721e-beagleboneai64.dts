@@ -404,6 +404,7 @@
 
 	tusb322_pins_default: tusb322-pins-default {
 		pinctrl-single,pins = <
+			J721E_IOPAD(0x214, PIN_INPUT, 7) /* (V4) MCAN1_TX.GPIO1_4 -- USBC_INT */
 		>;
 	};
 
