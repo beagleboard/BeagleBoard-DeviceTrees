@@ -398,7 +398,12 @@
 	main_usbss0_pins_default: main-usbss0-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 - USBC_DIR */
-			J721E_IOPAD(0x214, PIN_INPUT, 7) /* (V4) MCAN1_TX.GPIO1_4 - USBC_INT */
+			/*J721E_IOPAD(0x214, PIN_INPUT, 7)*/ /* (V4) MCAN1_TX.GPIO1_4 -- USBC_INT */
+		>;
+	};
+
+	tusb322_pins_default: tusb322-pins-default {
+		pinctrl-single,pins = <
 		>;
 	};
 
@@ -1448,6 +1453,16 @@ bone_uart_0: &main_uart0 {
 		};
 	};
 #endif
+
+	tusb322@47 {
+		compatible = "ti,tusb322";
+		reg = <0x47>;
+		pinctrl-0 = <&tusb322_pins_default>;
+		interrupt-parent = <&main_gpio1>;
+		interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+	};
 };
 
 bone_i2c_2: &main_i2c3 {
