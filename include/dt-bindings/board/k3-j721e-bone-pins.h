@@ -64,8 +64,8 @@
 #define gpio_P9_16 &main_gpio0 94
 #define gpio_P9_17 &main_gpio0 28
 #define gpio_P9_18 &main_gpio0 40
-#define gpio_P9_19 &main_gpio1 1
-#define gpio_P9_20 &main_gpio1 2
+#define gpio_P9_19 &main_gpio0 78
+#define gpio_P9_20 &main_gpio0 77
 #define gpio_P9_21 &main_gpio0 39
 #define gpio_P9_22 &main_gpio0 38
 #define gpio_P9_23 &main_gpio0 10
@@ -153,9 +153,9 @@
 #define P9_20B(mode, mux) J721E_IOPAD(0x138, mode, mux)       /* AE25 */
 #define P9_21A(mode, mux) J721E_IOPAD(0x0A0, mode, mux)       /* AJ22 */
 #define P9_21B(mode, mux) J721E_IOPAD(0x16C, mode, mux)       /* U28 */
-#define P9_22A(mode, mux) J721E_IOPAD(0x09C, mode, mux)       /* AC22 */
+#define P9_22A(mode, mux) J721E_IOPAD(0x09C, mode, mux)       /* AC22 - BOOTMODE1 */
 #define P9_22B(mode, mux) J721E_IOPAD(0x170, mode, mux)       /* U29 */
-#define P9_23(mode, mux)  J721E_IOPAD(0x02B, mode, mux)       /* AG20 */
+#define P9_23(mode, mux)  J721E_IOPAD(0x028, mode, mux)       /* AG20 */
 #define P9_24A(mode, mux) J721E_IOPAD(0x1E0, mode, mux)       /* Y5 */
 #define P9_24B(mode, mux) J721E_IOPAD(0x034, mode, mux)       /* AJ24 */
 #define P9_25A(mode, mux) J721E_IOPAD(0x200, mode, mux)       /* AC4 */
