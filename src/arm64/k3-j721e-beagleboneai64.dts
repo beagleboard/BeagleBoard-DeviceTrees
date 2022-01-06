@@ -1848,7 +1848,3 @@ bone_uart_6: &main_uart2 {
 &csi1_port4 {
 	status = "disabled";
 };
-
-&main_r5fss1_core0 {
-	firmware-name = "k3-rti-wdt.fw";
-};
