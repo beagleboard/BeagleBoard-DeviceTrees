@@ -226,7 +226,7 @@ install_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/
 	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/
-	cp -v /boot/dtbs/$(KERNEL_VERSION)/k3-j721e-beagleboneai64.dtb /boot/k3-j721e-beagleboneai64.dtb
+	cp -v /boot/dtbs/$(KERNEL_VERSION)/k3-j721e-beagleboneai64.dtb /boot/firmware/k3-j721e-beagleboneai64.dtb
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
