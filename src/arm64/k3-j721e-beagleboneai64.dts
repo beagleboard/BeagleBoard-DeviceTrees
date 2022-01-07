@@ -1799,6 +1799,10 @@ bone_uart_6: &main_uart2 {
 	status = "disabled";
 };
 
+&ufs_wrapper {
+	status = "disabled";
+};
+
 &csi0_port0 {
 	csi2rx0_in_sensor: endpoint {
 		remote-endpoint = <&csi2rx0_cam0>;
