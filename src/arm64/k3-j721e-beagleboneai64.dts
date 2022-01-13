@@ -1289,7 +1289,7 @@ bone_uart_0: &main_uart0 {
 };
 
 &usb0 {
-	dr_mode = "otg";
+	dr_mode = "peripheral";
 	maximum-speed = "super-speed";
 	phys = <&serdes3_usb_link>;
 	phy-names = "cdns3,usb3-phy";
