@@ -74,7 +74,7 @@
 		};
 	};
 
-	ehrpwm0: pwm@3000000 {
+	main_ehrpwm0: pwm@3000000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3000000 0x0 0x100>;
@@ -83,7 +83,7 @@
 		clock-names = "tbclk", "fck";
 	};
 
-	ehrpwm1: pwm@3010000 {
+	main_ehrpwm1: pwm@3010000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3010000 0x0 0x100>;
@@ -92,7 +92,7 @@
 		clock-names = "tbclk", "fck";
 	};
 
-	ehrpwm2: pwm@3020000 {
+	main_ehrpwm2: pwm@3020000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3020000 0x0 0x100>;
@@ -101,7 +101,7 @@
 		clock-names = "tbclk", "fck";
 	};
 
-	ehrpwm3: pwm@3030000 {
+	main_ehrpwm3: pwm@3030000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3030000 0x0 0x100>;
@@ -110,7 +110,7 @@
 		clock-names = "tbclk", "fck";
 	};
 
-	ehrpwm4: pwm@3040000 {
+	main_ehrpwm4: pwm@3040000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3040000 0x0 0x100>;
@@ -119,7 +119,7 @@
 		clock-names = "tbclk", "fck";
 	};
 
-	ehrpwm5: pwm@3050000 {
+	main_ehrpwm5: pwm@3050000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
 		reg = <0x0 0x3050000 0x0 0x100>;
