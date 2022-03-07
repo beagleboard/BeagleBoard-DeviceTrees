@@ -23,7 +23,7 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	bme260@76 {
+	bme680@76 {
 		status = "okay";
 		compatible = "bosch,bme680";
 		reg = <0x76>;
