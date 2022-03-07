@@ -29,7 +29,7 @@
 &am33xx_pinmux {
 	bb_dallas_w1_pins: pinmux_bb_dallas_w1_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_OUTPUT_PULLUP | INPUT_EN, MUX_MODE7)	/* P9_12 (U18) gpmc_be1n.gpio1_28 */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT_PULLUP, MUX_MODE7)	/* P9_12 (U18) gpmc_be1n.gpio1_28 */
 		>;
 	};
 };
