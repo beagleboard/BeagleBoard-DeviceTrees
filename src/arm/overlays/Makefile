@@ -14,8 +14,10 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BB-CAPE-DISP-CT4-00A0.dtbo	\
 	BB-CTAG-SW-8CH-00A0.dtbo	\
 	BB-HDMI-TDA998x-00A0.dtbo	\
+	BB-I2C2-BME680.dtbo	\
 	BB-SPIDEV0-00A0.dtbo	\
 	BB-SPIDEV1-00A0.dtbo	\
+	BB-W1-P9.12-00A0.dtbo	\
 	BBAI-4D4C-00A1.dtbo	\
 	BBAI-eCAP1.dtbo	\
 	BBAI-eCAP2.dtbo	\
@@ -79,7 +81,9 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BW-ICE40Cape-00A0.dtbo	\
 	BW-ICE40Cape-00A0_LKM.dtbo	\
 	M-BB-BBG-00A0.dtbo	\
-	M-BB-BBGG-00A0.dtbo
+	M-BB-BBGG-00A0.dtbo	\
+	PB-MIKROBUS-0.dtbo	\
+	PB-MIKROBUS-1.dtbo
 
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
