@@ -29,6 +29,21 @@
 	};
 };
 
+/*
+ * Free up the pins used by this board from the pinmux helpers.
+ */
+&ocp {
+	P8_11_pinmux { status = "disabled"; };
+	P8_12_pinmux { status = "disabled"; };
+	P8_15_pinmux { status = "disabled"; };
+	P8_16_pinmux { status = "disabled"; };
+	P8_18_pinmux { status = "disabled"; };
+	P9_19_pinmux { status = "disabled"; };
+	P9_20_pinmux { status = "disabled"; };
+	P9_24_pinmux { status = "disabled"; };
+	P9_26_pinmux { status = "disabled"; };
+};
+
 &am33xx_pinmux {
 	mmc3_pins: pinmux_mmc3_pins {
 		pinctrl-single,pins = <
