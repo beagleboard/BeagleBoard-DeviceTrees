@@ -24,7 +24,7 @@
 };
 
 /*
- * Free up the pins used by the cape from the pinmux helpers.
+ * Free up the pins used by this board from the pinmux helpers.
  */
 &ocp {
 	P9_17_pinmux { status = "disabled"; };	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
