@@ -1,6 +1,7 @@
 # Overlays for the BeagleBone platform
 
 dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
+	AM335X-PRU-UIO-00A0.dtbo	\
 	BB-ADC-00A0.dtbo	\
 	BB-BBBW-WL1835-00A0.dtbo	\
 	BB-BBGG-WL1835-00A0.dtbo	\
