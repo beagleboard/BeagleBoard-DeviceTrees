@@ -25,7 +25,6 @@
 &pruss1 {
 	compatible = "ti,pruss-v2";
 	ti,pintc-offset = <0x20000>;
-	interrupt-parent = <&pruss1_intc>;
 	interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
 		     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>,
 		     <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
@@ -44,7 +43,6 @@
 &pruss2 {
 	compatible = "ti,pruss-v2";
 	ti,pintc-offset = <0x20000>;
-	interrupt-parent = <&pruss2_intc>;
 	interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
 		     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
 		     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
