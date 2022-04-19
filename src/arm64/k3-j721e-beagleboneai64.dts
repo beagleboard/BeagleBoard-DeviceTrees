@@ -784,7 +784,7 @@
 
 	main_usbss1_pins_default: main-usbss1-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x290, PIN_OUTPUT, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
+			J721E_IOPAD(0x290, INPUT_DISABLE, 1) /* (U6) USB0_DRVVBUS.USB1_DRVVBUS */
 		>;
 	};
 
@@ -830,10 +830,10 @@
 
 	main_spi6_pins_default: main-spi6-pins-default {
 		pinctrl-single,pins = <
-			J721E_IOPAD(0x74, PIN_OUTPUT, 4) /* (AC21) PRG1_PRU1_GPO7.SPI6_CS0 */
-			J721E_IOPAD(0x28, PIN_OUTPUT, 4) /* (AG20) PRG1_PRU0_GPO9.SPI6_CS1 */
-			J721E_IOPAD(0x9c, PIN_OUTPUT, 4) /* (AC22) PRG1_PRU1_GPO17.SPI6_CLK */
-			J721E_IOPAD(0xa0, PIN_OUTPUT, 4) /* (AJ22) PRG1_PRU1_GPO18.SPI6_D0 */
+			J721E_IOPAD(0x74, INPUT_DISABLE, 4) /* (AC21) PRG1_PRU1_GPO7.SPI6_CS0 */
+			J721E_IOPAD(0x28, INPUT_DISABLE, 4) /* (AG20) PRG1_PRU0_GPO9.SPI6_CS1 */
+			J721E_IOPAD(0x9c, INPUT_DISABLE, 4) /* (AC22) PRG1_PRU1_GPO17.SPI6_CLK */
+			J721E_IOPAD(0xa0, INPUT_DISABLE, 4) /* (AJ22) PRG1_PRU1_GPO18.SPI6_D0 */
 			J721E_IOPAD(0xa4, PIN_INPUT, 4) /* (AH22) PRG1_PRU1_GPO19.SPI6_D1 */
 		>;
 	};
@@ -1570,6 +1570,12 @@
 			J721E_WKUP_IOPAD(0x88, PIN_INPUT, 0) /* (E23) MCU_MDIO0_MDIO */
 		>;
 	};
+
+	mcu_usbss1_pins_default: mcu-usbss1-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0x3c, PIN_OUTPUT_PULLUP, 5) /* (A23) MCU_OSPI1_LBCLKO.WKUP_GPIO0_30 */
+		>;
+	};
 };
 
 &wkup_uart0 {
@@ -1578,6 +1584,7 @@
 };
 
 bone_uart_0: &main_uart0 {
+	/* TODO: also has option as "bone/uart/4" */
 	symlink = "bone/uart/0";
 	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
 };
@@ -1587,8 +1594,8 @@ bone_uart_0: &main_uart0 {
 	status = "disabled";
 };
 
-&main_uart5 {
-	/* UART not brought out */
+bone_uart_5: &main_uart5 {
+	symlink = "bone/uart/5";
 	status = "disabled";
 };
 
@@ -1728,9 +1735,9 @@ bone_uart_0: &main_uart0 {
 };
 
 &serdes_ln_ctrl {
-	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
+	idle-states = <J721E_SERDES0_LANE0_IP4_UNUSED>, <J721E_SERDES0_LANE1_IP4_UNUSED>, /* TODO: is this right? */
 		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
-		      <J721E_SERDES2_LANE0_IP1_UNUSED>, <J721E_SERDES2_LANE1_USB3_1>,
+		      <J721E_SERDES2_LANE0_IP1_UNUSED>, <J721E_SERDES2_LANE1_USB3_1>, /* TODO: USB3_0 or USB3_1? */
 		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
 		      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
 		      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
@@ -1776,7 +1783,7 @@ bone_uart_0: &main_uart0 {
 
 &usbss1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_usbss1_pins_default>;
+	pinctrl-0 = <&main_usbss1_pins_default &mcu_usbss1_pins_default>;
 	ti,vbus-divider;
 };
 
@@ -1799,7 +1806,7 @@ bone_uart_0: &main_uart0 {
 	};
 };
 
-&wkup_i2c0 {
+bone_i2c_0: &wkup_i2c0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
 	clock-frequency = <400000>;
@@ -1862,6 +1869,7 @@ bone_uart_0: &main_uart0 {
 	tusb322@47 {
 		compatible = "ti,tusb322";
 		reg = <0x47>;
+		pinctrl-names = "default";
 		pinctrl-0 = <&tusb322_pins_default>;
 		interrupt-parent = <&main_gpio1>;
 		interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
@@ -1878,6 +1886,12 @@ bone_i2c_2: &main_i2c3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c3_pins_default>;
 	clock-frequency = <400000>;
+};
+
+bone_i2c_3: &main_i2c4 {
+	pinctrl-names = "default";
+	clock-frequency = <400000>;
+	symlink = "bone/i2c/3";
 };
 
 &main_i2c5 {
@@ -1924,13 +1938,14 @@ bone_i2c_2: &main_i2c3 {
 #endif
 };
 
-&main_spi6 {
+bone_spi_0: &main_spi6 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_spi6_pins_default>;
 	ti,spi-num-cs = <2>;
 	ti,pindir-d0-out-d1-in;
 
 	spidev0: spidev@0{
+		symlink = "bone/spi/0.0";
 		compatible = "spidev";
 		reg = <0>;	/* CE0 */
 		#address-cells = <1>;
@@ -1939,6 +1954,7 @@ bone_i2c_2: &main_i2c3 {
 	};
 
 	spidev1: spidev@1{
+		symlink = "bone/spi/0.1";
 		compatible = "spidev";
 		reg = <1>;	/* CE1 */
 		#address-cells = <1>;
@@ -2135,9 +2151,12 @@ bone_i2c_1: &main_i2c6 {
 	status = "disabled";
 };
 
-bone_uart_6: &main_uart2 {
+/* TODO: is uart2 assigned to cpsw9g eth-switch fw running on remote CPU core? */
+/* TODO: handle alternate connection at P8_34 and P8_22 */
+bone_uart_1: &main_uart2 {
 	status = "okay";
-	symlink = "bone/uart/6";
+	symlink = "bone/uart/1";
+	power-domains = <&k3_pds 279 TI_SCI_PD_SHARED>; /* TODO: needed? */
 };
 
 &mcu_mcan0 {
