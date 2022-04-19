@@ -1,12 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
+ */
 
 /dts-v1/;
 /plugin/;
-
-&{/chosen} {
-	overlays {
-		BB-ROBOTICS-CAPE-00B0.kernel = __TIMESTAMP__;
-	};
-};
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
@@ -14,6 +12,12 @@
 #include <dt-bindings/pinctrl/k3.h>
 #include <dt-bindings/board/k3-j721e-bone-pins.h>
 #include <dt-bindings/soc/ti,sci_pm_domain.h>
+
+&{/chosen} {
+	overlays {
+		BB-ROBOTICS-CAPE-00B0.kernel = __TIMESTAMP__;
+	};
+};
 
 &cape_header {
 	pinctrl-names = "default";
