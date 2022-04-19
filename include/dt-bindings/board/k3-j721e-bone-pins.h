@@ -12,49 +12,57 @@
 #define bb_device 1
 #define board_soc TDA4VM
 
-#define gpio_P8_03 &main_gpio0 20
-#define gpio_P8_04 &main_gpio0 48
-#define gpio_P8_05 &main_gpio0 33
-#define gpio_P8_06 &main_gpio0 34
-#define gpio_P8_07 &main_gpio0 15
-#define gpio_P8_08 &main_gpio0 14
-#define gpio_P8_09 &main_gpio0 17
+#define gpio_P8_03 &main_gpio0 20 /* AH21 */
+#define gpio_P8_04 &main_gpio0 48 /* AC29 */
+#define gpio_P8_05 &main_gpio0 33 /* AH25 */
+#define gpio_P8_06 &main_gpio0 34 /* AG25 */
+#define gpio_P8_07 &main_gpio0 15 /* AD24 */
+#define gpio_P8_08 &main_gpio0 14 /* AG24 */
+#define gpio_P8_09 &main_gpio0 17 /* AE24 */
 #define gpio_P8_10 &main_gpio0 16
-#define gpio_P8_11 &main_gpio0 60
+#define gpio_P8_11 &main_gpio0 60 /* AB24 */
 #define gpio_P8_12 &main_gpio0 59
-#define gpio_P8_13 &main_gpio0 89
+#define gpio_P8_13 &main_gpio0 89 /* V27 */
 #define gpio_P8_14 &main_gpio0 75
-#define gpio_P8_15 &main_gpio0 61
+#define gpio_P8_15 &main_gpio0 61 /* AB29 */
 #define gpio_P8_16 &main_gpio0 62
-#define gpio_P8_17 &main_gpio0 3
+#define gpio_P8_17 &main_gpio0 3  /* AF22 */
 #define gpio_P8_18 &main_gpio0 4
-#define gpio_P8_19 &main_gpio0 88
+#define gpio_P8_19 &main_gpio0 88 /* V29 */
 #define gpio_P8_20 &main_gpio0 76
-#define gpio_P8_21 &main_gpio0 30
+#define gpio_P8_21 &main_gpio0 30 /* AF21 */
 #define gpio_P8_22 &main_gpio0 5
-#define gpio_P8_23 &main_gpio0 31
+#define gpio_P8_23 &main_gpio0 31 /* AB23 */
 #define gpio_P8_24 &main_gpio0 6
-#define gpio_P8_25 &main_gpio0 35
+#define gpio_P8_25 &main_gpio0 35 /* AH26 */
 #define gpio_P8_26 &main_gpio0 51
-#define gpio_P8_27 &main_gpio0 71
+#define gpio_P8_27 &main_gpio0 71 /* AA28 */
 #define gpio_P8_28 &main_gpio0 72
-#define gpio_P8_29 &main_gpio0 73
+#define gpio_P8_29 &main_gpio0 73 /* AA25 */
 #define gpio_P8_30 &main_gpio0 74
-#define gpio_P8_31 &main_gpio0 32
-#define gpio_P8_32 &main_gpio0 26
-#define gpio_P8_33 &main_gpio0 25
+#define gpio_P8_31A &main_gpio0 32 /* AJ25 */
+#define gpio_P8_31B &main_gpio0 63 /* AE29 */
+#define gpio_P8_31 gpio_P8_31A
+#define gpio_P8_32 &main_gpio0 26 /* TODO: A/B */
+#define gpio_P8_33A &main_gpio0 25 /* AH24 */
+#define gpio_P8_33B &main_gpio0 110 /* AA2 */
+#define gpio_P8_33 gpio_P8_33A
 #define gpio_P8_34 &main_gpio0 7
-#define gpio_P8_35 &main_gpio0 24
+#define gpio_P8_35A &main_gpio0 24 /* AD23 */
+#define gpio_P8_35B &main_gpio0 116 /* Y3 */
+#define gpio_P8_35 gpio_P8_35A
 #define gpio_P8_36 &main_gpio0 8
-#define gpio_P8_37 &main_gpio0 106
+#define gpio_P8_37A &main_gpio0 106 /* Y27 */
+#define gpio_P8_37B &main_gpio0 11 /* AD21 */
+#define gpio_P8_37 gpio_P8_37A
 #define gpio_P8_38 &main_gpio0 105
-#define gpio_P8_39 &main_gpio0 69
+#define gpio_P8_39 &main_gpio0 69 /* AC26 */
 #define gpio_P8_40 &main_gpio0 70
-#define gpio_P8_41 &main_gpio0 67
+#define gpio_P8_41 &main_gpio0 67 /* AD29 */
 #define gpio_P8_42 &main_gpio0 68
-#define gpio_P8_43 &main_gpio0 65
+#define gpio_P8_43 &main_gpio0 65 /* AD27 */
 #define gpio_P8_44 &main_gpio0 66
-#define gpio_P8_45 &main_gpio0 79
+#define gpio_P8_45 &main_gpio0 79 /* AG29 */
 #define gpio_P8_46 &main_gpio0 80
 #define gpio_P9_11 &main_gpio0 1
 #define gpio_P9_12 &main_gpio0 45
@@ -63,20 +71,48 @@
 #define gpio_P9_15 &main_gpio0 47
 #define gpio_P9_16 &main_gpio0 94
 #define gpio_P9_17 &main_gpio0 28
+#define gpio_P9_17A &main_gpio0 28
+#define gpio_P9_17B &main_gpio0 115
 #define gpio_P9_18 &main_gpio0 40
+#define gpio_P9_18A &main_gpio0 40
+#define gpio_P9_18B &main_gpio0 120
 #define gpio_P9_19 &main_gpio0 78
+#define gpio_P9_19A &main_gpio1 1
+#define gpio_P9_19B &main_gpio0 78
 #define gpio_P9_20 &main_gpio0 77
+#define gpio_P9_20A &main_gpio1 2
+#define gpio_P9_20B &main_gpio0 77
 #define gpio_P9_21 &main_gpio0 39
+#define gpio_P9_21A &main_gpio0 39
+#define gpio_P9_21B &main_gpio0 90
 #define gpio_P9_22 &main_gpio0 38
+#define gpio_P9_22A &main_gpio0 38
+#define gpio_P9_22B &main_gpio0 91
 #define gpio_P9_23 &main_gpio0 10
 #define gpio_P9_24 &main_gpio0 13
+#define gpio_P9_24A &main_gpio0 119
+#define gpio_P9_24B &main_gpio0 13
 #define gpio_P9_25 &main_gpio0 127
+#define gpio_P9_25A &main_gpio0 127
+#define gpio_P9_25B &main_gpio0 104
 #define gpio_P9_26 &main_gpio0 12
+#define gpio_P9_26A &main_gpio0 118
+#define gpio_P9_26B &main_gpio0 12
 #define gpio_P9_27 &main_gpio0 46
+#define gpio_P9_27A &main_gpio0 46
+#define gpio_P9_27B &main_gpio0 127
 #define gpio_P9_28 &main_gpio1 11
+#define gpio_P9_28A &main_gpio1 11
+#define gpio_P9_28B &main_gpio0 43
 #define gpio_P9_29 &main_gpio0 53
+#define gpio_P9_29A &main_gpio1 14
+#define gpio_P9_29B &main_gpio0 53
 #define gpio_P9_30 &main_gpio0 44
-#define gpio_P9_31 &main_gpio0 52
+#define gpio_P9_30A &main_gpio1 13
+#define gpio_P9_30B &main_gpio0 44
+#define gpio_P9_31A &main_gpio1 12
+#define gpio_P9_31B &main_gpio0 52
+#define gpio_P9_31 gpio_P9_31B
 #define gpio_P9_33 &main_gpio0 50
 #define gpio_P9_35 &main_gpio0 55
 #define gpio_P9_36 &main_gpio0 56
