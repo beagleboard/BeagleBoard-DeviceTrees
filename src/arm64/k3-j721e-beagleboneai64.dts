@@ -29,9 +29,17 @@
 		autorepeat;
 		pinctrl-names = "default";
 		pinctrl-0 = <&sw_pwr_pins_default>;
-		sw2: sw2 {
-			label = "GPIO Key USER2";
+
+		sw_boot: sw1 {
+			status = "disabled";
+			label = "BOOT";
 			linux,code = <BTN_0>;
+			gpios = <&wkup_gpio0 0 GPIO_ACTIVE_LOW>;
+		};
+
+		sw_pwr: sw2 {
+			label = "POWER";
+			linux,code = <KEY_POWER>;
 			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
 		};
 	};
