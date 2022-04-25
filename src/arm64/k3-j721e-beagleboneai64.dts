@@ -2277,3 +2277,27 @@ bone_uart_1: &main_uart2 {
 &csi1_port4 {
 	status = "disabled";
 };
+
+&icssg0 {
+	uio_pru0_0: uio@0 {
+		compatible = "uio";
+		symlink = "uio/pruss0/pru0";
+		reg = <0x0 0x2000>;
+		reg-names = "dram0"
+	};
+
+	uio_pru0_1: uio@2000 {
+		compatible = "uio";
+		symlink = "uio/pruss0/pru1";
+		reg = <0x2000 0x2000>;
+		reg-names = "dram1"
+	};
+
+	uio_pru0_shared: uio@10000 {
+		compatible = "uio";
+		symlink = "uio/pruss0/shared";
+		reg = <0x4000 0x10000>;
+		reg-names = "shrdram2"
+	};
+};
+
