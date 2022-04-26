@@ -2301,3 +2301,26 @@ bone_uart_1: &main_uart2 {
 	};
 };
 
+&icssg1 {
+	uio_pru1_0: uio@0 {
+		compatible = "uio";
+		symlink = "uio/pruss1/pru0";
+		reg = <0x0 0x2000>;
+		reg-names = "dram0";
+	};
+
+	uio_pru1_1: uio@2000 {
+		compatible = "uio";
+		symlink = "uio/pruss1/pru1";
+		reg = <0x2000 0x2000>;
+		reg-names = "dram1";
+	};
+
+	uio_pru1_shared: uio@10000 {
+		compatible = "uio";
+		symlink = "uio/pruss1/shared";
+		reg = <0x4000 0x10000>;
+		reg-names = "shrdram2";
+	};
+};
+
