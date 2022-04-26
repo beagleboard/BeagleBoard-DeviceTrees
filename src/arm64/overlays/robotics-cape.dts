@@ -20,22 +20,18 @@
 	};
 };
 
-&{/} {
-	gpio_keys: gpio-keys {
-		compatible = "gpio-keys";
+&bone_key_P9_31 {
+	status = "okay";
+	label = "PAUSE";
+	linux,code = <KEY_PAUSE>;
+	gpios = <gpio_P9_31 GPIO_ACTIVE_LOW>;
+};
 
-		cape_btn0: cape_btn0 {
-			label = "MODE";
-			linux,code = <KEY_MODE>;
-			gpios = <gpio_P9_31 GPIO_ACTIVE_LOW>;
-		};
-
-		cape_btn1: cape_btn1 {
-			label = "PAUSE";
-			linux,code = <KEY_PAUSE>;
-			gpios = <gpio_P9_41 GPIO_ACTIVE_LOW>;
-		};
-	};
+&bone_key_P9_41 {
+	status = "okay";
+	label = "MODE";
+	linux,code = <KEY_MODE>;
+	gpios = <gpio_P9_41 GPIO_ACTIVE_LOW>;
 };
 
 &bone_led_P9_14 {
@@ -134,12 +130,12 @@
 		&P9_25_gpio_pin		/* Magnetometer_CS# */
 		&P9_27_qep_pin		/* QEP1_B - EQEP0_B */
 		&P9_29_pruin_pin	/* Capture3 */
-		&P9_31_gpio_pin		/* USER_BUTTON1 - MODE */
+		&P9_31_gpio_pin		/* USER_BUTTON1 - PAUSE */
 		&P9_33_default_pin	/* Motor2_Current - AIN4 */
 		&P9_35_default_pin	/* Motor3_Current - AIN6 */
 		&P9_37_uart_pin		/* GPS_TXD */
 		&P9_39_default_pin	/* Battery_Voltage - AIN0 */
-		&P9_41_gpio_pin		/* USER_BUTTON2 - PAUSE */
+		&P9_41_gpio_pin		/* USER_BUTTON2 - MODE */
 
 		&P9_12_pruout_pin	/* Servo4 */
 		&P9_14_gpio_pin		/* LED1 */

@@ -43,6 +43,380 @@
 			linux,code = <KEY_POWER>;
 			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
 		};
+
+		bone_key_P8_03: key_P8_03 {
+			status = "disabled";
+			label = "P8_03";
+			linux,code = <KEY_UNKNOWN>;
+			gpios = <gpio_P8_03 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_04: key_P8_04 {
+			status = "disabled";
+			gpios = <gpio_P8_04 GPIO_ACTIVE_HIGH>;
+			label = "P8_04";
+			linux,code = <KEY_UNKNOWN>;
+		};
+
+		bone_key_P8_05: key_P8_05 {
+			status = "disabled";
+			gpios = <gpio_P8_05 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_06: key_P8_06 {
+			status = "disabled";
+			gpios = <gpio_P8_06 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_07: key_P8_07 {
+			status = "disabled";
+			gpios = <gpio_P8_07 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_08: key_P8_08 {
+			status = "disabled";
+			gpios = <gpio_P8_08 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_09: key_P8_09 {
+			status = "disabled";
+			gpios = <gpio_P8_09 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_10: key_P8_10 {
+			status = "disabled";
+			gpios = <gpio_P8_10 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_11: key_P8_11 {
+			status = "disabled";
+			gpios = <gpio_P8_11 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_12: key_P8_12 {
+			status = "disabled";
+			gpios = <gpio_P8_12 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_13: key_P8_13 {
+			status = "disabled";
+			gpios = <gpio_P8_13 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_14: key_P8_14 {
+			status = "disabled";
+			gpios = <gpio_P8_14 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_15: key_P8_15 {
+			status = "disabled";
+			gpios = <gpio_P8_15 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_16: key_P8_16 {
+			status = "disabled";
+			gpios = <gpio_P8_16 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_17: key_P8_17 {
+			status = "disabled";
+			gpios = <gpio_P8_17 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_18: key_P8_18 {
+			status = "disabled";
+			gpios = <gpio_P8_18 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_19: key_P8_19 {
+			status = "disabled";
+			gpios = <gpio_P8_19 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_20: key_P8_20 {
+			status = "disabled";
+			gpios = <gpio_P8_20 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_21: key_P8_21 {
+			status = "disabled";
+			gpios = <gpio_P8_21 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_22: key_P8_22 {
+			status = "disabled";
+			gpios = <gpio_P8_22 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_23: key_P8_23 {
+			status = "disabled";
+			gpios = <gpio_P8_23 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_24: key_P8_24 {
+			status = "disabled";
+			gpios = <gpio_P8_24 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_25: key_P8_25 {
+			status = "disabled";
+			gpios = <gpio_P8_25 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_26: key_P8_26 {
+			status = "disabled";
+			gpios = <gpio_P8_26 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_27: key_P8_27 {
+			status = "disabled";
+			gpios = <gpio_P8_27 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_28: key_P8_28 {
+			status = "disabled";
+			gpios = <gpio_P8_28 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_29: key_P8_29 {
+			status = "disabled";
+			gpios = <gpio_P8_29 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_30: key_P8_30 {
+			status = "disabled";
+			gpios = <gpio_P8_30 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_31: key_P8_31 {
+			status = "disabled";
+			gpios = <gpio_P8_31 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_32: key_P8_32 {
+			status = "disabled";
+			gpios = <gpio_P8_32 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_33: key_P8_33 {
+			status = "disabled";
+			gpios = <gpio_P8_33 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_34: key_P8_34 {
+			status = "disabled";
+			gpios = <gpio_P8_34 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_35: key_P8_35 {
+			status = "disabled";
+			gpios = <gpio_P8_35 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_36: key_P8_36 {
+			status = "disabled";
+			gpios = <gpio_P8_36 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_37: key_P8_37 {
+			status = "disabled";
+			gpios = <gpio_P8_37 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_38: key_P8_38 {
+			status = "disabled";
+			gpios = <gpio_P8_38 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_39: key_P8_39 {
+			status = "disabled";
+			gpios = <gpio_P8_39 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_40: key_P8_40 {
+			status = "disabled";
+			gpios = <gpio_P8_40 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_41: key_P8_41 {
+			status = "disabled";
+			gpios = <gpio_P8_41 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_42: key_P8_42 {
+			status = "disabled";
+			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_43: key_P8_43 {
+			status = "disabled";
+			gpios = <gpio_P8_43 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_44: key_P8_44 {
+			status = "disabled";
+			gpios = <gpio_P8_44 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_45: key_P8_45 {
+			status = "disabled";
+			gpios = <gpio_P8_45 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P8_46: key_P8_46 {
+			status = "disabled";
+			gpios = <gpio_P8_46 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_11: key_P9_11 {
+			status = "disabled";
+			gpios = <gpio_P9_11 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_12: key_P9_12 {
+			status = "disabled";
+			gpios = <gpio_P9_12 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_13: key_P9_13 {
+			status = "disabled";
+			gpios = <gpio_P9_13 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_14: key_P9_14 {
+			status = "disabled";
+			gpios = <gpio_P9_14 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_15: key_P9_15 {
+			status = "disabled";
+			gpios = <gpio_P9_15 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_16: key_P9_16 {
+			status = "disabled";
+			gpios = <gpio_P9_16 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_17: key_P9_17 {
+			status = "disabled";
+			gpios = <gpio_P9_17 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_18: key_P9_18 {
+			status = "disabled";
+			gpios = <gpio_P9_18 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_19: key_P9_19 {
+			status = "disabled";
+			gpios = <gpio_P9_19 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_20: key_P9_20 {
+			status = "disabled";
+			gpios = <gpio_P9_20 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_21: key_P9_21 {
+			status = "disabled";
+			gpios = <gpio_P9_21 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_22: key_P9_22 {
+			status = "disabled";
+			gpios = <gpio_P9_22 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_23: key_P9_23 {
+			status = "disabled";
+			gpios = <gpio_P9_23 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_24: key_P9_24 {
+			status = "disabled";
+			gpios = <gpio_P9_24 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_25: key_P9_25 {
+			status = "disabled";
+			gpios = <gpio_P9_25 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_26: key_P9_26 {
+			status = "disabled";
+			gpios = <gpio_P9_26 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_27: key_P9_27 {
+			status = "disabled";
+			gpios = <gpio_P9_27 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_28: key_P9_28 {
+			status = "disabled";
+			gpios = <gpio_P9_28 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_29: key_P9_29 {
+			status = "disabled";
+			gpios = <gpio_P9_29 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_30: key_P9_30 {
+			status = "disabled";
+			gpios = <gpio_P9_30 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_31: key_P9_31 {
+			status = "disabled";
+			gpios = <gpio_P9_31 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_33: key_P9_33 {
+			status = "disabled";
+			gpios = <gpio_P9_33 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_35: key_P9_35 {
+			status = "disabled";
+			gpios = <gpio_P9_35 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_36: key_P9_36 {
+			status = "disabled";
+			gpios = <gpio_P9_36 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_37: key_P9_37 {
+			status = "disabled";
+			gpios = <gpio_P9_37 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_38: key_P9_38 {
+			status = "disabled";
+			gpios = <gpio_P9_38 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_39: key_P9_39 {
+			status = "disabled";
+			gpios = <gpio_P9_39 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_40: key_P9_40 {
+			status = "disabled";
+			gpios = <gpio_P9_40 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_41: key_P9_41 {
+			status = "disabled";
+			gpios = <gpio_P9_41 GPIO_ACTIVE_HIGH>;
+		};
+
+		bone_key_P9_42: key_P9_42 {
+			status = "disabled";
+			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
+		};
 	};
 
 	gpio_leds: gpio-leds {
