@@ -728,6 +728,28 @@
 		};
 	};
 
+	reg_bridge: reg_bridge@0 {
+		reg = <0 0 0x0 0x0>;
+		compatible = "regulator-fixed";
+		regulator-name = "bridge_reg";
+		gpio = <&reg_display 0 0>;
+		vin-supply = <&reg_display>;
+		enable-active-high;
+	};
+
+	panel_disp0: panel_disp1@0 {
+		reg = <0 0 0x0 0x0>;
+		compatible = "raspberrypi,7inch-dsi", "simple-panel";
+		backlight = <&reg_display>;
+		power-supply = <&reg_display>;
+
+		port {
+			panel_in: endpoint {
+				remote-endpoint = <&panel_bridge_out>;
+			};
+		};
+	};
+
 	clk_ov5640_fixed: ov5640-xclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -819,6 +841,13 @@
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) MMC2_CLK.I2C3_SCL */
 			J721E_IOPAD(0x274, PIN_INPUT_PULLUP, 4) /* (T25) MMC2_CMD.I2C3_SDA */
+		>;
+	};
+
+	main_i2c4_pins_default: main-i2c-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0xa8, PIN_INPUT_PULLUP, 2) /* (AD19) PRG1_MDIO0_MDIO.I2C4_SCL */
+			J721E_IOPAD(0xac, PIN_INPUT_PULLUP, 2) /* (AD18) PRG1_MDIO0_MDC.I2C4_SDA */
 		>;
 	};
 
@@ -1895,6 +1924,37 @@ bone_i2c_3: &main_i2c4 {
 	symlink = "bone/i2c/3";
 };
 
+&main_i2c4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c4_pins_default>;
+	clock-frequency = <400000>;
+
+	reg_display: reg_display@45 {
+		compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
+		reg = <0x45>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	ft5406: ts@38 {
+		compatible = "edt,edt-ft5406";
+		reg = <0x38>;
+
+		touchscreen-size-x = < 800 >;
+		touchscreen-size-y = < 480 >;
+
+		vcc-supply = <&reg_display>;
+		reset-gpio = <&reg_display 1 1>;
+
+		/**
+		 * https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/edt-ft5406.dtsi
+		 * overlay adds following, not sure if required
+		 */
+		touchscreen-inverted-x;
+		touchscreen-inverted-y;
+	};
+};
+
 &main_i2c5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
@@ -2014,6 +2074,14 @@ bone_i2c_1: &main_i2c6 {
 			remote-endpoint = <&dp0_in>;
 		};
 	};
+
+	port@2 {
+		reg = <2>;
+
+		dpi1_out: endpoint {
+			remote-endpoint = <&dsi0_in>;
+		};
+	};
 };
 
 &mhdp {
@@ -2038,6 +2106,53 @@ bone_i2c_1: &main_i2c6 {
 			remote-endpoint = <&dp_connector_in>;
 		};
 	};
+};
+
+&dsi0 {
+/*
+ * DSI_WRAP_DPI_CONTROL (0x04710004) allows to select between various DPI options
+ * On reset, DPI1 is being used
+ */
+	ports {
+		port@0 {
+			reg = <0>;
+			dsi0_out: endpoint {
+				remote-endpoint = <&panel_bridge_in>;
+			};
+		};
+		port@1 {
+			reg = <1>;
+			dsi0_in: endpoint {
+				remote-endpoint = <&dpi1_out>;
+			};
+		};
+
+	};
+
+	bridge@0 {
+		compatible = "toshiba,tc358762";
+		reg = <0>;
+		vddc-supply = <&reg_bridge>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				panel_bridge_in: endpoint {
+					remote-endpoint = <&dsi0_out>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				panel_bridge_out: endpoint {
+					remote-endpoint = <&panel_in>;
+				};
+			};
+		};
+	};
+
 };
 
 &mcasp0 {
@@ -2276,4 +2391,10 @@ bone_uart_1: &main_uart2 {
 
 &csi1_port4 {
 	status = "disabled";
+};
+
+&dphy2 {
+	assigned-clocks = <&k3_clks 296 3>;
+	assigned-clock-parents = <&k3_clks 296 4>;
+	assigned-clock-rates = <19200000>;
 };
