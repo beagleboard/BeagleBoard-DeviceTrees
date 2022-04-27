@@ -2009,21 +2009,21 @@ bone_uart_1: &main_uart2 {
 &icssg0 {
 	uio_pru0_0: uio@0 {
 		compatible = "uio";
-		symlink = "uio/pruss0/pru0";
+		symlink = "uio/pruss1/pru0";
 		reg = <0x0 0x2000>;
 		reg-names = "dram0";
 	};
 
 	uio_pru0_1: uio@2000 {
 		compatible = "uio";
-		symlink = "uio/pruss0/pru1";
+		symlink = "uio/pruss1/pru1";
 		reg = <0x2000 0x2000>;
 		reg-names = "dram1";
 	};
 
 	uio_pru0_shared: uio@10000 {
 		compatible = "uio";
-		symlink = "uio/pruss0/shared";
+		symlink = "uio/pruss1/shared";
 		reg = <0x4000 0x10000>;
 		reg-names = "shrdram2";
 	};
@@ -2032,39 +2032,39 @@ bone_uart_1: &main_uart2 {
 &icssg1 {
 	uio_pru1_0: uio@0 {
 		compatible = "uio";
-		symlink = "uio/pruss1/pru0";
+		symlink = "uio/pruss2/pru0";
 		reg = <0x0 0x2000>;
 		reg-names = "dram0";
 	};
 
 	uio_pru1_1: uio@2000 {
 		compatible = "uio";
-		symlink = "uio/pruss1/pru1";
+		symlink = "uio/pruss2/pru1";
 		reg = <0x2000 0x2000>;
 		reg-names = "dram1";
 	};
 
 	uio_pru1_shared: uio@10000 {
 		compatible = "uio";
-		symlink = "uio/pruss1/shared";
+		symlink = "uio/pruss2/shared";
 		reg = <0x4000 0x10000>;
 		reg-names = "shrdram2";
 	};
 };
 
 &pru0_0 {
-	symlink = "remoteproc/pruss0/pru0";
+	symlink = "remoteproc/pruss1-core0";
 };
 
 &pru0_1 {
-	symlink = "remoteproc/pruss0/pru1";
+	symlink = "remoteproc/pruss1-core1";
 };
 
 &pru1_0 {
-	symlink = "remoteproc/pruss1/pru0";
+	symlink = "remoteproc/pruss2-core0";
 };
 
 &pru1_1 {
-	symlink = "remoteproc/pruss1/pru1";
+	symlink = "remoteproc/pruss2-core1";
 };
 
