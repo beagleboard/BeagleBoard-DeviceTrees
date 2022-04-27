@@ -44,379 +44,88 @@
 			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
 		};
 
-		bone_key_P8_03: key_P8_03 {
-			status = "disabled";
-			label = "P8_03";
-			linux,code = <KEY_UNKNOWN>;
-			gpios = <gpio_P8_03 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_04: key_P8_04 {
-			status = "disabled";
-			gpios = <gpio_P8_04 GPIO_ACTIVE_HIGH>;
-			label = "P8_04";
-			linux,code = <KEY_UNKNOWN>;
-		};
-
-		bone_key_P8_05: key_P8_05 {
-			status = "disabled";
-			gpios = <gpio_P8_05 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_06: key_P8_06 {
-			status = "disabled";
-			gpios = <gpio_P8_06 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_07: key_P8_07 {
-			status = "disabled";
-			gpios = <gpio_P8_07 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_08: key_P8_08 {
-			status = "disabled";
-			gpios = <gpio_P8_08 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_09: key_P8_09 {
-			status = "disabled";
-			gpios = <gpio_P8_09 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_10: key_P8_10 {
-			status = "disabled";
-			gpios = <gpio_P8_10 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_11: key_P8_11 {
-			status = "disabled";
-			gpios = <gpio_P8_11 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_12: key_P8_12 {
-			status = "disabled";
-			gpios = <gpio_P8_12 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_13: key_P8_13 {
-			status = "disabled";
-			gpios = <gpio_P8_13 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_14: key_P8_14 {
-			status = "disabled";
-			gpios = <gpio_P8_14 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_15: key_P8_15 {
-			status = "disabled";
-			gpios = <gpio_P8_15 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_16: key_P8_16 {
-			status = "disabled";
-			gpios = <gpio_P8_16 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_17: key_P8_17 {
-			status = "disabled";
-			gpios = <gpio_P8_17 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_18: key_P8_18 {
-			status = "disabled";
-			gpios = <gpio_P8_18 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_19: key_P8_19 {
-			status = "disabled";
-			gpios = <gpio_P8_19 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_20: key_P8_20 {
-			status = "disabled";
-			gpios = <gpio_P8_20 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_21: key_P8_21 {
-			status = "disabled";
-			gpios = <gpio_P8_21 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_22: key_P8_22 {
-			status = "disabled";
-			gpios = <gpio_P8_22 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_23: key_P8_23 {
-			status = "disabled";
-			gpios = <gpio_P8_23 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_24: key_P8_24 {
-			status = "disabled";
-			gpios = <gpio_P8_24 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_25: key_P8_25 {
-			status = "disabled";
-			gpios = <gpio_P8_25 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_26: key_P8_26 {
-			status = "disabled";
-			gpios = <gpio_P8_26 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_27: key_P8_27 {
-			status = "disabled";
-			gpios = <gpio_P8_27 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_28: key_P8_28 {
-			status = "disabled";
-			gpios = <gpio_P8_28 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_29: key_P8_29 {
-			status = "disabled";
-			gpios = <gpio_P8_29 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_30: key_P8_30 {
-			status = "disabled";
-			gpios = <gpio_P8_30 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_31: key_P8_31 {
-			status = "disabled";
-			gpios = <gpio_P8_31 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_32: key_P8_32 {
-			status = "disabled";
-			gpios = <gpio_P8_32 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_33: key_P8_33 {
-			status = "disabled";
-			gpios = <gpio_P8_33 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_34: key_P8_34 {
-			status = "disabled";
-			gpios = <gpio_P8_34 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_35: key_P8_35 {
-			status = "disabled";
-			gpios = <gpio_P8_35 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_36: key_P8_36 {
-			status = "disabled";
-			gpios = <gpio_P8_36 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_37: key_P8_37 {
-			status = "disabled";
-			gpios = <gpio_P8_37 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_38: key_P8_38 {
-			status = "disabled";
-			gpios = <gpio_P8_38 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_39: key_P8_39 {
-			status = "disabled";
-			gpios = <gpio_P8_39 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_40: key_P8_40 {
-			status = "disabled";
-			gpios = <gpio_P8_40 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_41: key_P8_41 {
-			status = "disabled";
-			gpios = <gpio_P8_41 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_42: key_P8_42 {
-			status = "disabled";
-			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_43: key_P8_43 {
-			status = "disabled";
-			gpios = <gpio_P8_43 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_44: key_P8_44 {
-			status = "disabled";
-			gpios = <gpio_P8_44 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_45: key_P8_45 {
-			status = "disabled";
-			gpios = <gpio_P8_45 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P8_46: key_P8_46 {
-			status = "disabled";
-			gpios = <gpio_P8_46 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_11: key_P9_11 {
-			status = "disabled";
-			gpios = <gpio_P9_11 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_12: key_P9_12 {
-			status = "disabled";
-			gpios = <gpio_P9_12 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_13: key_P9_13 {
-			status = "disabled";
-			gpios = <gpio_P9_13 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_14: key_P9_14 {
-			status = "disabled";
-			gpios = <gpio_P9_14 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_15: key_P9_15 {
-			status = "disabled";
-			gpios = <gpio_P9_15 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_16: key_P9_16 {
-			status = "disabled";
-			gpios = <gpio_P9_16 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_17: key_P9_17 {
-			status = "disabled";
-			gpios = <gpio_P9_17 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_18: key_P9_18 {
-			status = "disabled";
-			gpios = <gpio_P9_18 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_19: key_P9_19 {
-			status = "disabled";
-			gpios = <gpio_P9_19 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_20: key_P9_20 {
-			status = "disabled";
-			gpios = <gpio_P9_20 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_21: key_P9_21 {
-			status = "disabled";
-			gpios = <gpio_P9_21 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_22: key_P9_22 {
-			status = "disabled";
-			gpios = <gpio_P9_22 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_23: key_P9_23 {
-			status = "disabled";
-			gpios = <gpio_P9_23 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_24: key_P9_24 {
-			status = "disabled";
-			gpios = <gpio_P9_24 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_25: key_P9_25 {
-			status = "disabled";
-			gpios = <gpio_P9_25 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_26: key_P9_26 {
-			status = "disabled";
-			gpios = <gpio_P9_26 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_27: key_P9_27 {
-			status = "disabled";
-			gpios = <gpio_P9_27 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_28: key_P9_28 {
-			status = "disabled";
-			gpios = <gpio_P9_28 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_29: key_P9_29 {
-			status = "disabled";
-			gpios = <gpio_P9_29 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_30: key_P9_30 {
-			status = "disabled";
-			gpios = <gpio_P9_30 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_31: key_P9_31 {
-			status = "disabled";
-			gpios = <gpio_P9_31 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_33: key_P9_33 {
-			status = "disabled";
-			gpios = <gpio_P9_33 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_35: key_P9_35 {
-			status = "disabled";
-			gpios = <gpio_P9_35 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_36: key_P9_36 {
-			status = "disabled";
-			gpios = <gpio_P9_36 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_37: key_P9_37 {
-			status = "disabled";
-			gpios = <gpio_P9_37 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_38: key_P9_38 {
-			status = "disabled";
-			gpios = <gpio_P9_38 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_39: key_P9_39 {
-			status = "disabled";
-			gpios = <gpio_P9_39 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_40: key_P9_40 {
-			status = "disabled";
-			gpios = <gpio_P9_40 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_41: key_P9_41 {
-			status = "disabled";
-			gpios = <gpio_P9_41 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_key_P9_42: key_P9_42 {
-			status = "disabled";
-			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
-		};
+#define BONE_KEY(XX) \
+		bone_key_##XX##: key_##XX { \
+			status = "disabled"; \
+			label = "##XX##"; \
+			linux,code = <KEY_UNKNOWN>; \
+			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
+		}
+
+		BONE_KEY(P8_03);
+		BONE_KEY(P8_04);
+		BONE_KEY(P8_05);
+		BONE_KEY(P8_06);
+		BONE_KEY(P8_07);
+		BONE_KEY(P8_08);
+		BONE_KEY(P8_09);
+		BONE_KEY(P8_10);
+		BONE_KEY(P8_11);
+		BONE_KEY(P8_12);
+		BONE_KEY(P8_13);
+		BONE_KEY(P8_14);
+		BONE_KEY(P8_15);
+		BONE_KEY(P8_16);
+		BONE_KEY(P8_17);
+		BONE_KEY(P8_18);
+		BONE_KEY(P8_19);
+		BONE_KEY(P8_20);
+		BONE_KEY(P8_21);
+		BONE_KEY(P8_22);
+		BONE_KEY(P8_23);
+		BONE_KEY(P8_24);
+		BONE_KEY(P8_25);
+		BONE_KEY(P8_26);
+		BONE_KEY(P8_27);
+		BONE_KEY(P8_28);
+		BONE_KEY(P8_29);
+		BONE_KEY(P8_30);
+		BONE_KEY(P8_31);
+		BONE_KEY(P8_32);
+		BONE_KEY(P8_33);
+		BONE_KEY(P8_34);
+		BONE_KEY(P8_35);
+		BONE_KEY(P8_36);
+		BONE_KEY(P8_37);
+		BONE_KEY(P8_38);
+		BONE_KEY(P8_39);
+		BONE_KEY(P8_40);
+		BONE_KEY(P8_41);
+		BONE_KEY(P8_42);
+		BONE_KEY(P8_43);
+		BONE_KEY(P8_44);
+		BONE_KEY(P8_45);
+		BONE_KEY(P8_46);
+		BONE_KEY(P9_11);
+		BONE_KEY(P9_12);
+		BONE_KEY(P9_13);
+		BONE_KEY(P9_14);
+		BONE_KEY(P9_15);
+		BONE_KEY(P9_16);
+		BONE_KEY(P9_17);
+		BONE_KEY(P9_18);
+		BONE_KEY(P9_19);
+		BONE_KEY(P9_20);
+		BONE_KEY(P9_21);
+		BONE_KEY(P9_22);
+		BONE_KEY(P9_23);
+		BONE_KEY(P9_24);
+		BONE_KEY(P9_25);
+		BONE_KEY(P9_26);
+		BONE_KEY(P9_27);
+		BONE_KEY(P9_28);
+		BONE_KEY(P9_29);
+		BONE_KEY(P9_30);
+		BONE_KEY(P9_31);
+		BONE_KEY(P9_33);
+		BONE_KEY(P9_35);
+		BONE_KEY(P9_36);
+		BONE_KEY(P9_37);
+		BONE_KEY(P9_38);
+		BONE_KEY(P9_39);
+		BONE_KEY(P9_40);
+		BONE_KEY(P9_41);
+		BONE_KEY(P9_42);
 	};
 
 	gpio_leds: gpio-leds {
@@ -456,532 +165,174 @@
 			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
 		};
 
-		bone_led_P8_03: led_P8_03 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_03 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_04: led_P8_04 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_04 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_05: led_P8_05 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_05 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_06: led_P8_06 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_06 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_07: led_P8_07 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_07 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_08: led_P8_08 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_08 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_09: led_P8_09 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_09 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_10: led_P8_10 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_10 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_11: led_P8_11 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_11 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_12: led_P8_12 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_12 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_13: led_P8_13 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_13 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_14: led_P8_14 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_14 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_15: led_P8_15 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_15 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_16: led_P8_16 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_16 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_17: led_P8_17 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_17 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_18: led_P8_18 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_18 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_19: led_P8_19 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_19 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_20: led_P8_20 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_20 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_21: led_P8_21 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_21 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_22: led_P8_22 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_22 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_23: led_P8_23 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_23 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_24: led_P8_24 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_24 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_25: led_P8_25 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_25 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_26: led_P8_26 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_26 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_27: led_P8_27 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_27 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_28: led_P8_28 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_28 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_29: led_P8_29 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_29 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_30: led_P8_30 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_30 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_31: led_P8_31 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_31 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_32: led_P8_32 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_32 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_33: led_P8_33 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_33 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_34: led_P8_34 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_34 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_35: led_P8_35 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_35 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_36: led_P8_36 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_36 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_37: led_P8_37 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_37 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_38: led_P8_38 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_38 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_39: led_P8_39 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_39 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_40: led_P8_40 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_40 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_41: led_P8_41 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_41 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_42: led_P8_42 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_43: led_P8_43 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_43 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_44: led_P8_44 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_44 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_45: led_P8_45 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_45 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P8_46: led_P8_46 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_46 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_11: led_P9_11 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_11 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_12: led_P9_12 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_12 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_13: led_P9_13 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_13 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_14: led_P9_14 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_14 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_15: led_P9_15 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_15 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_16: led_P9_16 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_16 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_17: led_P9_17 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_17 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_18: led_P9_18 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_18 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_19: led_P9_19 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_19 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_20: led_P9_20 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_20 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_21: led_P9_21 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_21 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_22: led_P9_22 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_22 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_23: led_P9_23 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_23 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_24: led_P9_24 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_24 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_25: led_P9_25 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_25 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_26: led_P9_26 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_26 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_27: led_P9_27 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_27 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_28: led_P9_28 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_28 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_29: led_P9_29 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_29 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_30: led_P9_30 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_30 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_31: led_P9_31 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_31 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_33: led_P9_33 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_33 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_35: led_P9_35 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_35 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_36: led_P9_36 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_36 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_37: led_P9_37 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_37 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_38: led_P9_38 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_38 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_39: led_P9_39 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_39 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_40: led_P9_40 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_40 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_41: led_P9_41 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P9_41 GPIO_ACTIVE_HIGH>;
-		};
-
-		bone_led_P9_42: led_P9_42 {
-			status = "disabled";
-			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
-		};
+#define BONE_LED(XX) \
+		bone_led_##XX##: led_##XX { \
+			status = "disabled"; \
+			label = "##XX##"; \
+			linux,default-trigger = "default-off"; \
+			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
+		}
+
+		BONE_LED(P8_03);
+		BONE_LED(P8_04);
+		BONE_LED(P8_05);
+		BONE_LED(P8_06);
+		BONE_LED(P8_07);
+		BONE_LED(P8_08);
+		BONE_LED(P8_09);
+		BONE_LED(P8_10);
+		BONE_LED(P8_11);
+		BONE_LED(P8_12);
+		BONE_LED(P8_13);
+		BONE_LED(P8_14);
+		BONE_LED(P8_15);
+		BONE_LED(P8_16);
+		BONE_LED(P8_17);
+		BONE_LED(P8_18);
+		BONE_LED(P8_19);
+		BONE_LED(P8_20);
+		BONE_LED(P8_21);
+		BONE_LED(P8_22);
+		BONE_LED(P8_23);
+		BONE_LED(P8_24);
+		BONE_LED(P8_25);
+		BONE_LED(P8_26);
+		BONE_LED(P8_27);
+		BONE_LED(P8_28);
+		BONE_LED(P8_29);
+		BONE_LED(P8_30);
+		BONE_LED(P8_31);
+		BONE_LED(P8_32);
+		BONE_LED(P8_33);
+		BONE_LED(P8_34);
+		BONE_LED(P8_35);
+		BONE_LED(P8_36);
+		BONE_LED(P8_37);
+		BONE_LED(P8_38);
+		BONE_LED(P8_39);
+		BONE_LED(P8_40);
+		BONE_LED(P8_41);
+		BONE_LED(P8_42);
+		BONE_LED(P8_43);
+		BONE_LED(P8_44);
+		BONE_LED(P8_45);
+		BONE_LED(P8_46);
+		BONE_LED(P9_11);
+		BONE_LED(P9_12);
+		BONE_LED(P9_13);
+		BONE_LED(P9_14);
+		BONE_LED(P9_15);
+		BONE_LED(P9_16);
+		BONE_LED(P9_17);
+		BONE_LED(P9_18);
+		BONE_LED(P9_19);
+		BONE_LED(P9_20);
+		BONE_LED(P9_21);
+		BONE_LED(P9_22);
+		BONE_LED(P9_23);
+		BONE_LED(P9_24);
+		BONE_LED(P9_25);
+		BONE_LED(P9_26);
+		BONE_LED(P9_27);
+		BONE_LED(P9_28);
+		BONE_LED(P9_29);
+		BONE_LED(P9_30);
+		BONE_LED(P9_31);
+		BONE_LED(P9_33);
+		BONE_LED(P9_35);
+		BONE_LED(P9_36);
+		BONE_LED(P9_37);
+		BONE_LED(P9_38);
+		BONE_LED(P9_39);
+		BONE_LED(P9_40);
+		BONE_LED(P9_41);
+		BONE_LED(P9_42);
 	};
 
-	/* Dummy driver to request setup for cape header pins */
-	cape_header: pinmux_dummy {
-		compatible = "gpio-leds";
-		pinctrl-names = "default";
-		pinctrl-0 = <
-			&P8_03_default_pin
-			&P8_04_default_pin
-			&P8_05_default_pin
-			&P8_06_default_pin
-			&P8_07_default_pin
-			&P8_08_default_pin
-			&P8_09_default_pin
-			&P8_10_default_pin
-			&P8_11_default_pin
-			&P8_12_default_pin
-			&P8_13_default_pin
-			&P8_14_default_pin
-			&P8_15_default_pin
-			&P8_16_default_pin
-			&P8_17_default_pin
-			&P8_18_default_pin
-			&P8_19_default_pin
-			&P8_20_default_pin
-			&P8_21_default_pin
-			&P8_22_default_pin
-			&P8_23_default_pin
-			&P8_24_default_pin
-			&P8_25_default_pin
-			&P8_26_default_pin
-			&P8_27_default_pin
-			&P8_28_default_pin
-			&P8_29_default_pin
-			&P8_30_default_pin
-			&P8_31_default_pin
-			&P8_32_default_pin
-			&P8_33_default_pin
-			&P8_34_default_pin
-			&P8_35_default_pin
-			&P8_36_default_pin
-			&P8_37_default_pin
-			&P8_38_default_pin
-			&P8_39_default_pin
-			&P8_40_default_pin
-			&P8_41_default_pin
-			&P8_42_default_pin
-			&P8_43_default_pin
-			&P8_44_default_pin
-			&P8_45_default_pin
-			&P8_46_default_pin
-			&P9_11_default_pin
-			&P9_12_default_pin
-			&P9_13_default_pin
-			&P9_14_default_pin
-			&P9_15_default_pin
-			&P9_16_default_pin
-			&P9_17_default_pin
-			&P9_18_default_pin
-			&P9_19_default_pin
-			&P9_20_default_pin
-			&P9_21_default_pin
-			&P9_22_default_pin
-			&P9_23_default_pin
-			&P9_24_default_pin
-			&P9_25_default_pin
-			&P9_26_default_pin
-			&P9_27_default_pin
-			&P9_28_default_pin
-			&P9_29_default_pin
-			&P9_30_default_pin
-			&P9_31_default_pin
-			&P9_33_default_pin
-			&P9_35_default_pin
-			&P9_36_default_pin
-			&P9_37_default_pin
-			&P9_38_default_pin
-			&P9_39_default_pin
-			&P9_40_default_pin
-			&P9_41_default_pin
-			&P9_42_default_pin
-		>;
-	};
+	/* Dummy drivers to request setup for cape header pins */
+#define BONE_MUX(XX) \
+	bone_##XX##_pinmux: dummy_##XX##_pinmux { \
+		compatible = "gpio-leds"; \
+		pinctrl-names = "default"; \
+		pinctrl-0 = < \
+			&##XX##_default_pin \
+		>; \
+	}
+
+	BONE_MUX(P8_03);
+	BONE_MUX(P8_04);
+	BONE_MUX(P8_05);
+	BONE_MUX(P8_06);
+	BONE_MUX(P8_07);
+	BONE_MUX(P8_08);
+	BONE_MUX(P8_09);
+	BONE_MUX(P8_10);
+	BONE_MUX(P8_11);
+	BONE_MUX(P8_12);
+	BONE_MUX(P8_13);
+	BONE_MUX(P8_14);
+	BONE_MUX(P8_15);
+	BONE_MUX(P8_16);
+	BONE_MUX(P8_17);
+	BONE_MUX(P8_18);
+	BONE_MUX(P8_19);
+	BONE_MUX(P8_20);
+	BONE_MUX(P8_21);
+	BONE_MUX(P8_22);
+	BONE_MUX(P8_23);
+	BONE_MUX(P8_24);
+	BONE_MUX(P8_25);
+	BONE_MUX(P8_26);
+	BONE_MUX(P8_27);
+	BONE_MUX(P8_28);
+	BONE_MUX(P8_29);
+	BONE_MUX(P8_30);
+	BONE_MUX(P8_31);
+	BONE_MUX(P8_32);
+	BONE_MUX(P8_33);
+	BONE_MUX(P8_34);
+	BONE_MUX(P8_35);
+	BONE_MUX(P8_36);
+	BONE_MUX(P8_37);
+	BONE_MUX(P8_38);
+	BONE_MUX(P8_39);
+	BONE_MUX(P8_40);
+	BONE_MUX(P8_41);
+	BONE_MUX(P8_42);
+	BONE_MUX(P8_43);
+	BONE_MUX(P8_44);
+	BONE_MUX(P8_45);
+	BONE_MUX(P8_46);
+	BONE_MUX(P9_11);
+	BONE_MUX(P9_12);
+	BONE_MUX(P9_13);
+	BONE_MUX(P9_14);
+	BONE_MUX(P9_15);
+	BONE_MUX(P9_16);
+	BONE_MUX(P9_17);
+	BONE_MUX(P9_18);
+	BONE_MUX(P9_19);
+	BONE_MUX(P9_20);
+	BONE_MUX(P9_21);
+	BONE_MUX(P9_22);
+	BONE_MUX(P9_23);
+	BONE_MUX(P9_24);
+	BONE_MUX(P9_25);
+	BONE_MUX(P9_26);
+	BONE_MUX(P9_27);
+	BONE_MUX(P9_28);
+	BONE_MUX(P9_29);
+	BONE_MUX(P9_30);
+	BONE_MUX(P9_31);
+	BONE_MUX(P9_33);
+	BONE_MUX(P9_35);
+	BONE_MUX(P9_36);
+	BONE_MUX(P9_37);
+	BONE_MUX(P9_38);
+	BONE_MUX(P9_39);
+	BONE_MUX(P9_40);
+	BONE_MUX(P9_41);
+	BONE_MUX(P9_42);
 
 	evm_12v0: fixedregulator-evm12v0 {
 		/* main supply */
@@ -1970,8 +1321,8 @@ bone_uart_0: &main_uart0 {
 };
 
 bone_uart_5: &main_uart5 {
+	/* P8_37 - TX, P8_38 - RX */
 	symlink = "bone/uart/5";
-	status = "disabled";
 };
 
 &main_uart6 {
@@ -1985,8 +1336,8 @@ bone_uart_5: &main_uart5 {
 };
 
 &main_uart8 {
-	/* UART not brought out */
-	status = "disabled";
+	/* P8_28 - RX, P8_29 - TX */
+	symlink = "bone/uart/6";
 };
 
 &main_uart9 {
@@ -2254,6 +1605,7 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 bone_i2c_2: &main_i2c3 {
+	/* P9_19 - SCL, P9_20 - SDA */
 	symlink = "bone/i2c/2";
 };
 
@@ -2264,8 +1616,7 @@ bone_i2c_2: &main_i2c3 {
 };
 
 bone_i2c_3: &main_i2c4 {
-	pinctrl-names = "default";
-	clock-frequency = <400000>;
+	/* P9_24 - SCL, P9_26 - SDA */
 	symlink = "bone/i2c/3";
 };
 
@@ -2314,24 +1665,25 @@ bone_i2c_3: &main_i2c4 {
 };
 
 bone_spi_0: &main_spi6 {
+	/* P9_18 - SDO, P9_21 - SDI, P9_22 - CLK */
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_spi6_pins_default>;
 	ti,spi-num-cs = <2>;
 	ti,pindir-d0-out-d1-in;
 
-	spidev0: spidev@0{
+	spidev@0{
 		symlink = "bone/spi/0.0";
 		compatible = "spidev";
-		reg = <0>;	/* CE0 */
+		reg = <0>;	/* CE0 - P9_17 */
 		#address-cells = <1>;
 		#size-cells = <0>;
 		spi-max-frequency = <125000000>;
 	};
 
-	spidev1: spidev@1{
+	spidev@1{
 		symlink = "bone/spi/0.1";
 		compatible = "spidev";
-		reg = <1>;	/* CE1 */
+		reg = <1>;	/* CE1 - P9_23 */
 		#address-cells = <1>;
 		#size-cells = <0>;
 		spi-max-frequency = <125000000>;
@@ -2339,6 +1691,7 @@ bone_spi_0: &main_spi6 {
 };
 
 bone_i2c_1: &main_i2c6 {
+	/* P9_17 - SCL, P9_18 - SDA */
 	symlink = "bone/i2c/1";
 };
 
@@ -2529,6 +1882,7 @@ bone_i2c_1: &main_i2c6 {
 /* TODO: is uart2 assigned to cpsw9g eth-switch fw running on remote CPU core? */
 /* TODO: handle alternate connection at P8_34 and P8_22 */
 bone_uart_1: &main_uart2 {
+	/* P9_24 - TX, P9_26 - RX */
 	status = "okay";
 	symlink = "bone/uart/1";
 	power-domains = <&k3_pds 279 TI_SCI_PD_SHARED>; /* TODO: needed? */
