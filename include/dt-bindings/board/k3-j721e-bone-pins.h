@@ -101,15 +101,15 @@
 #define gpio_P9_27 &main_gpio0 46
 #define gpio_P9_27A &main_gpio0 46
 #define gpio_P9_27B &main_gpio0 127
-#define gpio_P9_28 &main_gpio1 11
 #define gpio_P9_28A &main_gpio1 11
 #define gpio_P9_28B &main_gpio0 43
-#define gpio_P9_29 &main_gpio0 53
+#define gpio_P9_28 gpio_P9_28A
 #define gpio_P9_29A &main_gpio1 14
 #define gpio_P9_29B &main_gpio0 53
-#define gpio_P9_30 &main_gpio0 44
+#define gpio_P9_29 gpio_P9_29B
 #define gpio_P9_30A &main_gpio1 13
 #define gpio_P9_30B &main_gpio0 44
+#define gpio_P9_30 gpio_P9_30B
 #define gpio_P9_31A &main_gpio1 12
 #define gpio_P9_31B &main_gpio0 52
 #define gpio_P9_31 gpio_P9_31B
@@ -123,107 +123,110 @@
 #define gpio_P9_41 &main_gpio1 0
 #define gpio_P9_42 &main_gpio0 123
 
-#define P8_03(mode, mux)  J721E_IOPAD(0x054, mode, mux)       /* AH21 */
-#define P8_04(mode, mux)  J721E_IOPAD(0x0C4, mode, mux)       /* AC29 - BOOTMODE2 */
-#define P8_05(mode, mux)  J721E_IOPAD(0x088, mode, mux)       /* AH25 */
-#define P8_06(mode, mux)  J721E_IOPAD(0x08C, mode, mux)       /* AG25 */
-#define P8_07(mode, mux)  J721E_IOPAD(0x03C, mode, mux)       /* AD24 */
-#define P8_08(mode, mux)  J721E_IOPAD(0x038, mode, mux)       /* AG24 */
-#define P8_09(mode, mux)  J721E_IOPAD(0x044, mode, mux)       /* AE24 */
-#define P8_10(mode, mux)  J721E_IOPAD(0x040, mode, mux)       /* AC24 */
-#define P8_11(mode, mux)  J721E_IOPAD(0x0F4, mode, mux)       /* AB24 - BOOTMODE7 */
-#define P8_12(mode, mux)  J721E_IOPAD(0x0F0, mode, mux)       /* AH28 */
-#define P8_13(mode, mux)  J721E_IOPAD(0x168, mode, mux)       /* V27 */
-#define P8_14(mode, mux)  J721E_IOPAD(0x130, mode, mux)       /* AF27 */
-#define P8_15(mode, mux)  J721E_IOPAD(0x0F8, mode, mux)       /* AB29 */
-#define P8_16(mode, mux)  J721E_IOPAD(0x0FC, mode, mux)       /* AB28 */
-#define P8_17(mode, mux)  J721E_IOPAD(0x00C, mode, mux)       /* AF22 */
-#define P8_18(mode, mux)  J721E_IOPAD(0x010, mode, mux)       /* AJ23 */
-#define P8_19(mode, mux)  J721E_IOPAD(0x164, mode, mux)       /* V29 */
-#define P8_20(mode, mux)  J721E_IOPAD(0x134, mode, mux)       /* AF26 */
-#define P8_21(mode, mux)  J721E_IOPAD(0x07C, mode, mux)       /* AF21 */
-#define P8_22(mode, mux)  J721E_IOPAD(0x014, mode, mux)       /* AH23 */
-#define P8_23(mode, mux)  J721E_IOPAD(0x080, mode, mux)       /* AB23 */
-#define P8_24(mode, mux)  J721E_IOPAD(0x018, mode, mux)       /* AD20 - BOOTMODE0 */
-#define P8_25(mode, mux)  J721E_IOPAD(0x090, mode, mux)       /* AH26 */
-#define P8_26(mode, mux)  J721E_IOPAD(0x0D0, mode, mux)       /* AC27 */
-#define P8_27(mode, mux)  J721E_IOPAD(0x120, mode, mux)       /* AA28 */
-#define P8_28(mode, mux)  J721E_IOPAD(0x124, mode, mux)       /* Y24 */
-#define P8_29(mode, mux)  J721E_IOPAD(0x128, mode, mux)       /* AA25 */
-#define P8_30(mode, mux)  J721E_IOPAD(0x12C, mode, mux)       /* AG26 */
-#define P8_31A(mode, mux) J721E_IOPAD(0x084, mode, mux)       /* AJ25 */
-#define P8_31B(mode, mux) J721E_IOPAD(0x100, mode, mux)       /* AE29 */
-#define P8_32A(mode, mux) J721E_IOPAD(0x06C, mode, mux)       /* AG21 */
-#define P8_32B(mode, mux) J721E_IOPAD(0x104, mode, mux)       /* AD28 */
-#define P8_33A(mode, mux) J721E_IOPAD(0x068, mode, mux)       /* AH24 */
-#define P8_33B(mode, mux) J721E_IOPAD(0x1C0, mode, mux)       /* AA2 */
-#define P8_34(mode, mux)  J721E_IOPAD(0x01C, mode, mux)       /* AD22 */
-#define P8_35A(mode, mux) J721E_IOPAD(0x064, mode, mux)       /* AD23 */
-#define P8_35B(mode, mux) J721E_IOPAD(0x1D4, mode, mux)       /* Y3 */
-#define P8_36(mode, mux)  J721E_IOPAD(0x020, mode, mux)       /* AE20 */
-#define P8_37A(mode, mux) J721E_IOPAD(0x02C, mode, mux)       /* AD21 */
-#define P8_37B(mode, mux) J721E_IOPAD(0x1AC, mode, mux)       /* Y27 */
-#define P8_38A(mode, mux) J721E_IOPAD(0x024, mode, mux)       /* AJ20 */
-#define P8_38B(mode, mux) J721E_IOPAD(0x1A8, mode, mux)       /* Y29 */
-#define P8_39(mode, mux)  J721E_IOPAD(0x118, mode, mux)       /* AC26 */
-#define P8_40(mode, mux)  J721E_IOPAD(0x11C, mode, mux)       /* AA24 */
-#define P8_41(mode, mux)  J721E_IOPAD(0x110, mode, mux)       /* AD29 */
-#define P8_42(mode, mux)  J721E_IOPAD(0x114, mode, mux)       /* AB27 - BOOTMODE6 */
-#define P8_43(mode, mux)  J721E_IOPAD(0x108, mode, mux)       /* AD27 */
-#define P8_44(mode, mux)  J721E_IOPAD(0x10C, mode, mux)       /* AC25 */
-#define P8_45(mode, mux)  J721E_IOPAD(0x140, mode, mux)       /* AG29 */
-#define P8_46(mode, mux)  J721E_IOPAD(0x144, mode, mux)       /* Y25 - BOOTMODE3 */
-#define P9_11(mode, mux)  J721E_IOPAD(0x004, mode, mux)       /* AC23 */
-#define P9_12(mode, mux)  J721E_IOPAD(0x0B8, mode, mux)       /* AE27 */
-#define P9_13(mode, mux)  J721E_IOPAD(0x008, mode, mux)       /* AG22 */
-#define P9_14(mode, mux)  J721E_IOPAD(0x178, mode, mux)       /* U27 */
-#define P9_15(mode, mux)  J721E_IOPAD(0x0C0, mode, mux)       /* AD25 */
-#define P9_16(mode, mux)  J721E_IOPAD(0x17C, mode, mux)       /* U24 */
-#define P9_17A(mode, mux) J721E_IOPAD(0x074, mode, mux)       /* AC21 */
-#define P9_17B(mode, mux) J721E_IOPAD(0x1D0, mode, mux)       /* AA3 */
-#define P9_18A(mode, mux) J721E_IOPAD(0x0A4, mode, mux)       /* AH22 */
-#define P9_18B(mode, mux) J721E_IOPAD(0x1E4, mode, mux)       /* Y2 */
-#define P9_19A(mode, mux) J721E_IOPAD(0x208, mode, mux)       /* W5 */
-#define P9_19B(mode, mux) J721E_IOPAD(0x13C, mode, mux)       /* AF29 */
-#define P9_20A(mode, mux) J721E_IOPAD(0x20C, mode, mux)       /* W6 */
-#define P9_20B(mode, mux) J721E_IOPAD(0x138, mode, mux)       /* AE25 */
-#define P9_21A(mode, mux) J721E_IOPAD(0x0A0, mode, mux)       /* AJ22 */
-#define P9_21B(mode, mux) J721E_IOPAD(0x16C, mode, mux)       /* U28 */
-#define P9_22A(mode, mux) J721E_IOPAD(0x09C, mode, mux)       /* AC22 - BOOTMODE1 */
-#define P9_22B(mode, mux) J721E_IOPAD(0x170, mode, mux)       /* U29 */
-#define P9_23(mode, mux)  J721E_IOPAD(0x028, mode, mux)       /* AG20 */
-#define P9_24A(mode, mux) J721E_IOPAD(0x1E0, mode, mux)       /* Y5 */
-#define P9_24B(mode, mux) J721E_IOPAD(0x034, mode, mux)       /* AJ24 */
-#define P9_25A(mode, mux) J721E_IOPAD(0x200, mode, mux)       /* AC4 */
-#define P9_25B(mode, mux) J721E_IOPAD(0x1A4, mode, mux)       /* W26 */
-#define P9_26A(mode, mux) J721E_IOPAD(0x1DC, mode, mux)       /* Y1 */
-#define P9_26B(mode, mux) J721E_IOPAD(0x030, mode, mux)       /* AF24 */
-#define P9_27A(mode, mux) J721E_IOPAD(0x0BC, mode, mux)       /* AD26 */
-#define P9_27B(mode, mux) J721E_IOPAD(0x1F4, mode, mux)       /* AB1 */
-#define P9_28A(mode, mux) J721E_IOPAD(0x230, mode, mux)       /* U2 */
-#define P9_28B(mode, mux) J721E_IOPAD(0x0B0, mode, mux)       /* AF28 */
-#define P9_29A(mode, mux) J721E_IOPAD(0x23C, mode, mux)       /* V5 */
-#define P9_29B(mode, mux) J721E_IOPAD(0x0D8, mode, mux)       /* AB25 */
-#define P9_30A(mode, mux) J721E_IOPAD(0x238, mode, mux)       /* V6 */
-#define P9_30B(mode, mux) J721E_IOPAD(0x0B4, mode, mux)       /* AE28 */
-#define P9_31A(mode, mux) J721E_IOPAD(0x234, mode, mux)       /* U3 */
-#define P9_31B(mode, mux) J721E_IOPAD(0x0D4, mode, mux)       /* AB26 */
-#define P9_33A(mode, mux) J721E_WKUP_IOPAD(0x140, mode, mux)  /* K24 */
-#define P9_33B(mode, mux) J721E_IOPAD(0x0CC, mode, mux)       /* AC28 */
-#define P9_35A(mode, mux) J721E_WKUP_IOPAD(0x148, mode, mux)  /* K29 */
-#define P9_35B(mode, mux) J721E_IOPAD(0x0E0, mode, mux)       /* AH27 */
-#define P9_36A(mode, mux) J721E_WKUP_IOPAD(0x144, mode, mux)  /* K27 */
-#define P9_36B(mode, mux) J721E_IOPAD(0x0E4, mode, mux)       /* AH29 */
-#define P9_37A(mode, mux) J721E_WKUP_IOPAD(0x138, mode, mux)  /* K28 */
-#define P9_37B(mode, mux) J721E_IOPAD(0x0E8, mode, mux)       /* AG28 */
-#define P9_38A(mode, mux) J721E_WKUP_IOPAD(0x13C, mode, mux)  /* L28 */
-#define P9_38B(mode, mux) J721E_IOPAD(0x0EC, mode, mux)       /* AG27 */
-#define P9_39A(mode, mux) J721E_WKUP_IOPAD(0x130, mode, mux)  /* K25 */
-#define P9_39B(mode, mux) J721E_IOPAD(0x0DC, mode, mux)       /* AJ28 */
-#define P9_40A(mode, mux) J721E_WKUP_IOPAD(0x134, mode, mux)  /* K26 */
-#define P9_40B(mode, mux) J721E_IOPAD(0x148, mode, mux)       /* AA26 */
-#define P9_41(mode, mux)  J721E_IOPAD(0x204, mode, mux)       /* AD5 */
-#define P9_42A(mode, mux) J721E_IOPAD(0x1F0, mode, mux)       /* AC2 */
-#define P9_42B(mode, mux) J721E_IOPAD(0x048, mode, mux)       /* AJ21 */
+#define PIN2PAD(pin, mode, mux) J721E_IOPAD(J721E_PIN_##pin, mode, mux)
+#define PIN2WPAD(pin, mode, mux) J721E_WKUP_IOPAD(J721E_PIN_##pin, mode, mux)
+
+#define P8_03(mode, mux)  PIN2PAD(AH21, mode, mux)
+#define P8_04(mode, mux)  PIN2PAD(AC29, mode, mux) /* BOOTMODE2 */
+#define P8_05(mode, mux)  PIN2PAD(AH25, mode, mux)
+#define P8_06(mode, mux)  PIN2PAD(AG25, mode, mux)
+#define P8_07(mode, mux)  PIN2PAD(AD24, mode, mux)
+#define P8_08(mode, mux)  PIN2PAD(AG24, mode, mux)
+#define P8_09(mode, mux)  PIN2PAD(AE24, mode, mux)
+#define P8_10(mode, mux)  PIN2PAD(AC24, mode, mux)
+#define P8_11(mode, mux)  PIN2PAD(AB24, mode, mux) /* BOOTMODE7 */
+#define P8_12(mode, mux)  PIN2PAD(AH28, mode, mux)
+#define P8_13(mode, mux)  PIN2PAD(V27, mode, mux)
+#define P8_14(mode, mux)  PIN2PAD(AF27, mode, mux)
+#define P8_15(mode, mux)  PIN2PAD(AB29, mode, mux)
+#define P8_16(mode, mux)  PIN2PAD(AB28, mode, mux)
+#define P8_17(mode, mux)  PIN2PAD(AF22, mode, mux)
+#define P8_18(mode, mux)  PIN2PAD(AJ23, mode, mux)
+#define P8_19(mode, mux)  PIN2PAD(V29, mode, mux)
+#define P8_20(mode, mux)  PIN2PAD(AF26, mode, mux)
+#define P8_21(mode, mux)  PIN2PAD(AF21, mode, mux)
+#define P8_22(mode, mux)  PIN2PAD(AH23, mode, mux)
+#define P8_23(mode, mux)  PIN2PAD(AB23, mode, mux)
+#define P8_24(mode, mux)  PIN2PAD(AD20, mode, mux) /* BOOTMODE0 */
+#define P8_25(mode, mux)  PIN2PAD(AH26, mode, mux)
+#define P8_26(mode, mux)  PIN2PAD(AC27, mode, mux)
+#define P8_27(mode, mux)  PIN2PAD(AA28, mode, mux)
+#define P8_28(mode, mux)  PIN2PAD(Y24 , mode, mux)
+#define P8_29(mode, mux)  PIN2PAD(AA25, mode, mux)
+#define P8_30(mode, mux)  PIN2PAD(AG26, mode, mux)
+#define P8_31A(mode, mux) PIN2PAD(AJ25, mode, mux)
+#define P8_31B(mode, mux) PIN2PAD(AE29, mode, mux)
+#define P8_32A(mode, mux) PIN2PAD(AG21, mode, mux)
+#define P8_32B(mode, mux) PIN2PAD(AD28, mode, mux)
+#define P8_33A(mode, mux) PIN2PAD(AH24, mode, mux)
+#define P8_33B(mode, mux) PIN2PAD(AA2, mode, mux)
+#define P8_34(mode, mux)  PIN2PAD(AD22, mode, mux)
+#define P8_35A(mode, mux) PIN2PAD(AD23, mode, mux)
+#define P8_35B(mode, mux) PIN2PAD(Y3, mode, mux)
+#define P8_36(mode, mux)  PIN2PAD(AE20, mode, mux)
+#define P8_37A(mode, mux) PIN2PAD(AD21, mode, mux)
+#define P8_37B(mode, mux) PIN2PAD(Y27, mode, mux)
+#define P8_38A(mode, mux) PIN2PAD(AJ20, mode, mux)
+#define P8_38B(mode, mux) PIN2PAD(Y29, mode, mux)
+#define P8_39(mode, mux)  PIN2PAD(AC26, mode, mux)
+#define P8_40(mode, mux)  PIN2PAD(AA24, mode, mux)
+#define P8_41(mode, mux)  PIN2PAD(AD29, mode, mux)
+#define P8_42(mode, mux)  PIN2PAD(AB27, mode, mux) /* BOOTMODE6 */
+#define P8_43(mode, mux)  PIN2PAD(AD27, mode, mux)
+#define P8_44(mode, mux)  PIN2PAD(AC25, mode, mux)
+#define P8_45(mode, mux)  PIN2PAD(AG29, mode, mux)
+#define P8_46(mode, mux)  PIN2PAD(Y25, mode, mux) /* BOOTMODE3 */
+#define P9_11(mode, mux)  PIN2PAD(AC23, mode, mux)
+#define P9_12(mode, mux)  PIN2PAD(AE27, mode, mux)
+#define P9_13(mode, mux)  PIN2PAD(AG22, mode, mux)
+#define P9_14(mode, mux)  PIN2PAD(U27, mode, mux)
+#define P9_15(mode, mux)  PIN2PAD(AD25, mode, mux)
+#define P9_16(mode, mux)  PIN2PAD(U24, mode, mux)
+#define P9_17A(mode, mux) PIN2PAD(AC21, mode, mux)
+#define P9_17B(mode, mux) PIN2PAD(AA3, mode, mux)
+#define P9_18A(mode, mux) PIN2PAD(AH22, mode, mux)
+#define P9_18B(mode, mux) PIN2PAD(Y2, mode, mux)
+#define P9_19A(mode, mux) PIN2PAD(W5, mode, mux)
+#define P9_19B(mode, mux) PIN2PAD(AF29, mode, mux)
+#define P9_20A(mode, mux) PIN2PAD(W6, mode, mux)
+#define P9_20B(mode, mux) PIN2PAD(AE25, mode, mux)
+#define P9_21A(mode, mux) PIN2PAD(AJ22, mode, mux)
+#define P9_21B(mode, mux) PIN2PAD(U28, mode, mux)
+#define P9_22A(mode, mux) PIN2PAD(AC22, mode, mux) /* BOOTMODE1 */
+#define P9_22B(mode, mux) PIN2PAD(U29, mode, mux)
+#define P9_23(mode, mux)  PIN2PAD(AG20, mode, mux)
+#define P9_24A(mode, mux) PIN2PAD(Y5, mode, mux)
+#define P9_24B(mode, mux) PIN2PAD(AJ24, mode, mux)
+#define P9_25A(mode, mux) PIN2PAD(AC4, mode, mux)
+#define P9_25B(mode, mux) PIN2PAD(W26, mode, mux)
+#define P9_26A(mode, mux) PIN2PAD(Y1, mode, mux)
+#define P9_26B(mode, mux) PIN2PAD(AF24, mode, mux)
+#define P9_27A(mode, mux) PIN2PAD(AD26, mode, mux)
+#define P9_27B(mode, mux) PIN2PAD(AB1, mode, mux)
+#define P9_28A(mode, mux) PIN2PAD(U2, mode, mux)
+#define P9_28B(mode, mux) PIN2PAD(AF28, mode, mux)
+#define P9_29A(mode, mux) PIN2PAD(V5, mode, mux)
+#define P9_29B(mode, mux) PIN2PAD(AB25, mode, mux)
+#define P9_30A(mode, mux) PIN2PAD(V6, mode, mux)
+#define P9_30B(mode, mux) PIN2PAD(AE28, mode, mux)
+#define P9_31A(mode, mux) PIN2PAD(U3, mode, mux)
+#define P9_31B(mode, mux) PIN2PAD(AB26, mode, mux)
+#define P9_33A(mode, mux) PIN2WPAD(K24, mode, mux)
+#define P9_33B(mode, mux) PIN2PAD(AC28, mode, mux)
+#define P9_35A(mode, mux) PIN2WPAD(K29, mode, mux)
+#define P9_35B(mode, mux) PIN2PAD(AH27, mode, mux)
+#define P9_36A(mode, mux) PIN2WPAD(K27, mode, mux)
+#define P9_36B(mode, mux) PIN2PAD(AH29, mode, mux)
+#define P9_37A(mode, mux) PIN2WPAD(K28, mode, mux)
+#define P9_37B(mode, mux) PIN2PAD(AG28, mode, mux)
+#define P9_38A(mode, mux) PIN2WPAD(L28, mode, mux)
+#define P9_38B(mode, mux) PIN2PAD(AG27, mode, mux)
+#define P9_39A(mode, mux) PIN2WPAD(K25, mode, mux)
+#define P9_39B(mode, mux) PIN2PAD(AJ28, mode, mux)
+#define P9_40A(mode, mux) PIN2WPAD(K26, mode, mux)
+#define P9_40B(mode, mux) PIN2PAD(AA26, mode, mux)
+#define P9_41(mode, mux)  PIN2PAD(AD5, mode, mux)
+#define P9_42A(mode, mux) PIN2PAD(AC2, mode, mux)
+#define P9_42B(mode, mux) PIN2PAD(AJ21, mode, mux)
 
 #endif
