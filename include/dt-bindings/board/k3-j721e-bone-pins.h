@@ -12,95 +12,100 @@
 #define bb_device 1
 #define board_soc TDA4VM
 
-#define gpio_P8_03 &main_gpio0 20 /* AH21 */
-#define gpio_P8_04 &main_gpio0 48 /* AC29 */
-#define gpio_P8_05 &main_gpio0 33 /* AH25 */
-#define gpio_P8_06 &main_gpio0 34 /* AG25 */
-#define gpio_P8_07 &main_gpio0 15 /* AD24 */
-#define gpio_P8_08 &main_gpio0 14 /* AG24 */
-#define gpio_P8_09 &main_gpio0 17 /* AE24 */
-#define gpio_P8_10 &main_gpio0 16
-#define gpio_P8_11 &main_gpio0 60 /* AB24 */
-#define gpio_P8_12 &main_gpio0 59
-#define gpio_P8_13 &main_gpio0 89 /* V27 */
-#define gpio_P8_14 &main_gpio0 75
-#define gpio_P8_15 &main_gpio0 61 /* AB29 */
-#define gpio_P8_16 &main_gpio0 62
-#define gpio_P8_17 &main_gpio0 3  /* AF22 */
-#define gpio_P8_18 &main_gpio0 4
-#define gpio_P8_19 &main_gpio0 88 /* V29 */
-#define gpio_P8_20 &main_gpio0 76
-#define gpio_P8_21 &main_gpio0 30 /* AF21 */
-#define gpio_P8_22 &main_gpio0 5
-#define gpio_P8_23 &main_gpio0 31 /* AB23 */
-#define gpio_P8_24 &main_gpio0 6
-#define gpio_P8_25 &main_gpio0 35 /* AH26 */
-#define gpio_P8_26 &main_gpio0 51
-#define gpio_P8_27 &main_gpio0 71 /* AA28 */
-#define gpio_P8_28 &main_gpio0 72
-#define gpio_P8_29 &main_gpio0 73 /* AA25 */
-#define gpio_P8_30 &main_gpio0 74
-#define gpio_P8_31A &main_gpio0 32 /* AJ25 */
-#define gpio_P8_31B &main_gpio0 63 /* AE29 */
+// TODO: create association between ball and GPIO
+#define gpio_P8_03 &main_gpio0 20   /* AH21 */
+#define gpio_P8_04 &main_gpio0 48   /* AC29 */
+#define gpio_P8_05 &main_gpio0 33   /* AH25 */
+#define gpio_P8_06 &main_gpio0 34   /* AG25 */
+#define gpio_P8_07 &main_gpio0 15   /* AD24 */
+#define gpio_P8_08 &main_gpio0 14   /* AG24 */
+#define gpio_P8_09 &main_gpio0 17   /* AE24 */
+#define gpio_P8_10 &main_gpio0 16   /* AC24 */
+#define gpio_P8_11 &main_gpio0 60   /* AB24 */
+#define gpio_P8_12 &main_gpio0 59   /* AH28 */
+#define gpio_P8_13 &main_gpio0 89   /* V27 */
+#define gpio_P8_14 &main_gpio0 75   /* AF27 */
+#define gpio_P8_15 &main_gpio0 61   /* AB29 */
+#define gpio_P8_16 &main_gpio0 62   /* AB28 */
+#define gpio_P8_17 &main_gpio0 3    /* AF22 */
+#define gpio_P8_18 &main_gpio0 4    /* AJ23 */
+#define gpio_P8_19 &main_gpio0 88   /* V29 */
+#define gpio_P8_20 &main_gpio0 76   /* AF26 */
+#define gpio_P8_21 &main_gpio0 30   /* AF21 */
+#define gpio_P8_22 &main_gpio0 5    /* AH23 */
+#define gpio_P8_23 &main_gpio0 31   /* AB23 */
+#define gpio_P8_24 &main_gpio0 6    /* AD20 */
+#define gpio_P8_25 &main_gpio0 35   /* AH26 */
+#define gpio_P8_26 &main_gpio0 51   /* AC27 */
+#define gpio_P8_27 &main_gpio0 71   /* AA28 */
+#define gpio_P8_28 &main_gpio0 72   /* Y24 */
+#define gpio_P8_29 &main_gpio0 73   /* AA25 */
+#define gpio_P8_30 &main_gpio0 74   /* AG26 */
+#define gpio_P8_31A &main_gpio0 32  /* AJ25 */
+#define gpio_P8_31B &main_gpio0 63  /* AE29 */
 #define gpio_P8_31 gpio_P8_31A
-#define gpio_P8_32 &main_gpio0 26 /* TODO: A/B */
-#define gpio_P8_33A &main_gpio0 25 /* AH24 */
+#define gpio_P8_32A &main_gpio0 26  /* AG21 */
+#define gpio_P8_32B &main_gpio0 64  /* AD28 */
+#define gpio_P8_32 gpio_P8_32A
+#define gpio_P8_33A &main_gpio0 25  /* AH24 */
 #define gpio_P8_33B &main_gpio0 110 /* AA2 */
 #define gpio_P8_33 gpio_P8_33A
-#define gpio_P8_34 &main_gpio0 7
-#define gpio_P8_35A &main_gpio0 24 /* AD23 */
+#define gpio_P8_34 &main_gpio0 7    /* AD22 */
+#define gpio_P8_35A &main_gpio0 24  /* AD23 */
 #define gpio_P8_35B &main_gpio0 116 /* Y3 */
 #define gpio_P8_35 gpio_P8_35A
-#define gpio_P8_36 &main_gpio0 8
+#define gpio_P8_36 &main_gpio0 8    /* AE20 */
 #define gpio_P8_37A &main_gpio0 106 /* Y27 */
-#define gpio_P8_37B &main_gpio0 11 /* AD21 */
+#define gpio_P8_37B &main_gpio0 11  /* AD21 */
 #define gpio_P8_37 gpio_P8_37A
-#define gpio_P8_38 &main_gpio0 105
-#define gpio_P8_39 &main_gpio0 69 /* AC26 */
-#define gpio_P8_40 &main_gpio0 70
-#define gpio_P8_41 &main_gpio0 67 /* AD29 */
-#define gpio_P8_42 &main_gpio0 68
-#define gpio_P8_43 &main_gpio0 65 /* AD27 */
-#define gpio_P8_44 &main_gpio0 66
-#define gpio_P8_45 &main_gpio0 79 /* AG29 */
-#define gpio_P8_46 &main_gpio0 80
-#define gpio_P9_11 &main_gpio0 1
-#define gpio_P9_12 &main_gpio0 45
-#define gpio_P9_13 &main_gpio0 2
-#define gpio_P9_14 &main_gpio0 93
-#define gpio_P9_15 &main_gpio0 47
-#define gpio_P9_16 &main_gpio0 94
-#define gpio_P9_17 &main_gpio0 28
-#define gpio_P9_17A &main_gpio0 28
-#define gpio_P9_17B &main_gpio0 115
-#define gpio_P9_18 &main_gpio0 40
-#define gpio_P9_18A &main_gpio0 40
-#define gpio_P9_18B &main_gpio0 120
-#define gpio_P9_19 &main_gpio0 78
-#define gpio_P9_19A &main_gpio1 1
-#define gpio_P9_19B &main_gpio0 78
-#define gpio_P9_20 &main_gpio0 77
+#define gpio_P8_38A &main_gpio0 9   /* AJ20 */
+#define gpio_P8_38B &main_gpio0 105 /* Y29 */
+#define gpio_P8_38 gpio_P8_38B
+#define gpio_P8_39 &main_gpio0 69   /* AC26 */
+#define gpio_P8_40 &main_gpio0 70   /* AA24 */
+#define gpio_P8_41 &main_gpio0 67   /* AD29 */
+#define gpio_P8_42 &main_gpio0 68   /* AB27 */
+#define gpio_P8_43 &main_gpio0 65   /* AD27 */
+#define gpio_P8_44 &main_gpio0 66   /* AC25 */
+#define gpio_P8_45 &main_gpio0 79   /* AG29 */
+#define gpio_P8_46 &main_gpio0 80   /* Y25 */
+#define gpio_P9_11 &main_gpio0 1    /* AC23 */
+#define gpio_P9_12 &main_gpio0 45   /* AE27 */
+#define gpio_P9_13 &main_gpio0 2    /* AG22 */
+#define gpio_P9_14 &main_gpio0 93   /* U27 */
+#define gpio_P9_15 &main_gpio0 47   /* AD25 */
+#define gpio_P9_16 &main_gpio0 94   /* U24 */
+#define gpio_P9_17A &main_gpio0 28  /* AC21 */
+#define gpio_P9_17B &main_gpio0 115 /* AA3 */
+#define gpio_P9_17 gpio_P9_17A
+#define gpio_P9_18A &main_gpio0 40  /* AH22 */
+#define gpio_P9_18B &main_gpio0 120 /* Y2 */
+#define gpio_P9_18 gpio_P9_18A
+#define gpio_P9_19A &main_gpio1 1   /* W5 */
+#define gpio_P9_19B &main_gpio0 78  /* AF29 */
+#define gpio_P9_19 gpio_P9_19B
 #define gpio_P9_20A &main_gpio1 2
 #define gpio_P9_20B &main_gpio0 77
-#define gpio_P9_21 &main_gpio0 39
+#define gpio_P9_20 gpio_P9_20B
 #define gpio_P9_21A &main_gpio0 39
 #define gpio_P9_21B &main_gpio0 90
-#define gpio_P9_22 &main_gpio0 38
+#define gpio_P9_21 &main_gpio0 39
 #define gpio_P9_22A &main_gpio0 38
 #define gpio_P9_22B &main_gpio0 91
+#define gpio_P9_22 &main_gpio0 38
 #define gpio_P9_23 &main_gpio0 10
-#define gpio_P9_24 &main_gpio0 13
 #define gpio_P9_24A &main_gpio0 119
 #define gpio_P9_24B &main_gpio0 13
-#define gpio_P9_25 &main_gpio0 127
+#define gpio_P9_24 &main_gpio0 13
 #define gpio_P9_25A &main_gpio0 127
 #define gpio_P9_25B &main_gpio0 104
-#define gpio_P9_26 &main_gpio0 12
+#define gpio_P9_25 &main_gpio0 127
 #define gpio_P9_26A &main_gpio0 118
 #define gpio_P9_26B &main_gpio0 12
-#define gpio_P9_27 &main_gpio0 46
+#define gpio_P9_26 &main_gpio0 12
 #define gpio_P9_27A &main_gpio0 46
 #define gpio_P9_27B &main_gpio0 127
+#define gpio_P9_27 &main_gpio0 46
 #define gpio_P9_28A &main_gpio1 11
 #define gpio_P9_28B &main_gpio0 43
 #define gpio_P9_28 gpio_P9_28A
@@ -151,7 +156,7 @@
 #define P8_25(mode, mux)  PIN2PAD(AH26, mode, mux)
 #define P8_26(mode, mux)  PIN2PAD(AC27, mode, mux)
 #define P8_27(mode, mux)  PIN2PAD(AA28, mode, mux)
-#define P8_28(mode, mux)  PIN2PAD(Y24 , mode, mux)
+#define P8_28(mode, mux)  PIN2PAD(Y24, mode, mux)
 #define P8_29(mode, mux)  PIN2PAD(AA25, mode, mux)
 #define P8_30(mode, mux)  PIN2PAD(AG26, mode, mux)
 #define P8_31A(mode, mux) PIN2PAD(AJ25, mode, mux)
