@@ -45,7 +45,7 @@
 		};
 
 #define BONE_KEY(XX) \
-		bone_key_##XX##: key_##XX { \
+		bone_key_##XX: key_##XX { \
 			status = "disabled"; \
 			label = "##XX##"; \
 			linux,code = <KEY_UNKNOWN>; \
@@ -166,7 +166,7 @@
 		};
 
 #define BONE_LED(XX) \
-		bone_led_##XX##: led_##XX { \
+		bone_led_##XX: led_##XX { \
 			status = "disabled"; \
 			label = "##XX##"; \
 			linux,default-trigger = "default-off"; \
@@ -255,7 +255,7 @@
 		compatible = "gpio-leds"; \
 		pinctrl-names = "default"; \
 		pinctrl-0 = < \
-			&##XX##_default_pin \
+			&XX##_default_pin \
 		>; \
 	}
 
