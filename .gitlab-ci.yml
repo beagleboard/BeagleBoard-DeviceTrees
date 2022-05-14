@@ -1,0 +1,8 @@
+image: debian:bullseye
+
+build:
+  stage: build
+  before_script:
+    - apt update && apt -y install bison build-essential flex git pkg-config
+  script:
+    - ./jenkins_build.sh
