@@ -176,7 +176,7 @@
 	crypto: crypto@40900000 {
 		compatible = "ti,am62-sa3ul";
 		reg = <0x00 0x40900000 0x00 0x1200>;
-		power-domains = <&k3_pds 70 TI_SCI_PD_EXCLUSIVE>;
+		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
 		#address-cells = <2>;
 		#size-cells = <2>;
 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
@@ -190,6 +190,7 @@
 			reg = <0x00 0x40910000 0x00 0x7d>;
 			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&k3_clks 70 0>;
+			status = "disabled";
 		};
 	};
 
@@ -614,7 +615,7 @@
 
 		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
 
-		clocks = <&k3_clks 186 4>,
+		clocks = <&k3_clks 186 6>,
 			 <&k3_clks 186 0>,
 			 <&k3_clks 186 2>;
 
@@ -784,6 +785,8 @@
 		clocks = <&k3_clks 190 0>;
 		clock-names = "fck";
 		power-domains = <&k3_pds 190 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 190 0>;
+		assigned-clock-parents = <&k3_clks 190 2>;
 	};
 
 	mcasp1: mcasp@2b10000 {
@@ -801,6 +804,8 @@
 		clocks = <&k3_clks 191 0>;
 		clock-names = "fck";
 		power-domains = <&k3_pds 191 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 191 0>;
+		assigned-clock-parents = <&k3_clks 191 2>;
 	};
 
 	mcasp2: mcasp@2b20000 {
@@ -818,6 +823,8 @@
 		clocks = <&k3_clks 192 0>;
 		clock-names = "fck";
 		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 192 0>;
+		assigned-clock-parents = <&k3_clks 192 2>;
 	};
 
 	pruss: pruss@30040000 {
