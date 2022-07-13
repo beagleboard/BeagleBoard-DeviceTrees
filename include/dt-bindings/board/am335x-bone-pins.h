@@ -151,7 +151,7 @@
 #define P9_29(mode) AM33XX_IOPAD(0x0994, mode)  /* B13: mcasp0_fsx */
 #define P9_30(mode) AM33XX_IOPAD(0x0998, mode)  /* D12: mcasp0_axr0 */
 #define P9_31(mode) AM33XX_IOPAD(0x0990, mode)  /* A13: mcasp0_aclkx */
-#define P9_41(mode) AM33XX_IOPAD(0x09b4, mode) /* D14: xdma_event_intr1 */
+#define P9_41(mode) AM33XX_IOPAD(0x09b4, mode)  /* D14: xdma_event_intr1 */
 #define P9_41A(mode) AM33XX_IOPAD(0x09b4, mode) /* D14: xdma_event_intr1 */
 #define P9_41B(mode) AM33XX_IOPAD(0x09a8, mode) /* D13: mcasp0_axr1 */
 #define P9_91(mode) AM33XX_IOPAD(0x09a8, mode) /* D13: mcasp0_axr1 */
