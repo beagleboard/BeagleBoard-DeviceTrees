@@ -160,4 +160,49 @@
 #define P9_42B(mode) AM33XX_IOPAD(0x09a0, mode) /* B12: mcasp0_aclkr */
 #define P9_92(mode) AM33XX_IOPAD(0x09a0, mode) /* B12: mcasp0_aclkr */
 
+#define P1_02(mode) AM33XX_IOPAD(0x08e4, mode) /* R5: gpio2_23 */
+#define P1_04(mode) AM33XX_IOPAD(0x08ec, mode) /* R6: gpio2_25 */
+#define P1_06(mode) AM33XX_IOPAD(0x095c, mode) /* A16: spi0_cs0 */
+#define P1_08(mode) AM33XX_IOPAD(0x0950, mode) /* A17: */
+#define P1_10(mode) AM33XX_IOPAD(0x0954, mode) /* B17: */
+#define P1_12(mode) AM33XX_IOPAD(0x0958, mode) /* B16: */
+#define P1_20(mode) AM33XX_IOPAD(0x09b4, mode) /* D14: */
+#define P1_26(mode) AM33XX_IOPAD(0x0978, mode) /* D18: */
+#define P1_28(mode) AM33XX_IOPAD(0x097c, mode) /* D17: */
+#define P1_29(mode) AM33XX_IOPAD(0x09ac, mode) /* A14: */
+#define P1_30(mode) AM33XX_IOPAD(0x0974, mode) /* E16: */
+#define P1_31(mode) AM33XX_IOPAD(0x09b0, mode) /* B12: */
+#define P1_32(mode) AM33XX_IOPAD(0x0970, mode) /* E15: */
+#define P1_33(mode) AM33XX_IOPAD(0x0994, mode) /* B13: */
+#define P1_34(mode) AM33XX_IOPAD(0x0828, mode) /* T11: */
+#define P1_35(mode) AM33XX_IOPAD(0x08e8, mode) /* V5: */
+#define P1_36(mode) AM33XX_IOPAD(0x0990, mode) /* A13: */
+#define P2_01(mode) AM33XX_IOPAD(0x0848, mode) /* U14: */
+#define P2_02(mode) AM33XX_IOPAD(0x086c, mode) /* V17: */
+#define P2_03(mode) AM33XX_IOPAD(0x0824, mode) /* T10: */
+#define P2_04(mode) AM33XX_IOPAD(0x0868, mode) /* T16: */
+#define P2_05(mode) AM33XX_IOPAD(0x0870, mode) /* T17: */
+#define P2_06(mode) AM33XX_IOPAD(0x0864, mode) /* U16: */
+#define P2_07(mode) AM33XX_IOPAD(0x0874, mode) /* U17: */
+#define P2_08(mode) AM33XX_IOPAD(0x0878, mode) /* U18: */
+#define P2_09(mode) AM33XX_IOPAD(0x0984, mode) /* D15: */
+#define P2_10(mode) AM33XX_IOPAD(0x0850, mode) /* R14: */
+#define P2_11(mode) AM33XX_IOPAD(0x0980, mode) /* D16: */
+#define P2_17(mode) AM33XX_IOPAD(0x088c, mode) /* V12: */
+#define P2_18(mode) AM33XX_IOPAD(0x083c, mode) /* U13: */
+#define P2_19(mode) AM33XX_IOPAD(0x082c, mode) /* U12: */
+#define P2_20(mode) AM33XX_IOPAD(0x0888, mode) /* T13: */
+#define P2_22(mode) AM33XX_IOPAD(0x0838, mode) /* V13: */
+#define P2_24(mode) AM33XX_IOPAD(0x0830, mode) /* T12: */
+#define P2_25(mode) AM33XX_IOPAD(0x096c, mode) /* E17: */
+#define P2_27(mode) AM33XX_IOPAD(0x0968, mode) /* E18: */
+#define P2_28(mode) AM33XX_IOPAD(0x09a8, mode) /* D13: */
+#define P2_29(mode) AM33XX_IOPAD(0x0964, mode) /* C18: */
+#define P2_30(mode) AM33XX_IOPAD(0x099c, mode) /* C12: */
+#define P2_31(mode) AM33XX_IOPAD(0x09b0, mode) /* A15: */
+#define P2_32(mode) AM33XX_IOPAD(0x0998, mode) /* D12: */
+#define P2_33(mode) AM33XX_IOPAD(0x0834, mode) /* R12: */
+#define P2_34(mode) AM33XX_IOPAD(0x09a4, mode) /* C13: */
+#define P2_35(mode) AM33XX_IOPAD(0x08e0, mode) /* U5: */
+
 #endif
