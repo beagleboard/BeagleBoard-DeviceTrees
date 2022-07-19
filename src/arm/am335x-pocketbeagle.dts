@@ -298,7 +298,7 @@
 	BONE_PIN(P1_02, pruout, P1_02(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5))
 	BONE_PIN(P1_02, pruin, P1_02(PIN_INPUT | MUX_MODE6))
 
-	/* P1_03 (ZCZ ball F15)  usb1_vbus_out         */
+	/* P1_03 (ZCZ ball F15)  usb1_vbus_out */
 
 	/* P1_04 (ZCZ ball R6) lcd_ac_bias_en (gpio2_25) */
 	BONE_PIN(P1_04, default, P1_04(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7))
@@ -308,7 +308,7 @@
 	BONE_PIN(P1_04, pruout, P1_04(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5))
 	BONE_PIN(P1_04, pruin, P1_04(PIN_INPUT | MUX_MODE6))
 
-	/* P1_05 (ZCZ ball T18)  usb1_vbus_in         */
+	/* P1_05 (ZCZ ball T18)  usb1_vbus_in */
 
 	/* P1_06 (ZCZ ball A16) spi0_cs0 (spi0_cs0) */
 	BONE_PIN(P1_06, default, P1_06(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE0))
@@ -333,7 +333,7 @@
 	BONE_PIN(P1_08, pwm, P1_08(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3))
 	BONE_PIN(P1_08, pru_uart, P1_08(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4))
 
-	/* P1_09 (ZCZ ball R18)  USB1-DN         */
+	/* P1_09 (ZCZ ball R18)  USB1-DN */
 
 	/* P1_10 (ZCZ ball B17) spi0_d0 (spi0_d0) */
 	BONE_PIN(P1_10, default, P1_10(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE0))
@@ -346,7 +346,7 @@
 	BONE_PIN(P1_10, pwm, P1_10(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3))
 	BONE_PIN(P1_10, pru_uart, P1_10(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4))
 
-	/* P1_11 (ZCZ ball R17)  USB1-DP         */
+	/* P1_11 (ZCZ ball R17)  USB1-DP */
 
 	/* P1_12 (ZCZ ball B16) spi0_d1 (spi0_d1) */
 	BONE_PIN(P1_12, default, P1_12(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE0))
@@ -358,7 +358,7 @@
 	BONE_PIN(P1_12, pwm, P1_12(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE3))
 	BONE_PIN(P1_12, pru_uart, P1_12(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4))
 
-	/* P1_13 (ZCZ ball P17)  USB1-ID         */
+	/* P1_13 (ZCZ ball P17)  USB1-ID */
 
 	/* P1_14                VOUT-3.3V */
 
@@ -366,11 +366,11 @@
 
 	/* P1_16                GND */
 
-	/* P1_17 (ZCZ ball A9)  VREFN         */
+	/* P1_17 (ZCZ ball A9)  VREFN */
 
-	/* P1_18 (ZCZ ball B9)  VREFP         */
+	/* P1_18 (ZCZ ball B9)  VREFP */
 
-	/* P1_19 (ZCZ ball B6)  AIN0         */
+	/* P1_19 (ZCZ ball B6)  AIN0 */
 
 	/* P1_20 (ZCZ ball D14) xdma_event_intr1 (gpio0_20) */
 	BONE_PIN(P1_20, default, P1_20(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7))
@@ -379,15 +379,15 @@
 	BONE_PIN(P1_20, gpio_pd, P1_20(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7))
 	BONE_PIN(P1_20, pruin, P1_20(PIN_INPUT | MUX_MODE5))
 
-	/* P1_21 (ZCZ ball C7)  AIN1         */
+	/* P1_21 (ZCZ ball C7)  AIN1 */
 
 	/* P1_22                GND */
 
-	/* P1_23 (ZCZ ball B7)  AIN2         */
+	/* P1_23 (ZCZ ball B7)  AIN2 */
 
 	/* P1_24                VOUT-5V */
 
-	/* P1_25 (ZCZ ball A7)  AIN3         */
+	/* P1_25 (ZCZ ball A7)  AIN3 */
 
 	/* P1_26 (ZCZ ball D18) uart1_ctsn (i2c2_sda) */
 	BONE_PIN(P1_26, default, P1_26(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE3))
@@ -399,7 +399,7 @@
 	BONE_PIN(P1_26, spi_cs, P1_26(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE4))
 	BONE_PIN(P1_26, pru_uart, P1_26(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE5))
 
-	/* P1_27 (ZCZ ball C8)  AIN4         */
+	/* P1_27 (ZCZ ball C8)  AIN4 */
 
 	/* P1_28 (ZCZ ball D17) uart1_rtsn (i2c2_scl) */
 	BONE_PIN(P1_28, default, P1_28(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE3))
@@ -728,7 +728,7 @@
 	BONE_PIN(P2_35, pruout, P2_35(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE5))
 	BONE_PIN(P2_35, pruin, P2_35(PIN_INPUT | MUX_MODE6))
 
-	/* P2_36 (ZCZ ball C9)  AIN7         */
+	/* P2_36 (ZCZ ball C9)  AIN7 */
 };
 
 &epwmss0 {
@@ -929,7 +929,7 @@
 		pinctrl-5 = <&P1_02_pruin_pin>;
 	};
 
-	/* P1_03 (ZCZ ball F15)  usb1_vbus_out         */
+	/* P1_03 (ZCZ ball F15)  usb1_vbus_out */
 
 	/* P1_04 (ZCZ ball R6) */
 	P1_04_pinmux {
@@ -944,7 +944,7 @@
 		pinctrl-5 = <&P1_04_pruin_pin>;
 	};
 
-	/* P1_05 (ZCZ ball T18)  usb1_vbus_in         */
+	/* P1_05 (ZCZ ball T18)  usb1_vbus_in */
 
 	/* P1_06 (ZCZ ball A16) spi_cs */
 	P1_06_pinmux {
@@ -979,7 +979,7 @@
 		pinctrl-8 = <&P1_08_pru_uart_pin>;
 	};
 
-	/* P1_09 (ZCZ ball R18)  USB1-DN         */
+	/* P1_09 (ZCZ ball R18)  USB1-DN */
 
 	/* P1_10 (ZCZ ball B17) spi */
 	P1_10_pinmux {
@@ -997,7 +997,7 @@
 		pinctrl-8 = <&P1_10_pru_uart_pin>;
 	};
 
-	/* P1_11 (ZCZ ball R17)  USB1-DP         */
+	/* P1_11 (ZCZ ball R17)  USB1-DP */
 
 	/* P1_12 (ZCZ ball B16) spi */
 	P1_12_pinmux {
@@ -1014,7 +1014,7 @@
 		pinctrl-7 = <&P1_12_pru_uart_pin>;
 	};
 
-	/* P1_13 (ZCZ ball P17)  USB1-ID         */
+	/* P1_13 (ZCZ ball P17)  USB1-ID */
 
 	/* P1_14                VOUT-3.3V */
 
@@ -1022,11 +1022,11 @@
 
 	/* P1_16                GND */
 
-	/* P1_17 (ZCZ ball A9)  VREFN         */
+	/* P1_17 (ZCZ ball A9)  VREFN */
 
-	/* P1_18 (ZCZ ball B9)  VREFP         */
+	/* P1_18 (ZCZ ball B9)  VREFP */
 
-	/* P1_19 (ZCZ ball B6)  AIN0         */
+	/* P1_19 (ZCZ ball B6)  AIN0 */
 
 	/* P1_20 (ZCZ ball D14) */
 	P1_20_pinmux {
@@ -1040,15 +1040,15 @@
 		pinctrl-4 = <&P1_20_pruin_pin>;
 	};
 
-	/* P1_21 (ZCZ ball C7)  AIN1         */
+	/* P1_21 (ZCZ ball C7)  AIN1 */
 
 	/* P1_22                GND */
 
-	/* P1_23 (ZCZ ball B7)  AIN2         */
+	/* P1_23 (ZCZ ball B7)  AIN2 */
 
 	/* P1_24                VOUT-5V */
 
-	/* P1_25 (ZCZ ball A7)  AIN3         */
+	/* P1_25 (ZCZ ball A7)  AIN3 */
 
 	/* P1_26 (ZCZ ball D18) i2c */
 	P1_26_pinmux {
@@ -1065,7 +1065,7 @@
 		pinctrl-7 = <&P1_26_pru_uart_pin>;
 	};
 
-	/* P1_27 (ZCZ ball C8)  AIN4         */
+	/* P1_27 (ZCZ ball C8)  AIN4 */
 
 	/* P1_28 (ZCZ ball D17) i2c */
 	P1_28_pinmux {
@@ -1574,7 +1574,7 @@
 		pinctrl-5 = <&P2_35_pruin_pin>;
 	};
 
-	/* P2_36 (ZCZ ball C9)  AIN7         */
+	/* P2_36 (ZCZ ball C9)  AIN7 */
 
 	cape-universal {
 		compatible = "gpio-of-helper";
