@@ -3,8 +3,6 @@
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 
-#include <dt-bindings/board/am335x-bone-pins.h>
-
 / {
 	cpus {
 		cpu@0 {
