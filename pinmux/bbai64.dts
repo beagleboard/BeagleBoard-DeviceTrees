@@ -1,0 +1,54 @@
+
+	/************************/
+	/* P8 Header */
+	/************************/
+
+	/* P8_01                GND */
+
+	/* P8_02                GND */
+
+
+	/* P8_03 (ZCZ ball R9) gpmc_ad6 (emmc) */
+	BONE_PIN(P8_03, default, P8_03(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7))
+	BONE_PIN(P8_03, gpio, P8_03(PIN_OUTPUT | INPUT_EN | MUX_MODE7))
+	BONE_PIN(P8_03, gpio_pu, P8_03(PIN_OUTPUT_PULLUP | INPUT_EN | MUX_MODE7))
+	BONE_PIN(P8_03, gpio_pd, P8_03(PIN_OUTPUT_PULLDOWN | INPUT_EN | MUX_MODE7))
+
+
+
+	/************************/
+	/* P8 Header */
+	/************************/
+
+	/* P8_01                GND */
+
+	/* P8_02                GND */
+
+
+	/* P8_03 (ZCZ ball R9) emmc */
+	P8_03_pinmux {
+		compatible = "bone-pinmux-helper";
+		status = "okay";
+		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd";
+		pinctrl-0 = <&P8_03_default_pin>;
+		pinctrl-1 = <&P8_03_gpio_pin>;
+		pinctrl-2 = <&P8_03_gpio_pu_pin>;
+		pinctrl-3 = <&P8_03_gpio_pd_pin>;
+	};
+
+
+	cape-universal {
+		compatible = "gpio-of-helper";
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <>;
+
+		P8_03 {
+			gpio-name = "P8_03";
+			gpio = <&gpio1 6 0>;
+			input;
+			dir-changeable;
+		};
+
+	};
+};
