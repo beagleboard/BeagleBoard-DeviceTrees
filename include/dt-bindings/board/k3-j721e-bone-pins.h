@@ -19,7 +19,7 @@
 #define gpio_P8_07 &main_gpio0 15	/* AD24: PRG1_PRU0_GPO14 */
 #define gpio_P8_08 &main_gpio0 14	/* AG24: PRG1_PRU0_GPO13 */
 #define gpio_P8_09 &main_gpio0 17	/* AE24: PRG1_PRU0_GPO16 */
-#define gpio_P8_10 &main_gpio0 16
+#define gpio_P8_10 &main_gpio0 16	/* AC24: PRG1_PRU0_GPO15 */
 #define gpio_P8_11 &main_gpio0 60	/* AB24: PRG0_PRU0_GPO17 */
 #define gpio_P8_12 &main_gpio0 59	/* AH28: PRG0_PRU0_GPO16 */
 #define gpio_P8_13 &main_gpio0 89	/* V27: RGMII5_TD1 */
@@ -44,14 +44,14 @@
 #define gpio_P8_31B &main_gpio0 63	/* AE29: PRG0_PRU1_GPO0 */
 #define gpio_P8_31 gpio_P8_31A
 #define gpio_P8_32 &main_gpio0 26	/* TODO: A/B */
-#define gpio_P8_33A &main_gpio0 25	/* AH24 */
+#define gpio_P8_33A &main_gpio0 25	/* AH24: PRG1_PRU1_GPO4 */
 #define gpio_P8_33B &main_gpio0 110	/* AA2 */
 #define gpio_P8_33 gpio_P8_33A
 #define gpio_P8_34 &main_gpio0 7
 #define gpio_P8_35A &main_gpio0 24	/* AD23: PRG1_PRU1_GPO3 */
 #define gpio_P8_35B &main_gpio0 116	/* Y3: SPI1_CS0 */
 #define gpio_P8_35 gpio_P8_35A
-#define gpio_P8_36 &main_gpio0 8
+#define gpio_P8_36 &main_gpio0 8	/* AE20: PRG1_PRU0_GPO7 */
 #define gpio_P8_37A &main_gpio0 106	/* Y27 */
 #define gpio_P8_37B &main_gpio0 11	/* AD21 */
 #define gpio_P8_37 gpio_P8_37A
@@ -71,7 +71,7 @@
 #define gpio_P9_15 &main_gpio0 47	/* AD25: PRG0_PRU0_GPO4 */
 #define gpio_P9_16 &main_gpio0 94	/* U24: RGMII5_RD2 */
 #define gpio_P9_17 &main_gpio0 28
-#define gpio_P9_17A &main_gpio0 28
+#define gpio_P9_17A &main_gpio0 28	/* AC21: PRG1_PRU1_GPO7 */
 #define gpio_P9_17B &main_gpio0 115	/* AA3: SPI0_D1 */
 #define gpio_P9_18 &main_gpio0 40
 #define gpio_P9_18A &main_gpio0 40	/* AH22: PRG1_PRU1_GPO19 */
@@ -83,12 +83,12 @@
 #define gpio_P9_20A &main_gpio1 2	/* W6: MCAN0_TX */
 #define gpio_P9_20B &main_gpio0 77	/* AE25: PRG0_PRU1_GPO14 */
 #define gpio_P9_21 &main_gpio0 39
-#define gpio_P9_21A &main_gpio0 39
-#define gpio_P9_21B &main_gpio0 90
+#define gpio_P9_21A &main_gpio0 39	/* AJ22: PRG1_PRU1_GPO18 */
+#define gpio_P9_21B &main_gpio0 90	/* U28: RGMII5_TD0 */
 #define gpio_P9_22 &main_gpio0 38
 #define gpio_P9_22A &main_gpio0 38	/* AC22: PRG1_PRU1_GPO17 */
 #define gpio_P9_22B &main_gpio0 91	/* U29: RGMII5_TXC */
-#define gpio_P9_23 &main_gpio0 10
+#define gpio_P9_23 &main_gpio0 10	/* AG20: PRG1_PRU0_GPO9 */
 #define gpio_P9_24 &main_gpio0 13
 #define gpio_P9_24A &main_gpio0 119	/* Y5: SPI1_D0 */
 #define gpio_P9_24B &main_gpio0 13	/* AJ24: PRG1_PRU0_GPO12 */
@@ -99,14 +99,14 @@
 #define gpio_P9_26A &main_gpio0 118	/* Y1: SPI1_CLK */
 #define gpio_P9_26B &main_gpio0 12	/* AF24: PRG1_PRU0_GPO11 */
 #define gpio_P9_27 &main_gpio0 46
-#define gpio_P9_27A &main_gpio0 46
+#define gpio_P9_27A &main_gpio0 46	/* AD26: PRG0_PRU0_GPO3 */
 #define gpio_P9_27B &main_gpio0 127
 #define gpio_P9_28 &main_gpio1 11
 #define gpio_P9_28A &main_gpio1 11	/* U2: ECAP0_IN_APWM_OUT */
 #define gpio_P9_28B &main_gpio0 43	/* AF28: PRG0_PRU0_GPO0 */
 #define gpio_P9_29 &main_gpio0 53
-#define gpio_P9_29A &main_gpio1 14
-#define gpio_P9_29B &main_gpio0 53
+#define gpio_P9_29A &main_gpio1 14	/* V5: TIMER_IO1 */
+#define gpio_P9_29B &main_gpio0 53	/* AB25: PRG0_PRU0_GPO10 */
 #define gpio_P9_30 &main_gpio0 44
 #define gpio_P9_30A &main_gpio1 13	/* V6: TIMER_IO0 */
 #define gpio_P9_30B &main_gpio0 44	/* AE28: PRG0_PRU0_GPO1 */
@@ -114,14 +114,23 @@
 #define gpio_P9_31B &main_gpio0 52	/* AB26: PRG0_PRU0_GPO9 */
 #define gpio_P9_31 gpio_P9_31B
 #define gpio_P9_33 &main_gpio0 50
+#define gpio_P9_33B &main_gpio0 50	/* AC28: PRG0_PRU0_GPO7 */
 #define gpio_P9_35 &main_gpio0 55
+#define gpio_P9_35B &main_gpio0 55	/* AH27: PRG0_PRU0_GPO12 */
 #define gpio_P9_36 &main_gpio0 56
+#define gpio_P9_36B &main_gpio0 56	/* AH29: PRG0_PRU0_GPO13 */
 #define gpio_P9_37 &main_gpio0 57
+#define gpio_P9_37B &main_gpio0 57	/* AG28: PRG0_PRU0_GPO14 */
 #define gpio_P9_38 &main_gpio0 58
+#define gpio_P9_38B &main_gpio0 58	/* AG27: PRG0_PRU0_GPO15 */
 #define gpio_P9_39 &main_gpio0 54
+#define gpio_P9_39B &main_gpio0 54	/* AJ28: PRG0_PRU0_GPO11 */
 #define gpio_P9_40 &main_gpio0 81
+#define gpio_P9_40B &main_gpio0 81	/* AA26: PRG0_PRU1_GPO18 */
 #define gpio_P9_41 &main_gpio1 0
 #define gpio_P9_42 &main_gpio0 123
+#define gpio_P9_42A &main_gpio0 123	/* AC2: UART0_CTSn */
+#define gpio_P9_42B &main_gpio0 18	/* AJ21: PRG1_PRU0_GPO17 */
 
 #define P8_03(mode, mux) J721E_IOPAD(0x54, mode, mux)	/* AH21: PRG1_PRU0_GPO19 */
 #define P8_04(mode, mux) J721E_IOPAD(0xC4, mode, mux)	/* AC29: PRG0_PRU0_GPO5 - BOOTMODE2 */
@@ -179,7 +188,7 @@
 #define P9_14(mode, mux) J721E_IOPAD(0x178, mode, mux)	/* U27: RGMII5_RD3 */
 #define P9_15(mode, mux) J721E_IOPAD(0xC0, mode, mux)	/* AD25: PRG0_PRU0_GPO4 */
 #define P9_16(mode, mux) J721E_IOPAD(0x17C, mode, mux)	/* U24: RGMII5_RD2 */
-#define P9_17A(mode, mux) J721E_IOPAD(0x074, mode, mux)	/* AC21 */
+#define P9_17A(mode, mux) J721E_IOPAD(0x74, mode, mux)	/* AC21: PRG1_PRU1_GPO7 */
 #define P9_17B(mode, mux) J721E_IOPAD(0x1D0, mode, mux)	/* AA3: SPI0_D1 */
 #define P9_18A(mode, mux) J721E_IOPAD(0xA4, mode, mux)	/* AH22: PRG1_PRU1_GPO19 */
 #define P9_18B(mode, mux) J721E_IOPAD(0x1E4, mode, mux)	/* Y2: SPI1_D1 */
@@ -209,21 +218,21 @@
 #define P9_31A(mode, mux) J721E_IOPAD(0x234, mode, mux)	/* U3: EXT_REFCLK1 */
 #define P9_31B(mode, mux) J721E_IOPAD(0xD4, mode, mux)	/* AB26: PRG0_PRU0_GPO9 */
 #define P9_33A(mode, mux) J721E_WKUP_IOPAD(0x140, mode, mux)  /* K24 */
-#define P9_33B(mode, mux) J721E_IOPAD(0x0CC, mode, mux)       /* AC28 */
+#define P9_33B(mode, mux) J721E_IOPAD(0xCC, mode, mux)	/* AC28: PRG0_PRU0_GPO7 */
 #define P9_35A(mode, mux) J721E_WKUP_IOPAD(0x148, mode, mux)  /* K29 */
-#define P9_35B(mode, mux) J721E_IOPAD(0x0E0, mode, mux)       /* AH27 */
+#define P9_35B(mode, mux) J721E_IOPAD(0xE0, mode, mux)	/* AH27: PRG0_PRU0_GPO12 */
 #define P9_36A(mode, mux) J721E_WKUP_IOPAD(0x144, mode, mux)  /* K27 */
-#define P9_36B(mode, mux) J721E_IOPAD(0x0E4, mode, mux)       /* AH29 */
+#define P9_36B(mode, mux) J721E_IOPAD(0xE4, mode, mux)	/* AH29: PRG0_PRU0_GPO13 */
 #define P9_37A(mode, mux) J721E_WKUP_IOPAD(0x138, mode, mux)  /* K28 */
-#define P9_37B(mode, mux) J721E_IOPAD(0x0E8, mode, mux)       /* AG28 */
+#define P9_37B(mode, mux) J721E_IOPAD(0xE8, mode, mux)	/* AG28: PRG0_PRU0_GPO14 */
 #define P9_38A(mode, mux) J721E_WKUP_IOPAD(0x13C, mode, mux)  /* L28 */
-#define P9_38B(mode, mux) J721E_IOPAD(0x0EC, mode, mux)       /* AG27 */
+#define P9_38B(mode, mux) J721E_IOPAD(0xEC, mode, mux)	/* AG27: PRG0_PRU0_GPO15 */
 #define P9_39A(mode, mux) J721E_WKUP_IOPAD(0x130, mode, mux)  /* K25 */
-#define P9_39B(mode, mux) J721E_IOPAD(0x0DC, mode, mux)       /* AJ28 */
+#define P9_39B(mode, mux) J721E_IOPAD(0xDC, mode, mux)	/* AJ28: PRG0_PRU0_GPO11 */
 #define P9_40A(mode, mux) J721E_WKUP_IOPAD(0x134, mode, mux)  /* K26 */
-#define P9_40B(mode, mux) J721E_IOPAD(0x148, mode, mux)       /* AA26 */
-#define P9_41(mode, mux)  J721E_IOPAD(0x204, mode, mux)       /* AD5 */
-#define P9_42A(mode, mux) J721E_IOPAD(0x1F0, mode, mux)       /* AC2 */
-#define P9_42B(mode, mux) J721E_IOPAD(0x048, mode, mux)       /* AJ21 */
+#define P9_40B(mode, mux) J721E_IOPAD(0x148, mode, mux)	/* AA26: PRG0_PRU1_GPO18 */
+#define P9_41(mode, mux) J721E_IOPAD(0x204, mode, mux)	/* AD5: UART1_RTSn */
+#define P9_42A(mode, mux) J721E_IOPAD(0x1F0, mode, mux)	/* AC2: UART0_CTSn */
+#define P9_42B(mode, mux) J721E_IOPAD(0x4C, mode, mux)	/* AJ21: PRG1_PRU0_GPO17 */
 
 #endif
