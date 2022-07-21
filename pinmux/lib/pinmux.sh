@@ -19,19 +19,18 @@ echo_label_analog () {
 
 get_json_pkg () {
 	###Offline: https://software-dl.ti.com/ccs/esd/pinmux/pinmux_release_archive.html
-	#pinmux_version="4.0.1526"
-	pinmux_version="4.0.1543"
+	#https://www.ti.com/tool/download/SYSCONFIG/1.4.0_1234
+	#https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.4.0_1234/sysconfig-1.4.0_1234-setup.run
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://downloads.ti.com/ccs/esd/pinmux/pinmux-${pinmux_version}-setup.run
-	chmod +x pinmux-${pinmux_version}-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.4.0_1234/sysconfig-1.4.0_1234-setup.run
+	chmod +x sysconfig-1.4.0_1234-setup.run
 	mkdir tmp
-	./pinmux-${pinmux_version}-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
-	cp -v tmp/pinmux/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
+	./sysconfig-1.4.0_1234-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf pinmux-${pinmux_version}-setup.run || true
-	rm -rf pinmux_${pinmux_version}.log || true
+	rm -rf sysconfig-1.4.0_1234-setup.run || true
 }
 
 get_name_mode () {
@@ -82,11 +81,10 @@ find_ball () {
 
 	#cat J721E_DRA829_TDA4VM_AM752x.json | jq '.devicePins .ID_2884'
 	#{
-	#  "type": "DevicePin",
+	#  "id": "ID_2884",
 	#  "name": "PRG1_PRU0_GPO19",
 	#  "description": "",
-	#  "devicePinType": "Default",
-	#  "id": "ID_2884"
+	#  "devicePinType": "Default"
 	#}
 
 	#echo "debug-${ball}-----------------------------------------"
@@ -99,7 +97,7 @@ find_ball () {
 
 	#cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .ID_2884'
 	#{
-	#  "type": "PinCommonInfo",
+	#  "id": "ID_2884",
 	#  "devicePinID": "ID_2884",
 	#  "controlRegisterOffset": "0x54",
 	#  "pupdStateDuringHHV": "Z",

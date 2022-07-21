@@ -123,7 +123,13 @@ pcbpin="P9_30A" ; ball="V6"   ; gpio_index="4" ; peripheral="gpio" ; find_ball
 pcbpin="P9_30B" ; ball="AE28" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_31A" ; ball="U3"   ; gpio_index="3" ; peripheral="gpio" ; find_ball
 pcbpin="P9_31B" ; ball="AB26" ; gpio_index="7" ; peripheral="gpio" ; find_ball
+
+echo "	/* P9_32 - ADC_REF_OUT*/">>${file}.dts
+
 pcbpin="P9_33B" ; ball="AC28" ; gpio_index="6" ; peripheral="gpio" ; find_ball
+
+echo "	/* P9_34 - ADC_GND */">>${file}.dts
+
 pcbpin="P9_35B" ; ball="AH27" ; gpio_index="5" ; peripheral="gpio" ; find_ball
 pcbpin="P9_36B" ; ball="AH29" ; gpio_index="5" ; peripheral="gpio" ; find_ball
 pcbpin="P9_37B" ; ball="AG28" ; gpio_index="5" ; peripheral="gpio" ; find_ball
