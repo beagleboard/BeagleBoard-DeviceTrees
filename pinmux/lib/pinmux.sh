@@ -18,19 +18,18 @@ echo_label_analog () {
 }
 
 get_json_pkg () {
-	###Offline: https://software-dl.ti.com/ccs/esd/pinmux/pinmux_release_archive.html
-	#https://www.ti.com/tool/download/SYSCONFIG/1.4.0_1234
-	#https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.4.0_1234/sysconfig-1.4.0_1234-setup.run
+	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.7.0_1746
+
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.4.0_1234/sysconfig-1.4.0_1234-setup.run
-	chmod +x sysconfig-1.4.0_1234-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.7.0_1746/sysconfig-1.7.0_1746-setup.run
+	chmod +x sysconfig-1.7.0_1746-setup.run
 	mkdir tmp
-	./sysconfig-1.4.0_1234-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	./sysconfig-1.7.0_1746-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf sysconfig-1.4.0_1234-setup.run || true
+	rm -rf sysconfig-1.7.0_1746-setup.run || true
 }
 
 get_name_mode () {
@@ -212,7 +211,7 @@ find_ball () {
 	get_name_mode
 	echo ${pcbpin}:${ball}:${name}:${mode}:${ioDir}:${number}
 
-	echo "	/* ${pcbpin} (${ball}) ${PinID} (${name}) */" >> ${file}.dts
+	echo "	/* ${pcbpin} (${ball}) ${PinID} (${name}) ${sch} */" >> ${file}.dts
 
 	cp_info_default=${name}
 
@@ -288,30 +287,23 @@ find_ball () {
 		if [ ! "x${name}" = "xnull" ] ; then
 			echo "debug: pinmux search ${name}"
 
-			unset valid_pin_mode
-
-			spaces=1
 			case "${name}" in 
 			#dcan*_rx)
 			#	can_name=${name}
-			#	valid_pin_mode="can"
 			#	pinsetting="PIN_INPUT_PULLUP"
 			#	got_can_pin="enable"
 			#	;;
 			#dcan*_tx)
 			#	can_name=${name}
-			#	valid_pin_mode="can"
 			#	pinsetting="PIN_OUTPUT_PULLUP"
 			#	got_can_pin="enable"
 			#	;;
 			#eqep*)
-			#	valid_pin_mode="eqep"
 			#	eqep_name=${name}
 			#	pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#	got_eqep_pin="enable"
 			#	;;
 			#ehrpwm*|ecap0_in_pwm0_out)
-			#	valid_pin_mode="pwm"
 			#	pwm_name=${name}
 			#	pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 			#	got_pwm_pin="enable"
@@ -320,7 +312,6 @@ find_ball () {
 			#	#ignore PocketBeagle...
 			#	if [ ! "x${file}" = "xPocketBeagle" ] ; then
 			#	if [ ! "x${file}" = "xBeagleBone_Blue" ] ; then
-			#		valid_pin_mode="pwm2"
 			#		pwm2_name=${name}
 			#		pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 			#		got_pwm2_pin="enable"
@@ -328,49 +319,41 @@ find_ball () {
 			#	fi
 			#	;;
 			#i2c*_sda|i2c*_scl)
-			#	valid_pin_mode="i2c"
 			#	i2c_name=${name}
 			#	pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#	got_i2c_pin="enable"
 			#	;;
 			#pr1_ecap0*)
-			#	valid_pin_mode="pru_ecap_pwm"
 			#	pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 			#	got_pru_ecap_pin="enable"
 			#	;;
 			#pr1_uart0*)
-			#	valid_pin_mode="pru_uart"
 			#	pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#	got_pru_uart_pin="enable"
 			#	;;
 			#pr1_pru*_pru_r30*)
-			#	valid_pin_mode="pruout"
 			#	pruout_name=$(echo ${name} | sed 's/pr1_//g' | sed 's/pru_r30_/out/g')
 			#	name=${pruout_name}
 			#	pinsetting="PIN_OUTPUT_PULLDOWN | INPUT_EN"
 			#	got_pruout_pin="enable"
 			#	;;
 			#pr1_pru*_pru_r31*)
-			#	valid_pin_mode="pruin"
 			#	pruin_name=$(echo ${name} | sed 's/pr1_//g' | sed 's/pru_r31_/in/g')
 			#	name=${pruin_name}
 			#	pinsetting="PIN_INPUT"
 			#	got_pruin_pin="enable"
 			#	;;
 			#spi0_d0|spi1_d0)
-			#	valid_pin_mode="spi"
 			#	spi_name=${name}
 			#	pinsetting="PIN_INPUT_PULLUP"
 			#	got_spi_pin="enable"
 			#	;;
 			#spi0_d1|spi1_d1)
-			#	valid_pin_mode="spi"
 			#	spi_name=${name}
 			#	pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#	got_spi_pin="enable"
 			#	;;
 			#spi0_cs*|spi1_cs*)
-			#	valid_pin_mode="spi_cs"
 			#	spi_cs_name=${name}
 			#	pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#	got_spi_cs_pin="enable"
@@ -379,45 +362,41 @@ find_ball () {
 			#	# See: https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf page 4855
 			#	# (1) This output signal is also used as a re-timing input. The associated CONF_<module>_<pin>_RXACTIVE bit for the output clock
 			#	# must be set to 1 to enable the clock input back to the module.
-			#	valid_pin_mode="spi_sclk"
 			#	spi_sclk_name=${name}
 			#	pinsetting="PIN_INPUT_PULLUP"
 			#	got_spi_sclk_pin="enable"
 			#	;;
 			#timer*)
 			#	if [ "x${disable_timer}" = "x" ] ; then
-			#		valid_pin_mode="timer"
 			#		timer_name=${name}
 			#		pinsetting="PIN_OUTPUT_PULLUP | INPUT_EN"
 			#		got_timer_pin="enable"
 			#	fi
 			#	;;
 			uart*_rxd)
-				valid_pin_mode="uart"
-				pinsetting="PIN_INPUT"
-				spaces=4
+				echo "	BONE_PIN(${pcbpin}, uart,    ${pcbpin}(PIN_INPUT, ${mode}))	/* ${name} */" >> ${file}.dts
 				;;
 			uart*_txd)
-				valid_pin_mode="uart"
-				pinsetting="PIN_OUTPUT"
-				spaces=4
+				echo "	BONE_PIN(${pcbpin}, uart,    ${pcbpin}(PIN_OUTPUT, ${mode}))	/* ${name} */" >> ${file}.dts
 				;;
 			esac
-
-			if [ ! "x${valid_pin_mode}" = "x" ] ; then
-				if [ "x${spaces}" = "x1" ] ; then
-					echo "	BONE_PIN(${pcbpin}, ${valid_pin_mode}, ${pcbpin}(${pinsetting}, ${mode}))	/* ${name} */" >> ${file}.dts
-				fi
-				if [ "x${spaces}" = "x4" ] ; then
-					echo "	BONE_PIN(${pcbpin}, ${valid_pin_mode},    ${pcbpin}(${pinsetting}, ${mode}))	/* ${name} */" >> ${file}.dts
-				fi
-			fi
 		fi
 	done
 
 	echo "" >> ${file}.dts
-	echo "#define gpio_${pcbpin} &main_${gpio_pinmux}	/* ${found_ball}: ${PinID} */" >> ${file}-a-bone-pins.h
-	echo "#define ${pcbpin}(mode, mux) J721E_IOPAD(${cro}, mode, mux)	/* ${found_ball}: ${PinID} */" >> ${file}-b-bone-pins.h
+}
+
+find_ball_digital () {
+	find_ball
+	echo "#define gpio_${pcbpin} &main_${gpio_pinmux}	/* ${found_ball}: ${PinID} ${sch} */" >> ${file}-a-bone-pins.h
+	echo "#define ${pcbpin}(mode, mux) J721E_IOPAD(${cro}, mode, mux)	/* ${found_ball}: ${PinID} ${sch} */" >> ${file}-b-bone-pins.h
+	echo "##################"
+}
+
+find_ball_analog () {
+	find_ball
+	echo "#define gpio_${pcbpin} &main_${gpio_pinmux}	/* ${found_ball}: ${PinID} ${sch} */" >> ${file}-a-bone-pins.h
+	echo "#define ${pcbpin}(mode, mux) J721E_WKUP_IOPAD(${cro}, mode, mux)	/* ${found_ball}: ${PinID} ${sch} */" >> ${file}-b-bone-pins.h
 	echo "##################"
 }
 
