@@ -27,6 +27,7 @@ pcbpin="P8_07"  ; ball="AD24" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P8_08"  ; ball="AG24" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P8_09"  ; ball="AE24" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 
+pcbpin="P8_10"  ; ball="AC24" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P8_11"  ; ball="AB24" ; gpio_index="5" ; peripheral="gpio" ; find_ball
 pcbpin="P8_12"  ; ball="AH28" ; gpio_index="5" ; peripheral="gpio" ; find_ball
 pcbpin="P8_13"  ; ball="V27"  ; gpio_index="6" ; peripheral="gpio" ; find_ball
@@ -91,7 +92,7 @@ pcbpin="P9_13"  ; ball="AG22" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_14"  ; ball="U27"  ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_15"  ; ball="AD25" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_16"  ; ball="U24"  ; gpio_index="6" ; peripheral="gpio" ; find_ball
-
+pcbpin="P9_17A" ; ball="AC21" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_17B" ; ball="AA3"  ; gpio_index="2" ; peripheral="gpio" ; find_ball
 pcbpin="P9_18A" ; ball="AH22" ; gpio_index="7" ; peripheral="gpio" ; find_ball
 pcbpin="P9_18B" ; ball="Y2"   ; gpio_index="2" ; peripheral="gpio" ; find_ball
@@ -122,6 +123,17 @@ pcbpin="P9_30A" ; ball="V6"   ; gpio_index="4" ; peripheral="gpio" ; find_ball
 pcbpin="P9_30B" ; ball="AE28" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 pcbpin="P9_31A" ; ball="U3"   ; gpio_index="3" ; peripheral="gpio" ; find_ball
 pcbpin="P9_31B" ; ball="AB26" ; gpio_index="7" ; peripheral="gpio" ; find_ball
+pcbpin="P9_33B" ; ball="AC28" ; gpio_index="6" ; peripheral="gpio" ; find_ball
+pcbpin="P9_35B" ; ball="AH27" ; gpio_index="5" ; peripheral="gpio" ; find_ball
+pcbpin="P9_36B" ; ball="AH29" ; gpio_index="5" ; peripheral="gpio" ; find_ball
+pcbpin="P9_37B" ; ball="AG28" ; gpio_index="5" ; peripheral="gpio" ; find_ball
+pcbpin="P9_38B" ; ball="AG27" ; gpio_index="5" ; peripheral="gpio" ; find_ball
+pcbpin="P9_39B" ; ball="AJ28" ; gpio_index="5" ; peripheral="gpio" ; find_ball
+
+pcbpin="P9_40B" ; ball="AA26" ; gpio_index="6" ; peripheral="gpio" ; find_ball
+pcbpin="P9_41"  ; ball="AD5"  ; gpio_index="4" ; peripheral="gpio" ; find_ball
+pcbpin="P9_42A" ; ball="AC2"  ; gpio_index="6" ; peripheral="gpio" ; find_ball
+pcbpin="P9_42B" ; ball="AJ21" ; gpio_index="6" ; peripheral="gpio" ; find_ball
 
 echo "	/* P9_43 - GND */">>${file}.dts
 echo "	/* P9_44 - GND */">>${file}.dts

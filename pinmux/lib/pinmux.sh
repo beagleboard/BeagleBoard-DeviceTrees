@@ -292,6 +292,7 @@ find_ball () {
 
 			unset valid_pin_mode
 
+			spaces=1
 			case "${name}" in 
 			#dcan*_rx)
 			#	can_name=${name}
@@ -396,15 +397,22 @@ find_ball () {
 			uart*_rxd)
 				valid_pin_mode="uart"
 				pinsetting="PIN_INPUT"
+				spaces=4
 				;;
 			uart*_txd)
 				valid_pin_mode="uart"
 				pinsetting="PIN_OUTPUT"
+				spaces=4
 				;;
 			esac
 
 			if [ ! "x${valid_pin_mode}" = "x" ] ; then
-				echo "	BONE_PIN(${pcbpin}, ${valid_pin_mode}, ${pcbpin}(${pinsetting}, ${mode}))	/* ${name} */" >> ${file}.dts
+				if [ "x${spaces}" = "x1" ] ; then
+					echo "	BONE_PIN(${pcbpin}, ${valid_pin_mode}, ${pcbpin}(${pinsetting}, ${mode}))	/* ${name} */" >> ${file}.dts
+				fi
+				if [ "x${spaces}" = "x4" ] ; then
+					echo "	BONE_PIN(${pcbpin}, ${valid_pin_mode},    ${pcbpin}(${pinsetting}, ${mode}))	/* ${name} */" >> ${file}.dts
+				fi
 			fi
 		fi
 	done
