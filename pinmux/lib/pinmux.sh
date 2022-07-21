@@ -18,18 +18,18 @@ echo_label_analog () {
 }
 
 get_json_pkg () {
-	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.8.0_1863
+	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.9.0_2015
 
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.8.0_1863/sysconfig-1.8.0_1863-setup.run
-	chmod +x sysconfig-1.8.0_1863-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.9.0_2015/sysconfig-1.9.0_2015-setup.run
+	chmod +x sysconfig-1.9.0_2015-setup.run
 	mkdir tmp
-	./sysconfig-1.8.0_1863-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	./sysconfig-1.9.0_2015-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf sysconfig-1.8.0_1863-setup.run || true
+	rm -rf sysconfig-1.9.0_2015-setup.run || true
 }
 
 get_name_mode () {
@@ -501,24 +501,24 @@ find_pin () {
 	done
 
 	echo "	/* ${label} (${ball}) ${PinID_a} (${gpio_name_a}) ${sch} */" >> ${file}.dts
-	echo "	BONE_PIN(${label}, default, ${label}(PIN_INPUT, ${default_mode_a}))" >> ${file}.dts
+	echo "	BONE_PIN(${label}, default,   ${label}(PIN_INPUT, ${default_mode_a}))" >> ${file}.dts
 
 	if [ "x${got_pruout_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, pruout,  ${label}(PIN_OUTPUT, ${pruout_mode_a}))	/* ${pruout_name_a} */" >> ${file}.dts
+		echo "	BONE_PIN(${label}, pruout,    ${label}(PIN_OUTPUT, ${pruout_mode_a}))	/* ${pruout_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_pruin_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, pruin,   ${label}(PIN_INPUT, ${pruin_mode_a}))	/* ${pruin_name_a} */" >> ${file}.dts
+		echo "	BONE_PIN(${label}, pruin,     ${label}(PIN_INPUT, ${pruin_mode_a}))	/* ${pruin_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_gpio_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, gpio,    ${label}(PIN_INPUT, ${gpio_mode_a}))" >> ${file}.dts
-		echo "	BONE_PIN(${label}, gpio_pu, ${label}(PIN_INPUT_PULLUP, ${gpio_mode_a}))" >> ${file}.dts
-		echo "	BONE_PIN(${label}, gpio_pd, ${label}(PIN_INPUT_PULLDOWN, ${gpio_mode_a}))" >> ${file}.dts
+		echo "	BONE_PIN(${label}, gpio,      ${label}(PIN_INPUT, ${gpio_mode_a}))" >> ${file}.dts
+		echo "	BONE_PIN(${label}, gpio_pu,   ${label}(PIN_INPUT_PULLUP, ${gpio_mode_a}))" >> ${file}.dts
+		echo "	BONE_PIN(${label}, gpio_pd,   ${label}(PIN_INPUT_PULLDOWN, ${gpio_mode_a}))" >> ${file}.dts
 	fi
 
 	if [ "x${got_uart_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, uart,    ${label}(${uart_pinmux_a}, ${uart_mode_a}))	/* ${uart_name_a} */" >> ${file}.dts
+		echo "	BONE_PIN(${label}, uart,      ${label}(${uart_pinmux_a}, ${uart_mode_a}))	/* ${uart_name_a} */" >> ${file}.dts
 	fi
 
 	echo "" >>${file}.dts
@@ -708,24 +708,24 @@ find_shared_pin () {
 
 	if [ "x${MCU_ADC_a}" = "xyes" ] ; then
 		echo "	/* ${label} (${ball_a}/${ball_b}) ${PinID_a}/${PinID_b} (${gpio_name_b}) ${sch} */" >> ${file}.dts
-		echo "	BONE_PIN(${label}, default, ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
+		echo "	BONE_PIN(${label}, default,   ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
 
 		if [ "x${got_pruout_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruout,  ${label}B(PIN_OUTPUT, ${pruout_mode_b}))	/* ${pruout_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruout,    ${label}B(PIN_OUTPUT, ${pruout_mode_b}))	/* ${pruout_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_pruin_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruin,   ${label}B(PIN_INPUT, ${pruin_mode_b}))	/* ${pruin_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruin,     ${label}B(PIN_INPUT, ${pruin_mode_b}))	/* ${pruin_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_gpio_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, gpio,    ${label}B(PIN_INPUT, ${gpio_mode_b}))" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pu, ${label}B(PIN_INPUT_PULLUP, ${gpio_mode_b}))" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pd, ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio,      ${label}B(PIN_INPUT, ${gpio_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pu,   ${label}B(PIN_INPUT_PULLUP, ${gpio_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pd,   ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, uart,    ${label}B(${uart_pinmux_b}, ${uart_mode_b}))	/* ${uart_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, uart,      ${label}B(${uart_pinmux_b}, ${uart_mode_b}))	/* ${uart_name_b} */" >> ${file}.dts
 		fi
 
 		echo "" >>${file}.dts
@@ -739,40 +739,40 @@ find_shared_pin () {
 		fi
 	else
 		echo "	/* ${label} (${ball_a}/${ball_b}) ${PinID_a}/${PinID_b} (${gpio_name_a}/${gpio_name_b}) ${sch} */" >> ${file}.dts
-		echo "	BONE_PIN(${label}, default, ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
+		echo "	BONE_PIN(${label}, default,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
 
 		if [ "x${got_pruout_a}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruout,  ${label}A(PIN_OUTPUT, ${pruout_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${pruout_name_a} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruout,    ${label}A(PIN_OUTPUT, ${pruout_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${pruout_name_a} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_pruout_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruout,  ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_OUTPUT, ${pruout_mode_b}))	/* ${pruout_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruout,    ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_OUTPUT, ${pruout_mode_b}))	/* ${pruout_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_pruin_a}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruin,   ${label}A(PIN_INPUT, ${pruin_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${pruin_name_a} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruin,     ${label}A(PIN_INPUT, ${pruin_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${pruin_name_a} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_pruin_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, pruin,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${pruin_mode_b}))	/* ${pruin_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, pruin,     ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${pruin_mode_b}))	/* ${pruin_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_gpio_a}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, gpio,    ${label}A(PIN_INPUT, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${gpio_name_a} */" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pu, ${label}A(PIN_INPUT_PULLUP, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pd, ${label}A(PIN_INPUT_PULLDOWN, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio,      ${label}A(PIN_INPUT, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${gpio_name_a} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pu,   ${label}A(PIN_INPUT_PULLUP, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pd,   ${label}A(PIN_INPUT_PULLDOWN, ${gpio_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))" >> ${file}.dts
 		else
-			echo "	BONE_PIN(${label}, gpio,    ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${gpio_mode_b}))	/* ${gpio_name_b} */" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pu, ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLUP, ${gpio_mode_b}))" >> ${file}.dts
-			echo "	BONE_PIN(${label}, gpio_pd, ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio,      ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${gpio_mode_b}))	/* ${gpio_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pu,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLUP, ${gpio_mode_b}))" >> ${file}.dts
+			echo "	BONE_PIN(${label}, gpio_pd,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_a}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, uart,    ${label}A(${uart_pinmux_a}, ${uart_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${uart_name_a} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, uart,      ${label}A(${uart_pinmux_a}, ${uart_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${uart_name_a} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, uart,    ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(${uart_pinmux_b}, ${uart_mode_b}))	/* ${uart_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, uart,      ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(${uart_pinmux_b}, ${uart_mode_b}))	/* ${uart_name_b} */" >> ${file}.dts
 		fi
 
 		echo "" >>${file}.dts
