@@ -13,6 +13,19 @@ echo "/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */">${fi
 echo "#define BONE_PIN(XX,ZZ,QQ) \\">>${file}.dts
 echo "	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };">>${file}.dts
 echo "">>${file}.dts
+
+echo "	/* https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */">>${file}.dts
+echo "	/* i2c6 P9.17 P9.18 */">>${file}.dts
+echo "	/* i2c2 P9.19 P9.20 */">>${file}.dts
+echo "	/* i2c4 P9.24 P9.26 */">>${file}.dts
+echo "">>${file}.dts
+
+echo "	/* CAN : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#CAN */">>${file}.dts
+echo "	/* mcan0 P9.20 P9.19 */">>${file}.dts
+echo "	/* mcan4 P9.26 P9.24 */">>${file}.dts
+echo "	/* mcan5 P8.08 P8.07 */">>${file}.dts
+echo "">>${file}.dts
+
 echo "	/* Full P8/P9 header mode definitions */">>${file}.dts
 echo "	/* P8_01 - GND */">>${file}.dts
 echo "	/* P8_02 - GND */">>${file}.dts

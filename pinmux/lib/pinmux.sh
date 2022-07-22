@@ -486,7 +486,7 @@ find_pin () {
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
 			;;
-		I2C*)
+		I2C2|I2C4|I2C6)
 			i2c_name_a=${name_a}
 			i2c_mode_a=${mode_a}
 			got_i2c_a=yes
@@ -579,7 +579,7 @@ find_pin () {
 	fi
 
 	if [ "x${got_spi_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, spi,       ${label}(PIN_INPUT, ${spi_mode_a}))	/* ${spi_name_a} */" >> ${file}.dts
+		echo "	BONE_PIN(${label}, spi,       ${label}(PIN_OUTPUT, ${spi_mode_a}))	/* ${spi_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_uart_a}" = "xyes" ] ; then
@@ -701,7 +701,7 @@ find_shared_pin () {
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
 			;;
-		I2C*)
+		I2C2|I2C4|I2C6)
 			i2c_name_a=${name_a}
 			i2c_mode_a=${mode_a}
 			got_i2c_a=yes
@@ -802,7 +802,7 @@ find_shared_pin () {
 			gpio_mode_b=${mode_b}
 			got_gpio_b=yes
 			;;
-		I2C*)
+		I2C2|I2C4|I2C6)
 			i2c_name_b=${name_b}
 			i2c_mode_b=${mode_b}
 			got_i2c_b=yes
@@ -896,7 +896,7 @@ find_shared_pin () {
 		fi
 
 		if [ "x${got_spi_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, spi,       ${label}B(${spi_pinmux_b}, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, spi,       ${label}B(PIN_OUTPUT, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_b}" = "xyes" ] ; then
@@ -975,11 +975,11 @@ find_shared_pin () {
 		fi
 
 		if [ "x${got_spi_a}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_INPUT, ${spi_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${spi_name_a} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_OUTPUT, ${spi_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${spi_name_a} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_spi_b}" = "xyes" ] ; then
-			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
+			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_OUTPUT, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_a}" = "xyes" ] ; then
