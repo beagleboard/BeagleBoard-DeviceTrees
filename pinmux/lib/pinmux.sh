@@ -491,7 +491,7 @@ find_pin () {
 			i2c_mode_a=${mode_a}
 			got_i2c_a=yes
 			;;
-		MCAN*)
+		MCAN0|MCAN4|MCAN5)
 			case "${name_a}" in
 			mcan*_rx)
 				mcan_mode_a=${mode_a}
@@ -706,7 +706,7 @@ find_shared_pin () {
 			i2c_mode_a=${mode_a}
 			got_i2c_a=yes
 			;;
-		MCAN*)
+		MCAN0|MCAN4|MCAN5)
 			case "${name_a}" in
 			mcan*_rx)
 				mcan_mode_a=${mode_a}
@@ -807,7 +807,7 @@ find_shared_pin () {
 			i2c_mode_b=${mode_b}
 			got_i2c_b=yes
 			;;
-		MCAN*)
+		MCAN0|MCAN4|MCAN5)
 			case "${name_b}" in
 			mcan*_rx)
 				mcan_mode_b=${mode_b}
