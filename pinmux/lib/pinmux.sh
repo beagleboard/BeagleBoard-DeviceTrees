@@ -18,18 +18,18 @@ echo_label_analog () {
 }
 
 get_json_pkg () {
-	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.11.0_2225
+	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.12.0.2406
 
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.11.0_2225/sysconfig-1.11.0_2225-setup.run
-	chmod +x sysconfig-1.11.0_2225-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.12.0.2406/sysconfig-1.12.0_2406-setup.run
+	chmod +x sysconfig-1.12.0_2406-setup.run
 	mkdir tmp
-	./sysconfig-1.11.0_2225-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	./sysconfig-1.12.0_2406-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf sysconfig-1.11.0_2225-setup.run || true
+	rm -rf sysconfig-1.12.0_2406-setup.run || true
 }
 
 get_name_mode () {
@@ -450,6 +450,7 @@ find_pin () {
 	unset got_uart_a
 	unset got_gpio_a
 	unset got_mcan_a
+	unset got_i2c_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -467,6 +468,11 @@ find_pin () {
 			gpio_name_a=${name_a}
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
+			;;
+		I2C*)
+			i2c_name_a=${name_a}
+			i2c_mode_a=${mode_a}
+			got_i2c_a=yes
 			;;
 		MCAN*)
 			case "${name_a}" in
@@ -536,6 +542,10 @@ find_pin () {
 		echo "	BONE_PIN(${label}, gpio,      ${label}(PIN_INPUT, ${gpio_mode_a}))" >> ${file}.dts
 		echo "	BONE_PIN(${label}, gpio_pu,   ${label}(PIN_INPUT_PULLUP, ${gpio_mode_a}))" >> ${file}.dts
 		echo "	BONE_PIN(${label}, gpio_pd,   ${label}(PIN_INPUT_PULLDOWN, ${gpio_mode_a}))" >> ${file}.dts
+	fi
+
+	if [ "x${got_i2c_a}" = "xyes" ] ; then
+		echo "	BONE_PIN(${label}, i2c,       ${label}(PIN_INPUT_PULLUP, ${i2c_mode_a}))	/* ${i2c_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_uart_a}" = "xyes" ] ; then
@@ -617,6 +627,7 @@ find_shared_pin () {
 	unset got_uart_a
 	unset got_gpio_a
 	unset got_mcan_a
+	unset got_i2c_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -638,6 +649,11 @@ find_shared_pin () {
 			gpio_name_a=${name_a}
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
+			;;
+		I2C*)
+			i2c_name_a=${name_a}
+			i2c_mode_a=${mode_a}
+			got_i2c_a=yes
 			;;
 		MCAN*)
 			case "${name_a}" in
@@ -694,6 +710,7 @@ find_shared_pin () {
 	unset got_uart_b
 	unset got_gpio_b
 	unset got_mcan_b
+	unset got_i2c_b
 	for number_b in {0..14}
 	do
 		interface_b=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_b}' .pinModeInfo['$number_b'] .interfaceName' | sed 's/\"//g' || true)
@@ -711,6 +728,11 @@ find_shared_pin () {
 			gpio_name_b=${name_b}
 			gpio_mode_b=${mode_b}
 			got_gpio_b=yes
+			;;
+		I2C*)
+			i2c_name_b=${name_b}
+			i2c_mode_b=${mode_b}
+			got_i2c_b=yes
 			;;
 		MCAN*)
 			case "${name_b}" in
@@ -783,6 +805,10 @@ find_shared_pin () {
 			echo "	BONE_PIN(${label}, gpio_pd,   ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
 		fi
 
+		if [ "x${got_i2c_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, i2c,       ${label}B(PIN_INPUT_PULLUP, ${i2c_mode_b}))	/* ${i2c_name_b} */" >> ${file}.dts
+		fi
+
 		if [ "x${got_uart_b}" = "xyes" ] ; then
 			echo "	BONE_PIN(${label}, uart,      ${label}B(${uart_pinmux_b}, ${uart_mode_b}))	/* ${uart_name_b} */" >> ${file}.dts
 		fi
@@ -832,6 +858,14 @@ find_shared_pin () {
 			echo "	BONE_PIN(${label}, gpio,      ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${gpio_mode_b}))	/* ${gpio_name_b} */" >> ${file}.dts
 			echo "	BONE_PIN(${label}, gpio_pu,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLUP, ${gpio_mode_b}))" >> ${file}.dts
 			echo "	BONE_PIN(${label}, gpio_pd,   ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLDOWN, ${gpio_mode_b}))" >> ${file}.dts
+		fi
+
+		if [ "x${got_i2c_a}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, i2c,       ${label}A(PIN_INPUT_PULLUP, ${i2c_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${i2c_name_a} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_i2c_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, i2c,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT_PULLUP, ${i2c_mode_b}))	/* ${i2c_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_a}" = "xyes" ] ; then

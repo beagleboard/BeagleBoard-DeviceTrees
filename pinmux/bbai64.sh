@@ -18,20 +18,6 @@ echo "	/* P8_01 - GND */">>${file}.dts
 echo "	/* P8_02 - GND */">>${file}.dts
 echo "" >>${file}.dts
 
-#default_mode="7"
-#label="P8_03"  ; ball="AH21" ; sch="AH21_MCAN6_TX" ; find_pin
-
-#label="P9_35A" ; ball="K29"  ; sch="K29_AH27" ; find_ball_analog
-#label="P9_35B" ; ball="AH27" ; sch="K29_AH27" ; find_pin
-
-#label="P8_03" ; ball="AH21" ; sch="AH21_MCAN6_TX" ; default="GPIO0" ; find_pin
-#label="P9_35" ; ball_a="K29" ; ball_b="AH27" ; sch="K29_AH27" ; default="GPIO0" ; find_shared_pin
-#label="P9_38" ; ball_a="L28" ; ball_b="AG27" ; sch="L28_AG27" ; default="GPIO0" ; find_shared_pin
-
-#label="P9_17" ; ball_a="AC21" ; ball_b="AA3" ; sch="AC21_AA3" ; default="GPIO0" ; find_shared_pin
-#label="P9_17R" ; ball_a="AA3" ; ball_b="AC21" ; sch="AC21_AA3" ; default="GPIO0" ; find_shared_pin
-
-
 default="GPIO0"
 label="P8_03" ; ball="AH21" ; sch="AH21_MCAN6_TX"               ; find_pin
 label="P8_04" ; ball="AC29" ; sch="AC29_SYS_BOOTMODE2"          ; find_pin
