@@ -453,6 +453,7 @@ find_pin () {
 	unset got_i2c_a
 	unset got_ehrpwm_a
 	unset got_eqep_a
+	unset got_spi_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -520,6 +521,11 @@ find_pin () {
 				;;
 			esac
 			;;
+		SPI3|SPI6|SPI7)
+			spi_name_a=${name_a}
+			spi_mode_a=${mode_a}
+			got_spi_a=yes
+			;;
 		USART*)
 			case "${name_a}" in
 			uart*_rxd)
@@ -570,6 +576,10 @@ find_pin () {
 
 	if [ "x${got_eqep_a}" = "xyes" ] ; then
 		echo "	BONE_PIN(${label}, qep,       ${label}(PIN_INPUT, ${eqep_mode_a}))	/* ${eqep_name_a} */" >> ${file}.dts
+	fi
+
+	if [ "x${got_spi_a}" = "xyes" ] ; then
+		echo "	BONE_PIN(${label}, spi,       ${label}(PIN_INPUT, ${spi_mode_a}))	/* ${spi_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_uart_a}" = "xyes" ] ; then
@@ -654,6 +664,7 @@ find_shared_pin () {
 	unset got_i2c_a
 	unset got_ehrpwm_a
 	unset got_eqep_a
+	unset got_spi_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -725,6 +736,11 @@ find_shared_pin () {
 				;;
 			esac
 			;;
+		SPI3|SPI6|SPI7)
+			spi_name_a=${name_a}
+			spi_mode_a=${mode_a}
+			got_spi_a=yes
+			;;
 		USART*)
 			case "${name_a}" in
 			uart*_rxd)
@@ -753,6 +769,7 @@ find_shared_pin () {
 	unset got_i2c_b
 	unset got_ehrpwm_b
 	unset got_eqep_b
+	unset got_spi_b
 	for number_b in {0..14}
 	do
 		interface_b=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_b}' .pinModeInfo['$number_b'] .interfaceName' | sed 's/\"//g' || true)
@@ -820,6 +837,11 @@ find_shared_pin () {
 				;;
 			esac
 			;;
+		SPI3|SPI6|SPI7)
+			spi_name_b=${name_b}
+			spi_mode_b=${mode_b}
+			got_spi_b=yes
+			;;
 		USART*)
 			case "${name_b}" in
 			uart*_rxd)
@@ -871,6 +893,10 @@ find_shared_pin () {
 
 		if [ "x${got_eqep_b}" = "xyes" ] ; then
 			echo "	BONE_PIN(${label}, qep,       ${label}B(PIN_INPUT, ${eqep_mode_b}))	/* ${eqep_name_b} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_spi_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, spi,       ${label}B(${spi_pinmux_b}, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_b}" = "xyes" ] ; then
@@ -946,6 +972,14 @@ find_shared_pin () {
 
 		if [ "x${got_eqep_b}" = "xyes" ] ; then
 			echo "	BONE_PIN(${label}, qep,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${eqep_mode_b}))	/* ${eqep_name_b} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_spi_a}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_INPUT, ${spi_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${spi_name_a} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_spi_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, spi,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_INPUT, ${spi_mode_b}))	/* ${spi_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_uart_a}" = "xyes" ] ; then
