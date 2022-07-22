@@ -18,18 +18,18 @@ echo_label_analog () {
 }
 
 get_json_pkg () {
-	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.9.0_2015
+	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.10.0_2163
 
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.9.0_2015/sysconfig-1.9.0_2015-setup.run
-	chmod +x sysconfig-1.9.0_2015-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.10.0_2163/sysconfig-1.10.0_2163-setup.run
+	chmod +x sysconfig-1.10.0_2163-setup.run
 	mkdir tmp
-	./sysconfig-1.9.0_2015-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	./sysconfig-1.10.0_2163-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf sysconfig-1.9.0_2015-setup.run || true
+	rm -rf sysconfig-1.10.0_2163-setup.run || true
 }
 
 get_name_mode () {
@@ -467,20 +467,20 @@ find_pin () {
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
 			;;
-		#PRU_ICSSG*_PRU*)
-		#	case "${name_a}" in
-		#	prg*_pru*_gpo*)
-		#		pruout_mode_a=${mode_a}
-		#		pruout_name_a=${name_a}
-		#		got_pruout_a=yes
-		#		;;
-		#	prg*_pru*_gpi*)
-		#		pruin_mode_a=${mode_a}
-		#		pruin_name_a=${name_a}
-		#		got_pruin_a=yes
-		#		;;
-		#	esac
-		#	;;
+		PRU_ICSSG*_PRU*)
+			case "${name_a}" in
+			prg*_pru*_gpo*)
+				pruout_mode_a=${mode_a}
+				pruout_name_a=${name_a}
+				got_pruout_a=yes
+				;;
+			prg*_pru*_gpi*)
+				pruin_mode_a=${mode_a}
+				pruin_name_a=${name_a}
+				got_pruin_a=yes
+				;;
+			esac
+			;;
 		USART*)
 			case "${name_a}" in
 			uart*_rxd)
@@ -508,7 +508,7 @@ find_pin () {
 	fi
 
 	if [ "x${got_pruin_a}" = "xyes" ] ; then
-		echo "	BONE_PIN(${label}, pruin,     ${label}(PIN_INPUT, ${pruin_mode_a}))	/* ${pruin_name_a} */" >> ${file}.dts
+		echo "	BONE_PIN(${label}, pruin,     ${label}(PIN_INPUT, ${pruin_mode_a}))		/* ${pruin_name_a} */" >> ${file}.dts
 	fi
 
 	if [ "x${got_gpio_a}" = "xyes" ] ; then
@@ -617,20 +617,20 @@ find_shared_pin () {
 			gpio_mode_a=${mode_a}
 			got_gpio_a=yes
 			;;
-		#PRU_ICSSG*_PRU*)
-		#	case "${name_a}" in
-		#	prg*_pru*_gpo*)
-		#		pruout_mode_a=${mode_a}
-		#		pruout_name_a=${name_a}
-		#		got_pruout_a=yes
-		#		;;
-		#	prg*_pru*_gpi*)
-		#		pruin_mode_a=${mode_a}
-		#		pruin_name_a=${name_a}
-		#		got_pruin_a=yes
-		#		;;
-		#	esac
-		#	;;
+		PRU_ICSSG*_PRU*)
+			case "${name_a}" in
+			prg*_pru*_gpo*)
+				pruout_mode_a=${mode_a}
+				pruout_name_a=${name_a}
+				got_pruout_a=yes
+				;;
+			prg*_pru*_gpi*)
+				pruin_mode_a=${mode_a}
+				pruin_name_a=${name_a}
+				got_pruin_a=yes
+				;;
+			esac
+			;;
 		USART*)
 			case "${name_a}" in
 			uart*_rxd)
@@ -673,20 +673,20 @@ find_shared_pin () {
 			gpio_mode_b=${mode_b}
 			got_gpio_b=yes
 			;;
-		#PRU_ICSSG*_PRU*)
-		#	case "${name_b}" in
-		#	prg*_pru*_gpo*)
-		#		pruout_mode_b=${mode_b}
-		#		pruout_name_b=${name_b}
-		#		got_pruout_b=yes
-		#		;;
-		#	prg*_pru*_gpi*)
-		#		pruin_mode_b=${mode_b}
-		#		pruin_name_b=${name_b}
-		#		got_pruin_b=yes
-		#		;;
-		#	esac
-		#	;;
+		PRU_ICSSG*_PRU*)
+			case "${name_b}" in
+			prg*_pru*_gpo*)
+				pruout_mode_b=${mode_b}
+				pruout_name_b=${name_b}
+				got_pruout_b=yes
+				;;
+			prg*_pru*_gpi*)
+				pruin_mode_b=${mode_b}
+				pruin_name_b=${name_b}
+				got_pruin_b=yes
+				;;
+			esac
+			;;
 		USART*)
 			case "${name_b}" in
 			uart*_rxd)

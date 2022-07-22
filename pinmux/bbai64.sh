@@ -121,7 +121,7 @@ label="P9_29" ; ball_a="V5" ; ball_b="AB25"  ; sch="V5_AB25"    ; find_shared_pi
 label="P9_30" ; ball_a="V6" ; ball_b="AE28"  ; sch="V6_AE28"    ; find_shared_pin
 label="P9_31" ; ball_a="U3" ; ball_b="AB26"  ; sch="U3_AB26"    ; find_shared_pin
 
-echo "	/* P9_32 - ADC_REF_OUT*/">>${file}.dts
+echo "	/* P9_32 - ADC_REF_OUT */">>${file}.dts
 echo "">>${file}.dts
 
 default="GPIO0"
