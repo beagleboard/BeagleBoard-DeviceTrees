@@ -2,7 +2,7 @@
 #define BONE_PIN(XX,ZZ,QQ) \
 	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
 
-	/* https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */
+	/* I2C : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */
 	/* i2c6 P9.17 P9.18 */
 	/* i2c2 P9.19 P9.20 */
 	/* i2c4 P9.24 P9.26 */
@@ -11,6 +11,15 @@
 	/* mcan0 P9.20 P9.19 */
 	/* mcan4 P9.26 P9.24 */
 	/* mcan5 P8.08 P8.07 */
+
+	/* SPI : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#SPI */
+	/* spi6 P9.18 P9.21 P9.22 P9.16 P9.23 */
+	/* spi7 P9.30 P9.29 P9.31 P9.29 P9.42 */
+
+	/* UART : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#UART */
+	/* uart0 P9.13 P9.11 */
+	/* uart2 P9.24 P9.22 */
+	/* uart5 P8.37 P8.38 P8.32 P8.31 */
 
 	/* Full P8/P9 header mode definitions */
 	/* P8_01 - GND */
@@ -136,7 +145,6 @@
 	BONE_PIN(P8_17, gpio,      P8_17(PIN_INPUT, 7))
 	BONE_PIN(P8_17, gpio_pu,   P8_17(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_17, gpio_pd,   P8_17(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_17, uart,      P8_17(PIN_INPUT, 14))	/* uart1_rxd */
 
 	/* P8_18 (AJ23) PRG1_PRU0_GPO3 (gpio0_4) AJ23_PRG1_PWM3_A2 */
 	BONE_PIN(P8_18, default,   P8_18(PIN_INPUT, 7))
@@ -145,7 +153,6 @@
 	BONE_PIN(P8_18, gpio,      P8_18(PIN_INPUT, 7))
 	BONE_PIN(P8_18, gpio_pu,   P8_18(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_18, gpio_pd,   P8_18(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_18, uart,      P8_18(PIN_OUTPUT, 14))	/* uart1_txd */
 
 	/* P8_19 (V29) RGMII5_TD2 (gpio0_88) V29_EHRPWM0_A */
 	BONE_PIN(P8_19, default,   P8_19(PIN_INPUT, 7))
@@ -153,7 +160,6 @@
 	BONE_PIN(P8_19, gpio_pu,   P8_19(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_19, gpio_pd,   P8_19(PIN_INPUT_PULLDOWN, 7))
 	BONE_PIN(P8_19, pwm,       P8_19(PIN_OUTPUT, 6))	/* ehrpwm0_a */
-	BONE_PIN(P8_19, uart,      P8_19(PIN_OUTPUT, 1))	/* uart3_txd */
 
 	/* P8_20 (AF26) PRG0_PRU1_GPO13 (gpio0_76) AF26_PRG0_PWM1_B0 */
 	BONE_PIN(P8_20, default,   P8_20(PIN_INPUT, 7))
@@ -212,7 +218,6 @@
 	BONE_PIN(P8_26, gpio,      P8_26(PIN_INPUT, 7))
 	BONE_PIN(P8_26, gpio_pu,   P8_26(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_26, gpio_pd,   P8_26(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_26, uart,      P8_26(PIN_INPUT, 14))	/* uart6_rxd */
 
 	/* P8_27 (AA28) PRG0_PRU1_GPO8 (gpio0_71) AA28_PRG0_PRU1_GPO8 */
 	BONE_PIN(P8_27, default,   P8_27(PIN_INPUT, 7))
@@ -229,8 +234,6 @@
 	BONE_PIN(P8_28, gpio,      P8_28(PIN_INPUT, 7))
 	BONE_PIN(P8_28, gpio_pu,   P8_28(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_28, gpio_pd,   P8_28(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_28, spi,       P8_28(PIN_OUTPUT, 4))	/* spi3_cs3 */
-	BONE_PIN(P8_28, uart,      P8_28(PIN_INPUT, 14))	/* uart8_rxd */
 
 	/* P8_29 (AA25) PRG0_PRU1_GPO10 (gpio0_73) AA25_PRG0_UART0_TXD */
 	BONE_PIN(P8_29, default,   P8_29(PIN_INPUT, 7))
@@ -239,7 +242,6 @@
 	BONE_PIN(P8_29, gpio,      P8_29(PIN_INPUT, 7))
 	BONE_PIN(P8_29, gpio_pu,   P8_29(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_29, gpio_pd,   P8_29(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_29, uart,      P8_29(PIN_OUTPUT, 14))	/* uart8_txd */
 
 	/* P8_30 (AG26) PRG0_PRU1_GPO11 (gpio0_74) AG26_PRG0_PRU1_GPO11 */
 	BONE_PIN(P8_30, default,   P8_30(PIN_INPUT, 7))
@@ -346,7 +348,6 @@
 	BONE_PIN(P8_40, gpio,      P8_40(PIN_INPUT, 7))
 	BONE_PIN(P8_40, gpio_pu,   P8_40(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_40, gpio_pd,   P8_40(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_40, spi,       P8_40(PIN_OUTPUT, 4))	/* spi3_cs0 */
 	BONE_PIN(P8_40, uart,      P8_40(PIN_OUTPUT, 14))	/* uart2_txd */
 
 	/* P8_41 (AD29) PRG0_PRU1_GPO4 (gpio0_67) AD29_PRG0_PRU1_GPO4 */
@@ -396,7 +397,6 @@
 	BONE_PIN(P8_46, gpio,      P8_46(PIN_INPUT, 7))
 	BONE_PIN(P8_46, gpio_pu,   P8_46(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_46, gpio_pd,   P8_46(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P8_46, spi,       P8_46(PIN_OUTPUT, 4))	/* spi3_clk */
 
 	/* P9_01 - GND */
 	/* P9_02 - GND */
@@ -425,7 +425,6 @@
 	BONE_PIN(P9_12, gpio,      P9_12(PIN_INPUT, 7))
 	BONE_PIN(P9_12, gpio_pu,   P9_12(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_12, gpio_pd,   P9_12(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P9_12, uart,      P9_12(PIN_INPUT, 8))	/* uart3_rxd */
 
 	/* P9_13 (AG22) PRG1_PRU0_GPO1 (gpio0_2) AG22_UART0_TXD */
 	BONE_PIN(P9_13, default,   P9_13(PIN_INPUT, 7))
@@ -442,7 +441,6 @@
 	BONE_PIN(P9_14, gpio_pu,   P9_14(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_14, gpio_pd,   P9_14(PIN_INPUT_PULLDOWN, 7))
 	BONE_PIN(P9_14, pwm,       P9_14(PIN_OUTPUT, 6))	/* ehrpwm2_a */
-	BONE_PIN(P9_14, uart,      P9_14(PIN_INPUT, 3))	/* uart6_rxd */
 
 	/* P9_15 (AD25) PRG0_PRU0_GPO4 (gpio0_47) AD25_PRG0_PRU0_GPO4 */
 	BONE_PIN(P9_15, default,   P9_15(PIN_INPUT, 7))
@@ -458,7 +456,6 @@
 	BONE_PIN(P9_16, gpio_pu,   P9_16(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_16, gpio_pd,   P9_16(PIN_INPUT_PULLDOWN, 7))
 	BONE_PIN(P9_16, pwm,       P9_16(PIN_OUTPUT, 6))	/* ehrpwm2_b */
-	BONE_PIN(P9_16, uart,      P9_16(PIN_OUTPUT, 3))	/* uart6_txd */
 
 	/* P9_17 (AC21/AA3) PRG1_PRU1_GPO7/SPI0_D1 (gpio0_28/gpio0_115) AC21_AA3 */
 	BONE_PIN(P9_17, default,   P9_17A(PIN_INPUT, 7) P9_17B(PIN_INPUT, 7))
@@ -469,7 +466,6 @@
 	BONE_PIN(P9_17, gpio_pd,   P9_17A(PIN_INPUT_PULLDOWN, 7) P9_17B(PIN_INPUT, 7))
 	BONE_PIN(P9_17, i2c,       P9_17A(PIN_INPUT, 7) P9_17B(PIN_INPUT_PULLUP, 2))	/* i2c6_scl */
 	BONE_PIN(P9_17, spi,       P9_17A(PIN_OUTPUT, 4) P9_17B(PIN_INPUT, 7))	/* spi6_cs0 */
-	BONE_PIN(P9_17, uart,      P9_17A(PIN_OUTPUT, 14) P9_17B(PIN_INPUT, 7))	/* uart3_txd */
 
 	/* P9_18 (AH22/Y2) PRG1_PRU1_GPO19/SPI1_D1 (gpio0_40/gpio0_120) AH22_Y2 */
 	BONE_PIN(P9_18, default,   P9_18A(PIN_INPUT, 7) P9_18B(PIN_INPUT, 7))
@@ -569,7 +565,6 @@
 	BONE_PIN(P9_27, gpio_pu,   P9_27A(PIN_INPUT_PULLUP, 7) P9_27B(PIN_INPUT, 7))
 	BONE_PIN(P9_27, gpio_pd,   P9_27A(PIN_INPUT_PULLDOWN, 7) P9_27B(PIN_INPUT, 7))
 	BONE_PIN(P9_27, qep,       P9_27A(PIN_INPUT, 7) P9_27B(PIN_INPUT, 5))	/* eqep0_b */
-	BONE_PIN(P9_27, uart,      P9_27A(PIN_OUTPUT, 8) P9_27B(PIN_INPUT, 7))	/* uart3_txd */
 
 	/* P9_28 (U2/AF28) ECAP0_IN_APWM_OUT/PRG0_PRU0_GPO0 (gpio1_11/gpio0_43) U2_AF28 */
 	BONE_PIN(P9_28, default,   P9_28A(PIN_INPUT, 7) P9_28B(PIN_INPUT, 7))
@@ -588,7 +583,6 @@
 	BONE_PIN(P9_29, gpio_pu,   P9_29A(PIN_INPUT_PULLUP, 7) P9_29B(PIN_INPUT, 7))
 	BONE_PIN(P9_29, gpio_pd,   P9_29A(PIN_INPUT_PULLDOWN, 7) P9_29B(PIN_INPUT, 7))
 	BONE_PIN(P9_29, spi,       P9_29A(PIN_OUTPUT, 6) P9_29B(PIN_INPUT, 7))	/* spi7_d1 */
-	BONE_PIN(P9_29, spi,       P9_29A(PIN_INPUT, 7) P9_29B(PIN_OUTPUT, 4))	/* spi3_cs2 */
 
 	/* P9_30 (V6/AE28) TIMER_IO0/PRG0_PRU0_GPO1 (gpio1_13/gpio0_44) V6_AE28 */
 	BONE_PIN(P9_30, default,   P9_30A(PIN_INPUT, 7) P9_30B(PIN_INPUT, 7))
@@ -607,8 +601,6 @@
 	BONE_PIN(P9_31, gpio_pu,   P9_31A(PIN_INPUT_PULLUP, 7) P9_31B(PIN_INPUT, 7))
 	BONE_PIN(P9_31, gpio_pd,   P9_31A(PIN_INPUT_PULLDOWN, 7) P9_31B(PIN_INPUT, 7))
 	BONE_PIN(P9_31, spi,       P9_31A(PIN_OUTPUT, 6) P9_31B(PIN_INPUT, 7))	/* spi7_clk */
-	BONE_PIN(P9_31, spi,       P9_31A(PIN_INPUT, 7) P9_31B(PIN_OUTPUT, 4))	/* spi3_cs1 */
-	BONE_PIN(P9_31, uart,      P9_31A(PIN_INPUT, 7) P9_31B(PIN_OUTPUT, 14))	/* uart6_txd */
 
 	/* P9_32 - ADC_REF_OUT */
 
@@ -645,7 +637,6 @@
 	BONE_PIN(P9_37, gpio,      P9_37B(PIN_INPUT, 7))
 	BONE_PIN(P9_37, gpio_pu,   P9_37B(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_37, gpio_pd,   P9_37B(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P9_37, uart,      P9_37B(PIN_INPUT, 8))	/* uart4_rxd */
 
 	/* P9_38 (L28/AG27) MCU_ADC0_AIN3/PRG0_PRU0_GPO15 (gpio0_58) L28_AG27 */
 	BONE_PIN(P9_38, default,   P9_38B(PIN_INPUT, 7))
@@ -654,7 +645,6 @@
 	BONE_PIN(P9_38, gpio,      P9_38B(PIN_INPUT, 7))
 	BONE_PIN(P9_38, gpio_pu,   P9_38B(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_38, gpio_pd,   P9_38B(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P9_38, uart,      P9_38B(PIN_OUTPUT, 8))	/* uart4_txd */
 
 	/* P9_39 (K25/AJ28) MCU_ADC0_AIN0/PRG0_PRU0_GPO11 (gpio0_54) K25_AJ28 */
 	BONE_PIN(P9_39, default,   P9_39B(PIN_INPUT, 7))
@@ -671,7 +661,6 @@
 	BONE_PIN(P9_40, gpio,      P9_40B(PIN_INPUT, 7))
 	BONE_PIN(P9_40, gpio_pu,   P9_40B(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P9_40, gpio_pd,   P9_40B(PIN_INPUT_PULLDOWN, 7))
-	BONE_PIN(P9_40, spi,       P9_40B(PIN_OUTPUT, 4))	/* spi3_d0 */
 	BONE_PIN(P9_40, uart,      P9_40B(PIN_INPUT, 14))	/* uart2_rxd */
 
 	/* P9_41 (AD5) UART1_RTSn (gpio1_0) AD5_EQEP0_I */

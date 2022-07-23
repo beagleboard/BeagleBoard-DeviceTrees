@@ -521,12 +521,12 @@ find_pin () {
 				;;
 			esac
 			;;
-		SPI3|SPI6|SPI7)
+		SPI6|SPI7)
 			spi_name_a=${name_a}
 			spi_mode_a=${mode_a}
 			got_spi_a=yes
 			;;
-		USART*)
+		USART0|USART2|USART5)
 			case "${name_a}" in
 			uart*_rxd)
 				uart_mode_a=${mode_a}
@@ -736,12 +736,12 @@ find_shared_pin () {
 				;;
 			esac
 			;;
-		SPI3|SPI6|SPI7)
+		SPI6|SPI7)
 			spi_name_a=${name_a}
 			spi_mode_a=${mode_a}
 			got_spi_a=yes
 			;;
-		USART*)
+		USART0|USART2|USART5)
 			case "${name_a}" in
 			uart*_rxd)
 				uart_mode_a=${mode_a}
@@ -837,12 +837,12 @@ find_shared_pin () {
 				;;
 			esac
 			;;
-		SPI3|SPI6|SPI7)
+		SPI6|SPI7)
 			spi_name_b=${name_b}
 			spi_mode_b=${mode_b}
 			got_spi_b=yes
 			;;
-		USART*)
+		USART0|USART2|USART5)
 			case "${name_b}" in
 			uart*_rxd)
 				uart_mode_b=${mode_b}
