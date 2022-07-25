@@ -226,10 +226,10 @@ PHONY += install_arch
 install_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/ti/
-	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/ti/
-	cp -v $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
-	cp -v /boot/dtbs/$(KERNEL_VERSION)/ti/k3-j721e-*.dtb /boot/firmware/
-	cp -v /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/*.dtbo /boot/firmware/overlays/
+	cp $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/ti/
+	cp $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
+	cp /boot/dtbs/$(KERNEL_VERSION)/ti/k3-j721e-*.dtb /boot/firmware/
+	cp /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/*.dtbo /boot/firmware/overlays/
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
