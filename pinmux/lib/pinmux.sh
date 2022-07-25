@@ -467,7 +467,7 @@ find_pin () {
 		fi
 
 		case "${interface_a}" in
-		EHRPWM*)
+		EHRPWM0|EHRPWM1|EHRPWM2)
 			case "${name_a}" in
 			ehrpwm*_a|ehrpwm*_b)
 				ehrpwm_mode_a=${mode_a}
@@ -682,7 +682,7 @@ find_shared_pin () {
 			MCU_ADC_a=yes
 			break;
 			;;
-		EHRPWM*)
+		EHRPWM0|EHRPWM1|EHRPWM2)
 			case "${name_a}" in
 			ehrpwm*_a|ehrpwm*_b)
 				ehrpwm_mode_a=${mode_a}
@@ -783,7 +783,7 @@ find_shared_pin () {
 		fi
 
 		case "${interface_b}" in
-		EHRPWM*)
+		EHRPWM0|EHRPWM1|EHRPWM2)
 			case "${name_b}" in
 			ehrpwm*_a|ehrpwm*_b)
 				ehrpwm_mode_b=${mode_b}

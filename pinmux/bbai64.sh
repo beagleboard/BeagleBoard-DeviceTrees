@@ -9,37 +9,43 @@ echo "" >${file}-a-bone-pins.h
 echo "" >${file}-b-bone-pins.h
 echo "" >${file}-bone-pins.h
 
-echo "/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */">${file}.dts
-echo "#define BONE_PIN(XX,ZZ,QQ) \\">>${file}.dts
-echo "	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };">>${file}.dts
+echo "/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */" >${file}.dts
+echo "#define BONE_PIN(XX,ZZ,QQ) \\" >>${file}.dts
+echo "	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };" >>${file}.dts
 echo "">>${file}.dts
 
-echo "	/* I2C : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */">>${file}.dts
-echo "	/* i2c6 P9.17 P9.18 */">>${file}.dts
-echo "	/* i2c2 P9.19 P9.20 */">>${file}.dts
-echo "	/* i2c4 P9.24 P9.26 */">>${file}.dts
-echo "">>${file}.dts
+echo "	/* I2C : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */" >>${file}.dts
+echo "	/* i2c6 P9.17 P9.18 */" >>${file}.dts
+echo "	/* i2c2 P9.19 P9.20 */" >>${file}.dts
+echo "	/* i2c4 P9.24 P9.26 */" >>${file}.dts
+echo "" >>${file}.dts
 
-echo "	/* CAN : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#CAN */">>${file}.dts
-echo "	/* mcan0 P9.20 P9.19 */">>${file}.dts
-echo "	/* mcan4 P9.26 P9.24 */">>${file}.dts
-echo "	/* mcan5 P8.08 P8.07 */">>${file}.dts
-echo "">>${file}.dts
+echo "	/* CAN : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#CAN */" >>${file}.dts
+echo "	/* mcan0 P9.20 P9.19 */" >>${file}.dts
+echo "	/* mcan4 P9.26 P9.24 */" >>${file}.dts
+echo "	/* mcan5 P8.08 P8.07 */" >>${file}.dts
+echo "" >>${file}.dts
 
-echo "	/* SPI : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#SPI */">>${file}.dts
-echo "	/* spi6 P9.18 P9.21 P9.22 P9.16 P9.23 */">>${file}.dts
-echo "	/* spi7 P9.30 P9.29 P9.31 P9.29 P9.42 */">>${file}.dts
-echo "">>${file}.dts
+echo "	/* SPI : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#SPI */" >>${file}.dts
+echo "	/* spi6 P9.18 P9.21 P9.22 P9.16 P9.23 */" >>${file}.dts
+echo "	/* spi7 P9.30 P9.29 P9.31 P9.29 P9.42 */" >>${file}.dts
+echo "" >>${file}.dts
 
-echo "	/* UART : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#UART */">>${file}.dts
-echo "	/* uart0 P9.13 P9.11 */">>${file}.dts
-echo "	/* uart2 P9.24 P9.22 */">>${file}.dts
-echo "	/* uart5 P8.37 P8.38 P8.32 P8.31 */">>${file}.dts
-echo "">>${file}.dts
+echo "	/* UART : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#UART */" >>${file}.dts
+echo "	/* uart0 P9.13 P9.11 */" >>${file}.dts
+echo "	/* uart2 P9.24 P9.22 */" >>${file}.dts
+echo "	/* uart5 P8.37 P8.38 P8.32 P8.31 */" >>${file}.dts
+echo "" >>${file}.dts
 
-echo "	/* Full P8/P9 header mode definitions */">>${file}.dts
-echo "	/* P8_01 - GND */">>${file}.dts
-echo "	/* P8_02 - GND */">>${file}.dts
+echo "	/* PWM: https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM */" >>${file}.dts
+echo "	/* ehrpwm1 P9.22 P9.21 */" >>${file}.dts
+echo "	/* ehrpwm2 P9.14 P9.16 */" >>${file}.dts
+echo "	/* ehrpwm0 P8.19 P8.13 */" >>${file}.dts
+echo "" >>${file}.dts
+
+echo "	/* Full P8/P9 header mode definitions */" >>${file}.dts
+echo "	/* P8_01 - GND */" >>${file}.dts
+echo "	/* P8_02 - GND */" >>${file}.dts
 echo "" >>${file}.dts
 
 default="GPIO0"
