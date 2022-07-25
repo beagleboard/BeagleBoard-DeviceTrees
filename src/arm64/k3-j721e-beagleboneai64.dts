@@ -876,6 +876,11 @@
 	/* uart2 P9.24 P9.22 */
 	/* uart5 P8.37 P8.38 P8.32 P8.31 */
 
+	/* PWM: https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM */
+	/* ehrpwm1 P9.22 P9.21 */
+	/* ehrpwm2 P9.14 P9.16 */
+	/* ehrpwm0 P8.19 P8.13 */
+
 	/* Full P8/P9 header mode definitions */
 	/* P8_01 - GND */
 	/* P8_02 - GND */
@@ -1075,7 +1080,6 @@
 	BONE_PIN(P8_26, gpio_pu,   P8_26(PIN_INPUT_PULLUP, 7))
 	BONE_PIN(P8_26, gpio_pd,   P8_26(PIN_INPUT_PULLDOWN, 7))
 
-
 	/* P8_27 (AA28) PRG0_PRU1_GPO8 (gpio0_71) AA28_PRG0_PRU1_GPO8 */
 	BONE_PIN(P8_27, default,   P8_27(PIN_INPUT, 7))
 	BONE_PIN(P8_27, pruout,    P8_27(PIN_OUTPUT, 0))	/* prg0_pru1_gpo8 */
@@ -1172,7 +1176,6 @@
 	BONE_PIN(P8_37, gpio,      P8_37A(PIN_INPUT, 7) P8_37B(PIN_INPUT, 7))	/* gpio0_106 */
 	BONE_PIN(P8_37, gpio_pu,   P8_37A(PIN_INPUT_PULLUP, 7) P8_37B(PIN_INPUT, 7))
 	BONE_PIN(P8_37, gpio_pd,   P8_37A(PIN_INPUT_PULLDOWN, 7) P8_37B(PIN_INPUT, 7))
-	BONE_PIN(P8_37, pwm,       P8_37A(PIN_OUTPUT, 6) P8_37B(PIN_INPUT, 7))	/* ehrpwm5_a */
 	BONE_PIN(P8_37, spi,       P8_37A(PIN_INPUT, 7) P8_37B(PIN_OUTPUT, 4))	/* spi6_cs2 */
 	BONE_PIN(P8_37, uart,      P8_37A(PIN_OUTPUT, 3) P8_37B(PIN_INPUT, 7))	/* uart5_txd */
 
@@ -1399,7 +1402,6 @@
 	BONE_PIN(P9_25, gpio,      P9_25A(PIN_INPUT, 7) P9_25B(PIN_INPUT, 7))	/* gpio0_127 */
 	BONE_PIN(P9_25, gpio_pu,   P9_25A(PIN_INPUT_PULLUP, 7) P9_25B(PIN_INPUT, 7))
 	BONE_PIN(P9_25, gpio_pd,   P9_25A(PIN_INPUT_PULLDOWN, 7) P9_25B(PIN_INPUT, 7))
-	BONE_PIN(P9_25, pwm,       P9_25A(PIN_INPUT, 7) P9_25B(PIN_OUTPUT, 6))	/* ehrpwm4_b */
 	BONE_PIN(P9_25, qep,       P9_25A(PIN_INPUT, 5) P9_25B(PIN_INPUT, 7))	/* eqep0_s */
 
 	/* P9_26 (Y1/AF24) SPI1_CLK/PRG1_PRU0_GPO11 (gpio0_118/gpio0_12) Y1_AF24 */
