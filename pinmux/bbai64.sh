@@ -12,7 +12,7 @@ echo "" >${file}-bone-pins.h
 echo "/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */" >${file}.dts
 echo "#define BONE_PIN(XX,ZZ,QQ) \\" >>${file}.dts
 echo "	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };" >>${file}.dts
-echo "">>${file}.dts
+echo "" >>${file}.dts
 
 echo "	/* I2C : https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#I2C */" >>${file}.dts
 echo "	/* i2c6 P9.17 P9.18 */" >>${file}.dts
