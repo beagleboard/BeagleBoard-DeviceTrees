@@ -1,6 +1,8 @@
 # Overlays for the BeagleBone platform
 
 dtbo-$(CONFIG_ARCH_K3) += \
+	BBAI64-P8_37-ehrpwm5_a.dtbo \
+	BBAI64-P9_25-ehrpwm4_b.dtbo \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
 	BONE-PWM2.dtbo \
