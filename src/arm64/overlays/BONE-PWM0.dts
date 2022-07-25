@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2021 BeagleBoard.org - https://www.beagleboard.org/
+ * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
  *
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM 
  */
