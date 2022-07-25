@@ -2388,7 +2388,7 @@ bone_uart_1: &main_uart2 {
 // https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM
 // location: /dev/bone/pwm/2
 /*
-&ehrpwm0 {
+&main_ehrpwm0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&ehrpwm0_pins_default>;
 	status = "okay";
@@ -2397,7 +2397,7 @@ bone_uart_1: &main_uart2 {
 
 // location: /dev/bone/pwm/0
 /*
-&ehrpwm1 {
+&main_ehrpwm1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&ehrpwm1_pins_default>;
 	status = "okay";
@@ -2406,7 +2406,7 @@ bone_uart_1: &main_uart2 {
 
 // location: /dev/bone/pwm/1
 /*
-&ehrpwm2 {
+&main_ehrpwm2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&ehrpwm2_pins_default>;
 	status = "okay";
