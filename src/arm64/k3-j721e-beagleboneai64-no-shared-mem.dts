@@ -1988,20 +1988,10 @@ bone_i2c_0: &wkup_i2c0 {
 	};
 };
 
-bone_i2c_2: &main_i2c3 {
-	symlink = "bone/i2c/2";
-};
-
 &main_i2c3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c3_pins_default>;
 	clock-frequency = <400000>;
-};
-
-bone_i2c_3: &main_i2c4 {
-	pinctrl-names = "default";
-	clock-frequency = <400000>;
-	symlink = "bone/i2c/3";
 };
 
 &main_i2c5 {
@@ -2072,10 +2062,6 @@ bone_i2c_3: &main_i2c4 {
 //		spi-max-frequency = <125000000>;
 //	};
 //};
-
-bone_i2c_1: &main_i2c6 {
-	symlink = "bone/i2c/1";
-};
 
 &mcu_cpsw {
 	pinctrl-names = "default";
