@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
  *
- * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM 
+ * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec#PWM
  */
 
 /dts-v1/;
@@ -26,4 +26,3 @@
 		    >;
 	status = "okay";
 };
-
