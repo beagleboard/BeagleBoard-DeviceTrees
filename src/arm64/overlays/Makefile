@@ -3,6 +3,9 @@
 dtbo-$(CONFIG_ARCH_K3) += \
 	BBAI64-P8_37-ehrpwm5_a.dtbo \
 	BBAI64-P9_25-ehrpwm4_b.dtbo \
+	BONE-I2C1.dtbo \
+	BONE-I2C2.dtbo \
+	BONE-I2C3.dtbo \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
 	BONE-PWM2.dtbo \
