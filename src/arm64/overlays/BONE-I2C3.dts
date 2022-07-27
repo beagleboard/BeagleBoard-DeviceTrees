@@ -17,14 +17,6 @@
 	};
 };
 
-&main_i2c4 {
-	pinctrl-names = "default";
-	pinctrl-0 = <
-		     &P9_26_i2c_pin /* i2c4_sda */
-		     &P9_24_i2c_pin /* i2c4_scl */
-		    >;
-	clock-frequency = <100000>;
-
+&bone_i2c_3 {
 	status = "okay";
-	symlink = "bone/i2c/3";
 };
