@@ -20,8 +20,8 @@
 &bone_i2c_3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		     &P9_26_i2c_pin /* i2c4_sda */
-		     &P9_24_i2c_pin /* i2c4_scl */
-		    >;
+		&P9_26_i2c_pin /* i2c4_sda */
+		&P9_24_i2c_pin /* i2c4_scl */
+	>;
 	status = "okay";
 };

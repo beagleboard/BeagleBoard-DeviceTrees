@@ -18,7 +18,7 @@
 &main_ehrpwm4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		     &P9_25_pwm_pin /* PWM B */
-		    >;
+		&P9_25_pwm_pin /* PWM B */
+	>;
 	status = "okay";
 };
