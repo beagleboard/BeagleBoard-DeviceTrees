@@ -35,3 +35,30 @@ bone_i2c_3: &main_i2c4 {
 
 	symlink = "bone/i2c/3";
 };
+
+bone_pwm_0: &main_ehrpwm1 {
+	// location: /dev/bone/pwm/0
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		     &P9_22_pwm_pin /* PWM A */
+		     &P9_21_pwm_pin /* PWM B */
+		    >;
+};
+
+bone_pwm_1: &main_ehrpwm2 {
+	// location: /dev/bone/pwm/1
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		     &P9_14_pwm_pin /* PWM A */
+		     &P9_16_pwm_pin /* PWM B */
+		    >;
+};
+
+bone_pwm_2: &main_ehrpwm0 {
+	// location: /dev/bone/pwm/2
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		     &P8_19_pwm_pin /* PWM A */
+		     &P8_13_pwm_pin /* PWM B */
+		    >;
+};
