@@ -2248,14 +2248,6 @@ bone_i2c_0: &wkup_i2c0 {
 	status = "disabled";
 };
 
-/* TODO: is uart2 assigned to cpsw9g eth-switch fw running on remote CPU core? */
-/* TODO: handle alternate connection at P8_34 and P8_22 */
-bone_uart_1: &main_uart2 {
-	status = "okay";
-	symlink = "bone/uart/1";
-	power-domains = <&k3_pds 279 TI_SCI_PD_SHARED>; /* TODO: needed? */
-};
-
 &mcu_mcan0 {
 	status = "disabled";
 };

@@ -68,3 +68,13 @@ bone_pwm_2: &main_ehrpwm0 {
 	>;
 	status = "disabled";
 };
+
+bone_uart_1: &main_uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P9_24_uart_pin /* uart2_txd */
+		&P9_26_uart_pin /* uart2_rxd */
+	>;
+	symlink = "bone/uart/1";
+	status = "disabled";
+};

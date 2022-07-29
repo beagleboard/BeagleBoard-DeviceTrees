@@ -9,6 +9,7 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
 	BONE-PWM2.dtbo \
+	BONE-UART1.dtbo \
 	robotics-cape.dtbo \
 	k3-j721e-beagleboneai64-RPi-7inch-panel.dtbo \
 	J721E-PRU-UIO-00A0.dtbo
