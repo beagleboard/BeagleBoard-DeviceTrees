@@ -18,6 +18,11 @@
 };
 
 &bone_pwm_1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		     &P9_14_pwm_pin /* PWM A */
+		     &P9_16_pwm_pin /* PWM B */
+		    >;
 	// location: /dev/bone/pwm/1
 	status = "okay";
 };

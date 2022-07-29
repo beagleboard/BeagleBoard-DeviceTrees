@@ -18,5 +18,10 @@
 };
 
 &bone_i2c_1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		     &P9_18_i2c_pin /* i2c6_sda */
+		     &P9_17_i2c_pin /* i2c6_scl */
+		    >;
 	status = "okay";
 };
