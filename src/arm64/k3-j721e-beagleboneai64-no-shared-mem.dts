@@ -8,7 +8,7 @@
 
 #include "k3-j721e-som-p0.dtsi"
 //#include "k3-j721e-rtos-memory-map.dtsi"
-#include "k3-j721e-beagleboneai64-cape.dtsi"
+#include "k3-j721e-beagleboneai64-bone-buses.dtsi"
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/net/ti-dp83867.h>
