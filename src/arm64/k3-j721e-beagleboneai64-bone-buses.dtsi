@@ -69,6 +69,22 @@ bone_pwm_2: &main_ehrpwm0 {
 	status = "disabled";
 };
 
+&main_ehrpwm4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P9_25_pwm_pin /* PWM B */
+	>;
+	status = "disabled";
+};
+
+&main_ehrpwm5 {
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P8_37_pwm_pin /* PWM A */
+	>;
+	status = "disabled";
+};
+
 bone_uart_1: &main_uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
