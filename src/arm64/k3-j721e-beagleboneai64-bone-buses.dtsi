@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ */
+
+bone_i2c_1: &main_i2c6 {
+	clock-frequency = <100000>;
+
+	symlink = "bone/i2c/1";
+};
+
+bone_i2c_2: &main_i2c2 {
+	clock-frequency = <100000>;
+
+	symlink = "bone/i2c/2";
+};
+
+bone_i2c_3: &main_i2c4 {
+	clock-frequency = <100000>;
+
+	symlink = "bone/i2c/3";
+};
+
+bone_pwm_0: &main_ehrpwm1 {
+	// location: /dev/bone/pwm/0
+};
+
+bone_pwm_1: &main_ehrpwm2 {
+	// location: /dev/bone/pwm/1
+};
+
+bone_pwm_2: &main_ehrpwm0 {
+	// location: /dev/bone/pwm/2
+};

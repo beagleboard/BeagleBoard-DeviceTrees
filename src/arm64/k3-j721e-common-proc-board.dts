@@ -15,8 +15,6 @@
 	chosen: chosen {
 		stdout-path = "serial2:115200n8";
 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-		base_dtb = "k3-j721e-common-proc-board.dts";
-		base_dtb_timestamp = __TIMESTAMP__;
 	};
 
 	gpio_keys: gpio-keys {
@@ -1062,6 +1060,15 @@
 	};
 };
 
+&cpsw0 {
+	/*
+	 * Disable cpsw0 since cpsw9g_virt_mac is the default Ethernet
+	 * controller. cpsw0 is enabled with overlay for native
+	 * Ethernet driver support.
+	 */
+	status = "disabled";
+};
+
 &pcie0_rc {
 	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
 	phys = <&serdes0_pcie_link>;
@@ -1211,5 +1218,29 @@
 };
 
 &csi0_port4 {
+	status = "disabled";
+};
+
+&main_ehrpwm0 {
+	status = "disabled";
+};
+
+&main_ehrpwm1 {
+	status = "disabled";
+};
+
+&main_ehrpwm2 {
+	status = "disabled";
+};
+
+&main_ehrpwm3 {
+	status = "disabled";
+};
+
+&main_ehrpwm4 {
+	status = "disabled";
+};
+
+&main_ehrpwm5 {
 	status = "disabled";
 };

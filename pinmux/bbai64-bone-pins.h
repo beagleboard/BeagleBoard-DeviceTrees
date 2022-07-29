@@ -1,16 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
-/*
- * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
- * Copyright (C) 2021 Jason Kridner <jkridner@beagleboard.org>
- * See Cape Interface Spec page for more info on Bone Buses
- * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
- */
 
-#ifndef _DT_BINDINGS_BOARD_TDA4VM_BONE_PINS_H
-#define _DT_BINDINGS_BOARD_TDA4VM_BONE_PINS_H
-
-#define bb_device 1
-#define board_soc TDA4VM
 
 #define gpio_P8_03 &main_gpio0 20	/* AH21: PRG1_PRU0_GPO19 AH21_MCAN6_TX */
 #define gpio_P8_04 &main_gpio0 48	/* AC29: PRG0_PRU0_GPO5 AC29_SYS_BOOTMODE2 */
@@ -117,147 +105,17 @@
 #define gpio_P9_31 gpio_P9_31A
 #define gpio_P9_31A &main_gpio1 12	/* U3: EXT_REFCLK1 U3_AB26 */
 #define gpio_P9_31B &main_gpio0 52	/* AB26: PRG0_PRU0_GPO9 U3_AB26 */
-#define gpio_P9_33 &main_gpio0 50
 #define gpio_P9_33B &main_gpio0 50	/* AC28: PRG0_PRU0_GPO7 K24_AC28 */
-#define gpio_P9_35 &main_gpio0 55
 #define gpio_P9_35B &main_gpio0 55	/* AH27: PRG0_PRU0_GPO12 K29_AH27 */
-#define gpio_P9_36 &main_gpio0 56
 #define gpio_P9_36B &main_gpio0 56	/* AH29: PRG0_PRU0_GPO13 K27_AH29 */
-#define gpio_P9_37 &main_gpio0 57
 #define gpio_P9_37B &main_gpio0 57	/* AG28: PRG0_PRU0_GPO14 K28_AG28 */
-#define gpio_P9_38 &main_gpio0 58
 #define gpio_P9_38B &main_gpio0 58	/* AG27: PRG0_PRU0_GPO15 L28_AG27 */
-#define gpio_P9_39 &main_gpio0 54
 #define gpio_P9_39B &main_gpio0 54	/* AJ28: PRG0_PRU0_GPO11 K25_AJ28 */
-#define gpio_P9_40 &main_gpio0 81
 #define gpio_P9_40B &main_gpio0 81	/* AA26: PRG0_PRU1_GPO18 K26_AA26 */
 #define gpio_P9_41 &main_gpio1 0	/* AD5: UART1_RTSn AD5_EQEP0_I */
 #define gpio_P9_42 gpio_P9_42A
 #define gpio_P9_42A &main_gpio0 123	/* AC2: UART0_CTSn AC2_AJ21 */
 #define gpio_P9_42B &main_gpio0 18	/* AJ21: PRG1_PRU0_GPO17 AC2_AJ21 */
-
-#define P8_03_BALL  AH21
-#define P8_04_BALL  AC29
-#define BALL_AC29_BOOTMODE 2
-#define P8_05_BALL  AH25
-#define P8_06_BALL  AG25
-#define P8_07_BALL  AD24
-#define P8_08_BALL  AG24
-#define P8_09_BALL  AE24
-#define P8_10_BALL  AC24
-#define P8_11_BALL  AB24
-#define BALL_AB24_BOOTMODE 7
-#define P8_12_BALL  AH28
-#define P8_13_BALL  V27
-#define P8_14_BALL  AF27
-#define P8_15_BALL  AB29
-#define P8_16_BALL  AB28
-#define P8_17_BALL  AF22
-#define P8_18_BALL  AJ23
-#define P8_19_BALL  V29
-#define P8_20_BALL  AF26
-#define P8_21_BALL  AF21
-#define P8_22_BALL  AH23
-#define P8_23_BALL  AB23
-#define P8_24_BALL  AD20
-#define BALL_AD20_BOOTMODE 0
-#define P8_25_BALL  AH26
-#define P8_26_BALL  AC27
-#define P8_27_BALL  AA28
-#define P8_28_BALL  Y24
-#define P8_29_BALL  AA25
-#define P8_30_BALL  AG26
-#define P8_31A_BALL AJ25
-#define P8_31B_BALL AE29
-#define P8_32A_BALL AG21
-#define P8_32B_BALL AD28
-#define P8_33A_BALL AH24
-#define P8_33B_BALL AA2
-#define P8_34_BALL  AD22
-#define P8_35A_BALL AD23
-#define P8_35B_BALL Y3
-#define P8_36_BALL  AE20
-#define P8_37A_BALL AD21
-#define P8_37B_BALL Y27
-#define P8_38A_BALL AJ20
-#define P8_38B_BALL Y29
-#define P8_39_BALL  AC26
-#define P8_40_BALL  AA24
-#define P8_41_BALL  AD29
-#define P8_42_BALL  AB27
-#define BALL_AB27_BOOTMODE 6
-#define P8_43_BALL  AD27
-#define P8_44_BALL  AC25
-#define P8_45_BALL  AG29
-#define P8_46_BALL  Y25
-#define BALL_Y25_BOOTMODE  3
-#define P9_11_BALL  AC23
-#define P9_12_BALL  AE27
-#define P9_13_BALL  AG22
-#define P9_14_BALL  U27
-#define P9_15_BALL  AD25
-#define P9_16_BALL  U24
-#define P9_17A_BALL AC21
-#define P9_17B_BALL AA3
-#define P9_18A_BALL AH22
-#define P9_18B_BALL Y2
-#define P9_19A_BALL W5
-#define P9_19B_BALL AF29
-#define P9_20A_BALL W6
-#define P9_20B_BALL AE25
-#define P9_21A_BALL AJ22
-#define P9_21B_BALL U28
-#define P9_22A_BALL AC22
-#define BALL_AC22_BOOTMODE 1
-#define P9_22B_BALL U29
-#define P9_23_BALL  AG20
-#define P9_24A_BALL Y5
-#define P9_24B_BALL AJ24
-#define P9_25A_BALL AC4
-#define P9_25B_BALL W26
-#define P9_26A_BALL Y1
-#define P9_26B_BALL AF24
-#define P9_27A_BALL AD26
-#define P9_27B_BALL AB1
-#define P9_28A_BALL U2
-#define P9_28B_BALL AF28
-#define P9_29A_BALL V5
-#define P9_29B_BALL AB25
-#define P9_30A_BALL V6
-#define P9_30B_BALL AE28
-#define P9_31A_BALL U3
-#define P9_31B_BALL AB26
-#define P9_33A_BALL K24
-#define BALL_K24_WKUP WKUP_
-#define P9_33B_BALL AC28
-#define P9_35A_BALL K29
-#define BALL_K29_WKUP WKUP_
-#define P9_35B_BALL AH27
-#define P9_36A_BALL K27
-#define BALL_K27_WKUP WKUP_
-#define P9_36B_BALL AH29
-#define P9_37A_BALL K28
-#define BALL_K28_WKUP WKUP_
-#define P9_37B_BALL AG28
-#define P9_38A_BALL L28
-#define BALL_L28_WKUP WKUP_
-#define P9_38B_BALL AG27
-#define P9_39A_BALL K25
-#define BALL_K25_WKUP WKUP_
-#define P9_39B_BALL AJ28
-#define P9_40A_BALL K26
-#define BALL_K26_WKUP WKUP_
-#define P9_40B_BALL AA26
-#define P9_41_BALL  AD5
-#define P9_42A_BALL AC2
-#define P9_42B_BALL AJ21
-
-#define BALL_GPIO(ball) gpio_##ball
-#define BONE_GPIO(pin) BALL_GPIO(BONE_BALL(pin))
-#define BONE_BALL(pin) pin##_BALL
-#define BONE_WKUP(pin) defined(BALL_ ## BONE_BALL(pin) ## _WKUP) && BALL_ ## BONE_BALL(pin) ## _WKUP
-#define BALL_IOPAD(ball, wkup, mode, mux) J721E_##wkup##IOPAD(J721E_PIN_##ball, mode, mux)
-#define BONE_IOPAD(pin, mode, mux) BALL_IOPAD(BONE_BALL(pin), BONE_WKUP(pin), mode, mux)
 
 #define P8_03(mode, mux) J721E_IOPAD(0x54, mode, mux)	/* AH21: PRG1_PRU0_GPO19 AH21_MCAN6_TX */
 #define P8_04(mode, mux) J721E_IOPAD(0xC4, mode, mux)	/* AC29: PRG0_PRU0_GPO5 AC29_SYS_BOOTMODE2 */
@@ -361,5 +219,3 @@
 #define P9_41(mode, mux) J721E_IOPAD(0x204, mode, mux)	/* AD5: UART1_RTSn AD5_EQEP0_I */
 #define P9_42A(mode, mux) J721E_IOPAD(0x1F0, mode, mux)	/* AC2: UART0_CTSn AC2_AJ21 */
 #define P9_42B(mode, mux) J721E_IOPAD(0x4C, mode, mux)	/* AJ21: PRG1_PRU0_GPO17 AC2_AJ21 */
-
-#endif

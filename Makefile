@@ -95,6 +95,7 @@ ifeq "$(DTCVERSION)" "1.6.0"
 	DTC_FLAGS += -Wno-alias_paths
 	#Debian: 1.4.7-3 (Buster)
 	DTC_FLAGS += -Wno-unique_unit_address
+	DTC_FLAGS += -Wno-avoid_default_addr_size
 endif
 
 # Beautify output
@@ -224,9 +225,11 @@ all_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 PHONY += install_arch
 install_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
-	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/
-	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/
-	cp -v /boot/dtbs/$(KERNEL_VERSION)/k3-j721e-beagleboneai64.dtb /boot/firmware/k3-j721e-beagleboneai64.dtb
+	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/ti/
+	cp $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/ti/
+	cp $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
+	cp /boot/dtbs/$(KERNEL_VERSION)/ti/k3-j721e-*.dtb /boot/firmware/
+	cp /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/*.dtbo /boot/firmware/overlays/
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o

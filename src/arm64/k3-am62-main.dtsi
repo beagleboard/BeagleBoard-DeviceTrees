@@ -152,8 +152,10 @@
 		mbox-names = "rx", "tx";
 		mboxes= <&secure_proxy_main 12>,
 			<&secure_proxy_main 13>;
-		reg-names = "debug_messages";
-		reg = <0x00 0x44043000 0x00 0xfe0>;
+		reg-names = "debug_messages", "lpm";
+		reg = <0x00 0x44043000 0x00 0xfe0>,
+		      <0x00 0x78000000 0x00 0x8000>;
+		ti,lpm-firmware-name = "ti-sysfw/ti-fs-stub-firmware-am62x-gp-signed.bin";
 
 		k3_pds: power-controller {
 			compatible = "ti,sci-pm-domain";
@@ -174,7 +176,7 @@
 	crypto: crypto@40900000 {
 		compatible = "ti,am62-sa3ul";
 		reg = <0x00 0x40900000 0x00 0x1200>;
-		power-domains = <&k3_pds 70 TI_SCI_PD_EXCLUSIVE>;
+		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
 		#address-cells = <2>;
 		#size-cells = <2>;
 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
@@ -188,6 +190,7 @@
 			reg = <0x00 0x40910000 0x00 0x7d>;
 			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&k3_clks 70 0>;
+			status = "disabled";
 		};
 	};
 
@@ -584,7 +587,7 @@
 		cpts@3d000 {
 			compatible = "ti,j721e-cpts";
 			reg = <0x0 0x3d000 0x0 0x400>;
-			clocks = <&k3_clks 13 1>;
+			clocks = <&k3_clks 13 3>;
 			clock-names = "cpts";
 			interrupts-extended = <&gic500 GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-names = "cpts";
@@ -612,7 +615,7 @@
 
 		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
 
-		clocks = <&k3_clks 186 4>,
+		clocks = <&k3_clks 186 6>,
 			 <&k3_clks 186 0>,
 			 <&k3_clks 186 2>;
 
@@ -765,5 +768,152 @@
 		power-domains = <&k3_pds 53 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&k3_clks 53 0>;
 		clock-names = "fck";
+	};
+
+	mcasp0: mcasp@2b00000 {
+		compatible = "ti,am33xx-mcasp-audio";
+		reg = <0x00 0x02b00000 0x00 0x2000>,
+		      <0x00 0x02b08000 0x00 0x400>;
+		reg-names = "mpu","dat";
+		interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "tx", "rx";
+
+		dmas = <&main_bcdma 0 0xc500 0>, <&main_bcdma 0 0x4500 0>;
+		dma-names = "tx", "rx";
+
+		clocks = <&k3_clks 190 0>;
+		clock-names = "fck";
+		power-domains = <&k3_pds 190 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 190 0>;
+		assigned-clock-parents = <&k3_clks 190 2>;
+	};
+
+	mcasp1: mcasp@2b10000 {
+		compatible = "ti,am33xx-mcasp-audio";
+		reg = <0x00 0x02b10000 0x00 0x2000>,
+		      <0x00 0x02b18000 0x00 0x400>;
+		reg-names = "mpu","dat";
+		interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "tx", "rx";
+
+		dmas = <&main_bcdma 0 0xc501 0>, <&main_bcdma 0 0x4501 0>;
+		dma-names = "tx", "rx";
+
+		clocks = <&k3_clks 191 0>;
+		clock-names = "fck";
+		power-domains = <&k3_pds 191 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 191 0>;
+		assigned-clock-parents = <&k3_clks 191 2>;
+	};
+
+	mcasp2: mcasp@2b20000 {
+		compatible = "ti,am33xx-mcasp-audio";
+		reg = <0x00 0x02b20000 0x00 0x2000>,
+		      <0x00 0x02b28000 0x00 0x400>;
+		reg-names = "mpu","dat";
+		interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "tx", "rx";
+
+		dmas = <&main_bcdma 0 0xc502 0>, <&main_bcdma 0 0x4502 0>;
+		dma-names = "tx", "rx";
+
+		clocks = <&k3_clks 192 0>;
+		clock-names = "fck";
+		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 192 0>;
+		assigned-clock-parents = <&k3_clks 192 2>;
+	};
+
+	pruss: pruss@30040000 {
+		compatible = "ti,am625-pruss";
+		reg = <0x00 0x30040000 0x00 0x80000>;
+		power-domains = <&k3_pds 81 TI_SCI_PD_EXCLUSIVE>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0x0 0x00 0x30040000 0x80000>;
+
+		pruss_mem: memories@0 {
+			reg = <0x0 0x2000>,
+			      <0x2000 0x2000>,
+			      <0x10000 0x10000>;
+			reg-names = "dram0", "dram1", "shrdram2";
+		};
+
+		pruss_cfg: cfg@26000 {
+			compatible = "ti,pruss-cfg", "syscon";
+			reg = <0x26000 0x200>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0x0 0x26000 0x2000>;
+
+			clocks {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				pruss_coreclk_mux: coreclk-mux@3c {
+					reg = <0x3c>;
+					#clock-cells = <0>;
+					clocks = <&k3_clks 81 0>,  /* pruss_core_clk */
+						 <&k3_clks 81 20>; /* pruss_iclk */
+					assigned-clocks = <&pruss_coreclk_mux>;
+					assigned-clock-parents = <&k3_clks 81 20>;
+				};
+
+				pruss_iepclk_mux: iepclk-mux@30 {
+					reg = <0x30>;
+					#clock-cells = <0>;
+					clocks = <&k3_clks 81 3>,	/* pruss_iep_clk */
+						 <&pruss_coreclk_mux>;	/* pruss_coreclk_mux */
+					assigned-clocks = <&pruss_iepclk_mux>;
+					assigned-clock-parents = <&pruss_coreclk_mux>;
+				};
+			};
+		};
+
+		pruss_intc: interrupt-controller@20000 {
+			compatible = "ti,pruss-intc";
+			reg = <0x20000 0x2000>;
+			interrupt-controller;
+			#interrupt-cells = <3>;
+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "host_intr0", "host_intr1",
+					  "host_intr2", "host_intr3",
+					  "host_intr4", "host_intr5",
+					  "host_intr6", "host_intr7";
+		};
+
+		pru0: pru@34000 {
+			compatible = "ti,am625-pru";
+			reg = <0x34000 0x3000>,
+			      <0x22000 0x100>,
+			      <0x22400 0x100>;
+			reg-names = "iram", "control", "debug";
+			firmware-name = "am62x-pru0-fw";
+			interrupt-parent = <&pruss_intc>;
+			interrupts = <16 2 2>;
+			interrupt-names = "vring";
+		};
+
+		pru1: pru@38000 {
+			compatible = "ti,am625-pru";
+			reg = <0x38000 0x3000>,
+			      <0x24000 0x100>,
+			      <0x24400 0x100>;
+			reg-names = "iram", "control", "debug";
+			firmware-name = "am62x-pru1-fw";
+			interrupt-parent = <&pruss_intc>;
+			interrupts = <18 3 3>;
+			interrupt-names = "vring";
+		};
 	};
 };
