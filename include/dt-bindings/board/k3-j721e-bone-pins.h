@@ -12,7 +12,8 @@
 #define bb_device 1
 #define board_soc TDA4VM
 
-// TODO: create association between ball and GPIO
+#define BONE_GPIO(pin) BALL_GPIO(BONE_BALL(pin))
+#define BALL_GPIO(ball) gpio_##ball
 #define gpio_P8_03 &main_gpio0 20   /* AH21 */
 #define gpio_P8_04 &main_gpio0 48   /* AC29 */
 #define gpio_P8_05 &main_gpio0 33   /* AH25 */
@@ -128,110 +129,125 @@
 #define gpio_P9_41 &main_gpio1 0
 #define gpio_P9_42 &main_gpio0 123
 
-#define PIN2PAD(pin, mode, mux) J721E_IOPAD(J721E_PIN_##pin, mode, mux)
-#define PIN2WPAD(pin, mode, mux) J721E_WKUP_IOPAD(J721E_PIN_##pin, mode, mux)
+#define P8_03_BALL  AH21
+#define P8_04_BALL  AC29
+#define BALL_AC29_BOOTMODE 2
+#define P8_05_BALL  AH25
+#define P8_06_BALL  AG25
+#define P8_07_BALL  AD24
+#define P8_08_BALL  AG24
+#define P8_09_BALL  AE24
+#define P8_10_BALL  AC24
+#define P8_11_BALL  AB24
+#define BALL_AB24_BOOTMODE 7
+#define P8_12_BALL  AH28
+#define P8_13_BALL  V27
+#define P8_14_BALL  AF27
+#define P8_15_BALL  AB29
+#define P8_16_BALL  AB28
+#define P8_17_BALL  AF22
+#define P8_18_BALL  AJ23
+#define P8_19_BALL  V29
+#define P8_20_BALL  AF26
+#define P8_21_BALL  AF21
+#define P8_22_BALL  AH23
+#define P8_23_BALL  AB23
+#define P8_24_BALL  AD20
+#define BALL_AD20_BOOTMODE 0
+#define P8_25_BALL  AH26
+#define P8_26_BALL  AC27
+#define P8_27_BALL  AA28
+#define P8_28_BALL  Y24
+#define P8_29_BALL  AA25
+#define P8_30_BALL  AG26
+#define P8_31A_BALL AJ25
+#define P8_31B_BALL AE29
+#define P8_32A_BALL AG21
+#define P8_32B_BALL AD28
+#define P8_33A_BALL AH24
+#define P8_33B_BALL AA2
+#define P8_34_BALL  AD22
+#define P8_35A_BALL AD23
+#define P8_35B_BALL Y3
+#define P8_36_BALL  AE20
+#define P8_37A_BALL AD21
+#define P8_37B_BALL Y27
+#define P8_38A_BALL AJ20
+#define P8_38B_BALL Y29
+#define P8_39_BALL  AC26
+#define P8_40_BALL  AA24
+#define P8_41_BALL  AD29
+#define P8_42_BALL  AB27
+#define BALL_AB27_BOOTMODE 6
+#define P8_43_BALL  AD27
+#define P8_44_BALL  AC25
+#define P8_45_BALL  AG29
+#define P8_46_BALL  Y25
+#define BALL_Y25_BOOTMODE  3
+#define P9_11_BALL  AC23
+#define P9_12_BALL  AE27
+#define P9_13_BALL  AG22
+#define P9_14_BALL  U27
+#define P9_15_BALL  AD25
+#define P9_16_BALL  U24
+#define P9_17A_BALL AC21
+#define P9_17B_BALL AA3
+#define P9_18A_BALL AH22
+#define P9_18B_BALL Y2
+#define P9_19A_BALL W5
+#define P9_19B_BALL AF29
+#define P9_20A_BALL W6
+#define P9_20B_BALL AE25
+#define P9_21A_BALL AJ22
+#define P9_21B_BALL U28
+#define P9_22A_BALL AC22
+#define BALL_AC22_BOOTMODE 1
+#define P9_22B_BALL U29
+#define P9_23_BALL  AG20
+#define P9_24A_BALL Y5
+#define P9_24B_BALL AJ24
+#define P9_25A_BALL AC4
+#define P9_25B_BALL W26
+#define P9_26A_BALL Y1
+#define P9_26B_BALL AF24
+#define P9_27A_BALL AD26
+#define P9_27B_BALL AB1
+#define P9_28A_BALL U2
+#define P9_28B_BALL AF28
+#define P9_29A_BALL V5
+#define P9_29B_BALL AB25
+#define P9_30A_BALL V6
+#define P9_30B_BALL AE28
+#define P9_31A_BALL U3
+#define P9_31B_BALL AB26
+#define P9_33A_BALL K24
+#define BALL_K24_WKUP WKUP_
+#define P9_33B_BALL AC28
+#define P9_35A_BALL K29
+#define BALL_K29_WKUP WKUP_
+#define P9_35B_BALL AH27
+#define P9_36A_BALL K27
+#define BALL_K27_WKUP WKUP_
+#define P9_36B_BALL AH29
+#define P9_37A_BALL K28
+#define BALL_K28_WKUP WKUP_
+#define P9_37B_BALL AG28
+#define P9_38A_BALL L28
+#define BALL_L28_WKUP WKUP_
+#define P9_38B_BALL AG27
+#define P9_39A_BALL K25
+#define BALL_K25_WKUP WKUP_
+#define P9_39B_BALL AJ28
+#define P9_40A_BALL K26
+#define BALL_K26_WKUP WKUP_
+#define P9_40B_BALL AA26
+#define P9_41_BALL  AD5
+#define P9_42A_BALL AC2
+#define P9_42B_BALL AJ21
 
-#define P8_03(mode, mux)  PIN2PAD(AH21, mode, mux)
-#define P8_04(mode, mux)  PIN2PAD(AC29, mode, mux) /* BOOTMODE2 */
-#define P8_05(mode, mux)  PIN2PAD(AH25, mode, mux)
-#define P8_06(mode, mux)  PIN2PAD(AG25, mode, mux)
-#define P8_07(mode, mux)  PIN2PAD(AD24, mode, mux)
-#define P8_08(mode, mux)  PIN2PAD(AG24, mode, mux)
-#define P8_09(mode, mux)  PIN2PAD(AE24, mode, mux)
-#define P8_10(mode, mux)  PIN2PAD(AC24, mode, mux)
-#define P8_11(mode, mux)  PIN2PAD(AB24, mode, mux) /* BOOTMODE7 */
-#define P8_12(mode, mux)  PIN2PAD(AH28, mode, mux)
-#define P8_13(mode, mux)  PIN2PAD(V27, mode, mux)
-#define P8_14(mode, mux)  PIN2PAD(AF27, mode, mux)
-#define P8_15(mode, mux)  PIN2PAD(AB29, mode, mux)
-#define P8_16(mode, mux)  PIN2PAD(AB28, mode, mux)
-#define P8_17(mode, mux)  PIN2PAD(AF22, mode, mux)
-#define P8_18(mode, mux)  PIN2PAD(AJ23, mode, mux)
-#define P8_19(mode, mux)  PIN2PAD(V29, mode, mux)
-#define P8_20(mode, mux)  PIN2PAD(AF26, mode, mux)
-#define P8_21(mode, mux)  PIN2PAD(AF21, mode, mux)
-#define P8_22(mode, mux)  PIN2PAD(AH23, mode, mux)
-#define P8_23(mode, mux)  PIN2PAD(AB23, mode, mux)
-#define P8_24(mode, mux)  PIN2PAD(AD20, mode, mux) /* BOOTMODE0 */
-#define P8_25(mode, mux)  PIN2PAD(AH26, mode, mux)
-#define P8_26(mode, mux)  PIN2PAD(AC27, mode, mux)
-#define P8_27(mode, mux)  PIN2PAD(AA28, mode, mux)
-#define P8_28(mode, mux)  PIN2PAD(Y24, mode, mux)
-#define P8_29(mode, mux)  PIN2PAD(AA25, mode, mux)
-#define P8_30(mode, mux)  PIN2PAD(AG26, mode, mux)
-#define P8_31A(mode, mux) PIN2PAD(AJ25, mode, mux)
-#define P8_31B(mode, mux) PIN2PAD(AE29, mode, mux)
-#define P8_32A(mode, mux) PIN2PAD(AG21, mode, mux)
-#define P8_32B(mode, mux) PIN2PAD(AD28, mode, mux)
-#define P8_33A(mode, mux) PIN2PAD(AH24, mode, mux)
-#define P8_33B(mode, mux) PIN2PAD(AA2, mode, mux)
-#define P8_34(mode, mux)  PIN2PAD(AD22, mode, mux)
-#define P8_35A(mode, mux) PIN2PAD(AD23, mode, mux)
-#define P8_35B(mode, mux) PIN2PAD(Y3, mode, mux)
-#define P8_36(mode, mux)  PIN2PAD(AE20, mode, mux)
-#define P8_37A(mode, mux) PIN2PAD(AD21, mode, mux)
-#define P8_37B(mode, mux) PIN2PAD(Y27, mode, mux)
-#define P8_38A(mode, mux) PIN2PAD(AJ20, mode, mux)
-#define P8_38B(mode, mux) PIN2PAD(Y29, mode, mux)
-#define P8_39(mode, mux)  PIN2PAD(AC26, mode, mux)
-#define P8_40(mode, mux)  PIN2PAD(AA24, mode, mux)
-#define P8_41(mode, mux)  PIN2PAD(AD29, mode, mux)
-#define P8_42(mode, mux)  PIN2PAD(AB27, mode, mux) /* BOOTMODE6 */
-#define P8_43(mode, mux)  PIN2PAD(AD27, mode, mux)
-#define P8_44(mode, mux)  PIN2PAD(AC25, mode, mux)
-#define P8_45(mode, mux)  PIN2PAD(AG29, mode, mux)
-#define P8_46(mode, mux)  PIN2PAD(Y25, mode, mux) /* BOOTMODE3 */
-#define P9_11(mode, mux)  PIN2PAD(AC23, mode, mux)
-#define P9_12(mode, mux)  PIN2PAD(AE27, mode, mux)
-#define P9_13(mode, mux)  PIN2PAD(AG22, mode, mux)
-#define P9_14(mode, mux)  PIN2PAD(U27, mode, mux)
-#define P9_15(mode, mux)  PIN2PAD(AD25, mode, mux)
-#define P9_16(mode, mux)  PIN2PAD(U24, mode, mux)
-#define P9_17A(mode, mux) PIN2PAD(AC21, mode, mux)
-#define P9_17B(mode, mux) PIN2PAD(AA3, mode, mux)
-#define P9_18A(mode, mux) PIN2PAD(AH22, mode, mux)
-#define P9_18B(mode, mux) PIN2PAD(Y2, mode, mux)
-#define P9_19A(mode, mux) PIN2PAD(W5, mode, mux)
-#define P9_19B(mode, mux) PIN2PAD(AF29, mode, mux)
-#define P9_20A(mode, mux) PIN2PAD(W6, mode, mux)
-#define P9_20B(mode, mux) PIN2PAD(AE25, mode, mux)
-#define P9_21A(mode, mux) PIN2PAD(AJ22, mode, mux)
-#define P9_21B(mode, mux) PIN2PAD(U28, mode, mux)
-#define P9_22A(mode, mux) PIN2PAD(AC22, mode, mux) /* BOOTMODE1 */
-#define P9_22B(mode, mux) PIN2PAD(U29, mode, mux)
-#define P9_23(mode, mux)  PIN2PAD(AG20, mode, mux)
-#define P9_24A(mode, mux) PIN2PAD(Y5, mode, mux)
-#define P9_24B(mode, mux) PIN2PAD(AJ24, mode, mux)
-#define P9_25A(mode, mux) PIN2PAD(AC4, mode, mux)
-#define P9_25B(mode, mux) PIN2PAD(W26, mode, mux)
-#define P9_26A(mode, mux) PIN2PAD(Y1, mode, mux)
-#define P9_26B(mode, mux) PIN2PAD(AF24, mode, mux)
-#define P9_27A(mode, mux) PIN2PAD(AD26, mode, mux)
-#define P9_27B(mode, mux) PIN2PAD(AB1, mode, mux)
-#define P9_28A(mode, mux) PIN2PAD(U2, mode, mux)
-#define P9_28B(mode, mux) PIN2PAD(AF28, mode, mux)
-#define P9_29A(mode, mux) PIN2PAD(V5, mode, mux)
-#define P9_29B(mode, mux) PIN2PAD(AB25, mode, mux)
-#define P9_30A(mode, mux) PIN2PAD(V6, mode, mux)
-#define P9_30B(mode, mux) PIN2PAD(AE28, mode, mux)
-#define P9_31A(mode, mux) PIN2PAD(U3, mode, mux)
-#define P9_31B(mode, mux) PIN2PAD(AB26, mode, mux)
-#define P9_33A(mode, mux) PIN2WPAD(K24, mode, mux)
-#define P9_33B(mode, mux) PIN2PAD(AC28, mode, mux)
-#define P9_35A(mode, mux) PIN2WPAD(K29, mode, mux)
-#define P9_35B(mode, mux) PIN2PAD(AH27, mode, mux)
-#define P9_36A(mode, mux) PIN2WPAD(K27, mode, mux)
-#define P9_36B(mode, mux) PIN2PAD(AH29, mode, mux)
-#define P9_37A(mode, mux) PIN2WPAD(K28, mode, mux)
-#define P9_37B(mode, mux) PIN2PAD(AG28, mode, mux)
-#define P9_38A(mode, mux) PIN2WPAD(L28, mode, mux)
-#define P9_38B(mode, mux) PIN2PAD(AG27, mode, mux)
-#define P9_39A(mode, mux) PIN2WPAD(K25, mode, mux)
-#define P9_39B(mode, mux) PIN2PAD(AJ28, mode, mux)
-#define P9_40A(mode, mux) PIN2WPAD(K26, mode, mux)
-#define P9_40B(mode, mux) PIN2PAD(AA26, mode, mux)
-#define P9_41(mode, mux)  PIN2PAD(AD5, mode, mux)
-#define P9_42A(mode, mux) PIN2PAD(AC2, mode, mux)
-#define P9_42B(mode, mux) PIN2PAD(AJ21, mode, mux)
+#define BONE_BALL(pin) pin##_BALL
+#define BONE_WKUP(pin) defined(BALL_ ## BONE_BALL(pin) ## _WKUP) && BALL_ ## BONE_BALL(pin) ## _WKUP
+#define BALL_IOPAD(ball, wkup, mode, mux) J721E_##wkup##IOPAD(J721E_PIN_##ball, mode, mux)
+#define BONE_IOPAD(pin, mode, mux) BALL_IOPAD(BONE_BALL(pin), BONE_WKUP(pin), mode, mux)
 
 #endif
