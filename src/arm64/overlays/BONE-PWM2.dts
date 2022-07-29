@@ -18,11 +18,5 @@
 };
 
 &bone_pwm_2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <
-		&P8_19_pwm_pin /* PWM A */
-		&P8_13_pwm_pin /* PWM B */
-	>;
-	// location: /dev/bone/pwm/2
 	status = "okay";
 };
