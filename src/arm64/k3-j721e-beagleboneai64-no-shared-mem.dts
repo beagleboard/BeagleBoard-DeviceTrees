@@ -361,20 +361,6 @@
 			J721E_IOPAD(0x190, PIN_OUTPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
 		>;
 	};
-
-	ehrpwm4_pins_default: ehrpwm4_pins_default {
-		pinctrl-single,pins = <
-/*			J721E_IOPAD(0x1a0, PIN_OUTPUT, 6)*/ /* (W29) RGMII6_TXC.EHRPWM4_A */
-			J721E_IOPAD(0x1a4, PIN_OUTPUT, 6) /* (W26) RGMII6_RXC.EHRPWM4_B */
-		>;
-	};
-
-	ehrpwm5_pins_default: ehrpwm5_pins_default {
-		pinctrl-single,pins = <
-			J721E_IOPAD(0x1ac, PIN_OUTPUT, 6) /* (Y27) RGMII6_RD2.EHRPWM5_A */
-/*			J721E_IOPAD(0x1b0, PIN_OUTPUT, 6)*/ /* (W24) RGMII6_RD1.EHRPWM5_B */
-		>;
-	};
 };
 
 &wkup_pmx0 {
