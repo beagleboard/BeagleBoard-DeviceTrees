@@ -310,16 +310,6 @@
 		>;
 	};
 
-	main_spi6_pins_default: main-spi6-pins-default {
-		pinctrl-single,pins = <
-			J721E_IOPAD(0x74, INPUT_DISABLE, 4) /* (AC21) PRG1_PRU1_GPO7.SPI6_CS0 */
-			J721E_IOPAD(0x28, INPUT_DISABLE, 4) /* (AG20) PRG1_PRU0_GPO9.SPI6_CS1 */
-			J721E_IOPAD(0x9c, INPUT_DISABLE, 4) /* (AC22) PRG1_PRU1_GPO17.SPI6_CLK */
-			J721E_IOPAD(0xa0, INPUT_DISABLE, 4) /* (AJ22) PRG1_PRU1_GPO18.SPI6_D0 */
-			J721E_IOPAD(0xa4, PIN_INPUT, 4) /* (AH22) PRG1_PRU1_GPO19.SPI6_D1 */
-		>;
-	};
-
 	csi0_gpio_pins_default: csi0-gpio-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x19c, PIN_INPUT_PULLDOWN, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
@@ -806,31 +796,6 @@ bone_i2c_0: &wkup_i2c0 {
 	};
 #endif
 };
-
-//bone_spi_0: &main_spi6 {
-//	pinctrl-names = "default";
-//	pinctrl-0 = <&main_spi6_pins_default>;
-//	ti,spi-num-cs = <2>;
-//	ti,pindir-d0-out-d1-in;
-//
-//	spidev0: spidev@0{
-//		symlink = "bone/spi/0.0";
-//		compatible = "spidev";
-//		reg = <0>;	/* CE0 */
-//		#address-cells = <1>;
-//		#size-cells = <0>;
-//		spi-max-frequency = <125000000>;
-//	};
-//
-//	spidev1: spidev@1{
-//		symlink = "bone/spi/0.1";
-//		compatible = "spidev";
-//		reg = <1>;	/* CE1 */
-//		#address-cells = <1>;
-//		#size-cells = <0>;
-//		spi-max-frequency = <125000000>;
-//	};
-//};
 
 &mcu_cpsw {
 	pinctrl-names = "default";
