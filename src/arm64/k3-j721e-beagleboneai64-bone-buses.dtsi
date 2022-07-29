@@ -1317,6 +1317,12 @@ bone_pwm_2: &main_ehrpwm0 {
 	status = "disabled";
 };
 
+bone_uart_0: &main_uart0 {
+	/* TODO: also has option as "bone/uart/4" */
+	symlink = "bone/uart/0";
+	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
+};
+
 bone_uart_1: &main_uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
@@ -1324,5 +1330,10 @@ bone_uart_1: &main_uart2 {
 		&P9_26_uart_pin /* uart2_rxd */
 	>;
 	symlink = "bone/uart/1";
+	status = "disabled";
+};
+
+bone_uart_5: &main_uart5 {
+	symlink = "bone/uart/5";
 	status = "disabled";
 };
