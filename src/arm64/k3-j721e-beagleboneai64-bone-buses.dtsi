@@ -1275,8 +1275,8 @@ bone_pwm_0: &main_ehrpwm1 {
 	// location: /dev/bone/pwm/0
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		&P9_22_pwm_pin /* PWM A */
-		&P9_21_pwm_pin /* PWM B */
+		&P9_21_pwm_pin /* ehrpwm1_a */
+		&P9_22_pwm_pin /* ehrpwm1_b */
 	>;
 	status = "disabled";
 };
@@ -1285,8 +1285,8 @@ bone_pwm_1: &main_ehrpwm2 {
 	// location: /dev/bone/pwm/1
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		&P9_14_pwm_pin /* PWM A */
-		&P9_16_pwm_pin /* PWM B */
+		&P9_14_pwm_pin /* ehrpwm2_a */
+		&P9_16_pwm_pin /* ehrpwm2_b */
 	>;
 	status = "disabled";
 };
@@ -1295,8 +1295,8 @@ bone_pwm_2: &main_ehrpwm0 {
 	// location: /dev/bone/pwm/2
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		&P8_19_pwm_pin /* PWM A */
-		&P8_13_pwm_pin /* PWM B */
+		&P8_19_pwm_pin /* ehrpwm0_a */
+		&P8_13_pwm_pin /* ehrpwm0_b */
 	>;
 	status = "disabled";
 };
@@ -1304,7 +1304,7 @@ bone_pwm_2: &main_ehrpwm0 {
 &main_ehrpwm4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		&P9_25_pwm_pin /* PWM B */
+		&P9_25_pwm_pin /* ehrpwm4_b */
 	>;
 	status = "disabled";
 };
@@ -1312,7 +1312,7 @@ bone_pwm_2: &main_ehrpwm0 {
 &main_ehrpwm5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <
-		&P8_37_pwm_pin /* PWM A */
+		&P8_37_pwm_pin /* ehrpwm5_a */
 	>;
 	status = "disabled";
 };
@@ -1324,6 +1324,7 @@ bone_uart_0: &main_uart0 {
 };
 
 bone_uart_1: &main_uart2 {
+	/* tested with sudo agetty 115200 ttyS4 */
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P9_24_uart_pin /* uart2_txd */
