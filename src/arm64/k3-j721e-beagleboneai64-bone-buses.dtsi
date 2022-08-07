@@ -11,6 +11,9 @@
 /********/
 &{/} {
 	gpio-leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+
 		bone_led_P8_03: led_P8_03 {
 			status = "disabled";
 			linux,default-trigger = "default-off";
@@ -452,7 +455,7 @@
 		bone_led_P9_42: led_P9_42 {
 			status = "disabled";
 			linux,default-trigger = "default-off";
-			gpios = <gpio_P8_42 GPIO_ACTIVE_HIGH>;
+			gpios = <gpio_P9_42 GPIO_ACTIVE_HIGH>;
 		};
 	};
 
@@ -539,7 +542,9 @@
 	};
 };
 
-&main_pmx0 {
+
+
+ocp: &main_pmx0 {
 /* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */
 #define BONE_PIN(XX,ZZ,QQ) \
 	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
