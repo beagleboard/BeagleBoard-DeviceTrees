@@ -613,6 +613,7 @@
 	pinctrl-0 = <&main_mmc1_pins_default>;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
+	no-1-8-v;
 };
 
 &sdhci2 {
@@ -819,6 +820,16 @@
 
 &main_mcan0 {
 	status = "disabled";
+};
+
+&mcu_rti0 {
+	/* MCU RTI0 is used by M4F firmware */
+	status = "reserved";
+};
+
+&wkup_rti0 {
+	/* WKUP RTI0 is used by DM firmware */
+	status = "reserved";
 };
 
 &epwm0 {
