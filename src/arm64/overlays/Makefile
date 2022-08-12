@@ -6,6 +6,7 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-I2C1.dtbo \
 	BONE-I2C2.dtbo \
 	BONE-I2C3.dtbo \
+	BONE-FAN.dtbo \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
 	BONE-PWM2.dtbo \

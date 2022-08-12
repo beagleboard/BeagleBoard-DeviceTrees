@@ -1,0 +1,248 @@
+
+// SPDX-License-Identifier: GPL-2.0
+/*
+ */
+
+/dts-v1/;
+/plugin/;
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BONE-FAN = __TIMESTAMP__;
+	};
+};
+
+&main_ehrpwm3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&ehrpwm3_pins_default>;
+	status = "okay";
+};
+
+&{/} {
+	fan0: pwm-fan {
+		compatible = "pwm-fan";
+		#cooling-cells = <2>;
+		pwms = <&main_ehrpwm3 1 40000 0>;
+		cooling-levels = <100 175 220 254>;
+	};
+};
+
+&thermal_zones{
+	wkup_thermal: wkup-thermal {
+		trips {
+			wkup_passive: wkup-passive {
+				temperature = <35000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "passive";
+			};
+			wkup_active: wkup-active {
+				temperature = <50000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "active";
+			};
+			wkup_hot: wkup-hot {
+				temperature = <72000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "hot";
+			};
+			wkup_crit: wkup-crit {
+				temperature = <125000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "critical";
+			};
+		};
+		cooling-maps {
+			map0 {
+				trip = <&wkup_passive>;
+				cooling-device = <&fan0 0 0>;
+			};
+			map1 {
+				trip = <&wkup_active>;
+				cooling-device = <&fan0 0 1>;
+			};
+			map2 {
+				trip = <&wkup_hot>;
+				cooling-device = <&fan0 0 2>;
+			};
+			map3 {
+				trip = <&wkup_crit>;
+				cooling-device = <&fan0 0 3>;
+			};
+		};
+	};
+
+	mpu_thermal: mpu-thermal {
+		trips {
+			mpu_passive: mpu-passive {
+				temperature = <35000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "passive";
+			};
+			mpu_active: mpu-active {
+				temperature = <50000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "active";
+			};
+			mpu_hot: mpu-hot {
+				temperature = <72000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "hot";
+			};
+			mpu_crit: mpu-crit {
+				temperature = <125000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "critical";
+			};
+		};
+		cooling-maps {
+			map0 {
+				trip = <&mpu_passive>;
+				cooling-device = <&fan0 0 0>;
+			};
+			map1 {
+				trip = <&mpu_active>;
+				cooling-device = <&fan0 0 1>;
+			};
+			map2 {
+				trip = <&mpu_hot>;
+				cooling-device = <&fan0 0 2>;
+			};
+			map3 {
+				trip = <&mpu_crit>;
+				cooling-device = <&fan0 0 3>;
+			};
+		};
+	};
+
+	c7x_thermal: c7x-thermal {
+		trips {
+			c7x_passive: c7x-passive {
+				temperature = <35000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "passive";
+			};
+			c7x_active: c7x-active {
+				temperature = <50000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "active";
+			};
+			c7x_hot: c7x-hot {
+				temperature = <72000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "hot";
+			};
+			c7x_crit: c7x-crit {
+				temperature = <125000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "critical";
+			};
+		};
+		cooling-maps {
+			map0 {
+				trip = <&c7x_passive>;
+				cooling-device = <&fan0 0 0>;
+			};
+			map1 {
+				trip = <&c7x_active>;
+				cooling-device = <&fan0 0 1>;
+			};
+			map2 {
+				trip = <&c7x_hot>;
+				cooling-device = <&fan0 0 2>;
+			};
+			map3 {
+				trip = <&c7x_crit>;
+				cooling-device = <&fan0 0 3>;
+			};
+		};
+	};
+
+	gpu_thermal: gpu-thermal {
+		trips {
+			gpu_passive: gpu-passive {
+				temperature = <35000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "passive";
+			};
+			gpu_active: gpu-active {
+				temperature = <50000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "active";
+			};
+			gpu_hot: gpu-hot {
+				temperature = <72000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "hot";
+			};
+			gpu_crit: gpu-crit {
+				temperature = <125000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "critical";
+			};
+		};
+		cooling-maps {
+			map0 {
+				trip = <&gpu_passive>;
+				cooling-device = <&fan0 0 0>;
+			};
+			map1 {
+				trip = <&gpu_active>;
+				cooling-device = <&fan0 0 1>;
+			};
+			map2 {
+				trip = <&gpu_hot>;
+				cooling-device = <&fan0 0 2>;
+			};
+			map3 {
+				trip = <&gpu_crit>;
+				cooling-device = <&fan0 0 3>;
+			};
+		};
+	};
+
+	r5f_thermal: r5f-thermal {
+		trips {
+			r5f_passive: r5f-passive {
+				temperature = <35000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "passive";
+			};
+			r5f_active: r5f-active {
+				temperature = <50000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "active";
+			};
+			r5f_hot: r5f-hot {
+				temperature = <72000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "hot";
+			};
+			r5f_crit: r5f-crit {
+				temperature = <125000>; /* milliCelsius */
+				hysteresis = <2000>; /* milliCelsius */
+				type = "critical";
+			};
+		};
+		cooling-maps {
+			map0 {
+				trip = <&r5f_passive>;
+				cooling-device = <&fan0 0 0>;
+			};
+			map1 {
+				trip = <&r5f_active>;
+				cooling-device = <&fan0 0 1>;
+			};
+			map2 {
+				trip = <&r5f_hot>;
+				cooling-device = <&fan0 0 2>;
+			};
+			map3 {
+				trip = <&r5f_crit>;
+				cooling-device = <&fan0 0 3>;
+			};
+		};
+	};
+};
