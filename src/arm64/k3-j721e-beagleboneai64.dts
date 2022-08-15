@@ -577,6 +577,50 @@
 	clock-frequency = <400000>;
 };
 
+&main_i2c5 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
+	clock-frequency = <400000>;
+
+#if 1
+	ov5640: camera@3c {
+		compatible = "ovti,ov5640";
+		reg = <0x3c>;
+
+		clocks = <&clk_ov5640_fixed>;
+		clock-names = "xclk";
+		powerdown-gpios = <&main_gpio0 103 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&main_gpio0 102 GPIO_ACTIVE_LOW>;
+
+		port {
+			csi2rx0_cam0: endpoint {
+				remote-endpoint = <&csi2rx0_in_sensor>;
+				clock-lanes = <0>;
+				data-lanes = <1 2>;
+			};
+		};
+	};
+#else
+	ov5647: camera1@36 {
+		compatible = "ovti,ov5647";
+		reg = <0x36>;
+
+		clocks = <&clk_ov5640_fixed>;
+		clock-names = "xclk";
+		powerdown-gpios = <&main_gpio0 101 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
+
+		port {
+			csi2rx0_cam0: endpoint {
+				remote-endpoint = <&csi2rx0_in_sensor>;
+				clock-lanes = <0>;
+				data-lanes = <1 2>;
+			};
+		};
+	};
+#endif
+};
+
 &main_gpio0 {
 	status = "okay";
 	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
@@ -753,50 +797,6 @@ bone_i2c_0: &wkup_i2c0 {
 	};
 };
 
-&main_i2c5 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
-	clock-frequency = <400000>;
-
-#if 1
-	ov5640: camera@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 103 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 102 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx0_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#else
-	ov5647: camera1@36 {
-		compatible = "ovti,ov5647";
-		reg = <0x36>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 101 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx0_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#endif
-};
-
 &mcu_cpsw {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
@@ -870,50 +870,62 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &mcasp0 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp1 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp2 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp3 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp4 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp5 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp6 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp7 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp8 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp9 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp10 {
+	/* Unused */
 	status = "disabled";
 };
 
 &mcasp11 {
+	/* Unused */
 	status = "disabled";
 };
 
@@ -956,28 +968,31 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &pcie0_ep {
+	status = "disabled";
 	phys = <&serdes0_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <1>;
-	status = "disabled";
 };
 
 &pcie1_ep {
+	status = "disabled";
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <2>;
-	status = "disabled";
 };
 
 &pcie2_ep {
+	/* Unused */
 	status = "disabled";
 };
 
 &pcie3_rc {
+	/* Unused */
 	status = "disabled";
 };
 
 &pcie3_ep {
+	/* Unused */
 	status = "disabled";
 };
 
