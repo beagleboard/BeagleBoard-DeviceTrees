@@ -353,6 +353,27 @@
 		>;
 	};
 
+	main_i2c5_pins_default: main-i2c5-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
+			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
+		>;
+	};
+
+	csi0_gpio_pins_default: csi0-gpio-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x19c, PIN_INPUT_PULLDOWN, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
+			J721E_IOPAD(0x1a0, PIN_INPUT_PULLDOWN, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
+		>;
+	};
+
+	csi1_gpio_pins_default: csi1-gpio-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x198, PIN_INPUT_PULLDOWN, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
+			J721E_IOPAD(0x1b0, PIN_INPUT_PULLDOWN, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
+		>;
+	};
+
 	main_usbss0_pins_default: main-usbss0-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
@@ -432,6 +453,52 @@
 };
 
 &wkup_pmx0 {
+	eeprom_wp_pins_default: eeprom-wp-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc4, PIN_OUTPUT_PULLUP, 7) /* (G24) WKUP_GPIO0_5 */
+		>;
+	};
+
+	mcu_adc0_pins_default: mcu_adc0_pins_default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0x130, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN0 */
+			J721E_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (K26) MCU_ADC0_AIN1 */
+			J721E_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (K28) MCU_ADC0_AIN2 */
+			J721E_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (L28) MCU_ADC0_AIN3 */
+			J721E_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (K24) MCU_ADC0_AIN4 */
+			J721E_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (K27) MCU_ADC0_AIN5 */ /* TODO: disable? */
+			J721E_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (K29) MCU_ADC0_AIN6 */
+		>;
+	};
+
+	mcu_adc1_pins_default: mcu_adc1_pins_default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (N23) MCU_ADC1_AIN0 */
+		>;
+	};
+
+	mikro_bus_pins_default: mikro-bus-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0x108, PIN_INPUT, 7) /* SDAPULLEN (E26) PMIC_POWER_EN0.WKUP_GPIO0_66 */
+			J721E_WKUP_IOPAD(0xd4, PIN_INPUT, 7) /* SDA (G26) WKUP_GPIO0_9.MCU_I2C1_SDA */
+			J721E_WKUP_IOPAD(0xf4, PIN_INPUT, 7) /* SDA (D25) MCU_I3C0_SDA.WKUP_GPIO0_61 */
+			J721E_WKUP_IOPAD(0xd0, PIN_INPUT, 7) /* SCL (G27) WKUP_GPIO0_8.MCU_I2C1_SCL */
+			J721E_WKUP_IOPAD(0xf0, PIN_INPUT, 7) /* SCL (D26) MCU_I3C0_SCL.WKUP_GPIO0_60 */
+
+			J721E_WKUP_IOPAD(0xb8, PIN_INPUT, 7) /* MOSI (F28) WKUP_GPIO0_2.MCU_SPI1_D1 */
+			J721E_WKUP_IOPAD(0xb4, PIN_INPUT, 7) /* MISO (F25) WKUP_GPIO0_1.MCU_SPI1_D0 */
+			J721E_WKUP_IOPAD(0xb0, PIN_INPUT, 7) /* CLK (F26) WKUP_GPIO0_0.MCU_SPI1_CLK */
+			J721E_WKUP_IOPAD(0xbc, PIN_INPUT, 7) /* CS (F27) WKUP_GPIO0_3.MCU_SPI1_CS0 */
+
+			J721E_WKUP_IOPAD(0x44, PIN_INPUT, 7) /* RX (G22) MCU_OSPI1_D1.WKUP_GPIO0_33 */
+			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 7) /* TX (D23) MCU_OSPI1_D2.WKUP_GPIO0_34 */
+
+			J721E_WKUP_IOPAD(0x4c, PIN_INPUT, 7) /* INT (C23) MCU_OSPI1_D3.WKUP_GPIO0_35 */
+			J721E_WKUP_IOPAD(0x54, PIN_INPUT, 7) /* RST (E22) MCU_OSPI1_CSn1.WKUP_GPIO0_37 */
+			J721E_WKUP_IOPAD(0xdc, PIN_INPUT, 7) /* PWM (H27) WKUP_GPIO0_11 */
+			J721E_WKUP_IOPAD(0xac, PIN_INPUT, 7) /* AN (C29) MCU_MCAN0_RX.WKUP_GPIO0_59 */
+		>;
+	};
 	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
@@ -550,34 +617,12 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c0_pins_default>;
 	clock-frequency = <400000>;
-
-	i2c-mux@71 {
-		compatible = "nxp,pca9543";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		reg = <0x71>;
-
-		/* PCIe1 M.2 M Key I2C */
-		i2c@0 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <0>;
-		};
-
-		/* PCIe0 M.2 E Key I2C */
-		i2c@1 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <1>;
-		};
-	};
 };
 
 &main_i2c1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c1_pins_default>;
-	/* i2c1 is used for DVI DDC, so we need to use 100kHz */
-	clock-frequency = <100000>;
+	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
+	clock-frequency = <400000>;
 };
 
 &main_i2c2 {
@@ -589,27 +634,6 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c3_pins_default>;
 	clock-frequency = <400000>;
-
-	i2c-mux@70 {
-		compatible = "nxp,pca9543";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		reg = <0x70>;
-
-		/* CSI0 I2C */
-		i2c@0 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <0>;
-		};
-
-		/* CSI1 I2C */
-		i2c@1 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <1>;
-		};
-	};
 };
 
 &main_i2c4 {
@@ -618,13 +642,67 @@
 };
 
 &main_i2c5 {
-	/* Brought out on RPi Header */
-	status = "disabled";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
+	clock-frequency = <400000>;
 };
 
 &main_i2c6 {
 	/* Unused */
 	status = "disabled";
+};
+
+&wkup_i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
+	clock-frequency = <400000>;
+
+	eeprom@50 {
+		compatible = "atmel,24c04";
+		reg = <0x50>;
+	};
+};
+
+&main_gpio0 {
+	status = "okay";
+	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
+		"P8_22", "P8_24", "P8_34", "P8_36", "P8_38A", /* 5-9 */
+		"P9_23", "P8_37B", "P9_26B", "P9_24B", "P8_08", /* 10-14 */
+		"P8_07", "P8_10", "P8_09", "P9_42B", "", /* 15-19 */
+		"P8_03", "TYPEC_PWR_ST", "M2_RSTz", "M2_I2C_ALERT#", "P8_35A", /* 20-24 */
+		"P8_33A", "P8_32A", "", "P9_17A", "", /* 25-29 */
+		"P8_21", "P8_23", "P8_31A", "P8_05", "P8_06", /* 30-34 */
+		"P8_25", "M2_W_DISABLE1#", "M2_W_DISABLE2#", "P9_22A (BOOTMODE1)", "P9_21A", /* 35-39 */
+		"P9_18A", "DSI_I2C_SCL", "DSI_I2C_SDA", "P9_28B", "P9_30B", /* 40-44 */
+		"P9_12", "P9_27A", "P9_15", "P8_04 (BOOTMODE2)", "VCC_DP_EN", /* 45-49 */
+		"P9_33B", "P8_26", "P9_31B", "P9_29B", "P9_39B", /* 50-54 */
+		"P9_35B", "P9_36B", "P9_37B", "P9_38B", "P8_12", /* 55-59 */
+		"P8_11 (BOOTMODE7)", "P8_15", "P8_16", "", "", /* 60-64 */
+		"P8_43", "P8_44", "P8_41", "P8_42 (BOOTMODE6)", "P8_39", /* 65-69 */
+		"P8_40", "P8_27", "P8_28", "P8_29", "P8_30", /* 70-74 */
+		"P8_14", "P8_20", "P9_20B", "P9_19B", "P8_45", /* 75-79 */
+		"P8_46 (BOOTMODE3)", "P9_40B", "VDD_SD_EN", "CSI_I2C_SCL", "CSI_I2C_SDA", /* 80-84 */
+		"M2_I2S_SCK", "M2_I2S_WS", "M2_I2S_IN", "P8_19", "P8_13", /* 85-89 */
+		"P9_21B", "P9_22B", "M2_I2S_OUT", "P9_14", "P9_16", /* 90-94 */
+		"USR1", "USR0", "USR2", "DSI_GPIO1", "FAN_PWM", /* 95-99 */
+		"FAN_TACH", "CSI1_GPIO1", "CSI0_GPIO2", "CSI0_GPIO1", "P9_25B", /* 100-104 */
+		"P8_38B", "P8_37A", "CSI1_GPIO2", "DSI_GPIO2", "USR4", /* 105-109 */
+		"USR3", "P8_33B", "DP_HPD", "M2_UART_CTSn", "M2_UART_RTSn", /* 110-114 */
+		"P9_17B", "P8_35B", "VDD_SD_SEL", "P9_26A", "P9_24A", /* 115-119 */
+		"P9_18B", "CONSOLE_RX", "CONSOLE_TX", "P9_42A", "P9_27B", /* 120-124 */
+		"M2_UART_RX", "M2_UART_TX", "P9_25A"; /* 125-127 */
+};
+
+&main_gpio1 {
+	status = "okay";
+	gpio-line-names = "P9_41", "P9_19A", "P9_20A", "TYPEC_DIR", "TYPEC_INT", /* 0-4 */
+		"M2_PCIE_WAKE#", "M2_PCIE_CLKREQ#", "M2_I2C_SCL", "M2_I2C_SDA", "TYPEC/CSI1_I2C_SCL", /* 5-9 */
+		"TYPEC/CSI1_I2C_SDA", "P9_28A", "P9_31A", "P9_30A", "P9_29A", /* 10-14 */
+		"uSD_DAT3", "uSD_DAT2", "uSD_DAT1", "uSD_DAT0", "uSD_CLK", /* 15-19 */
+		"uSD_CMD", "uSD_SDCD", "", "M2_SDIO_DAT3", "M2_SDIO_DAT2", /* 20-24 */
+		"M2_SDIO_DAT1", "M2_SDIO_DAT0", "M2_SDIO_CLK", "M2_SDIO_CMD", "USB1_DRVVBUS", /* 25-29 */
+		"", "", "", "", "", /* 30-34 */
+		"", ""; /* 35-36 */
 };
 
 &main_gpio2 {
@@ -649,6 +727,25 @@
 
 &main_gpio7 {
 	status = "disabled";
+};
+
+&wkup_gpio0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_adc0_pins_default &mcu_adc1_pins_default &mikro_bus_pins_default>;
+	gpio-line-names = "MB_CLK/BOOT_BTN", "MB_MISO", "MB_MOSI", "MB_CS", "SOC_WAKE", /* 0-4 */
+		"EEPROM_WP", "SOC_INT2z", "H_MCU_INT#", "MB_SCLA", "MB_SDAA", /* 5-9 */
+		"MCU_RGMII_RST#", "MB_PWM", "MCU_BOOTMODE8", "MCU_BOOTMODE9", "MCU_BOOTMODE6", /* 10-14 */
+		"MCU_BOOTMODE7", "", "", "", "", /* 15-19 */
+		"", "", "", "", "", /* 20-24 */
+		"", "", "", "", "", /* 24-29 */
+		"USB_HUB_RST", "", "", "MB_RX", "MB_TX", /* 30-34 */
+		"MB_INT", "", "MB_RST", "MII_TX_CTL", "MII_RX_CTL", /* 35-39 */
+		"MII_TD3", "MII_TD2", "MII_TD1", "MII_TD0", "MII_TXC", /* 40-44 */
+		"MII_RXC", "MII_RD3", "MII_RD2", "MII_RD1", "MII_RD0", /* 45-49 */
+		"MDIO", "MDC", "MCU_BOOTMODE0", "MCU_BOOTMODE1", "MCU_BOOTMODE2", /* 50-54 */
+		"SYS_MCU_PWRDN", "WKUP_UART_RX", "WKUP_UART_TX", "MII_RST#", "MB_AN", /* 55-59 */
+		"MB_SCLB", "MB_SDAB", "WKUP_I2C0_SCL", "WKUP_I2C0_SDA", "MCU_I2C0_SCL", /* 60-64 */
+		"MCU_I2C0_SDA", "MB_SDAPULLEN", "PMIC_POWER_EN1"; /* 65-67 */
 };
 
 &wkup_gpio1 {
