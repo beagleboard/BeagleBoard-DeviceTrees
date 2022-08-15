@@ -407,12 +407,6 @@
 		>;
 	};
 
-	sw_pwr_pins_default: sw-pwr-pins-default {
-		pinctrl-single,pins = <
-			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
-		>;
-	};
-
 	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
@@ -434,6 +428,12 @@
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x8c, PIN_OUTPUT, 0) /* (F23) MCU_MDIO0_MDC */
 			J721E_WKUP_IOPAD(0x88, PIN_INPUT, 0) /* (E23) MCU_MDIO0_MDIO */
+		>;
+	};
+
+	sw_pwr_pins_default: sw-pwr-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
 		>;
 	};
 
@@ -749,6 +749,11 @@ bone_i2c_0: &wkup_i2c0 {
 	};
 };
 
+&mhdp {
+	pinctrl-names = "default";
+	pinctrl-0 = <&dp0_pins_default>;
+};
+
 &usbss0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_usbss0_pins_default>;
@@ -843,11 +848,6 @@ bone_i2c_0: &wkup_i2c0 {
 			remote-endpoint = <&dp0_in>;
 		};
 	};
-};
-
-&mhdp {
-	pinctrl-names = "default";
-	pinctrl-0 = <&dp0_pins_default>;
 };
 
 &dp0_ports {
