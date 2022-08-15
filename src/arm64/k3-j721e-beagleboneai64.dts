@@ -950,6 +950,7 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &pcie0_rc {
+	/* Unused */
 	status = "disabled";
 };
 
@@ -964,6 +965,7 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &pcie2_rc {
+	/* Unused */
 	status = "disabled";
 };
 
