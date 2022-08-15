@@ -153,23 +153,34 @@
 		};
 	};
 
-	vusb_main: fixedregulator-vusb-main5v0 {
-		/* USB MAIN INPUT 5V DC */
+	evm_12v0: fixedregulator-evm12v0 {
+		/* main supply */
 		compatible = "regulator-fixed";
-		regulator-name = "vusb-main5v0";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
+		regulator-name = "evm_12v0";
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
 		regulator-always-on;
 		regulator-boot-on;
 	};
 
 	vsys_3v3: fixedregulator-vsys3v3 {
-		/* Output of LM5141 */
+		/* Output of LMS140 */
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_3v3";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		vin-supply = <&vusb_main>;
+		vin-supply = <&evm_12v0>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	vsys_5v0: fixedregulator-vsys5v0 {
+		/* Output of LM5140 */
+		compatible = "regulator-fixed";
+		regulator-name = "vsys_5v0";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&evm_12v0>;
 		regulator-always-on;
 		regulator-boot-on;
 	};
@@ -177,39 +188,42 @@
 	vdd_mmc1: fixedregulator-sd {
 		compatible = "regulator-fixed";
 		pinctrl-names = "default";
-		pinctrl-0 = <&vdd_mmc1_en_pins_default>;
+		pinctrl-0 = <&sd_pwr_en_pins_default>;
 		regulator-name = "vdd_mmc1";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		enable-active-high;
 		vin-supply = <&vsys_3v3>;
-		gpio = <&wkup_gpio0 8 GPIO_ACTIVE_HIGH>;
+		gpios = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
 	};
 
-	vdd_sd_dv_alt: gpio-regulator-tps659411 {
+	vdd_sd_dv_alt: gpio-regulator-TLV71033 {
 		compatible = "regulator-gpio";
 		pinctrl-names = "default";
 		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
-		regulator-name = "tps659411";
+		regulator-name = "tlv71033";
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
-		vin-supply = <&vsys_3v3>;
-		gpios = <&wkup_gpio0 9 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&vsys_5v0>;
+		gpios = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
 		states = <1800000 0x0>,
 			 <3300000 0x1>;
 	};
 
 	dp_pwr_3v3: fixedregulator-dp-prw {
 		compatible = "regulator-fixed";
+		pinctrl-names = "default";
+		pinctrl-0 = <&dp0_3v3_en_pins_default>;
 		regulator-name = "dp-pwr";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&dp_pwr_en_pins_default>;
-		gpio = <&main_gpio0 111 0>;	/* DP0_3V3 _EN */
+		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
+
+		/* Always on for now, until dp-connector driver can handle this */
+		regulator-always-on;
 	};
 
 	dp0: connector {
@@ -299,6 +313,24 @@
 			J721E_IOPAD(0x1f4, PIN_OUTPUT, 0) /* (AB1) UART0_RTSn */
 			J721E_IOPAD(0x1e8, PIN_INPUT, 0) /* (AB2) UART0_RXD */
 			J721E_IOPAD(0x1ec, PIN_OUTPUT, 0) /* (AB3) UART0_TXD */
+		>;
+	};
+
+	sd_pwr_en_pins_default: sd-pwr-en-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
+		>;
+	};
+
+	vdd_sd_dv_alt_pins_default: vdd-sd-dv-alt-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x1d8, PIN_INPUT, 7) /* (W4) SPI1_CS1.GPIO0_117 */
+		>;
+	};
+
+	dp0_3v3_en_pins_default:dp0-3v3-en-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0xc8, PIN_INPUT, 7) /* (AE26) PRG0_PRU0_GPO6.GPIO0_49 */
 		>;
 	};
 
@@ -448,12 +480,6 @@
 		>;
 	};
 
-	vdd_sd_dv_alt_pins_default: vdd-sd-dv-alt-pins-default {
-		pinctrl-single,pins = <
-			J721E_WKUP_IOPAD(0xd4, PIN_OUTPUT, 7) /* (G26) WKUP_GPIO0_9 */
-		>;
-	};
-
 	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
@@ -517,8 +543,10 @@
 };
 
 &main_sdhci0 {
-	/* Unused */
-	status = "disabled";
+	/* eMMC */
+	non-removable;
+	ti,driver-strength-ohm = <50>;
+	disable-wp;
 };
 
 &main_sdhci1 {
