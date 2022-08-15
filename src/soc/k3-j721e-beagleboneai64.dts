@@ -2,6 +2,7 @@
 /*
  * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
  * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
+ * Copyright (C) 2022 Robert Nelson, BeagleBoard.org Foundation
  */
 
 /dts-v1/;
