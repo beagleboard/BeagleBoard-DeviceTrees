@@ -488,6 +488,28 @@
 	status = "disabled";
 };
 
+&main_sdhci0 {
+	/* eMMC */
+	non-removable;
+	ti,driver-strength-ohm = <50>;
+	disable-wp;
+};
+
+&main_sdhci1 {
+	/* SD/MMC */
+	vmmc-supply = <&vdd_mmc1>;
+	vqmmc-supply = <&vdd_sd_dv_alt>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_mmc1_pins_default>;
+	ti,driver-strength-ohm = <50>;
+	disable-wp;
+};
+
+&main_sdhci2 {
+	/* Unused */
+	status = "disabled";
+};
+
 &main_gpio0 {
 	status = "okay";
 	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
@@ -574,28 +596,6 @@
 };
 
 &wkup_gpio1 {
-	status = "disabled";
-};
-
-&main_sdhci0 {
-	/* eMMC */
-	non-removable;
-	ti,driver-strength-ohm = <50>;
-	disable-wp;
-};
-
-&main_sdhci1 {
-	/* SD/MMC */
-	vmmc-supply = <&vdd_mmc1>;
-	vqmmc-supply = <&vdd_sd_dv_alt>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_mmc1_pins_default>;
-	ti,driver-strength-ohm = <50>;
-	disable-wp;
-};
-
-&main_sdhci2 {
-	/* Unused */
 	status = "disabled";
 };
 
