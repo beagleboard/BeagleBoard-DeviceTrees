@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
- *
- * J721E SK URL: https://www.ti.com/tool/SK-TDA4VM
+ * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
  */
 
 /dts-v1/;
@@ -13,8 +12,8 @@
 #include <dt-bindings/net/ti-dp83867.h>
 
 / {
-	compatible = "ti,j721e-sk", "ti,j721e";
-	model = "Texas Instruments J721E SK";
+	compatible = "beagle,j721e-beagleboneai64", "ti,j721e";
+	model = "BeagleBoard.org BeagleBone AI-64";
 
 	chosen {
 		stdout-path = "serial2:115200n8";
