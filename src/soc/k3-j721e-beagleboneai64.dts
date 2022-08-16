@@ -505,7 +505,7 @@
 };
 
 &wkup_uart0 {
-	/* Wakeup UART is used by System firmware */
+	/* Wakeup UART is used by TIFS firmware. */
 	status = "reserved";
 };
 
@@ -710,7 +710,7 @@
 	status = "disabled";
 };
 
-&main_r5fss0_core0{
+&main_r5fss0_core0 {
 	firmware-name = "pdk-ipc/ipc_echo_test_mcu2_0_release_strip.xer5f";
 };
 
