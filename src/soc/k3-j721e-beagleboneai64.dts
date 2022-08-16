@@ -163,7 +163,6 @@
 		pinctrl-0 = <&sw_pwr_pins_default>;
 
 		sw_boot: sw1 {
-			status = "disabled";
 			label = "BOOT";
 			linux,code = <BTN_0>;
 			gpios = <&wkup_gpio0 0 GPIO_ACTIVE_LOW>;
