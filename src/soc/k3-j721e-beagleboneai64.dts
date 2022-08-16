@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
+ * https://beagleboard.org/ai-64
  * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
  * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
  * Copyright (C) 2022 Robert Nelson, BeagleBoard.org Foundation
