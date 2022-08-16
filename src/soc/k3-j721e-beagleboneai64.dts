@@ -280,9 +280,6 @@
 		regulator-max-microvolt = <3300000>;
 		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
-
-		/* Always on for now, until dp-connector driver can handle this */
-		regulator-always-on;
 	};
 
 	dp0: connector {
@@ -422,7 +419,7 @@
 		>;
 	};
 
-	mcu_adc0_pins_default: mcu_adc0_pins_default {
+	mcu_adc0_pins_default: mcu-adc0-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x130, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN0 */
 			J721E_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (K26) MCU_ADC0_AIN1 */
@@ -434,7 +431,7 @@
 		>;
 	};
 
-	mcu_adc1_pins_default: mcu_adc1_pins_default {
+	mcu_adc1_pins_default: mcu-adc1-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (N23) MCU_ADC1_AIN0 */
 		>;
