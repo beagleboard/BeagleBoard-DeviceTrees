@@ -627,7 +627,6 @@
 };
 
 &main_gpio0 {
-	status = "okay";
 	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
 		"P8_22", "P8_24", "P8_34", "P8_36", "P8_38A", /* 5-9 */
 		"P9_23", "P8_37B", "P9_26B", "P9_24B", "P8_08", /* 10-14 */
@@ -657,7 +656,6 @@
 };
 
 &main_gpio1 {
-	status = "okay";
 	gpio-line-names = "P9_41", "P9_19A", "P9_20A", "TYPEC_DIR", "TYPEC_INT", /* 0-4 */
 		"M2_PCIE_WAKE#", "M2_PCIE_CLKREQ#", "M2_I2C_SCL", "M2_I2C_SDA", "TYPEC/CSI1_I2C_SCL", /* 5-9 */
 		"TYPEC/CSI1_I2C_SDA", "P9_28A", "P9_31A", "P9_30A", "P9_29A", /* 10-14 */
