@@ -18,6 +18,12 @@
 	compatible = "beagle,j721e-beagleboneai64", "ti,j721e";
 	model = "BeagleBoard.org BeagleBone AI-64";
 
+	aliases {
+		serial2 = &main_uart0;
+		mmc0 = &main_sdhci0;
+		mmc1 = &main_sdhci1;
+	};
+
 	chosen {
 		stdout-path = "serial2:115200n8";
 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
