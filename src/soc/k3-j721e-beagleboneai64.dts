@@ -168,13 +168,13 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&sw_pwr_pins_default>;
 
-		sw_boot: sw1 {
+		sw_boot: switch-1 {
 			label = "BOOT";
 			linux,code = <BTN_0>;
 			gpios = <&wkup_gpio0 0 GPIO_ACTIVE_LOW>;
 		};
 
-		sw_pwr: sw2 {
+		sw_pwr: switch-2 {
 			label = "POWER";
 			linux,code = <KEY_POWER>;
 			gpios = <&wkup_gpio0 4 GPIO_ACTIVE_LOW>;
