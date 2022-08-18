@@ -97,6 +97,7 @@ find_pin () {
 	unset got_ehrpwm_a
 	unset got_eqep_a
 	unset got_spi_a
+	unset got_dmtimer_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -110,6 +111,11 @@ find_pin () {
 		fi
 
 		case "${interface_a}" in
+		DMTIMER*)
+			dmtimer_name_a=${name_a}
+			dmtimer_mode_a=${mode_a}
+			got_dmtimer_a=yes
+			;;
 		EHRPWM*)
 			case "${name_a}" in
 			ehrpwm*_a|ehrpwm*_b)
@@ -217,6 +223,10 @@ find_pin () {
 		echo "	BONE_PIN(${label}, pwm,       ${label}(PIN_OUTPUT, ${ehrpwm_mode_a}))	/* ${ehrpwm_name_a} */" >> ${file}.dts
 	fi
 
+	if [ "x${got_dmtimer_a}" = "xyes" ] ; then
+		echo "	BONE_PIN(${label}, timer,     ${label}(PIN_OUTPUT, ${dmtimer_mode_a}))	/* ${dmtimer_name_a} */" >> ${file}.dts
+	fi
+
 	if [ "x${got_eqep_a}" = "xyes" ] ; then
 		echo "	BONE_PIN(${label}, qep,       ${label}(PIN_INPUT, ${eqep_mode_a}))	/* ${eqep_name_a} */" >> ${file}.dts
 	fi
@@ -308,6 +318,7 @@ find_shared_pin () {
 	unset got_ehrpwm_a
 	unset got_eqep_a
 	unset got_spi_a
+	unset got_dmtimer_a
 	for number_a in {0..14}
 	do
 		interface_a=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_a}' .pinModeInfo['$number_a'] .interfaceName' | sed 's/\"//g' || true)
@@ -324,6 +335,11 @@ find_shared_pin () {
 		MCU_ADC0)
 			MCU_ADC_a=yes
 			break;
+			;;
+		DMTIMER*)
+			dmtimer_name_a=${name_a}
+			dmtimer_mode_a=${mode_a}
+			got_dmtimer_a=yes
 			;;
 		EHRPWM*)
 			case "${name_a}" in
@@ -413,6 +429,7 @@ find_shared_pin () {
 	unset got_ehrpwm_b
 	unset got_eqep_b
 	unset got_spi_b
+	unset got_dmtimer_b
 	for number_b in {0..14}
 	do
 		interface_b=$(cat J721E_DRA829_TDA4VM_AM752x.json | jq '.pinCommonInfos .'${found_devicePinID_b}' .pinModeInfo['$number_b'] .interfaceName' | sed 's/\"//g' || true)
@@ -426,6 +443,11 @@ find_shared_pin () {
 		fi
 
 		case "${interface_b}" in
+		DMTIMER*)
+			dmtimer_name_b=${name_b}
+			dmtimer_mode_b=${mode_b}
+			got_dmtimer_b=yes
+			;;
 		EHRPWM*)
 			case "${name_b}" in
 			ehrpwm*_a|ehrpwm*_b)
@@ -534,6 +556,10 @@ find_shared_pin () {
 			echo "	BONE_PIN(${label}, pwm,       ${label}B(PIN_OUTPUT, ${ehrpwm_mode_b}))	/* ${ehrpwm_name_b} */" >> ${file}.dts
 		fi
 
+		if [ "x${got_dmtimer_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, timer,     ${label}(PIN_OUTPUT, ${dmtimer_mode_b}))	/* ${dmtimer_name_b} */" >> ${file}.dts
+		fi
+
 		if [ "x${got_eqep_b}" = "xyes" ] ; then
 			echo "	BONE_PIN(${label}, qep,       ${label}B(PIN_INPUT, ${eqep_mode_b}))	/* ${eqep_name_b} */" >> ${file}.dts
 		fi
@@ -607,6 +633,14 @@ find_shared_pin () {
 
 		if [ "x${got_ehrpwm_b}" = "xyes" ] ; then
 			echo "	BONE_PIN(${label}, pwm,       ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_OUTPUT, ${ehrpwm_mode_b}))	/* ${ehrpwm_name_b} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_dmtimer_a}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, timer,     ${label}A(PIN_OUTPUT, ${dmtimer_mode_a}) ${label}B(PIN_INPUT, ${default_mode_b}))	/* ${dmtimer_name_a} */" >> ${file}.dts
+		fi
+
+		if [ "x${got_dmtimer_b}" = "xyes" ] ; then
+			echo "	BONE_PIN(${label}, timer,     ${label}A(PIN_INPUT, ${default_mode_a}) ${label}B(PIN_OUTPUT, ${dmtimer_mode_b}))	/* ${dmtimer_name_b} */" >> ${file}.dts
 		fi
 
 		if [ "x${got_eqep_a}" = "xyes" ] ; then
