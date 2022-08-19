@@ -13,6 +13,7 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-SPI0_0.dtbo \
 	BONE-SPI0_1.dtbo \
 	BONE-UART1.dtbo \
+	BONE-USB0-host.dtbo \
 	robotics-cape.dtbo \
 	k3-j721e-beagleboneai64-RPi-7inch-panel.dtbo \
 	J721E-PRU-UIO-00A0.dtbo
