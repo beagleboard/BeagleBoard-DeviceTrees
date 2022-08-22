@@ -227,9 +227,9 @@ install_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/soc/
 	cp $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/soc/
-	cp $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/soc/overlays/
-	cp /boot/dtbs/$(KERNEL_VERSION)/soc/k3-*.dtb /boot/firmware/
-	cp /boot/dtbs/$(KERNEL_VERSION)/soc/overlays/*.dtbo /boot/firmware/overlays/
+	cp $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/soc/overlays/ || true
+	cp -v /boot/dtbs/$(KERNEL_VERSION)/soc/k3-*.dtb /boot/firmware/
+	cp -v /boot/dtbs/$(KERNEL_VERSION)/soc/overlays/*.dtbo /boot/firmware/overlays/ || true
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
