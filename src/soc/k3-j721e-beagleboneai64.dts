@@ -188,26 +188,26 @@
 
 		led-0 {
 			gpios = <&main_gpio0 96 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "heartbeat";
 			function = LED_FUNCTION_HEARTBEAT;
+			linux,default-trigger = "heartbeat";
 		};
 
 		led-1 {
 			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc0";
 			function = LED_FUNCTION_DISK_ACTIVITY;
+			trigger-sources = <&main_sdhci0>;
 		};
 
 		led-2 {
 			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "cpu";
 			function = LED_FUNCTION_CPU;
+			linux,default-trigger = "cpu";
 		};
 
 		led-3 {
 			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc1";
 			function = LED_FUNCTION_DISK_ACTIVITY;
+			trigger-sources = <&main_sdhci1>;
 		};
 
 		led-4 {
