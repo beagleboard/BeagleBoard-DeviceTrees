@@ -291,7 +291,6 @@
 		regulator-max-microvolt = <3300000>;
 		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
-		regulator-always-on;
 	};
 
 	dp0: connector {
