@@ -388,6 +388,15 @@
 		>;
 	};
 
+	main_i2c2_pins_default: main_i2c2_pins_default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x208, PIN_INPUT_PULLUP, 4) /* (W5) MCAN0_RX.I2C2_SCL */
+			J721E_IOPAD(0x20c, PIN_INPUT_PULLUP, 4) /* (W6) MCAN0_TX.I2C2_SDA */
+			J721E_IOPAD(0x138, PIN_INPUT, 7) /* (AE25) PRG0_PRU1_GPO14.GPIO0_77 */
+			J721E_IOPAD(0x13c, PIN_INPUT, 7) /* (AF29) PRG0_PRU1_GPO15.GPIO0_78 */
+		>;
+	};
+
 	main_i2c3_pins_default: main-i2c3-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) MMC2_CLK.I2C3_SCL */
@@ -395,10 +404,28 @@
 		>;
 	};
 
+	main_i2c4_pins_default: main_i2c4_pins_default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x1e0, PIN_INPUT_PULLUP, 2) /* (Y5) SPI1_D0.I2C4_SCL */
+			J721E_IOPAD(0x1dc, PIN_INPUT_PULLUP, 2) /* (Y1) SPI1_CLK.I2C4_SDA */
+			J721E_IOPAD(0x30, PIN_INPUT, 7) /* (AF24) PRG1_PRU0_GPO11.GPIO0_12 */
+			J721E_IOPAD(0x34, PIN_INPUT, 7) /* (AJ24) PRG1_PRU0_GPO12.GPIO0_13 */
+		>;
+	};
+
 	main_i2c5_pins_default: main-i2c5-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
 			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
+		>;
+	};
+
+	main_i2c6_pins_default: main_i2c6_pins_default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x1d0, PIN_INPUT_PULLUP, 2) /* (AA3) SPI0_D1.I2C6_SCL */
+			J721E_IOPAD(0x1e4, PIN_INPUT_PULLUP, 2) /* (Y2) SPI1_D1.I2C6_SDA */
+			J721E_IOPAD(0x74, PIN_INPUT, 7) /* (AC21) PRG1_PRU1_GPO7.GPIO0_28 */
+			J721E_IOPAD(0xa4, PIN_INPUT, 7) /* (AH22) PRG1_PRU1_GPO19.GPIO0_40 */
 		>;
 	};
 
@@ -597,11 +624,10 @@
 };
 
 &main_i2c2 {
-	symlink = "bone/i2c/2";
+	/* BBB Header: P9.19 and P9.20 */
 	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c2_pins_default>;
+	pinctrl-0 = <&main_i2c2_pins_default>;
 	clock-frequency = <100000>;
-	/* Unused - P9_24/P9_26 - bone/i2c/2 */
 	status = "okay";
 };
 
@@ -612,11 +638,10 @@
 };
 
 &main_i2c4 {
-	symlink = "bone/i2c/3";
+	/* BBB Header: P9.24 and P9.26 */
 	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c4_pins_default>;
+	pinctrl-0 = <&main_i2c4_pins_default>;
 	clock-frequency = <100000>;
-	/* Unused - P9_24/P9_26 - bone/i2c/3 */
 	status = "okay";
 };
 
@@ -627,11 +652,10 @@
 };
 
 &main_i2c6 {
-	symlink = "bone/i2c/1";
+	/* BBB Header: P9.17 and P9.18 */
 	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c6_pins_default>;
+	pinctrl-0 = <&main_i2c6_pins_default>;
 	clock-frequency = <100000>;
-	/* Unused - P9_17/P9_18 - bone/i2c/1 */
 	status = "okay";
 };
 
