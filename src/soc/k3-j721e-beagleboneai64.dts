@@ -13,6 +13,7 @@
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/leds/common.h>
 #include <dt-bindings/net/ti-dp83867.h>
+#include <dt-bindings/phy/phy-cadence.h>
 
 / {
 	compatible = "beagle,j721e-beagleboneai64", "ti,j721e";
@@ -551,28 +552,6 @@
 	status = "disabled";
 };
 
-&main_sdhci0 {
-	/* eMMC */
-	non-removable;
-	ti,driver-strength-ohm = <50>;
-	disable-wp;
-};
-
-&main_sdhci1 {
-	/* SD Card */
-	vmmc-supply = <&vdd_mmc1>;
-	vqmmc-supply = <&vdd_sd_dv_alt>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_mmc1_pins_default>;
-	ti,driver-strength-ohm = <50>;
-	disable-wp;
-};
-
-&main_sdhci2 {
-	/* Unused */
-	status = "disabled";
-};
-
 &ospi0 {
 	/* Unused */
 	status = "disabled";
@@ -583,67 +562,6 @@
 	status = "disabled";
 };
 
-&main_i2c0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c0_pins_default>;
-	clock-frequency = <400000>;
-};
-
-&main_i2c1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
-	clock-frequency = <400000>;
-};
-
-&main_i2c2 {
-	symlink = "bone/i2c/2";
-	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c2_pins_default>;
-	clock-frequency = <100000>;
-	/* Unused - P9_24/P9_26 - bone/i2c/2 */
-	status = "okay";
-};
-
-&main_i2c3 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c3_pins_default>;
-	clock-frequency = <400000>;
-};
-
-&main_i2c4 {
-	symlink = "bone/i2c/3";
-	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c4_pins_default>;
-	clock-frequency = <100000>;
-	/* Unused - P9_24/P9_26 - bone/i2c/3 */
-	status = "okay";
-};
-
-&main_i2c5 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
-	clock-frequency = <400000>;
-};
-
-&main_i2c6 {
-	symlink = "bone/i2c/1";
-	pinctrl-names = "default";
-	//pinctrl-0 = <&main_i2c6_pins_default>;
-	clock-frequency = <100000>;
-	/* Unused - P9_17/P9_18 - bone/i2c/1 */
-	status = "okay";
-};
-
-&wkup_i2c0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
-	clock-frequency = <400000>;
-
-	eeprom@50 {
-		compatible = "atmel,24c04";
-		reg = <0x50>;
-	};
-};
 
 &main_gpio0 {
 	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
@@ -732,6 +650,28 @@
 	status = "disabled";
 };
 
+&main_sdhci0 {
+	/* eMMC */
+	non-removable;
+	ti,driver-strength-ohm = <50>;
+	disable-wp;
+};
+
+&main_sdhci1 {
+	/* SD Card */
+	vmmc-supply = <&vdd_mmc1>;
+	vqmmc-supply = <&vdd_sd_dv_alt>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_mmc1_pins_default>;
+	ti,driver-strength-ohm = <50>;
+	disable-wp;
+};
+
+&main_sdhci2 {
+	/* Unused */
+	status = "disabled";
+};
+
 &main_r5fss0_core0 {
 	firmware-name = "pdk-ipc/ipc_echo_test_mcu2_0_release_strip.xer5f";
 };
@@ -764,11 +704,6 @@
 	};
 };
 
-&mhdp {
-	pinctrl-names = "default";
-	pinctrl-0 = <&dp0_pins_default>;
-};
-
 &usbss0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_usbss0_pins_default>;
@@ -780,16 +715,6 @@
 	maximum-speed = "super-speed";
 	phys = <&serdes3_usb_link>;
 	phy-names = "cdns3,usb3-phy";
-};
-
-&serdes2 {
-	serdes2_usb_link: phy@1 {
-		reg = <1>;
-		cdns,num-lanes = <1>;
-		#phy-cells = <0>;
-		cdns,phy-type = <PHY_TYPE_USB3>;
-		resets = <&serdes_wiz2 2>;
-	};
 };
 
 &usbss1 {
@@ -817,6 +742,68 @@
 	};
 };
 
+&main_i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c0_pins_default>;
+	clock-frequency = <400000>;
+};
+
+&main_i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
+	clock-frequency = <400000>;
+};
+
+&main_i2c2 {
+	symlink = "bone/i2c/2";
+	pinctrl-names = "default";
+	//pinctrl-0 = <&main_i2c2_pins_default>;
+	clock-frequency = <100000>;
+	/* Unused - P9_24/P9_26 - bone/i2c/2 */
+	status = "okay";
+};
+
+&main_i2c3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c3_pins_default>;
+	clock-frequency = <400000>;
+};
+
+&main_i2c4 {
+	symlink = "bone/i2c/3";
+	pinctrl-names = "default";
+	//pinctrl-0 = <&main_i2c4_pins_default>;
+	clock-frequency = <100000>;
+	/* Unused - P9_24/P9_26 - bone/i2c/3 */
+	status = "okay";
+};
+
+&main_i2c5 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
+	clock-frequency = <400000>;
+};
+
+&main_i2c6 {
+	symlink = "bone/i2c/1";
+	pinctrl-names = "default";
+	//pinctrl-0 = <&main_i2c6_pins_default>;
+	clock-frequency = <100000>;
+	/* Unused - P9_17/P9_18 - bone/i2c/1 */
+	status = "okay";
+};
+
+&wkup_i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_i2c0_pins_default &eeprom_wp_pins_default>;
+	clock-frequency = <400000>;
+
+	eeprom@50 {
+		compatible = "atmel,24c04";
+		reg = <0x50>;
+	};
+};
+
 &mcu_cpsw {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
@@ -836,6 +823,15 @@
 };
 
 &dss {
+	/*
+	 * These clock assignments are chosen to enable the following outputs:
+	 *
+	 * VP0 - DisplayPort SST
+	 * VP1 - DPI0
+	 * VP2 - DSI
+	 * VP3 - DPI1
+	 */
+
 	assigned-clocks = <&k3_clks 152 1>,	/* VP 1 pixel clock */
 			  <&k3_clks 152 4>,	/* VP 2 pixel clock */
 			  <&k3_clks 152 9>,	/* VP 3 pixel clock */
@@ -953,6 +949,21 @@
 	};
 };
 
+&serdes2 {
+	serdes2_usb_link: phy@1 {
+		reg = <1>;
+		cdns,num-lanes = <1>;
+		#phy-cells = <0>;
+		cdns,phy-type = <PHY_TYPE_USB3>;
+		resets = <&serdes_wiz2 2>;
+	};
+};
+
+&mhdp {
+	pinctrl-names = "default";
+	pinctrl-0 = <&dp0_pins_default>;
+};
+
 &pcie0_rc {
 	/* Unused */
 	status = "disabled";
@@ -974,17 +985,17 @@
 };
 
 &pcie0_ep {
-	status = "disabled";
 	phys = <&serdes0_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <1>;
+	status = "disabled";
 };
 
 &pcie1_ep {
-	status = "disabled";
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <2>;
+	status = "disabled";
 };
 
 &pcie2_ep {
