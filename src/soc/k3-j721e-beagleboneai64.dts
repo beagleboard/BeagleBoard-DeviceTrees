@@ -851,14 +851,16 @@
 };
 
 &tscadc0 {
+	/* BBB Header: P9.39, P9.40, P9.37, P9.38, P9.33, P9.36, P9.35 */
 	adc {
-		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+		ti,adc-channels = <0 1 2 3 4 5 6>;
 	};
 };
 
 &tscadc1 {
+	/* MCU mikroBUS Header J10.1 - MCU_ADC1_AIN0 */
 	adc {
-		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+		ti,adc-channels = <0>;
 	};
 };
 
