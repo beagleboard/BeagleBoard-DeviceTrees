@@ -552,17 +552,6 @@
 	status = "disabled";
 };
 
-&ospi0 {
-	/* Unused */
-	status = "disabled";
-};
-
-&ospi1 {
-	/* Unused */
-	status = "disabled";
-};
-
-
 &main_gpio0 {
 	gpio-line-names = "", "P9_11", "P9_13", "P8_17", "P8_18", /* 0-4 */
 		"P8_22", "P8_24", "P8_34", "P8_36", "P8_38A", /* 5-9 */
@@ -728,6 +717,16 @@
 	maximum-speed = "super-speed";
 	phys = <&serdes2_usb_link>;
 	phy-names = "cdns3,usb3-phy";
+};
+
+&ospi0 {
+	/* Unused */
+	status = "disabled";
+};
+
+&ospi1 {
+	/* Unused */
+	status = "disabled";
 };
 
 &tscadc0 {
@@ -959,7 +958,20 @@
 	};
 };
 
+&serdes4 {
+	torrent_phy_dp: phy@0 {
+		reg = <0>;
+		resets = <&serdes_wiz4 1>;
+		cdns,phy-type = <PHY_TYPE_DP>;
+		cdns,num-lanes = <4>;
+		cdns,max-bit-rate = <5400>;
+		#phy-cells = <0>;
+	};
+};
+
 &mhdp {
+	phys = <&torrent_phy_dp>;
+	phy-names = "dpphy";
 	pinctrl-names = "default";
 	pinctrl-0 = <&dp0_pins_default>;
 };
