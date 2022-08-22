@@ -291,6 +291,7 @@
 		regulator-max-microvolt = <3300000>;
 		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
+		regulator-always-on;
 	};
 
 	dp0: connector {
@@ -711,26 +712,32 @@
 };
 
 &main_gpio2 {
+	/* Unused */
 	status = "disabled";
 };
 
 &main_gpio3 {
+	/* Unused */
 	status = "disabled";
 };
 
 &main_gpio4 {
+	/* Unused */
 	status = "disabled";
 };
 
 &main_gpio5 {
+	/* Unused */
 	status = "disabled";
 };
 
 &main_gpio6 {
+	/* Unused */
 	status = "disabled";
 };
 
 &main_gpio7 {
+	/* Unused */
 	status = "disabled";
 };
 
@@ -754,6 +761,7 @@
 };
 
 &wkup_gpio1 {
+	/* Unused */
 	status = "disabled";
 };
 
@@ -1050,10 +1058,12 @@
 };
 
 &icssg0_mdio {
+	/* Unused */
 	status = "disabled";
 };
 
 &icssg1_mdio {
+	/* Unused */
 	status = "disabled";
 };
 
