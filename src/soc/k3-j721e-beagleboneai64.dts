@@ -199,7 +199,7 @@
 		led-1 {
 			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
 			function = LED_FUNCTION_DISK_ACTIVITY;
-			trigger-sources = <&main_sdhci0>;
+			linux,default-trigger = "mmc0";
 		};
 
 		led-2 {
@@ -211,7 +211,7 @@
 		led-3 {
 			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
 			function = LED_FUNCTION_DISK_ACTIVITY;
-			trigger-sources = <&main_sdhci1>;
+			linux,default-trigger = "mmc1";
 		};
 
 		led-4 {
