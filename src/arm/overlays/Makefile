@@ -22,6 +22,8 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BBORG_FAN-A000.dtbo	\
 	BBORG_RELAY-00A2.dtbo	\
 	BONE-ADC.dtbo	\
+	LED_P8_03.dtbo	\
+	LED_P8_04.dtbo	\
 	M-BB-BBG-00A0.dtbo	\
 	M-BB-BBGG-00A0.dtbo	\
 	PB-HACKADAY-2021.dtbo	\
