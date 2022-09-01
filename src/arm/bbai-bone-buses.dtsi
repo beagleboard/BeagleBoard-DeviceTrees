@@ -538,13 +538,6 @@ bone_mcasp_0: &mcasp1 {
 	};
 };
 
-// eMMC
-bone_emmc: &mmc3 {
-	status = "disabled";
-	vmmc-supply = <&vdd_1v8>;
-	bus-width = <8>;
-};
-
 // LCD
 // Display Sub System (DSS)
 &dss {

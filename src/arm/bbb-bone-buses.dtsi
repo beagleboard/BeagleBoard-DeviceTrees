@@ -573,10 +573,3 @@ bone_adc: &tscadc {
 // 		bb-device = <0>; //BBB/BBG
 // 	};
 // };
-
-// eMMC
-bone_emmc: &mmc2 {
-	status = "disabled";
-	vmmc-supply = <&vmmcsd_fixed>;
-	bus-width = <8>;
-};
