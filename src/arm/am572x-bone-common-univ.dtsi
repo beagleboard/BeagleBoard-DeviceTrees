@@ -6,6 +6,11 @@
 #include <dt-bindings/board/am572x-bone-pins.h>
 
 &dra7_pmx_core {
+
+/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */
+#define BONE_PIN(XX,ZZ,QQ) \
+	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
+
 	/************************/
 	/* P8 Header */
 	/************************/
