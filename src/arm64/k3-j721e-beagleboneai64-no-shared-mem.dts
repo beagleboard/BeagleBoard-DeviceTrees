@@ -54,30 +54,35 @@
 		pinctrl-0 = <&led_pins_default>;
 
 		led-0 {
+			label = "beaglebone:green:usr0";
 			gpios = <&main_gpio0 96 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
 			function = LED_FUNCTION_HEARTBEAT;
 		};
 
 		led-1 {
+			label = "beaglebone:green:usr1";
 			gpios = <&main_gpio0 95 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc0";
 			function = LED_FUNCTION_DISK_ACTIVITY;
 		};
 
 		led-2 {
+			label = "beaglebone:green:usr2";
 			gpios = <&main_gpio0 97 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "cpu";
 			function = LED_FUNCTION_CPU;
 		};
 
 		led-3 {
+			label = "beaglebone:green:usr3";
 			gpios = <&main_gpio0 110 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc1";
 			function = LED_FUNCTION_DISK_ACTIVITY;
 		};
 
 		led-4 {
+			label = "beaglebone:green:usr4";
 			gpios = <&main_gpio0 109 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "phy0tx";
 			function = LED_FUNCTION_WLAN;
@@ -362,13 +367,6 @@
 };
 
 &wkup_pmx0 {
-	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-		pinctrl-single,pins = <
-			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
-			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
-		>;
-	};
-
 	eeprom_wp_pins_default: eeprom-wp-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0xc4, PIN_OUTPUT_PULLUP, 7) /* (G24) WKUP_GPIO0_5 */
@@ -416,12 +414,6 @@
 		>;
 	};
 
-	sw_pwr_pins_default: sw-pwr-pins-default {
-		pinctrl-single,pins = <
-			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
-		>;
-	};
-
 	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
@@ -443,6 +435,19 @@
 		pinctrl-single,pins = <
 			J721E_WKUP_IOPAD(0x8c, PIN_OUTPUT, 0) /* (F23) MCU_MDIO0_MDC */
 			J721E_WKUP_IOPAD(0x88, PIN_INPUT, 0) /* (E23) MCU_MDIO0_MDIO */
+		>;
+	};
+
+	sw_pwr_pins_default: sw-pwr-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc0, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_4 */
+		>;
+	};
+
+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
+			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
 		>;
 	};
 
