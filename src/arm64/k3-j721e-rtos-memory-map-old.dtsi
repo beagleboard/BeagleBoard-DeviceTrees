@@ -283,5 +283,3 @@
 	memory-region = <&vision_apps_c71_0_dma_memory_region>,
 			<&vision_apps_c71_0_memory_region>;
 };
-
-
