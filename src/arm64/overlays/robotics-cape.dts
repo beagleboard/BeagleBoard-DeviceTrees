@@ -159,7 +159,7 @@
 	/* P9_24 - EEPROM_I2C_SCL */
 	/* P9_26 - EEPROM_I2C_SDA */
 	status = "okay";
-}
+};
 
 &bone_spi_0 {
 	/* P9_18 - SPI6_D1 - SDI */
@@ -274,9 +274,9 @@
 };
 
 &bone_uart_7 {
-	&P8_22_uart_pin		/* BCF_SERIAL_TX - UART2_RX */
-	&P8_34_uart_pin		/* BCF_SERIAL_RX - UART2_TX */
-	&P8_32_gpio_pin		/* BCF_RST */
+	/* P8_22 - BCF_SERIAL_TX - UART2_RX */
+	/* P8_34 - BCF_SERIAL_RX - UART2_TX */
+	/* P8_32 - BCF_RST */
 	status = "okay";
 
 	bcfserial {

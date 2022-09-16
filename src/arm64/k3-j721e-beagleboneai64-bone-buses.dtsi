@@ -18,7 +18,6 @@
 		bone_key_##XX: key_##XX { \
 			status = "disabled"; \
 			label = "##XX##"; \
-			linux,code = <KEY_UNKNOWN>; \
 			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
 			pinctrl-names = "default"; \
 			pinctrl-0 = <&##XX##_gpio_pd_pin>; \
@@ -1029,11 +1028,9 @@ bone_uart_6: &main_uart8 {
 	>;
 };
 
-	/* bone_can_1 main_mcan4 P9.26 P9.24 */
-	/* bone_can_2 main_mcan5 P8.08 P8.07 */
-	/* bone_can_3 main_mcan6 P8.10 P8.09 */
-	/* bone_can_4 main_mcan7 P8.05 P8.06 */
 bone_can_0: &main_mcan0 {
+	symlink = "bone/can/0";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P9_20_can_pin /* tx */
@@ -1042,6 +1039,8 @@ bone_can_0: &main_mcan0 {
 };
 
 bone_can_1: &main_mcan4 {
+	symlink = "bone/can/1";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P9_26_can_pin /* tx */
@@ -1050,6 +1049,8 @@ bone_can_1: &main_mcan4 {
 };
 
 bone_can_2: &main_mcan5 {
+	symlink = "bone/can/2";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P8_08_can_pin /* tx */
@@ -1057,15 +1058,9 @@ bone_can_2: &main_mcan5 {
 	>;
 };
 
-bone_can_2: &main_mcan5 {
-	pinctrl-names = "default";
-	pinctrl-0 = <
-		&P8_08_can_pin /* tx */
-		&P8_07_can_pin /* rx */
-	>;
-};
-
 bone_can_3: &main_mcan6 {
+	symlink = "bone/can/3";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P8_10_can_pin /* tx */
@@ -1074,6 +1069,8 @@ bone_can_3: &main_mcan6 {
 };
 
 bone_can_4: &main_mcan7 {
+	symlink = "bone/can/4";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <
 		&P8_05_can_pin /* tx */

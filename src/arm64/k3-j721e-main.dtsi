@@ -1559,6 +1559,17 @@
 		power-domains = <&k3_pds 272 TI_SCI_PD_EXCLUSIVE>;
 	};
 
+	main_spi7: spi@2170000 {
+		compatible = "ti,omap4-mcspi";
+		reg = <0x0 0x2170000 0x0 0x400>;
+		interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		clock-names = "fck";
+		clocks = <&k3_clks 273 1>;
+		power-domains = <&k3_pds 273 TI_SCI_PD_EXCLUSIVE>;
+	};
+
 	d5520: video-decoder@4300000 {
 	       /* IMG D5520 driver configuration */
 	       compatible = "img,d5500-vxd";
