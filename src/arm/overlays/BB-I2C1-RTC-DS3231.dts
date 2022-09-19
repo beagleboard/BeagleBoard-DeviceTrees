@@ -35,18 +35,15 @@
 	P9_18_pinmux { status = "disabled"; };	/* spi0_cs0.i2c1_scl */
 };
 
-/ {
-
-
-	fragment@2 {
-		target-path="/";
-		__overlay__ {
-			aliases {
-				rtc0 = &extrtc;
-				rtc1 = "/ocp/rtc@44e3e000";
-			};
-		};
+&{/} {
+	aliases {
+		rtc0 = &extrtc;
+		/* find /sys/firmware/devicetree/ | grep rtc@ */
+		rtc1 = "/ocp/interconnect@44c00000/segment@200000/target-module@3e000/rtc@0";
 	};
+};
+
+/ {
 
 	fragment@3 {
 		target = <&am33xx_pinmux>;
