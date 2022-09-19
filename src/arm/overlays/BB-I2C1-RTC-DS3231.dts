@@ -18,22 +18,16 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/gpio/gpio.h>
 
-/ {
-	/*
-	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
-	 */
-	fragment@0 {
-		target-path="/";
-		__overlay__ {
-
-			chosen {
-				overlays {
-					BB-I2C1-RTC-DS3231 = __TIMESTAMP__;
-				};
-			};
-		};
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-I2C1-RTC-DS3231.kernel = __TIMESTAMP__;
 	};
+};
 
+/ {
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
