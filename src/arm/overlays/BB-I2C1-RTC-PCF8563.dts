@@ -6,7 +6,6 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/gpio/gpio.h>
 
@@ -23,8 +22,8 @@
  * Free up the pins used by the cape from the pinmux helpers.
  */
 &ocp {
-	P9_17_pinmux { status = "disabled"; };	/* i2c1_scl */
-	P9_18_pinmux { status = "disabled"; };	/* i2c1_sda */
+	P9_17_pinmux { status = "disabled"; };	/* spi0_d1.i2c1_sda */
+	P9_18_pinmux { status = "disabled"; };	/* spi0_cs0.i2c1_scl */
 };
 
 &{/} {
@@ -38,8 +37,8 @@
 &am33xx_pinmux {
 	bb_i2c1_pins: pinmux_bb_i2c1_pins {
 		pinctrl-single,pins = <
-			BONE_P9_18 (SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2) /* spi0_d1.i2c1_sda */
-			BONE_P9_17 (SLEWCTRL_SLOW | PIN_INPUT_PULLUP | MUX_MODE2) /* spi0_cs0.i2c1_scl */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)		/* spi0_d1.i2c1_sda */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* spi0_cs0.i2c1_scl */
 		>;
 	};
 };
