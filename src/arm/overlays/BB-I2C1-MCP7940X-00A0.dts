@@ -19,19 +19,16 @@
 	};
 };
 
-/ {
-	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
-	 */
-	fragment@1 {
-		target = <&ocp>;
-		__overlay__ {
-			P9_17_pinmux { status = "disabled"; };	/* i2c1_scl */
-			P9_18_pinmux { status = "disabled"; };	/* i2c1_sda */
-			P8_26_pinmux { status = "disabled"; };	/* rtc: gpio1_29 */
-		};
-	};
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_17_pinmux { status = "disabled"; };	/* spi0_d1.i2c1_sda */
+	P9_18_pinmux { status = "disabled"; };	/* spi0_cs0.i2c1_scl */
+	P8_26_pinmux { status = "disabled"; };	/* rtc: gpio1_29 */
+};
 
+/ {
 	fragment@2 {
 		target-path="/";
 		__overlay__ {
