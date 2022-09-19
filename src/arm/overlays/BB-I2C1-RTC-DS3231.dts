@@ -51,20 +51,19 @@
 	};
 };
 
-/ {
-	fragment@4 {
-		target = <&i2c1>;
-		__overlay__ {
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_i2c1_pins>;
-			#address-cells = <1>;
-			#size-cells = <0>;
- 
-			extrtc: ds3231@68 {
-				compatible = "maxim,ds3231";
-				reg = <0x68>;
-			};
-		};
+&i2c1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_i2c1_pins>;
+
+	clock-frequency = <100000>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	extrtc: ds3231@68 {
+		status = "okay";
+		compatible = "maxim,ds3231";
+		reg = <0x68>;
 	};
 };
