@@ -7,6 +7,6 @@
 	};
 };
 
-&led_P9_14 {
+&bone_led_P9_14 {
     status = "okay";
 };
