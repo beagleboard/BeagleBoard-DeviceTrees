@@ -4,6 +4,7 @@
  */
 
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/linux-event-codes.h>
 #include <dt-bindings/board/k3-j721e-bone-pins.h>
 
 /********/
@@ -17,7 +18,8 @@
 #define BONE_KEY(XX) \
 		bone_key_##XX: key_##XX { \
 			status = "disabled"; \
-			label = "##XX##"; \
+			label = #XX ; \
+			linux,code = <KEY_UNKNOWN>; \
 			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
 			pinctrl-names = "default"; \
 			pinctrl-0 = <&##XX##_gpio_pd_pin>; \
@@ -110,7 +112,7 @@
 #define BONE_LED(XX) \
 		bone_led_##XX: led_##XX { \
 			status = "disabled"; \
-			label = "##XX##"; \
+			label = #XX ; \
 			linux,default-trigger = "default-off"; \
 			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
 			pinctrl-names = "default"; \
