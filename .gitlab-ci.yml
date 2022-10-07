@@ -3,4 +3,4 @@ image: robertcnelson/debian-bullseye-slim-dtb-compile:latest
 build:
   stage: build
   script:
-    - ./jenkins_build.sh
+    - make CC=gcc CROSS_COMPILE= all
