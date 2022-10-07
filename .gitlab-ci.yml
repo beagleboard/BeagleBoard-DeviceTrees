@@ -1,0 +1,6 @@
+image: robertcnelson/debian-bullseye-slim-dtb-compile:latest
+
+build:
+  stage: build
+  script:
+    - ./jenkins_build.sh
