@@ -12,7 +12,6 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/dra.h>
-#include "am57xx-cmem.dtsi"
 #include "bbai-bone-buses.dtsi"
 
 / {
