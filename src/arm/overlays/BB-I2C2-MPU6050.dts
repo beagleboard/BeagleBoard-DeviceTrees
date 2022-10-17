@@ -24,19 +24,10 @@
  */
 &ocp {
 	P9_12_pinmux { status = "disabled"; };
-	P9_19_pinmux { status = "disabled"; };
-	P9_20_pinmux { status = "disabled"; };
 };
 
 &am33xx_pinmux {
-	bb_i2c2_pins: pinmux_bb_i2c2_pins {
-		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_ctsn.i2c2_sda */
-			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_rtsn.i2c2_scl */
-		>;
-	};
-
-	bb_gpio9_12_pins: pinmux_bb_gpio9_12_pins {
+	mpu6050_pins: pinmux_mpu6050_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT, MUX_MODE7) /* gpio1_28 */
 		>;
@@ -45,8 +36,6 @@
 
 &i2c2 {
 	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&bb_i2c2_pins &bb_gpio9_12_pins>;
 
 	clock-frequency = <400000>;
 
@@ -54,17 +43,11 @@
 	#size-cells = <0>;
 
 	imu@68 {
+		pinctrl-names = "default";
+		pinctrl-0 = <&mpu6050_pins>;
 		compatible = "invensense,mpu6050";
 		reg = <0x68>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <28 IRQ_TYPE_EDGE_RISING>;
-		i2c-gate {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			ax8975@c {
-				compatible = "asahi-kasei,ak8975";
-				reg = <0x0c>;
-			};
-		};
 	};
 };
