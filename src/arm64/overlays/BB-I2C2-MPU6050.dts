@@ -8,6 +8,7 @@
 
 #include <dt-bindings/pinctrl/k3.h>
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/board/k3-j721e-bone-pins.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
 /*
@@ -17,6 +18,14 @@
 	overlays {
 		BB-I2C2-MPU6050.kernel = __TIMESTAMP__;
 	};
+};
+
+&main_pmx0 {
+/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */
+#define BONE_PIN(XX,ZZ,QQ) \
+	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
+
+	BONE_PIN(P9_12, gpio,      P9_12(PIN_INPUT, 7))
 };
 
 &bone_i2c_2 {
