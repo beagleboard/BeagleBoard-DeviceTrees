@@ -1,0 +1,68 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2022 Robert Nelson <robertcnelson@gmail.com>
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-I2C2-MPU6050.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_12_pinmux { status = "disabled"; };	/* rtc: gpio0_49 */
+};
+
+&am33xx_pinmux {
+	i2c2_pins: pinmux_i2c2_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_ctsn.i2c2_sda */
+			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_rtsn.i2c2_scl */
+		>;
+	};
+
+	bb_gpio9_12_pins: pinmux_bb_gpio9_12_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT, MUX_MODE7) /* gpio1_28 */
+		>;
+	};
+};
+
+&i2c2 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_i2c2_pins &bb_gpio9_12_pins>;
+
+	clock-frequency = <400000>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	imu@68 {
+		compatible = "invensense,mpu6050";
+		reg = <0x68>;
+		interrupt-parent = <&gpio1>;
+		interrupts = <28 IRQ_TYPE_EDGE_RISING>;
+		i2c-gate {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			ax8975@c {
+				compatible = "asahi-kasei,ak8975";
+				reg = <0x0c>;
+			};
+		};
+	};
+};
