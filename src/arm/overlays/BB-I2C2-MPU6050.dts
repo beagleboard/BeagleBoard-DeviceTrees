@@ -23,7 +23,9 @@
  * Free up the pins used by the cape from the pinmux helpers.
  */
 &ocp {
-	P9_12_pinmux { status = "disabled"; };	/* rtc: gpio0_49 */
+	P9_12_pinmux { status = "disabled"; };
+	P9_19_pinmux { status = "disabled"; };
+	P9_20_pinmux { status = "disabled"; };
 };
 
 &am33xx_pinmux {
