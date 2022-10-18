@@ -40,7 +40,7 @@
 		pinctrl-0 = <&main_P9_12_pins_default>;
 		compatible = "invensense,mpu6050";
 		reg = <0x68>;
-		interrupt-parent = <&gpio0>;
+		interrupt-parent = <&main_gpio0>;
 		interrupts = <45 IRQ_TYPE_EDGE_RISING>;
 	};
 };
