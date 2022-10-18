@@ -8,7 +8,6 @@
 
 #include <dt-bindings/pinctrl/k3.h>
 #include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/board/k3-j721e-bone-pins.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
 /*
@@ -21,11 +20,11 @@
 };
 
 &main_pmx0 {
-/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */
-#define BONE_PIN(XX,ZZ,QQ) \
-	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
-
-	BONE_PIN(P9_12, gpio,      P9_12(PIN_INPUT, 7))
+	main_P9_12_pins_default: pinmux_main_P9_12_pins_default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0xB8, PIN_INPUT, 7)	/* AE27: PRG0_PRU0_GPO2 AE27_MCASP0_ACLKR */
+		>;
+	};
 };
 
 &bone_i2c_2 {
@@ -38,7 +37,7 @@
 
 	imu@68 {
 		pinctrl-names = "default";
-		pinctrl-0 = <&P9_12_gpio_pin>;
+		pinctrl-0 = <&main_P9_12_pins_default>;
 		compatible = "invensense,mpu6050";
 		reg = <0x68>;
 		interrupt-parent = <&gpio0>;
