@@ -33,7 +33,7 @@
 		pinctrl-0 = <&P9_12_gpio_pin>;
 		compatible = "invensense,mpu6050";
 		reg = <0x68>;
-		interrupt-parent = <&main_gpio0>;
-		interrupts = <45 IRQ_TYPE_EDGE_RISING>;
+		interrupt-parent = <P9_12_gpio_cntlr>;
+		interrupts = <P9_12_gpio_idx IRQ_TYPE_EDGE_RISING>;
 	};
 };
