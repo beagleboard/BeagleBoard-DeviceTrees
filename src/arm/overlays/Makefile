@@ -1,6 +1,7 @@
 # Overlays for the BeagleBone platform
 
 dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
+	AM335X-PRU-UIO-00A0.dtbo	\
 	BB-ADC-00A0.dtbo	\
 	BB-BBBW-WL1835-00A0.dtbo	\
 	BB-BBGG-WL1835-00A0.dtbo	\
@@ -11,7 +12,12 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BB-BONE-NH7C-01-A0.dtbo	\
 	BB-CAPE-DISP-CT4-00A0.dtbo	\
 	BB-HDMI-TDA998x-00A0.dtbo	\
+	BB-I2C1-MCP7940X-00A0.dtbo	\
+	BB-I2C1-RTC-DS3231.dtbo	\
+	BB-I2C1-RTC-PCF8563.dtbo	\
 	BB-I2C2-BME680.dtbo	\
+	BB-I2C2-MPU6050.dtbo	\
+	BB-NHDMI-TDA998x-00A0.dtbo	\
 	BB-SPIDEV0-00A0.dtbo	\
 	BB-SPIDEV1-00A0.dtbo	\
 	BB-W1-P9.12-00A0.dtbo	\
