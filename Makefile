@@ -95,6 +95,7 @@ ifeq "$(DTCVERSION)" "1.6.0"
 	DTC_FLAGS += -Wno-alias_paths
 	#Debian: 1.4.7-3 (Buster)
 	DTC_FLAGS += -Wno-unique_unit_address
+	DTC_FLAGS += -Wno-avoid_default_addr_size
 endif
 
 # Beautify output
