@@ -18,7 +18,7 @@
  */
 &{/chosen} {
 	overlays {
-		RPi-7inch-panel-BONE-I2C2.kernel = __TIMESTAMP__;
+		BBAI64-DSI-RPi-7inch-panel.kernel = __TIMESTAMP__;
 	};
 };
 
@@ -52,7 +52,19 @@
 	};
 };
 
-&bone_i2c_2 {
+&main_pmx0 {
+	main_i2c4_pins_default: main-i2c-pins-default {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0xa8, PIN_INPUT_PULLUP, 2) /* (AD19) PRG1_MDIO0_MDIO.I2C4_SCL */
+			J721E_IOPAD(0xac, PIN_INPUT_PULLUP, 2) /* (AD18) PRG1_MDIO0_MDC.I2C4_SDA */
+		>;
+	};
+};
+
+&main_i2c4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c4_pins_default>;
+	clock-frequency = <400000>;
 	status = "okay";
 
 	reg_display: reg_display@45 {
