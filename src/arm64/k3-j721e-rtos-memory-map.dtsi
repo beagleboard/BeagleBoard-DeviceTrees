@@ -249,13 +249,13 @@
 			<&vision_apps_main_r5fss0_core0_memory_region>,
 			<&vision_apps_main_r5fss0_core0_shared_memory_queue_region>,
 			<&vision_apps_main_r5fss0_core0_shared_memory_bufpool_region>;
-	firmware-name = "vision_apps_eaik/vx_app_rtos_linux_mcu2_0.out";
+	firmware-name = "vision_apps_eaik/vx_app_rtos_linux_mcu2_0.dontload";
 };
 
 &main_r5fss0_core1 {
 	memory-region = <&vision_apps_main_r5fss0_core1_dma_memory_region>,
 			<&vision_apps_main_r5fss0_core1_memory_region>;
-	firmware-name = "vision_apps_eaik/vx_app_rtos_linux_mcu2_1.out";
+	firmware-name = "vision_apps_eaik/vx_app_rtos_linux_mcu2_1.dontload";
 };
 
 &main_r5fss1_core0 {
