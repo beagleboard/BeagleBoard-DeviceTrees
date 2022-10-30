@@ -17,8 +17,7 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-USB0-host.dtbo \
 	robotics-cape.dtbo \
 	k3-j721e-beagleboneai64-RPi-7inch-panel.dtbo \
-	J721E-PRU-UIO-00A0.dtbo \
-	RPi-7inch-panel-BONE-I2C2.dtbo
+	J721E-PRU-UIO-00A0.dtbo
 
 targets += dtbs dtbs_install
 targets += $(dtbo-y)
