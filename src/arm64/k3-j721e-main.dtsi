@@ -84,7 +84,7 @@
 	main_ehrpwm0: pwm@3000000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3000000 0x0 0x100>;
+		reg = <0x00 0x3000000 0x00 0x100>;
 		power-domains = <&k3_pds 83 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 83 0>;
 		clock-names = "tbclk", "fck";
@@ -93,7 +93,7 @@
 	main_ehrpwm1: pwm@3010000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3010000 0x0 0x100>;
+		reg = <0x00 0x3010000 0x00 0x100>;
 		power-domains = <&k3_pds 84 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 84 0>;
 		clock-names = "tbclk", "fck";
@@ -102,7 +102,7 @@
 	main_ehrpwm2: pwm@3020000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3020000 0x0 0x100>;
+		reg = <0x00 0x3020000 0x00 0x100>;
 		power-domains = <&k3_pds 85 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 85 0>;
 		clock-names = "tbclk", "fck";
@@ -111,7 +111,7 @@
 	main_ehrpwm3: pwm@3030000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3030000 0x0 0x100>;
+		reg = <0x00 0x3030000 0x00 0x100>;
 		power-domains = <&k3_pds 86 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 86 0>;
 		clock-names = "tbclk", "fck";
@@ -120,7 +120,7 @@
 	main_ehrpwm4: pwm@3040000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3040000 0x0 0x100>;
+		reg = <0x00 0x3040000 0x00 0x100>;
 		power-domains = <&k3_pds 87 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 87 0>;
 		clock-names = "tbclk", "fck";
@@ -129,7 +129,7 @@
 	main_ehrpwm5: pwm@3050000 {
 		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
 		#pwm-cells = <3>;
-		reg = <0x0 0x3050000 0x0 0x100>;
+		reg = <0x00 0x3050000 0x00 0x100>;
 		power-domains = <&k3_pds 88 TI_SCI_PD_EXCLUSIVE>;
 		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 88 0>;
 		clock-names = "tbclk", "fck";
@@ -387,6 +387,56 @@
 			interrupt-names = "cpts";
 			ti,cpts-periodic-outputs = <6>;
 			ti,cpts-ext-ts-inputs = <8>;
+		};
+
+		navss_pat0: pat@31010000 {
+			compatible = "ti,j721e-pat";
+			reg = <0x00 0x31010000 0x00 0x00000100>,
+			      <0x00 0x36400000 0x00 0x00040000>;
+			reg-names = "mmrs",
+				    "table";
+			ti,pat-window-base = <0x48 0x00000000>;
+			ti,pat-window-size = <0x00 0x40000000>;
+		};
+
+		navss_pat1: pat@31011000 {
+			compatible = "ti,j721e-pat";
+			reg = <0x00 0x31011000 0x00 0x00000100>,
+			      <0x00 0x36440000 0x00 0x00040000>;
+			reg-names = "mmrs",
+				    "table";
+			ti,pat-window-base = <0x48 0x40000000>;
+			ti,pat-window-size = <0x00 0x40000000>;
+		};
+
+		navss_pat2: pat@31012000 {
+			compatible = "ti,j721e-pat";
+			reg = <0x00 0x31012000 0x00 0x00000100>,
+			      <0x00 0x36480000 0x00 0x00040000>;
+			reg-names = "mmrs",
+				    "table";
+			ti,pat-window-base = <0x48 0x80000000>;
+			ti,pat-window-size = <0x00 0x40000000>;
+		};
+
+		navss_pat3: pat@31013000 {
+			compatible = "ti,j721e-pat";
+			reg = <0x00 0x31013000 0x00 0x00000100>,
+			      <0x00 0x364C0000 0x00 0x00008000>;
+			reg-names = "mmrs",
+				    "table";
+			ti,pat-window-base = <0x49 0x00000000>;
+			ti,pat-window-size = <0x00 0x80000000>;
+		};
+
+		navss_pat4: pat@31014000 {
+			compatible = "ti,j721e-pat";
+			reg = <0x00 0x31014000 0x00 0x00000100>,
+			      <0x00 0x36500000 0x00 0x00008000>;
+			reg-names = "mmrs",
+				    "table";
+			ti,pat-window-base = <0x49 0x80000000>;
+			ti,pat-window-size = <0x00 0x80000000>;
 		};
 	};
 
@@ -1548,17 +1598,6 @@
 		power-domains = <&k3_pds 193 TI_SCI_PD_EXCLUSIVE>;
 	};
 
-	main_spi6: spi@2160000 {
-		compatible = "ti,omap4-mcspi";
-		reg = <0x0 0x2160000 0x0 0x400>;
-		interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-		#address-cells = <1>;
-		#size-cells = <0>;
-		clock-names = "fck";
-		clocks = <&k3_clks 272 1>;
-		power-domains = <&k3_pds 272 TI_SCI_PD_EXCLUSIVE>;
-	};
-
 	d5520: video-decoder@4300000 {
 	       /* IMG D5520 driver configuration */
 	       compatible = "img,d5500-vxd";
@@ -2589,6 +2628,17 @@
 			     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "int0", "int1";
 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+	};
+
+	main_spi6: spi@2160000 {
+		compatible = "ti,omap4-mcspi";
+		reg = <0x0 0x2160000 0x0 0x400>;
+		interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		clock-names = "fck";
+		clocks = <&k3_clks 272 1>;
+		power-domains = <&k3_pds 272 TI_SCI_PD_EXCLUSIVE>;
 	};
 
 	ti_csi2rx0: ticsi2rx@4500000 {
