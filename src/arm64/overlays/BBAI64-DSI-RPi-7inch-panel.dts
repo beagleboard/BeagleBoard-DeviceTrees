@@ -18,7 +18,7 @@
  */
 &{/chosen} {
 	overlays {
-		k3-j721e-beagleboneai64-RPi-7inch-panel.kernel = __TIMESTAMP__;
+		BBAI64-DSI-RPi-7inch-panel.kernel = __TIMESTAMP__;
 	};
 };
 

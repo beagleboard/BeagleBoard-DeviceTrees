@@ -69,8 +69,6 @@
 #define gpio_P8_45 &main_gpio0 79	/* AG29: PRG0_PRU1_GPO16 AG29_PRG0_PRU1_GPO16 */
 #define gpio_P8_46 &main_gpio0 80	/* Y25: PRG0_PRU1_GPO17 Y25_SYS_BOOTMODE3 */
 #define gpio_P9_11 &main_gpio0 1	/* AC23: PRG1_PRU0_GPO0 AC23_UART0_RXD */
-#define P9_12_gpio_cntlr &main_gpio0
-#define P9_12_gpio_idx 45
 #define gpio_P9_12 &main_gpio0 45	/* AE27: PRG0_PRU0_GPO2 AE27_MCASP0_ACLKR */
 #define gpio_P9_13 &main_gpio0 2	/* AG22: PRG1_PRU0_GPO1 AG22_UART0_TXD */
 #define gpio_P9_14 &main_gpio0 93	/* U27: RGMII5_RD3 U27_EHRPWM2_A */
