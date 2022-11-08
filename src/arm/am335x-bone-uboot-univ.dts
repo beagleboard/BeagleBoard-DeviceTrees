@@ -27,3 +27,7 @@
 &mmc1 {
 	vmmc-supply = <&ldo3_reg>;
 };
+
+&baseboard_eeprom {
+	vcc-supply = <&ldo4_reg>;
+};
