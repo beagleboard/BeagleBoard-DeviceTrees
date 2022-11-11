@@ -2,6 +2,7 @@
 
 dtbo-$(CONFIG_ARCH_K3) += \
 	BB-I2C2-MPU6050.dtbo \
+	BBAI64-CSI0-imx219.dtbo \
 	BBAI64-DSI-RPi-7inch-panel.dtbo \
 	BBAI64-P8_37-ehrpwm5_a.dtbo \
 	BBAI64-P9_25-ehrpwm4_b.dtbo \
