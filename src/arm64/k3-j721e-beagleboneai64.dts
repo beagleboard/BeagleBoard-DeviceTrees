@@ -317,20 +317,6 @@
 		>;
 	};
 
-	csi0_gpio_pins_default: csi0-gpio-pins-default {
-		pinctrl-single,pins = <
-			J721E_IOPAD(0x19c, PIN_INPUT_PULLDOWN, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-			J721E_IOPAD(0x1a0, PIN_INPUT_PULLDOWN, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-		>;
-	};
-
-	csi1_gpio_pins_default: csi1-gpio-pins-default {
-		pinctrl-single,pins = <
-			J721E_IOPAD(0x198, PIN_INPUT_PULLDOWN, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-			J721E_IOPAD(0x1b0, PIN_INPUT_PULLDOWN, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-		>;
-	};
-
 	pcie1_rst_pins_default: pcie1-rst-pins-default {
 		pinctrl-single,pins = <
 			J721E_IOPAD(0x5c, PIN_INPUT, 7) /* (AG23) PRG1_PRU1_GPO1.GPIO0_22 */
@@ -525,46 +511,8 @@
 
 &main_i2c1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c1_pins_default &csi1_gpio_pins_default>;
+	pinctrl-0 = <&main_i2c1_pins_default>;
 	clock-frequency = <400000>;
-
-#if 1
-	ov5640_1: camera1@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 101 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx1_cam0: endpoint {
-				remote-endpoint = <&csi2rx1_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#else
-	ov5647_1: camera1@36 {
-		compatible = "ovti,ov5647";
-		reg = <0x36>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 101 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx1_cam0: endpoint {
-				remote-endpoint = <&csi2rx1_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#endif
 
 	tusb322@47 {
 		compatible = "ti,tusb322";
@@ -586,46 +534,8 @@
 
 &main_i2c5 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c5_pins_default &csi0_gpio_pins_default>;
+	pinctrl-0 = <&main_i2c5_pins_default>;
 	clock-frequency = <400000>;
-
-#if 1
-	ov5640: camera@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 103 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 102 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx0_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#else
-	ov5647: camera1@36 {
-		compatible = "ovti,ov5647";
-		reg = <0x36>;
-
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		powerdown-gpios = <&main_gpio0 101 GPIO_ACTIVE_LOW>;
-		reset-gpios = <&main_gpio0 107 GPIO_ACTIVE_LOW>;
-
-		port {
-			csi2rx0_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
-#endif
 };
 
 bone_i2c_0: &wkup_i2c0 {
@@ -1074,12 +984,7 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &csi0_port0 {
-	csi2rx0_in_sensor: endpoint {
-		remote-endpoint = <&csi2rx0_cam0>;
-		bus-type = <4>; /* CSI2 DPHY. */
-		clock-lanes = <0>;
-		data-lanes = <1 2>;
-	};
+	status = "disabled";
 };
 
 &csi0_port1 {
@@ -1099,12 +1004,7 @@ bone_i2c_0: &wkup_i2c0 {
 };
 
 &csi1_port0 {
-	csi2rx1_in_sensor: endpoint {
-		remote-endpoint = <&csi2rx1_cam0>;
-		bus-type = <4>; /* CSI2 DPHY. */
-		clock-lanes = <0>;
-		data-lanes = <1 2>;
-	};
+	status = "disabled";
 };
 
 &csi1_port1 {
