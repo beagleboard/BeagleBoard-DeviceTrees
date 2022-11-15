@@ -66,7 +66,6 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c4_pins_default>;
 	clock-frequency = <400000>;
-	status = "okay";
 
 	reg_display: reg_display@45 {
 		compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
