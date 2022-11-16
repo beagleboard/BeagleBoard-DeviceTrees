@@ -88,7 +88,7 @@
 		};
 	};
 
-	evm_12v0: fixedregulator-evm12v0 {
+	evm_12v0: regulator-0 {
 		/* main supply */
 		compatible = "regulator-fixed";
 		regulator-name = "evm_12v0";
@@ -98,7 +98,7 @@
 		regulator-boot-on;
 	};
 
-	vsys_3v3: fixedregulator-vsys3v3 {
+	vsys_3v3: regulator-1 {
 		/* Output of LMS140 */
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_3v3";
@@ -109,7 +109,7 @@
 		regulator-boot-on;
 	};
 
-	vsys_5v0: fixedregulator-vsys5v0 {
+	vsys_5v0: regulator-2 {
 		/* Output of LM5140 */
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_5v0";
@@ -120,7 +120,7 @@
 		regulator-boot-on;
 	};
 
-	vdd_mmc1: fixedregulator-sd {
+	vdd_mmc1: regulator-3 {
 		compatible = "regulator-fixed";
 		pinctrl-names = "default";
 		pinctrl-0 = <&sd_pwr_en_pins_default>;
@@ -130,10 +130,10 @@
 		regulator-boot-on;
 		enable-active-high;
 		vin-supply = <&vsys_3v3>;
-		gpios = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
+		gpio = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
 	};
 
-	vdd_sd_dv_alt: gpio-regulator-TLV71033 {
+	vdd_sd_dv_alt: regulator-4 {
 		compatible = "regulator-gpio";
 		pinctrl-names = "default";
 		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
@@ -142,7 +142,7 @@
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		vin-supply = <&vsys_5v0>;
-		gpios = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
+		gpio = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
 		states = <1800000 0x0>,
 			 <3300000 0x1>;
 	};
@@ -180,14 +180,14 @@
 		status = "disabled";
 	};
 
-	dp_pwr_3v3: fixedregulator-dp-prw {
+	dp_pwr_3v3: regulator-5 {
 		compatible = "regulator-fixed";
 		pinctrl-names = "default";
 		pinctrl-0 = <&dp0_3v3_en_pins_default>;
 		regulator-name = "dp-pwr";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
+		gpio = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
 		enable-active-high;
 
 		/* Always on for now, until dp-connector driver can handle this */
