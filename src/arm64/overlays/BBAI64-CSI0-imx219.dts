@@ -38,7 +38,7 @@
 		target-path = "/";
 
 		__overlay__ {
-			clk_imx219_fixed: imx219-xclk {
+			clk_csi0_imx219_fixed: csi0-imx219-xclk {
 				compatible = "fixed-clock";
 				#clock-cells = <0>;
 				clock-frequency = <24000000>;
@@ -72,12 +72,12 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	imx219: sensor@10 {
+	csi0_imx219: csi0_sensor@10 {
 		status = "okay";
 		compatible = "sony,imx219";
 		reg = <0x10>;
 
-		clocks = <&clk_imx219_fixed>;
+		clocks = <&clk_csi0_imx219_fixed>;
 		clock-names = "xclk";
 
 		pinctrl-names = "default";
