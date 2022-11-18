@@ -1,4 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0-only
+
+/*
+ * TODO needs to be merged into am335x-bbb-bone-buses.dtsi and
+ * tested with BeagleBone Green Wireless (which uses wifi over
+ * the P8/P9 header).. RCNEE 20221118
+ */
+
 /*
  * Copyright (C) 2020 Deepak Khatri <deepaklorkhatri7@gmail.com>
  * See Cape Interface Spec page for more info on Bone Buses
