@@ -21,28 +21,28 @@
 };
 
 // relay1
-&led_P9_41 {
+&bone_led_P9_41 {
 	status = "okay";
 	label = "relay1";
 	default-state = "keep";
 };
 
 // relay2
-&led_P9_42 {
+&bone_led_P9_42 {
 	status = "okay";
 	label = "relay2";
 	default-state = "keep";
 };
 
 // realy3
-&led_P9_30 {
+&bone_led_P9_30 {
 	status = "okay";
 	label = "relay3";
 	default-state = "keep";
 };
 
 // realy4
-&led_P9_27 {
+&bone_led_P9_27 {
 	status = "okay";
 	label = "relay4";
 	default-state = "keep";
