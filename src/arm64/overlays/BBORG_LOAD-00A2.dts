@@ -40,7 +40,7 @@
 
 /*
  * Easy load control through sysfs (/sys/class/leds/) using gpio-leds driver
- * See these files for the led_P8_#/led_P9_#  definition
+ * See these files for the bone_led_P8_#/bone_led_P9_#  definition
  * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm/bbai-bone-buses.dtsi
  * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm/bbb-bone-buses.dtsi
  * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm64/k3-j721e-beagleboneai64-bone-buses.dtsi
