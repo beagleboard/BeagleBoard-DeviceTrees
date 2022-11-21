@@ -142,7 +142,7 @@
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		vin-supply = <&vsys_5v0>;
-		gpio = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
+		gpios = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
 		states = <1800000 0x0>,
 			 <3300000 0x1>;
 	};
