@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2020 - 2022 Deepak Khatri <lorforlinux@beagleboard.org>
  *
@@ -7,9 +8,6 @@
  * Virtual cape for LED on P8_03 
  * Supports BBB, BBBWL, BBAI, and BBAI-64
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  */
  
 /dts-v1/;
@@ -23,22 +21,14 @@
  
 /*
  * Update the default pinmux of the pins.
- * See these files for the phandles (&P9_* & &P8_*)
- * BeagleBoard-DeviceTrees/v5.10.x-ti-unified/src/arm/am335x-bone-common-univ.dtsi
- * BeagleBoard-DeviceTrees/v5.10.x-ti-unified/src/arm/am572x-bone-common-univ.dtsi
- * BeagleBoard-DeviceTrees/v5.10.x-ti-unified/src/arm64/k3-j721e-beagleboneai64-bone-buses.dtsi
  */
+ 
 &ocp {
 	P8_03_pinmux { pinctrl-0 = <&P8_03_gpio_pin>;};	
 };
 
 /*
  * Easy LED control through sysfs (/sys/class/leds/) using gpio-leds driver
- * See these files for the bone_led_P8_#/bone_led_P9_#  definition
- * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm/bbai-bone-buses.dtsi
- * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm/bbb-bone-buses.dtsi
- * https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v5.10.x-ti-unified/src/arm64/k3-j721e-beagleboneai64-bone-buses.dtsi
- * 
  */
 
 &bone_led_P8_03 {
