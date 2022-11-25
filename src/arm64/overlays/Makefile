@@ -9,6 +9,7 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BB-I2C2-MPU6050.dtbo \
 	BBORG_LOAD-00A2.dtbo \
 	BBORG_RELAY-00A2.dtbo \
+	BBORG_SERVO-00A2.dtbo \
 	BONE-FAN.dtbo \
 	BONE-I2C1.dtbo \
 	BONE-I2C2.dtbo \
