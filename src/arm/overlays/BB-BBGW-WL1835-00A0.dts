@@ -35,6 +35,12 @@
 	P9_28_pinmux { status = "disabled"; };
 	P9_29_pinmux { status = "disabled"; };
 	P9_31_pinmux { status = "disabled"; };
+
+	/* wl1835 */
+	P8_14_pinmux { status = "disabled"; };	/* wl1835: wl_en */
+	P8_17_pinmux { status = "disabled"; };	/* wl1835: wl_irq */
+	P8_26_pinmux { status = "disabled"; };	/* wl1835: LS_BUF_EN */
+	P9_30_pinmux { status = "disabled"; };	/* wl1835: MCASP0_AHCLKR */
 };
 
 &{/} {
