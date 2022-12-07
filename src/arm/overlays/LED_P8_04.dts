@@ -11,7 +11,7 @@
     P8_04_pinmux { pinctrl-0 = <&P8_04_gpio_pd_pin>; };
 };
 
-&led_P8_04 {
+&bone_led_P8_04 {
     label = "P8_04";
     status = "okay";
 };

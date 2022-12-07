@@ -6,8 +6,102 @@
  * https://elinux.org/Beagleboard:BeagleBone_cape_interface_spec
  */
 
+#include <dt-bindings/board/am335x-bone-pins.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
+
+/********/
+/* LEDs */
+/********/
+&{/} {
+	leds {
+		pinctrl-names = "default";
+		compatible = "gpio-leds";
+
+		/* macro: BONE_LED(<headerpin>) */
+		#define BONE_LED(PX_YY)\
+			bone_led_##PX_YY##: led_##PX_YY {\
+				status = "disabled";\
+				linux,default-trigger = "default-off";\
+				gpios = <gpio_##PX_YY GPIO_ACTIVE_HIGH>;\
+			};
+
+		BONE_LED(P8_03)
+		BONE_LED(P8_04)
+		BONE_LED(P8_05)
+		BONE_LED(P8_06)
+		BONE_LED(P8_07)
+		BONE_LED(P8_08)
+		BONE_LED(P8_09)
+		BONE_LED(P8_10)
+		BONE_LED(P8_11)
+		BONE_LED(P8_12)
+		BONE_LED(P8_13)
+		BONE_LED(P8_14)
+		BONE_LED(P8_15)
+		BONE_LED(P8_16)
+		BONE_LED(P8_17)
+		BONE_LED(P8_18)
+		BONE_LED(P8_19)
+		BONE_LED(P8_20)
+		BONE_LED(P8_21)
+		BONE_LED(P8_22)
+		BONE_LED(P8_23)
+		BONE_LED(P8_24)
+		BONE_LED(P8_25)
+		BONE_LED(P8_26)
+		BONE_LED(P8_27)
+		BONE_LED(P8_28)
+		BONE_LED(P8_29)
+		BONE_LED(P8_30)
+		BONE_LED(P8_31)
+		BONE_LED(P8_32)
+		BONE_LED(P8_33)
+		BONE_LED(P8_34)
+		BONE_LED(P8_35)
+		BONE_LED(P8_36)
+		BONE_LED(P8_37)
+		BONE_LED(P8_38)
+		BONE_LED(P8_39)
+		BONE_LED(P8_40)
+		BONE_LED(P8_41)
+		BONE_LED(P8_42)
+		BONE_LED(P8_43)
+		BONE_LED(P8_44)
+		BONE_LED(P8_45)
+		BONE_LED(P8_46)
+
+		/*P9 header Bone LEDs*/
+		BONE_LED(P9_11)
+		BONE_LED(P9_12)
+		BONE_LED(P9_13)
+		BONE_LED(P9_14)
+		BONE_LED(P9_15)
+		BONE_LED(P9_16)
+		BONE_LED(P9_17)
+		BONE_LED(P9_18)
+		BONE_LED(P9_19)
+		BONE_LED(P9_20)
+		BONE_LED(P9_21)
+		BONE_LED(P9_22)
+		BONE_LED(P9_23)
+		BONE_LED(P9_24)
+		BONE_LED(P9_25)
+		BONE_LED(P9_26)
+		BONE_LED(P9_27)
+		BONE_LED(P9_28)
+		BONE_LED(P9_29)
+		BONE_LED(P9_30)
+		BONE_LED(P9_31)
+
+		BONE_LED(P9_41)
+		BONE_LED(P9_91)
+		BONE_LED(P9_42)
+		BONE_LED(P9_92)
+
+		BONE_LED(A15)
+	};
+};
 
 // For dummy refrence when peripheral is not available.
 &{/} {

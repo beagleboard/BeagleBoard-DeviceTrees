@@ -18,18 +18,18 @@ echo_label_analog () {
 }
 
 get_json_pkg () {
-	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.13.0.2553
+	###Offline: https://www.ti.com/tool/download/SYSCONFIG/1.14.0.2667
 
 	if [ -d ./tmp/ ] ; then
 		rm -rf ./tmp/ || true
 	fi
-	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.13.0.2553/sysconfig-1.13.0_2553-setup.run
-	chmod +x sysconfig-1.13.0_2553-setup.run
+	wget -c https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-nsUM6f7Vvb/1.14.0.2667/sysconfig-1.14.0_2667-setup.run
+	chmod +x sysconfig-1.14.0_2667-setup.run
 	mkdir tmp
-	./sysconfig-1.13.0_2553-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
+	./sysconfig-1.14.0_2667-setup.run --unattendedmodeui none --mode unattended --prefix ./tmp
 	cp -v ./tmp/dist/deviceData/J721E_DRA829_TDA4VM_AM752x/J721E_DRA829_TDA4VM_AM752x.json ./
 	rm -rf ./tmp/ || true
-	rm -rf sysconfig-1.13.0_2553-setup.run || true
+	rm -rf sysconfig-1.14.0_2667-setup.run || true
 }
 
 get_name_mode () {
