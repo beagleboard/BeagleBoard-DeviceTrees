@@ -151,30 +151,6 @@
 			 <3300000 0x1>;
 	};
 
-	wlan_lten: regulator-5 {
-		compatible = "regulator-fixed";
-		regulator-name = "wlan_lten";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		regulator-always-on;
-		vin-supply = <&vcc_3v3_sys>;
-		gpios = <&exp1 11 GPIO_ACTIVE_LOW>;
-	};
-
-	wlan_en: regulator-6 {
-		/* OUTPUT of SN74AVC2T244DQMR */
-		compatible = "regulator-fixed";
-		regulator-name = "wlan_en";
-		regulator-min-microvolt = <1800000>;
-		regulator-max-microvolt = <1800000>;
-		enable-active-high;
-		regulator-always-on;
-		vin-supply = <&wlan_lten>;
-		gpios = <&main_gpio0 71 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&wlan_en_pins_default>;
-	};
-
 	vcc_1v8: regulator-7 {
 		/* output of TPS6282518DMQ */
 		compatible = "regulator-fixed";
@@ -196,10 +172,16 @@
 		compatible = "simple-audio-card";
 		simple-audio-card,name = "AM62x-SKEVM";
 		simple-audio-card,widgets =
-			"Headphone", "Headphone Jack";
+			"Headphone",	"Headphone Jack",
+			"Line",	"Line In",
+			"Microphone",	"Microphone Jack";
 		simple-audio-card,routing =
 			"Headphone Jack",	"HPLOUT",
-			"Headphone Jack",	"HPROUT";
+			"Headphone Jack",	"HPROUT",
+			"LINE1L",		"Line In",
+			"LINE1R",		"Line In",
+			"MIC3R",		"Microphone Jack",
+			"Microphone Jack",	"Mic Bias";
 		simple-audio-card,format = "dsp_b";
 		simple-audio-card,bitclock-master = <&sound_master>;
 		simple-audio-card,frame-master = <&sound_master>;
@@ -216,17 +198,24 @@
 	};
 
 	leds {
-		compatible = "gpio-leds";
-		pinctrl-names = "default";
-		pinctrl-0 = <&usr_led_pins_default>;
+		compatible = "pwm-leds";
 
 		led-0 {
 			label = "am62-sk:green:heartbeat";
-			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
+			pwms = <&main_pwm7 0 7812500 0>;
+			max-brightness = <255>;
 			linux,default-trigger = "heartbeat";
 			function = LED_FUNCTION_HEARTBEAT;
 			default-state = "off";
 		};
+	};
+
+	main_pwm7: dmtimer-main-pwm-7 {
+		pinctrl-0 = <&usr_led_pins_default>;
+		pinctrl-names = "default";
+		compatible = "ti,omap-dmtimer-pwm";
+		#pwm-cells = <3>;
+		ti,timers = <&main_timer7>;
 	};
 
 	hdmi_mstrclk: hdmi-mstrclk {
@@ -303,12 +292,6 @@
 		>;
 	};
 
-	wlan_en_pins_default: wlan-en-pins-default {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x124, PIN_OUTPUT, 7) /* (A23) MMC2_SDCD.GPIO0_71 */
-		>;
-	};
-
 	main_mmc2_pins_default: main-mmc2-pins-default {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x120, PIN_INPUT, 0) /* (C24) MMC2_CMD */
@@ -329,7 +312,7 @@
 
 	usr_led_pins_default: usr-led-pins-default {
 		pinctrl-single,pins = <
-			AM62X_IOPAD(0x244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
+			AM62X_IOPAD(0x244, PIN_OUTPUT, 2) /* (C17) MMC1_SDWP.TIMER_IO7 */
 		>;
 	};
 
@@ -595,6 +578,8 @@
 		#sound-dai-cells = <0>;
 		compatible = "ti,tlv320aic3106";
 		reg = <0x1b>;
+		ai3x-micbias-vg = <1>;		/* 2.0V */
+		status = "okay";
 
 		/* Regulators */
 		AVDD-supply = <&vcc_3v3_sys>;
@@ -627,7 +612,6 @@
 	pinctrl-0 = <&main_mmc1_pins_default>;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
-	no-1-8-v;
 };
 
 &usbss0 {
@@ -721,7 +705,7 @@
 	tdm-slots = <2>;
 
 	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-	       1 0 0 0
+	       1 0 2 0
 	       0 0 0 0
 	       0 0 0 0
 	       0 0 0 0
@@ -789,14 +773,14 @@
 	status = "disabled";
 };
 
-&ecap0 {
+&ecap0_pwm {
 	status = "disabled";
 };
 
-&ecap1 {
+&ecap1_pwm {
 	status = "disabled";
 };
 
-&ecap2 {
+&ecap2_pwm {
 	status = "disabled";
 };
