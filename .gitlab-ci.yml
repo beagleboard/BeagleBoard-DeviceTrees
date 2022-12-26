@@ -1,6 +1,8 @@
 image: robertcnelson/debian-bullseye-slim-dtb-compile:latest
 
 build:
+  tags:
+    - docker-amd64
   stage: build
   script:
     - make CC=gcc CROSS_COMPILE= all
