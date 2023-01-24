@@ -1,15 +1,10 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2013 CircuitCo
  * Copyright (C) 2018 Drew Fustini <drew@beagleboard.org>
  * Copyright (C) 2019 Mark A. Yoder <mark.a.yoder@beagleboard.org>
  *
  * Adafruit 2.4" TFT LCD on SPI0 bus using tinydrm ili9341 driver
- *
- * LICENSE:
- * --------
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  *
  * DOCUMENTATION:
  * --------------
@@ -50,72 +45,82 @@
  * https://github.com/notro/tinydrm/issues/1#issuecomment-367279037
  */
 
+/dts-v1/;
+/plugin/;
+
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
-/dts-v1/;
-/plugin/;
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-LCD-ADAFRUIT-24-SPI0-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_19_pinmux { status = "disabled"; };	/* lcd dc */
+	P9_20_pinmux { status = "disabled"; };	/* lcd reset */
+	P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
+	P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
+	P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
+	P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
+	P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
+//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
+};
+
+&am33xx_pinmux {
+	bb_spi0_pins: pinmux_bb_spi0_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0)	/* P9_22 (A17) spi0_sclk.spi0_sclk */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)	/* P9_21 (B17) spi0_d0.spi0_d0 */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)	/* P9_18 (B16) spi0_d1.spi0_d1 */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
+			BONE_P9_19 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
+			BONE_P9_20 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
+			// No cs1 for spi0
+		>;
+	};
+
+	backlight_pwm_pins: pinmux_backlight_pwm_pins {
+		pinctrl-single,pins = <
+			BONE_P9_16 0x06 /* gpmc_a2.ehrpwm1b, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+		>;
+	};
+};
+
+&spi0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_spi0_pins>;
+
+	display@0{
+		status = "okay";
+		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
+		reg = <0>;
+		spi-max-frequency = <32000000>;
+		dc-gpios    = <&gpio0 13 0>;   // lcd dc    P9.19 gpio0[13]
+		reset-gpios = <&gpio0 12 0>;   // lcd reset P9.20 gpio0[12]
+		// backlight is optional
+		// choose either pwm or gpio control
+		//backlight = <&backlight_gpio>; // lcd lite  P9.23 gpio1[17]
+		backlight = <&backlight_pwm>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
+		// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
+		// rotation is optional
+		rotation = <270>;
+	};
+};
 
 / {
-	/*
-	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
-	 */
-	fragment@0 {
-		target-path="/";
-		__overlay__ {
-
-			chosen {
-				overlays {
-					BB-LCD-ADAFRUIT-24-SPI0-00A0 = __TIMESTAMP__;
-				};
-			};
-		};
-	};
-
-	/*
-	 * Free up the pins used by the cape from the pinmux helpers.
-	 */
-
-	fragment@1 {
-		target = <&ocp>;
-		__overlay__ {
-			P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
-			P9_19_pinmux { status = "disabled"; };	/* lcd dc */
-			P9_20_pinmux { status = "disabled"; };	/* lcd reset */
-		//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
-			P9_17_pinmux { status = "disabled"; };	/* spi0_cs0 */
-			P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
-			P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
-			P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
-		};
-	};
-
-	fragment@2 {
-		target = <&am33xx_pinmux>;
-		__overlay__ {
-			/* default state has all gpios released and mode set to uart1 */
-			/* See page 1446 of am35xx TRM */
-			bb_spi0_pins: pinmux_bb_spi0_pins {
-				pinctrl-single,pins = <
-					BONE_P9_22 0x30	/* mcasp0_aclkx.spi0_sclk,  INPUT_PULLUP | MODE0 */
-					BONE_P9_21 0x30	/* mcasp0_fsx.spi0_d0,      INPUT_PULLUP | MODE0 */
-					BONE_P9_18 0x10	/* mcasp0_axr0.spi0_d1,    OUTPUT_PULLUP | MODE0 */
-					BONE_P9_17 0x10	/* mcasp0_ahclkr.spi0_cs0, OUTPUT_PULLUP | MODE0 */
-					BONE_P9_19 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
-					BONE_P9_20 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
-					// No cs1 for spi0
-				>;
-			};
-
-			backlight_pwm_pins: pinmux_backlight_pwm_pins {
-				pinctrl-single,pins = <
-					BONE_P9_16 0x06 /* gpmc_a2.ehrpwm1b, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
-				>;
-			};  /* gpmc_a2.ehrpwm1b */
-		};
-	};
-
 	fragment@3 {
 		target = <&epwmss1>;
 		__overlay__ {
@@ -177,34 +182,6 @@
 				>;
 				default-brightness-level = <100>;
 				power-supply = <&bl_reg>;
-			};
-		};
-	};
-
-	fragment@6 {
-		target = <&spi0>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			status = "okay";
-			pinctrl-names = "default";
-			pinctrl-0 = <&bb_spi0_pins>;
-
-			display@0{
-				status = "okay";
-				compatible = "adafruit,yx240qv29", "ilitek,ili9341";
-				reg = <0>;
-				spi-max-frequency = <32000000>;
-				dc-gpios    = <&gpio0 13 0>;   // lcd dc    P9.19 gpio0[13]
-				reset-gpios = <&gpio0 12 0>;   // lcd reset P9.20 gpio0[12]
-				// backlight is optional
-				// choose either pwm or gpio control
-				//backlight = <&backlight_gpio>; // lcd lite  P9.23 gpio1[17]
-				backlight = <&backlight_pwm>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
-				// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
-				// rotation is optional
-				rotation = <270>;
 			};
 		};
 	};
