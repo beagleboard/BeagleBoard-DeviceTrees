@@ -17,14 +17,13 @@
  *
  * It should be connected to BeagleBone SPI0 bus:
  *
- *   P9.16 <--> lite (pwm) [OPTIONAL]
+ *   P9.16 <--> lite (pwm)
  *   P9.17 <--> tft_cs
  *   P9.18 <--> mosi
  *   P9.19 <--> dc
  *   P9.20 <--> reset
  *   P9.21 <--> miso
  *   P9.22 <--> clk
- *   P9.23 <--> lite (gpio) [OPTIONAL]
  *
  * This overlay will load the mainline tinydrm ili9341 driver by David Lechner:
  * https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/tiny/ili9341.c
@@ -49,9 +48,8 @@
 /plugin/;
 
 #include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/am33xx.h>
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 /*
  * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
@@ -72,8 +70,7 @@
 	P9_21_pinmux { status = "disabled"; };	/* spi0_d0 */
 	P9_18_pinmux { status = "disabled"; };	/* spi0_d1 */
 	P9_22_pinmux { status = "disabled"; };	/* spi0_sclk */
-	P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
-//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
+	P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight */
 };
 
 &am33xx_pinmux {
@@ -83,15 +80,14 @@
 			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)	/* P9_21 (B17) spi0_d0.spi0_d0 */
 			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)	/* P9_18 (B16) spi0_d1.spi0_d1 */
 			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)	/* P9_17 (A16) spi0_cs0.spi0_cs0 */
-			BONE_P9_19 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
-			BONE_P9_20 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
-			// No cs1 for spi0
+			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gpio, dc,       OUTPUT_PULLUP | MODE07*/
+			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gpio, reset,    OUTPUT_PULLUP | MODE07*/
 		>;
 	};
 
 	bb_lcd_pwm_backlight_pins: pinmux_bb_lcd_pwm_backlight_pins {
 		pinctrl-single,pins = <
-			BONE_P9_16 0x06 /* gpmc_a2.ehrpwm1b, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A3, PIN_OUTPUT, MUX_MODE6)	 /* gpmc_a2.ehrpwm1b, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
 		>;
 	};
 };
@@ -114,20 +110,15 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_spi0_pins>;
 
-	channel@0{
+	panel: channel@0{
 		status = "okay";
 		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
 		reg = <0>;
 		spi-max-frequency = <32000000>;
 		dc-gpios    = <&gpio0 13 0>;   // lcd dc    P9.19 gpio0[13]
 		reset-gpios = <&gpio0 12 0>;   // lcd reset P9.20 gpio0[12]
-		// backlight is optional
-		// choose either pwm or gpio control
-		//backlight = <&backlight_gpio>; // lcd lite  P9.23 gpio1[17]
-		backlight = <&backlight_pwm>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
-		// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
-		// rotation is optional
 		rotation = <270>;
+		backlight = <&backlight>;    // lcd lite  P9.16 gpmc_a2.ehrpwm1b
 	};
 };
 
@@ -139,25 +130,10 @@
 		regulator-boot-on;
 	};
 
-	/* backlight is optional */
-	backlight_gpio: backlight_gpio {
-		compatible = "gpio-backlight";
-		gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-		// connect lcd lite pin to P9.23 which is gpio1[17]
-		// refer to https://elinux.org/Beagleboard:Cape_Expansion_Headers
-	};
-
-	/*
-	 * Turn the PWM backlight on by setting bl_power to 0:
-	 * echo 0 > /sys/class/backlight/backlight_pwm/bl_power
-	 */
-	backlight_pwm: backlight {
-		// P9.16 <--> lite (pwm-backlight EHRPWM1A)
+	backlight: backlight {
 		status = "okay";
 		compatible = "pwm-backlight";
-		pwms = <&ehrpwm1 1 500000 0>;	// First digit: 0 for A side of pwm, 1 for B side
-										// 500000 is the PWM period in ns
-										// https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pwm/pwm.txt
+		pwms = <&ehrpwm1 1 500000 0>;
 		brightness-levels = <
 			0  1  2  3  4  5  6  7  8  9
 			10 11 12 13 14 15 16 17 18 19
