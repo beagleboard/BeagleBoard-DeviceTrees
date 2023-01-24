@@ -111,6 +111,7 @@
 	#size-cells = <0>;
 
 	status = "okay";
+	channel@0{ status = "disabled"; };
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_spi0_pins>;
 
