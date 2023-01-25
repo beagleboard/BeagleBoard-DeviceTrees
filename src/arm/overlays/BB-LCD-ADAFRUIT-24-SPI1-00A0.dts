@@ -74,6 +74,7 @@
 	P9_30_pinmux { status = "disabled"; };	/* spi1_d1 */
 	P9_31_pinmux { status = "disabled"; };	/* spi1_sclk */
 };
+
 &am33xx_pinmux {
 	/* default state has all gpios released and mode set to uart1 */
 	/* See page 1446 of am35xx TRM */
