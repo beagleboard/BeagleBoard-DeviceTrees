@@ -115,7 +115,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_spi1_pins>;
 
-	display@0{
+	channel@0{
 		status = "okay";
 		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
 		reg = <0>;
