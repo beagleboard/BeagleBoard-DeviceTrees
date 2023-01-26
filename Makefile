@@ -110,6 +110,7 @@ ifeq "$(DTCVERSION)" "1.6.1"
 	#Debian: 1.4.7-3 (Buster)
 	DTC_FLAGS += -Wno-unique_unit_address
 	DTC_FLAGS += -Wno-avoid_default_addr_size
+	DTC_FLAGS += -Wno-interrupt_provider
 endif
 
 # Beautify output
