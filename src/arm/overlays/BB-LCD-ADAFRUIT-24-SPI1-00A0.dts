@@ -113,6 +113,11 @@
 	pinctrl-0 = <&bb_spi1_pins>;
 
 	channel@0{
+		status = "disabled";
+		reg = <0>;
+	};
+
+	display@0{
 		status = "okay";
 		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
 		reg = <0>;
