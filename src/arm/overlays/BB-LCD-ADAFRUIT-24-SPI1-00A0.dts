@@ -50,7 +50,6 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
-#include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
 /*
  * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
@@ -68,7 +67,6 @@
 	P9_25_pinmux { status = "disabled"; };	/* lcd reset */
 	P9_16_pinmux { status = "disabled"; };  /* lcd pwm backlight (OPTIONAL) */
 	P9_27_pinmux { status = "disabled"; };	/* lcd dc */
-//	P9_23_pinmux { status = "disabled"; };	/* lcd gpio backlight (OPTIONAL) */
 	P9_28_pinmux { status = "disabled"; };	/* spi1_cs0 */
 	P9_29_pinmux { status = "disabled"; };	/* spi1_d0 */
 	P9_30_pinmux { status = "disabled"; };	/* spi1_d1 */
@@ -80,19 +78,18 @@
 	/* See page 1446 of am35xx TRM */
 	bb_spi1_pins: pinmux_bb_spi1_pins {
 		pinctrl-single,pins = <
-			BONE_P9_31 0x33	/* mcasp0_aclkx.spi1_sclk,  INPUT_PULLUP | MODE3 */
-			BONE_P9_29 0x33	/* mcasp0_fsx.spi1_d0,      INPUT_PULLUP | MODE3 */
-			BONE_P9_30 0x13	/* mcasp0_axr0.spi1_d1,    OUTPUT_PULLUP | MODE3 */
-			BONE_P9_28 0x13	/* mcasp0_ahclkr.spi1_cs0, OUTPUT_PULLUP | MODE3 */
-			BONE_P9_27 0x17	/* gpio, dc,    		   OUTPUT_PULLUP | MODE07*/
-			BONE_P9_25 0x17	/* gpio, reset, 		   OUTPUT_PULLUP | MODE07*/
-			// BONE_P9_42A 0x12	/* eCAP0_in_PWM0_out.spi1_cs1 OUTPUT_PULLUP | MODE2 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_INPUT, MUX_MODE3)	/* mcasp0_aclkx.spi1_sclk */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_INPUT, MUX_MODE3)	/* mcasp0_fsx.spi1_d0 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR0, PIN_INPUT, MUX_MODE3)	/* mcasp0_axr0.spi1_d1 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_INPUT, MUX_MODE3)	/* mcasp0_ahclkr.spi1_cs0 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gpio, dc */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_OUTPUT_PULLUP, MUX_MODE7)	/* gpio, reset */
 		>;
 	};
 
 	backlight_pwm_pins: pinmux_backlight_pwm_pins {
 		pinctrl-single,pins = <
-			BONE_P9_16 0x06 /* gpmc_a2.ehrpwm1b, OMAP_MUX_MODE6 | AM33XX_PIN_OUTPUT */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A3, PIN_OUTPUT, MUX_MODE6) /* gpmc_a2.ehrpwm1b */
 		>;
 	};  /* gpmc_a2.ehrpwm1b */
 };
@@ -116,6 +113,11 @@
 	pinctrl-0 = <&bb_spi1_pins>;
 
 	channel@0{
+		status = "disabled";
+		reg = <0>;
+	};
+
+	display@0{
 		status = "okay";
 		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
 		reg = <0>;
