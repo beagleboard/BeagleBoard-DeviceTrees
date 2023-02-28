@@ -776,7 +776,8 @@ ocp: &main_pmx0 {
 	BONE_PIN(P9_29, gpio,      P9_29A(PIN_INPUT, 7) P9_29B(PIN_INPUT, 7))	/* gpio1_14 */
 	BONE_PIN(P9_29, gpio_pu,   P9_29A(PIN_INPUT_PULLUP, 7) P9_29B(PIN_INPUT, 7))
 	BONE_PIN(P9_29, gpio_pd,   P9_29A(PIN_INPUT_PULLDOWN, 7) P9_29B(PIN_INPUT, 7))
-	BONE_PIN(P9_29, spi,       P9_29A(PIN_OUTPUT, 6) P9_29B(PIN_INPUT, 7))	/* spi7_d1 */
+	/* https://forum.beagleboard.org/t/bbai-64-bone-spi1-0-overlay-development-and-debug/34113/10 */
+	BONE_PIN(P9_29, spi,       P9_29A(PIN_INPUT, 6) P9_29B(PIN_INPUT, 7))   /* spi7_d1 (tested PIN_INPUT) */
 
 	/* P9_30 (V6/AE28) TIMER_IO0/PRG0_PRU0_GPO1 (gpio1_13/gpio0_44) V6_AE28 */
 	BONE_PIN(P9_30, default,   P9_30A(PIN_INPUT, 7) P9_30B(PIN_INPUT, 7))
