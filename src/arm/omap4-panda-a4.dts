@@ -1,11 +1,23 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 /dts-v1/;
 
 #include "omap443x.dtsi"
 #include "omap4-panda-common.dtsi"
+
+&emif1 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
+
+&emif2 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
 
 /* Pandaboard Rev A4+ have external pullups on SCL & SDA */
 &dss_hdmi_pins {

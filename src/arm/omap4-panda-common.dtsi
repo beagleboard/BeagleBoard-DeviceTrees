@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2011-2013 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2011-2013 Texas Instruments Incorporated - https://www.ti.com/
  */
 #include <dt-bindings/input/input.h>
 #include "elpida_ecb240abacn.dtsi"
@@ -481,16 +481,6 @@
 	};
 };
 
-&emif1 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-};
-
-&emif2 {
-	cs1-used;
-	device-handle = <&elpida_ECB240ABACN>;
-};
-
 &mcbsp1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcbsp1_pins>;
@@ -546,7 +536,7 @@
 };
 
 &dss {
-	status = "ok";
+	status = "okay";
 
 	port {
 		dpi_out: endpoint {
@@ -557,12 +547,12 @@
 };
 
 &dsi2 {
-	status = "ok";
+	status = "okay";
 	vdd-supply = <&vcxio>;
 };
 
 &hdmi {
-	status = "ok";
+	status = "okay";
 	vdda-supply = <&vdac>;
 
 	port {
