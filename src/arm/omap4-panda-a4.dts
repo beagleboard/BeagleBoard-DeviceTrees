@@ -7,6 +7,18 @@
 #include "omap443x.dtsi"
 #include "omap4-panda-common.dtsi"
 
+&emif1 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
+
+&emif2 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
+
 /* Pandaboard Rev A4+ have external pullups on SCL & SDA */
 &dss_hdmi_pins {
 	pinctrl-single,pins = <

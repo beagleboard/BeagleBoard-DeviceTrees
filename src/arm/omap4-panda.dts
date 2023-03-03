@@ -11,3 +11,15 @@
 	model = "TI OMAP4 PandaBoard";
 	compatible = "ti,omap4-panda", "ti,omap4430", "ti,omap4";
 };
+
+&emif1 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
+
+&emif2 {
+	cs1-used;
+	device-handle = <&elpida_ECB240ABACN>;
+	status = "okay";
+};
