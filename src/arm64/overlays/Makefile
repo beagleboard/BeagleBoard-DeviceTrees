@@ -25,7 +25,10 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-USB0-host.dtbo \
 	J721E-PRU-UIO-00A0.dtbo \
 	k3-j721e-beagleboneai64-RPi-7inch-panel.dtbo \
-	robotics-cape.dtbo
+	robotics-cape.dtbo \
+	k3-am625-beagleplay-bcfserial-no-firmware.dtbo \
+	k3-am625-beagleplay-csi2-ov5640.dtbo \
+	k3-am625-beagleplay-lt-lcd185.dtbo
 
 
 targets += dtbs dtbs_install
