@@ -968,6 +968,9 @@ bone_pwm_2: &main_ehrpwm0 {
 bone_spi_0: &main_spi6 {
 };
 
+bone_spi_1: &main_spi7 {
+};
+
 bone_uart_0: &main_uart0 {
 	/* TODO: also has option as "bone/uart/4" */
 	symlink = "bone/uart/0";
