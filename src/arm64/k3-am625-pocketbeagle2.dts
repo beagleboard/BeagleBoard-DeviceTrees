@@ -202,6 +202,16 @@
 			linux,default-trigger = "wlan";
 			function = LED_FUNCTION_WLAN;
 		};
+
+		led-5 {
+			label = "mcu_nrst";
+			gpios = <&main_gpio1 50 GPIO_ACTIVE_HIGH>;
+		};
+
+		led-6 {
+			label = "mcu_bsl";
+			gpios = <&mcu_gpio0 1 GPIO_ACTIVE_HIGH>;
+		};
 	};
 
 	gpio_keys: gpio-keys {
@@ -229,6 +239,12 @@
 			AM62X_IOPAD(0x0018, PIN_INPUT, 7) /* (F24) OSPI0_D3.GPIO0_6 */
 			AM62X_IOPAD(0x002c, PIN_INPUT, 7) /* (F23) OSPI0_CSn0.GPIO0_11 */
 			AM62X_IOPAD(0x00a4, PIN_INPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
+		>;
+	};
+
+	gpio1_pins_default: gpio1-pins-default {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x0254, PIN_INPUT, 7) /* (C20) USB0_DRVVBUS.GPIO1_50 NRST*/
 		>;
 	};
 
@@ -303,6 +319,12 @@
 		pinctrl-single,pins = <
 			AM62X_MCU_IOPAD(0x004c, PIN_INPUT_PULLUP, 0) /* (B9) WKUP_I2C0_SCL */
 			AM62X_MCU_IOPAD(0x0050, PIN_INPUT_PULLUP, 0) /* (A9) WKUP_I2C0_SDA */
+		>;
+	};
+
+	mcu_gpio0_pins_default: mcu_gpio0-pins-default {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x0004, PIN_OUTPUT, 7) /* (B8) MCU_SPI0_CS1 */
 		>;
 	};
 };
@@ -490,6 +512,8 @@
 
 &main_gpio1 {
 	/* XXX: FIXME PLEASE */
+	pinctrl-names = "default";
+	pinctrl-0 = <&gpio1_pins_default>;
 	gpio-line-names = "", "", "", "", "",			/* 0-4 */
 		"", "", "",					/* 5-7 */
 		"", "",						/* 8-9 */
@@ -505,6 +529,12 @@
 		"", "", "", "", "", "", "", "", "", "", "", "", /* 56-67 */
 		"", "", "", "", "", "", "", "", "", "", "", "", /* 68-79 */
 		"", "", "", "", "", "", "", "";			/* 80-87 */
+};
+
+&mcu_gpio0 {
+	/* XXX: FIXME PLEASE */
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_gpio0_pins_default>;
 };
 
 &main_i2c0 {
