@@ -8,6 +8,15 @@
 
 #include <dt-bindings/gpio/gpio.h>
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-am625-beagleplay-csi2-ov5640.kernel = __TIMESTAMP__;
+	};
+};
+
 / {
 	fragment@101 {
 		target-path = "/";
@@ -25,7 +34,7 @@
 &wkup_i2c0 {
 	status = "okay";
 	/* Pick conservative frequency to match up with as many modules */
-	clock-frequency = <400000>;
+	clock-frequency = <100000>;
 
 	ov5640: camera@3c {
 		compatible = "ovti,ov5640";
