@@ -40,24 +40,26 @@
 		#size-cells = <2>;
 		ranges;
 
-		ramoops@9ca00000 {
+		ramoops@9c700000 {
 			compatible = "ramoops";
-			reg = <0x00 0x9ca00000 0x00 0x00100000>;
+			reg = <0x00 0x9c700000 0x00 0x00100000>;
 			record-size = <0x8000>;
 			console-size = <0x8000>;
 			ftrace-size = <0x00>;
 			pmsg-size = <0x8000>;
 		};
 
-		secure_tfa_ddr: tfa@9e780000 {
-			reg = <0x00 0x9e780000 0x00 0x80000>;
-			alignment = <0x1000>;
-			no-map;
+		/* global cma region */
+		linux,cma {
+			compatible = "shared-dma-pool";
+			reusable;
+			size = <0x00 0x8000000>;
+			linux,cma-default;
 		};
 
-		secure_ddr: optee@9e800000 {
-			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-			alignment = <0x1000>;
+		rtos_ipc_memory_region: ipc-memories@9c800000 {
+			compatible = "shared-dma-pool";
+			reg = <0x00 0x9c800000 0x00 0x00300000>;
 			no-map;
 		};
 
@@ -82,6 +84,18 @@
 		wkup_r5fss0_core0_memory_region: r5f-memory@9db00000 {
 			compatible = "shared-dma-pool";
 			reg = <0x00 0x9db00000 0x00 0x00c00000>;
+			no-map;
+		};
+
+		secure_tfa_ddr: tfa@9e780000 {
+			reg = <0x00 0x9e780000 0x00 0x80000>;
+			alignment = <0x1000>;
+			no-map;
+		};
+
+		secure_ddr: optee@9e800000 {
+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
+			alignment = <0x1000>;
 			no-map;
 		};
 	};
@@ -133,12 +147,6 @@
 			sound-dai = <&tlv320aic3106>;
 			clocks = <&tlv320_mclk>;
 		};
-	};
-
-	hdmi_mstrclk: hdmi-mstrclk {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <12288000>;
 	};
 
 	hdmi: connector {
@@ -326,6 +334,30 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c0_pins_default>;
 	clock-frequency = <400000>;
+
+	typec_pd0: tps6598x@3f {
+		compatible = "ti,tps6598x";
+		reg = <0x3f>;
+
+		connector {
+			compatible = "usb-c-connector";
+			label = "USB-C";
+			self-powered;
+			data-role = "dual";
+			power-role = "sink";
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+					usb_con_hs: endpoint {
+						remote-endpoint = <&usb0_hs_ep>;
+					};
+				};
+			};
+		};
+	};
 };
 
 &main_i2c1 {
@@ -347,14 +379,14 @@
 	};
 
 	sii9022: sii9022@3b {
+		#sound-dai-cells = <0>;
 		compatible = "sil,sii9022";
 		reg = <0x3b>;
 
-		clocks = <&hdmi_mstrclk>;
-		clock-names = "mclk";
-
 		interrupt-parent = <&exp1>;
 		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+
+		sil,i2s-data-lanes = < 0 >;
 
 		ports {
 			#address-cells = <1>;
@@ -461,7 +493,16 @@
 };
 
 &usb0 {
-	dr_mode = "peripheral";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	usb-role-switch;
+
+	port@0 {
+		reg = <0>;
+		usb0_hs_ep: endpoint {
+		    remote-endpoint = <&usb_con_hs>;
+	       };
+	};
 };
 
 &usb1 {

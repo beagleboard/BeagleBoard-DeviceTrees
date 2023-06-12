@@ -363,16 +363,43 @@
 			J721E_WKUP_IOPAD(0xb8, PIN_INPUT, 7) /* (F28) WKUP_GPIO0_2 */
 		>;
 	};
+
+	wkup_gpio_pins_default: wkup-gpio-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xd0, PIN_INPUT, 7) /* (C14) WKUP_GPIO0_8 */
+		>;
+	};
+
+	mcu_uart0_pins_default: mcu-uart0-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xe8, PIN_INPUT, 0) /* (H29) WKUP_GPIO0_14.MCU_UART0_CTSn */
+			J721E_WKUP_IOPAD(0xec, PIN_OUTPUT, 0) /* (J27) WKUP_GPIO0_15.MCU_UART0_RTSn */
+			J721E_WKUP_IOPAD(0xe4, PIN_INPUT, 0) /* (H28) WKUP_GPIO0_13.MCU_UART0_RXD */
+			J721E_WKUP_IOPAD(0xe0, PIN_OUTPUT, 0) /* (G29) WKUP_GPIO0_12.MCU_UART0_TXD */
+		>;
+	};
+
+	wkup_uart0_pins_default: wkup-uart0-pins-default {
+		pinctrl-single,pins = <
+			J721E_WKUP_IOPAD(0xc8, PIN_INPUT, 0) /* (F29) WKUP_GPIO0_6.WKUP_UART0_CTSn */
+			J721E_WKUP_IOPAD(0xcc, PIN_OUTPUT, 0) /* (G28) WKUP_GPIO0_7.WKUP_UART0_RTSn */
+			J721E_WKUP_IOPAD(0xa0, PIN_INPUT, 0) /* (J29) WKUP_UART0_RXD */
+			J721E_WKUP_IOPAD(0xa4, PIN_OUTPUT, 0) /* (J28) WKUP_UART0_TXD */
+		>;
+	};
 };
 
 &wkup_uart0 {
 	/* Wakeup UART is used by System firmware */
 	status = "reserved";
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_uart0_pins_default>;
 };
 
 &mcu_uart0 {
 	status = "okay";
-	/* Default pinmux */
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_uart0_pins_default>;
 };
 
 &main_uart0 {
@@ -418,6 +445,11 @@
 
 &main_gpio7 {
 	status = "disabled";
+};
+
+&wkup_gpio0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_gpio_pins_default>;
 };
 
 &wkup_gpio1 {
@@ -693,6 +725,11 @@
 &mcu_cpsw {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
+
+	cpts@3d000 {
+		/* Map HW4_TS_PUSH to GENF1 */
+		ti,pps = <3 1>;
+	};
 };
 
 &davinci_mdio {
@@ -967,4 +1004,20 @@
 
 &dphy1 {
 	status = "okay";
+};
+
+#define K3_TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
+
+&timesync_router {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_cpsw_cpts>;
+
+	/* Use Time Sync Router to map GENF1 input to HW4_TS_PUSH output */
+	mcu_cpsw_cpts: mcu-cpsw-cpts {
+		pinctrl-single,pins = <
+			/* pps [mcu cpsw cpts genf1] in17 -> out25 [mcu cpsw cpts hw4_push] */
+			K3_TS_OFFSET(25, 17)
+			>;
+	};
 };
