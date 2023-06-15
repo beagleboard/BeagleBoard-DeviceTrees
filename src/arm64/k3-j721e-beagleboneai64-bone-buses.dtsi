@@ -15,15 +15,16 @@
 		compatible = "gpio-keys";
 		autorepeat;
 
-#define BONE_KEY(XX) \
-		bone_key_##XX: key_##XX { \
-			status = "disabled"; \
-			label = #XX ; \
-			linux,code = <KEY_UNKNOWN>; \
-			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
-			pinctrl-names = "default"; \
-			pinctrl-0 = <&##XX##_gpio_pd_pin>; \
-		}
+		/* macro: BONE_KEY(<headerpin>) */
+		#define BONE_KEY(PX_YY) \
+			bone_key_##PX_YY: key_##PX_YY { \
+				status = "disabled"; \
+				label = #PX_YY ; \
+				linux,code = <KEY_UNKNOWN>; \
+				gpios = <gpio_##PX_YY GPIO_ACTIVE_HIGH>; \
+				pinctrl-names = "default"; \
+				pinctrl-0 = <&##PX_YY##_gpio_pd_pin>; \
+			}
 
 		BONE_KEY(P8_03);
 		BONE_KEY(P8_04);
@@ -106,97 +107,105 @@
 /* LEDs */
 /********/
 &{/} {
-	bone_leds: bone-leds {
+	gpio-leds {
 		compatible = "gpio-leds";
+		pinctrl-names = "default";
 
-#define BONE_LED(XX) \
-		bone_led_##XX: led_##XX { \
-			status = "disabled"; \
-			label = #XX ; \
-			linux,default-trigger = "default-off"; \
-			gpios = <gpio_##XX GPIO_ACTIVE_HIGH>; \
-			pinctrl-names = "default"; \
-			pinctrl-0 = <&##XX##_gpio_pin>; \
-		}
+		/* TODO: define one macro style to include semicolon or not */
+		/* TODO: determine if pinctrl setting can go here */
 
-		BONE_LED(P8_03);
-		BONE_LED(P8_04);
-		BONE_LED(P8_05);
-		BONE_LED(P8_06);
-		BONE_LED(P8_07);
-		BONE_LED(P8_08);
-		BONE_LED(P8_09);
-		BONE_LED(P8_10);
-		BONE_LED(P8_11);
-		BONE_LED(P8_12);
-		BONE_LED(P8_13);
-		BONE_LED(P8_14);
-		BONE_LED(P8_15);
-		BONE_LED(P8_16);
-		BONE_LED(P8_17);
-		BONE_LED(P8_18);
-		BONE_LED(P8_19);
-		BONE_LED(P8_20);
-		BONE_LED(P8_21);
-		BONE_LED(P8_22);
-		BONE_LED(P8_23);
-		BONE_LED(P8_24);
-		BONE_LED(P8_25);
-		BONE_LED(P8_26);
-		BONE_LED(P8_27);
-		BONE_LED(P8_28);
-		BONE_LED(P8_29);
-		BONE_LED(P8_30);
-		BONE_LED(P8_31);
-		BONE_LED(P8_32);
-		BONE_LED(P8_33);
-		BONE_LED(P8_34);
-		BONE_LED(P8_35);
-		BONE_LED(P8_36);
-		BONE_LED(P8_37);
-		BONE_LED(P8_38);
-		BONE_LED(P8_39);
-		BONE_LED(P8_40);
-		BONE_LED(P8_41);
-		BONE_LED(P8_42);
-		BONE_LED(P8_43);
-		BONE_LED(P8_44);
-		BONE_LED(P8_45);
-		BONE_LED(P8_46);
-		BONE_LED(P9_11);
-		BONE_LED(P9_12);
-		BONE_LED(P9_13);
-		BONE_LED(P9_14);
-		BONE_LED(P9_15);
-		BONE_LED(P9_16);
-		BONE_LED(P9_17);
-		BONE_LED(P9_18);
-		BONE_LED(P9_19);
-		BONE_LED(P9_20);
-		BONE_LED(P9_21);
-		BONE_LED(P9_22);
-		BONE_LED(P9_23);
-		BONE_LED(P9_24);
-		BONE_LED(P9_25);
-		BONE_LED(P9_26);
-		BONE_LED(P9_27);
-		BONE_LED(P9_28);
-		BONE_LED(P9_29);
-		BONE_LED(P9_30);
-		BONE_LED(P9_31);
-		BONE_LED(P9_33);
-		BONE_LED(P9_35);
-		BONE_LED(P9_36);
-		BONE_LED(P9_37);
-		BONE_LED(P9_38);
-		BONE_LED(P9_39);
-		BONE_LED(P9_40);
-		BONE_LED(P9_41);
-		BONE_LED(P9_42);
+		/* macro: BONE_LED(<headerpin>) */
+		#define BONE_LED(PX_YY)\
+			bone_led_##PX_YY##: led_##PX_YY {\
+				label = #PX_YY;\
+				status = "disabled";\
+				linux,default-trigger = "default-off";\
+				gpios = <gpio_##PX_YY GPIO_ACTIVE_HIGH>;\
+				pinctrl-names = "default";\
+				pinctrl-0 = <&##PX_YY##_gpio_pin>;\
+			};
+
+		/*P8 header Bone LEDs*/
+		BONE_LED(P8_03)
+		BONE_LED(P8_04)
+		BONE_LED(P8_05)
+		BONE_LED(P8_06)
+		BONE_LED(P8_07)
+		BONE_LED(P8_08)
+		BONE_LED(P8_09)
+		BONE_LED(P8_10)
+		BONE_LED(P8_11)
+		BONE_LED(P8_12)
+		BONE_LED(P8_13)
+		BONE_LED(P8_14)
+		BONE_LED(P8_15)
+		BONE_LED(P8_16)
+		BONE_LED(P8_17)
+		BONE_LED(P8_18)
+		BONE_LED(P8_19)
+		BONE_LED(P8_20)
+		BONE_LED(P8_21)
+		BONE_LED(P8_22)
+		BONE_LED(P8_23)
+		BONE_LED(P8_24)
+		BONE_LED(P8_25)
+		BONE_LED(P8_26)
+		BONE_LED(P8_27)
+		BONE_LED(P8_28)
+		BONE_LED(P8_29)
+		BONE_LED(P8_30)
+		BONE_LED(P8_31)
+		BONE_LED(P8_32)
+		BONE_LED(P8_33)
+		BONE_LED(P8_34)
+		BONE_LED(P8_35)
+		BONE_LED(P8_36)
+		BONE_LED(P8_37)
+		BONE_LED(P8_38)
+		BONE_LED(P8_39)
+		BONE_LED(P8_40)
+		BONE_LED(P8_41)
+		BONE_LED(P8_42)
+		BONE_LED(P8_43)
+		BONE_LED(P8_44)
+		BONE_LED(P8_45)
+		BONE_LED(P8_46)
+
+		/*P9 header Bone LEDs*/
+		BONE_LED(P9_11)
+		BONE_LED(P9_12)
+		BONE_LED(P9_13)
+		BONE_LED(P9_14)
+		BONE_LED(P9_15)
+		BONE_LED(P9_16)
+		BONE_LED(P9_17)
+		BONE_LED(P9_18)
+		BONE_LED(P9_19)
+		BONE_LED(P9_20)
+		BONE_LED(P9_21)
+		BONE_LED(P9_22)
+		BONE_LED(P9_23)
+		BONE_LED(P9_24)
+		BONE_LED(P9_25)
+		BONE_LED(P9_26)
+		BONE_LED(P9_27)
+		BONE_LED(P9_28)
+		BONE_LED(P9_29)
+		BONE_LED(P9_30)
+		BONE_LED(P9_31)
+		BONE_LED(P9_33)
+		BONE_LED(P9_35)
+		BONE_LED(P9_36)
+		BONE_LED(P9_37)
+		BONE_LED(P9_38)
+		BONE_LED(P9_39)
+		BONE_LED(P9_40)
+		BONE_LED(P9_41)
+		BONE_LED(P9_42)
 	};
 };
 
-&main_pmx0 {
+ocp: &main_pmx0 {
 /* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */
 #define BONE_PIN(XX,ZZ,QQ) \
 	XX##_##ZZ##_pin: pinmux_##XX##_##ZZ##_pin { pinctrl-single,pins = < QQ >; };
@@ -797,7 +806,8 @@
 	BONE_PIN(P9_29, gpio,      P9_29A(PIN_INPUT, 7) P9_29B(PIN_INPUT, 7))	/* gpio1_14 */
 	BONE_PIN(P9_29, gpio_pu,   P9_29A(PIN_INPUT_PULLUP, 7) P9_29B(PIN_INPUT, 7))
 	BONE_PIN(P9_29, gpio_pd,   P9_29A(PIN_INPUT_PULLDOWN, 7) P9_29B(PIN_INPUT, 7))
-	BONE_PIN(P9_29, spi,       P9_29A(PIN_OUTPUT, 6) P9_29B(PIN_INPUT, 7))	/* spi7_d1 */
+	/* https://forum.beagleboard.org/t/bbai-64-bone-spi1-0-overlay-development-and-debug/34113/10 */
+	BONE_PIN(P9_29, spi,       P9_29A(PIN_INPUT, 6) P9_29B(PIN_INPUT, 7))   /* spi7_d1 (tested PIN_INPUT) */
 
 	/* P9_30 (V6/AE28) TIMER_IO0/PRG0_PRU0_GPO1 (gpio1_13/gpio0_44) V6_AE28 */
 	BONE_PIN(P9_30, default,   P9_30A(PIN_INPUT, 7) P9_30B(PIN_INPUT, 7))
@@ -991,6 +1001,9 @@ bone_spi_0: &main_spi6 {
 
 bone_spi_1: &main_spi7 {
 	status = "disabled";
+};
+
+bone_spi_1: &main_spi7 {
 };
 
 bone_uart_0: &main_uart0 {

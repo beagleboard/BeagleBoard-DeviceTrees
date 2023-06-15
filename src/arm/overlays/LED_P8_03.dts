@@ -7,6 +7,6 @@
 	};
 };
 
-&led_P8_03 {
-    status = "okay";
+&bone_led_P8_03 {
+	status = "okay";
 };
