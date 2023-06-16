@@ -14,8 +14,10 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BONE-I2C1.dtbo \
 	BONE-I2C2.dtbo \
 	BONE-I2C3.dtbo \
+	BONE-I2C4.dtbo \
 	BONE-LED_P8_03.dtbo \
 	BONE-LED_P9_11.dtbo \
+	BONE-LED_P9_14.dtbo \
 	BONE-PWM0.dtbo \
 	BONE-PWM1.dtbo \
 	BONE-PWM2.dtbo \
@@ -27,10 +29,12 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	BPLAY-CSI-ov5640.dtbo	\
 	J721E-PRU-UIO-00A0.dtbo \
 	k3-j721e-beagleboneai64-RPi-7inch-panel.dtbo \
+	robotics-cape-spitest.dtbo \
 	robotics-cape.dtbo \
 	k3-am625-beagleplay-bcfserial-no-firmware.dtbo \
 	k3-am625-beagleplay-csi2-ov5640.dtbo \
-	k3-am625-beagleplay-lt-lcd185.dtbo
+	k3-am625-beagleplay-lt-lcd185.dtbo	\
+	k3-am625-beagleplay-release-mikrobus.dtbo
 
 
 targets += dtbs dtbs_install
