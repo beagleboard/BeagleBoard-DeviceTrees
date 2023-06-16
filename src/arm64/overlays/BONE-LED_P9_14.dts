@@ -3,7 +3,7 @@
 
 &{/chosen} {
 	overlays {
-		LED_P9_14.kernel = __TIMESTAMP__;
+		BONE-LED_P9_14.kernel = __TIMESTAMP__;
 	};
 };
 
