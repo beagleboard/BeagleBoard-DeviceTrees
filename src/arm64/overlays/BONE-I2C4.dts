@@ -13,10 +13,10 @@
  */
 &{/chosen} {
 	overlays {
-		BONE-I2C1.kernel = __TIMESTAMP__;
+		BONE-I2C4.kernel = __TIMESTAMP__;
 	};
 };
 
-&bone_i2c_1 {
+&bone_i2c_4 {
 	status = "okay";
 };

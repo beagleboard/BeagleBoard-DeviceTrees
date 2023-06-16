@@ -20,60 +20,78 @@
 	};
 };
 
-&{/} {
-	gpio_keys: gpio-keys {
-		compatible = "gpio-keys";
+&bone_key_P9_31 {
+	/* P9_31 - USER_BUTTON1 - MODE */
+	status = "okay";
+	label = "MODE";
+	linux,code = <KEY_MODE>;
+	gpios = <gpio_P9_31 GPIO_ACTIVE_LOW>;
+};
 
-		cape_btn0: cape_btn0 {
-			label = "MODE";
-			linux,code = <KEY_MODE>;
-			gpios = <gpio_P9_31 GPIO_ACTIVE_LOW>;
-		};
-
-		cape_btn1: cape_btn1 {
-			label = "PAUSE";
-			linux,code = <KEY_PAUSE>;
-			gpios = <gpio_P9_41 GPIO_ACTIVE_LOW>;
-		};
-	};
+&bone_key_P9_41 {
+	/* P9_41 - USER_BUTTON2 - PAUSE */
+	status = "okay";
+	label = "PAUSE";
+	linux,code = <KEY_PAUSE>;
+	gpios = <gpio_P9_41 GPIO_ACTIVE_LOW>;
 };
 
 &bone_led_P9_14 {
+	/* P9_14 * LED1 */
 	status = "okay";
 	label = "green";
 	linux,default-trigger = "default-off";
 };
 
 &bone_led_P9_16 {
+	/* P9_16 - LED2 */
 	status = "okay";
 	label = "red";
 	linux,default-trigger = "default-off";
 };
 
 &bone_led_P8_18 {
+	/* P8_18 - LED3 */
 	status = "okay";
 	label = "bat25";
 	linux,default-trigger = "default-off";
 };
 
 &bone_led_P8_13 {
+	/* P8_13 - LED4 */
 	status = "okay";
 	label = "bat75";
 	linux,default-trigger = "default-off";
 };
 
 &bone_led_P8_21 {
+	/* P8_21 - CAP_OE#1 */
 	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P8_21_gpio_pd_pin
+	>;
 	label = "capture_oe1";
 	linux,default-trigger = "default-off";
 	gpios = <gpio_P8_21 GPIO_ACTIVE_LOW>;
 };
 
 &bone_led_P8_23 {
+	/* P8_23 - CAP_OE#2 */
 	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P8_23_gpio_pd_pin
+	>;
 	label = "capture_oe2";
 	linux,default-trigger = "default-on";
 	gpios = <gpio_P8_23 GPIO_ACTIVE_LOW>;
+};
+
+&bone_uart_6 {
+	/* P8_29 - Lidar_RX - UART8_TX */
+	/* P8_28 - Lidar_TX - UART8_RX */
+	status = "okay";
 };
 
 &cape_header {
@@ -84,15 +102,11 @@
 		&P8_07_gpio_pin		/* Motor1_OC# */
 		&P8_09_gpio_pin		/* Motor4_FAULT# */
 		&P8_11_pruout_pin	/* Motor4_PWM */
-		&P8_13_gpio_pin		/* LED4 */
 		&P8_15_pruin_pin	/* Capture4 */
 		&P8_17_gpio_pd_pin	/* Motor4_IN1 */
 		&P8_19_gpio_pd_pin	/* Motor4_IN2 */
-		&P8_21_gpio_pd_pin	/* CAP_OE#1 */
-		&P8_23_gpio_pd_pin	/* CAP_OE#2 */
 		&P8_25_pruin_pin	/* Ultrasonic1 */
 		&P8_27_pruin_pin	/* Ultrasonic2 */
-		&P8_29_uart_pin		/* Lidar_RX - UART8_TX */
 		&P8_31_gpio_pin		/* Motor3_FAULT# */
 		&P8_33_qep_pin		/* QEP2_B - EQEP1_B */
 		&P8_35_qep_pin		/* QEP2_A - EQEP1_A */
@@ -109,15 +123,10 @@
 		&P8_12_pruout_pin	/* Motor3_PWM */
 		&P8_14_pruout_pin	/* Servo2 */
 		&P8_16_gpio_pd_pin	/* Motor3_IN */
-		&P8_18_gpio_pin		/* LED3 */
 		&P8_20_pruout_pin	/* Servo5 */
-		&P8_22_uart_pin		/* BCF_SERIAL_TX - UART2_RX */
 		&P8_24_pruout_pin	/* Lidar_PWM */
-		&P8_26_pruout_pin	/* Servo6 */
-		&P8_28_uart_pin		/* Lidar_TX - UART8_RX */
 		&P8_30_gpio_pin		/* Lidar_OE */
-		&P8_32_gpio_pin		/* BCF_RST */
-		&P8_34_uart_pin		/* BCF_SERIAL_RX - UART2_TX */
+		&P8_26_pruout_pin	/* Servo6 */
 		&P8_36_gpio_pin		/* 6DOF_INT */
 		&P8_38_gpio_pd_pin	/* Motor2_IN1 */
 		&P8_40_gpio_pd_pin	/* Motor2_IN2 */
@@ -127,28 +136,16 @@
 		&P9_11_gpio_pin		/* Motor2_FAULT# */
 		&P9_13_pruout_pin	/* Motor2_PWM */
 		&P9_15_pruout_pin	/* Servo10 */
-		&P9_17_spi_pin  	/* Barometer_CS# - SPI6_CS0 */
 		&P9_19_pruout_pin	/* Servo1 */
-		&P9_21_spi_pin		/* SPI6_D0 - SDO */
-		&P9_23_spi_pin		/* IMU_CS# - SPI6_CS1 */
-		&P9_25_gpio_pin		/* Magnetometer_CS# */
 		&P9_27_qep_pin		/* QEP1_B - EQEP0_B */
 		&P9_29_pruin_pin	/* Capture3 */
-		&P9_31_gpio_pin		/* USER_BUTTON1 - MODE */
 		&P9_33_default_pin	/* Motor2_Current - AIN4 */
 		&P9_35_default_pin	/* Motor3_Current - AIN6 */
 		&P9_37_uart_pin		/* GPS_TXD */
 		&P9_39_default_pin	/* Battery_Voltage - AIN0 */
-		&P9_41_gpio_pin		/* USER_BUTTON2 - PAUSE */
 
 		&P9_12_pruout_pin	/* Servo4 */
-		&P9_14_gpio_pin		/* LED1 */
-		&P9_16_gpio_pin		/* LED2 */
-		&P9_18_spi_pin		/* SPI6_D1 - SDI */
 		&P9_20_pruout_pin	/* Servo3 */
-		&P9_22_spi_pin		/* SPI6_CLK */
-		&P9_24_i2c_pin		/* EEPROM_I2C_SCL */
-		&P9_26_i2c_pin		/* EEPROM_I2C_SDA */
 		&P9_28_pruin_pin	/* Capture1 */
 		&P9_30_pruin_pin	/* Capture2 */
 		&P9_36_default_pin	/* Motor4_Current - AIN5 */
@@ -158,7 +155,29 @@
 	>;
 };
 
+&bone_i2c_0 {
+	/* P9_24 - EEPROM_I2C_SCL */
+	/* P9_26 - EEPROM_I2C_SDA */
+	status = "okay";
+};
+
 &bone_spi_0 {
+	/* P9_18 - SPI6_D1 - SDI */
+	/* P9_21 - SPI6_D0 - SDO */
+	/* P9_22 - SPI6_CLK */
+	/* P9_17 - Barometer_CS# - SPI6_CS0 */
+	/* P9_23 - IMU_CS# - SPI6_CS1 */
+	/* P9_25 - Magnetometer_CS# */
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <
+		&P9_17_spi_pin /* spi6_cs0 */
+		&P9_22_spi_pin /* spi6_clk */
+		&P9_21_spi_pin /* spi6_d0 */
+		&P9_18_spi_pin /* spi6_d1 */
+		&P9_23_spi_pin /* spi6_cs1 */
+		&P9_25_gpio_pin
+	>;
 	ti,spi-num-cs = <3>;
 	ti,pindir-d0-out-d1-in;
 	cs-gpios = <0>, /* P9_17 */
@@ -254,8 +273,10 @@
 	};
 };
 
-/* TODO: this is not the standard bone/uart/1 pinout location */
-&bone_uart_1 {
+&bone_uart_7 {
+	/* P8_22 - BCF_SERIAL_TX - UART2_RX */
+	/* P8_34 - BCF_SERIAL_RX - UART2_TX */
+	/* P8_32 - BCF_RST */
 	status = "okay";
 
 	bcfserial {

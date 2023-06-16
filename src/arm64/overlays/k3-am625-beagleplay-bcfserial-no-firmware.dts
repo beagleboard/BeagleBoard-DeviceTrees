@@ -8,6 +8,12 @@
 /dts-v1/;
 /plugin/;
 
+&{/chosen} {
+	overlays {
+		k3-am625-beagleplay-bcfserial-no-firmware = __TIMESTAMP__;
+	};
+};
+
 &main_uart6 {
 	bcfserial {
 		status = "disabled";
