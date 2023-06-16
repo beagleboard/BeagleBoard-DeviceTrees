@@ -463,7 +463,6 @@
 };
 
 &main_uart8 {
-	/* UART not brought out */
 	status = "disabled";
 };
 
