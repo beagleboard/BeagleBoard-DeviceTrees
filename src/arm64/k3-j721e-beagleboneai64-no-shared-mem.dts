@@ -23,7 +23,7 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
-		base_dtb = "k3-j721e-beagleboneai64.dts";
+		base_dtb = "k3-j721e-beagleboneai64-no-shared-mem.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
 	};
 
