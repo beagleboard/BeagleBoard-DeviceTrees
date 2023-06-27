@@ -14,7 +14,6 @@
 #include <dt-bindings/pinctrl/dra.h>
 #include "bbai-bone-buses.dtsi"
 #include "am572x-bone-common-univ.dtsi"
-#include "am57xx-cmem.dtsi"
 
 / {
 	model = "BeagleBoard.org BeagleBone AI";
@@ -25,6 +24,13 @@
 		rtc0 = &tps659038_rtc;
 		rtc1 = &rtc;
 		display1 = &hdmi_conn;
+		mmc0 = &mmc1;
+		mmc1 = &mmc2;
+		mmc2 = &mmc4;
+		i2c0 = &i2c1;
+		i2c1 = &i2c5;
+		i2c2 = &i2c4;
+		i2c3 = &i2c3;
 	};
 
 	chosen {
@@ -453,6 +459,7 @@
 &i2c1 {
 	status = "okay";
 	clock-frequency = <400000>;
+	symlink = "bone/i2c/0";
 
 	tps659038: tps659038@58 {
 		compatible = "ti,tps659038";
@@ -767,6 +774,7 @@
 
 &uart1 {
 	status = "okay";
+	symlink = "bone/uart/0";
 };
 
 &davinci_mdio {
@@ -1048,6 +1056,7 @@
 &i2c4 {
 	status = "okay";
 	clock-frequency = <100000>;
+	symlink = "bone/i2c/2";
 };
 
 /* thermal hacks */
