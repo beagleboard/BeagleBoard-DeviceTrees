@@ -35,7 +35,8 @@ dtbo-$(CONFIG_ARCH_K3) += \
 	k3-am625-beagleplay-bcfserial-no-firmware.dtbo \
 	k3-am625-beagleplay-csi2-ov5640.dtbo \
 	k3-am625-beagleplay-lt-lcd185.dtbo	\
-	k3-am625-beagleplay-release-mikrobus.dtbo
+	k3-am625-beagleplay-release-mikrobus.dtbo \
+	k3-am625-beagleplay-release-mikrobus-set-gpios-all.dtbo
 
 
 targets += dtbs dtbs_install
