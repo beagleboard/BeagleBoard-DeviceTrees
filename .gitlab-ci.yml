@@ -6,3 +6,10 @@ build:
   stage: build
   script:
     - make CC=gcc CROSS_COMPILE= all
+    - make CC=gcc CROSS_COMPILE= KERNEL_VERSION=cross install_arm
+    - make CC=gcc CROSS_COMPILE= KERNEL_VERSION=cross install_arm64
+    - make CC=gcc CROSS_COMPILE= KERNEL_VERSION=cross install_riscv
+    - cp -R /boot boot
+  artifacts:
+    paths:
+      - boot

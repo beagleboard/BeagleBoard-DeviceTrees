@@ -171,6 +171,8 @@ install_arm:
 install_arm64:
 	$(Q)$(MAKE) ARCH=arm64 install_arch_arm64
 
+install_riscv:
+	$(Q)$(MAKE) ARCH=riscv install_arch_riscv
 
 ifeq ($(ARCH),)
 
@@ -253,9 +255,19 @@ install_arch_arm64: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
 	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/ti/
-	cp -v $(obj)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
+	cp -v $(obj_overlays)/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/
 	cp /boot/dtbs/$(KERNEL_VERSION)/ti/k3-*.dtb /boot/firmware/ || true
 	cp /boot/dtbs/$(KERNEL_VERSION)/ti/overlays/*.dtbo /boot/firmware/overlays/ || true
+
+PHONY += install_arch_riscv
+install_arch_riscv: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
+	# install Device Tree
+	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/thead/overlays/
+	mkdir -p /boot/firmware/overlays
+	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/thead
+	cp -v $(obj_overlays)/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/thead/overlays
+	cp /boot/dtbs/$(KERNEL_VERSION)/thead/light-*.dtb /boot/firmware/ || true
+	cp /boot/dtbs/$(KERNEL_VERSION)/thead/overlays/*.dtbo /boot/firmware/overlays/ || true
 
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
