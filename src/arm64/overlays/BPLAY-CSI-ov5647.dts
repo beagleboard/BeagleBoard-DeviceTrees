@@ -25,7 +25,7 @@
 			clk_ov5647_fixed: ov5647-xclk {
 				compatible = "fixed-clock";
 				#clock-cells = <0>;
-				clock-frequency = <12000000>;
+				clock-frequency = <25000000>;
 			};
 		};
 	};
