@@ -50,6 +50,8 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
+		base_dtb = "k3-am625-beagleplay.dts";
+		base_dtb_timestamp = __TIMESTAMP__;
 	};
 
 	memory@80000000 {
@@ -723,11 +725,11 @@
 };
 
 &a53_opp_table {
-		/* Requires VDD_CORE to be at 0.85V, but we cannot do voltage scale */
-		opp-1400000000 {
-			opp-hz = /bits/ 64 <1400000000>;
-			opp-supported-hw = <0x01 0x0004>;
-		};
+	/* Requires VDD_CORE to be at 0.85V */
+	opp-1400000000 {
+		opp-hz = /bits/ 64 <1400000000>;
+		opp-supported-hw = <0x01 0x0004>;
+	};
 };
 
 /* cbass_main */
@@ -824,6 +826,7 @@
 
 &usbss0 {
 	ti,vbus-divider;
+	status = "okay";
 };
 
 &usb0 {
@@ -874,7 +877,8 @@
 		"", "", "", "", "", "", "", "", "", "", "", "", /* 55-66 */
 		"", "", "", "", "", "", "", "", "", "", "", "", /* 67-78 */
 		"", "", "", "", "", "",				/* 79-84 */
-		"BITBANG_MDIO_DATA", "BITBANG_MDIO_CLK";	/* 85-86 */
+		"BITBANG_MDIO_DATA", "BITBANG_MDIO_CLK",	/* 85-86 */
+		"", "", "", "", "";				/* 87-91 */
 };
 
 &main_gpio1 {
@@ -889,10 +893,7 @@
 		"MIKROBUS_GPIO1_24", "MIKROBUS_GPIO1_25",	/* 24-25 */
 		"", "", "", "", "", "", "", "", "", "", "", "",	/* 26-37 */
 		"", "", "", "", "", "", "", "", "", "",		/* 38-47 */
-		"SD_CD", "SD_VOLT_SEL", "", "", "", "", "", "",	/* 48-55 */
-		"", "", "", "", "", "", "", "", "", "", "", "", /* 56-67 */
-		"", "", "", "", "", "", "", "", "", "", "", "", /* 68-79 */
-		"", "", "", "", "", "", "", "";			/* 80-87 */
+		"SD_CD", "SD_VOLT_SEL", "", "";			/* 48-51 */
 };
 
 &mcu_gpio0 {
@@ -908,6 +909,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&local_i2c_pins_default>;
 	clock-frequency = <400000>;
+	status = "okay";
 
 	eeprom@50 {
 		compatible = "atmel,24c32";
@@ -1013,6 +1015,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&grove_pins_default>;
 	clock-frequency = <10000>;
+	status = "okay";
 	symlink = "play/grove/i2c";
 };
 
@@ -1020,6 +1023,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c2_1v8_pins_default>;
 	clock-frequency = <10000>;
+	status = "okay";
 
 	it66121hdmitx: hdmitx@4c {
 		#sound-dai-cells = <0>;
@@ -1062,9 +1066,9 @@
 };
 
 &main_i2c3 {
-	symlink = "play/mikrobus/i2c";
-	status = "okay";
 	clock-frequency = <400000>;
+	status = "okay";
+	symlink = "play/mikrobus/i2c";
 };
 
 &mailbox0_cluster0 {
@@ -1106,6 +1110,7 @@
 	pinctrl-0 = <&emmc_pins_default>;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
+	status = "okay";
 };
 
 &sdhci1 {
@@ -1120,6 +1125,7 @@
 	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
 	cd-debounce-delay-ms = <100>;
 	ti,fails-without-test-cd;
+	status = "okay";
 };
 
 &sdhci2 {
@@ -1134,9 +1140,10 @@
 	ti,driver-strength-ohm = <50>;
 	assigned-clocks = <&k3_clks 157 158>;
 	assigned-clock-parents = <&k3_clks 157 160>;
-
 	#address-cells = <1>;
 	#size-cells = <0>;
+	status = "okay";
+
 	wlcore: wlcore@2 {
 		compatible = "ti,wl1807";
 		reg = <2>;
