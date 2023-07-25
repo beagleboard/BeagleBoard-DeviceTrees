@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 /*
  * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
  * Copyright (C) 2023 Drew Fustini <dfustini@baylibre.com>
@@ -52,10 +52,24 @@
 	clock-frequency = <100000000>;
 };
 
+&sdhci_clk {
+	clock-frequency = <198000000>;
+};
+
 &dmac0 {
 	status = "okay";
 };
 
 &uart0 {
+	status = "okay";
+};
+
+&mmc0 {
+	max-frequency = <198000000>;
+	non-removable;
+	mmc-hs400-1_8v;
+	no-sdio;
+	no-sd;
+	bus-width = <8>;
 	status = "okay";
 };
