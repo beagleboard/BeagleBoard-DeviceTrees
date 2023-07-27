@@ -184,6 +184,7 @@
 			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
 			function = LED_FUNCTION_HEARTBEAT;
+			default-state = "off";
 		};
 
 		led-1 {
@@ -191,6 +192,7 @@
 			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc0";
 			function = LED_FUNCTION_DISK_ACTIVITY;
+			default-state = "keep";
 		};
 
 		led-2 {
@@ -221,7 +223,7 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&usr_button_pins_default>;
 
-		usr: usr {
+		usr: button-usr {
 			label = "User Key";
 			linux,code = <BTN_0>;
 			gpios = <&main_gpio0 18 GPIO_ACTIVE_LOW>;
@@ -740,6 +742,7 @@
 	pinctrl-0 = <&i2c_csi_pins_default>;
 	/* Bump Up to 400KHz if module allows - 100KHz default */
 	clock-frequency = <10000>;
+	/* Enable with overlay for camera sensor */
 	symlink = "play/csi/i2c";
 	status = "disabled";
 };
@@ -841,9 +844,8 @@
 
 &cpsw3g {
 	pinctrl-names = "default";
-	pinctrl-0 = <&rgmii1_pins_default
-		     &spe_pins_default
-		     &gbe_pmx_obsclk>;
+	pinctrl-0 = <&rgmii1_pins_default>, <&spe_pins_default>,
+		    <&gbe_pmx_obsclk>;
 	assigned-clocks = <&k3_clks 157 70>, <&k3_clks 157 20>;
 	assigned-clock-parents = <&k3_clks 157 72>, <&k3_clks 157 22>;
 };
@@ -859,6 +861,7 @@
 };
 
 &cpsw3g_mdio {
+	/* Workaround for errata i2329 - Use mdio bitbang */
 	status = "disabled";
 };
 
@@ -1131,7 +1134,7 @@
 &sdhci2 {
 	vmmc-supply = <&wlan_en>;
 	pinctrl-names = "default";
-	pinctrl-0 = <&wifi_pins_default &wifi_32k_clk>;
+	pinctrl-0 = <&wifi_pins_default>, <&wifi_32k_clk>;
 	bus-width = <4>;
 	non-removable;
 	ti,fails-without-test-cd;
@@ -1181,6 +1184,7 @@
 &main_uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&console_pins_default>;
+	status = "okay";
 };
 
 &main_uart1 {
