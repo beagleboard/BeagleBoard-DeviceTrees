@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+// SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
  * Copyright (C) 2023 Drew Fustini <dfustini@baylibre.com>
@@ -68,8 +68,12 @@
 	max-frequency = <198000000>;
 	non-removable;
 	mmc-hs400-1_8v;
+	io_fixed_1v8;
+	is_emmc;
 	no-sdio;
 	no-sd;
+	pull_up;
 	bus-width = <8>;
 	status = "okay";
+
 };
