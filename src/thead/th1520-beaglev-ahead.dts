@@ -68,11 +68,10 @@
 	max-frequency = <198000000>;
 	non-removable;
 	mmc-hs400-1_8v;
-	io_fixed_1v8;
-	is_emmc;
+	thead,io-fixed-1v8;
 	no-sdio;
 	no-sd;
-	pull_up;
+	thead,pull-up;
 	bus-width = <8>;
 	status = "okay";
 
