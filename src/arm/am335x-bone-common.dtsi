@@ -217,6 +217,7 @@
 	baseboard_eeprom: baseboard_eeprom@50 {
 		compatible = "atmel,24c256";
 		reg = <0x50>;
+		vcc-supply = <&ldo4_reg>;
 
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -374,9 +375,10 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&davinci_mdio_default>;
 	pinctrl-1 = <&davinci_mdio_sleep>;
-	// Support GPIO Reset on Rev C3 boards
+	/* Support GPIO reset on revision C3 boards */
 	reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-	reset-delay-us = <280>;
+	reset-assert-us = <300>;
+	reset-deassert-us = <6500>;
 
 	ethphy0: ethernet-phy@0 {
 		reg = <0>;
