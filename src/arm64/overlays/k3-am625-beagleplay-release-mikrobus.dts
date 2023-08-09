@@ -31,6 +31,14 @@
 &main_spi2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mikrobus_spi_pins_default>;
+	spidev@0 {
+		symlink = "bone/spi/0.0";
+		compatible = "rohm,dh2228fv";
+		reg = <0>;	/* CE0 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		spi-max-frequency = <125000000>;
+	};
 };
 
 &main_uart5 {
