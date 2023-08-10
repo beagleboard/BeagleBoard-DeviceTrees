@@ -1230,6 +1230,7 @@
 
 &main_spi2 {
 	status = "okay";
+	symlink = "play/mikrobus/spi";
 };
 
 &dphy0 {
