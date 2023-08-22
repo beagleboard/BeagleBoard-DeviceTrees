@@ -52,10 +52,27 @@
 	clock-frequency = <100000000>;
 };
 
+&sdhci_clk {
+	clock-frequency = <198000000>;
+};
+
 &dmac0 {
 	status = "okay";
 };
 
 &uart0 {
 	status = "okay";
+};
+
+&mmc0 {
+	max-frequency = <198000000>;
+	non-removable;
+	mmc-hs400-1_8v;
+	thead,io-fixed-1v8;
+	no-sdio;
+	no-sd;
+	thead,pull-up;
+	bus-width = <8>;
+	status = "okay";
+
 };
