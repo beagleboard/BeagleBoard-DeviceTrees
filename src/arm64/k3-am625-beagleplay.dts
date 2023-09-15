@@ -90,7 +90,7 @@
 		pinctrl-0 = <&wifi_en_pins_default>;
 		post-power-on-delay-ms = <100>;
 		power-off-delay-us = <5000000>;
-		reset-gpios = <&main_gpio0 38 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&main_gpio0 38 GPIO_ACTIVE_HIGH>;
 	};
 
 	vsys_5v0: regulator-1 {
