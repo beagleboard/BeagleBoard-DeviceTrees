@@ -14,7 +14,7 @@
 #include "k3-am625.dtsi"
 
 / {
-	compatible =  "beagle,am625-beagleplay", "ti,am625";
+	compatible = "beagle,am625-beagleplay", "ti,am625";
 	model = "BeagleBoard.org BeaglePlay";
 
 	aliases {
@@ -43,6 +43,8 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
+		base_dtb = "k3-am625-beagleplay.dts";
+		base_dtb_timestamp = __TIMESTAMP__;
 	};
 
 	memory@80000000 {
@@ -663,6 +665,7 @@
 	pinctrl-0 = <&grove_pins_default>;
 	clock-frequency = <100000>;
 	status = "okay";
+	symlink = "play/grove/i2c";
 };
 
 &main_i2c2 {
@@ -677,6 +680,7 @@
 	pinctrl-0 = <&mikrobus_i2c_pins_default>;
 	clock-frequency = <400000>;
 	status = "okay";
+	symlink = "play/mikrobus/i2c";
 };
 
 &main_spi2 {
@@ -749,10 +753,12 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&mikrobus_uart_pins_default>;
 	status = "okay";
+	symlink = "play/mikrobus/uart";
 };
 
 &main_uart6 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&wifi_debug_uart_pins_default>;
 	status = "okay";
+	symlink = "play/cc1352/uart";
 };
