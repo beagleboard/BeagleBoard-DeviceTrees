@@ -10,6 +10,8 @@
 	compatible = "sipeed,lichee-pi-4a", "sipeed,lichee-module-4a", "thead,th1520";
 
 	aliases {
+		ethernet0 = &gmac0;
+		ethernet1 = &gmac1;
 		gpio0 = &gpio0;
 		gpio1 = &gpio1;
 		gpio2 = &gpio2;
@@ -25,6 +27,29 @@
 	chosen {
 		stdout-path = "serial0:115200n8";
 	};
+};
+
+&mdio0 {
+	phy0: ethernet-phy@1 {
+		reg = <1>;
+	};
+};
+
+&gmac0 {
+	phy-handle = <&phy0>;
+	phy-mode = "rgmii-id";
+	status = "okay";
+};
+
+&mdio1 {
+	phy1: ethernet-phy@2 {
+		reg = <2>;
+	};
+};
+
+&gmac1 {
+	phy-handle = <&phy1>;
+	phy-mode = "rgmii-id";
 };
 
 &uart0 {
