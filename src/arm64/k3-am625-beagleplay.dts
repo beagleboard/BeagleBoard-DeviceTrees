@@ -885,8 +885,8 @@
 	status = "okay";
 	symlink = "play/cc1352/uart";
 
-	beaglecc1352 {
-		compatible = "beagle,cc1352";
+	mcu {
+		compatible = "ti,cc1352p7";
 	};
 };
 
