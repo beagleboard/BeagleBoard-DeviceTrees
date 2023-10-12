@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * https://beagleboard.org/play
+ * https://beagleplay.org/
  *
- * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
- * Copyright (C) 2022 Robert Nelson, BeagleBoard.org Foundation
+ * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2022-2023 Robert Nelson, BeagleBoard.org Foundation
  */
 
 /dts-v1/;
@@ -15,7 +15,7 @@
 #include "k3-am625.dtsi"
 
 / {
-	compatible =  "beagle,am625-beagleplay", "ti,am625";
+	compatible = "beagle,am625-beagleplay", "ti,am625";
 	model = "BeagleBoard.org BeaglePlay";
 
 	aliases {
@@ -553,23 +553,17 @@
 		>;
 	};
 
-	mikrobus_gpio_pins_default: mikrobus-gpio-pins-default {
+	mikrobus_i2c_pins_default: mikrobus-i2c-pins-default {
 		pinctrl-single,pins = <
-			AM62X_IOPAD(0x019c, PIN_INPUT, 7) /* (B18) MCASP0_AXR1.GPIO1_9 */
-			AM62X_IOPAD(0x01a0, PIN_INPUT, 7) /* (E18) MCASP0_AXR0.GPIO1_10 */
-			AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
+			AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) UART0_CTSn.I2C3_SCL */
+			AM62X_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* (B15) UART0_RTSn.I2C3_SDA */
 		>;
 	};
 
-	mikrobus_pwm_pins_default: mikrobus-pwm-pins-default {
+	mikrobus_i2c_pins_gpio: mikrobus-i2c-pins-gpio {
 		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
-		>;
-	};
-
-	mikrobus_pwm_pins_gpio: mikrobus-pwm-pins-gpio {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
+			AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) UART0_CTSn.GPIO1_22 */
+			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
 		>;
 	};
 
@@ -584,20 +578,6 @@
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01d8, PIN_INPUT, 7) /* (C15) MCAN0_TX.GPIO1_24 */
 			AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) MCAN0_RX.GPIO1_25 */
-		>;
-	};
-
-	mikrobus_i2c_pins_default: mikrobus-i2c-pins-default {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) UART0_CTSn.I2C3_SCL */
-			AM62X_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* (B15) UART0_RTSn.I2C3_SDA */
-		>;
-	};
-
-	mikrobus_i2c_pins_gpio: mikrobus-i2c-pins-gpio {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) UART0_CTSn.GPIO1_22 */
-			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
 		>;
 	};
 
@@ -616,6 +596,26 @@
 			AM62X_IOPAD(0x0198, PIN_INPUT, 7) /* (A19) MCASP0_AXR2.GPIO1_8 */
 			AM62X_IOPAD(0x01ac, PIN_INPUT, 7) /* (E19) MCASP0_AFSR.GPIO1_13 */
 			AM62X_IOPAD(0x01b0, PIN_INPUT, 7) /* (A20) MCASP0_ACLKR.GPIO1_14 */
+		>;
+	};
+
+	mikrobus_gpio_pins_default: mikrobus-gpio-pins-default {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x019c, PIN_INPUT, 7) /* (B18) MCASP0_AXR1.GPIO1_9 */
+			AM62X_IOPAD(0x01a0, PIN_INPUT, 7) /* (E18) MCASP0_AXR0.GPIO1_10 */
+			AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
+		>;
+	};
+
+	mikrobus_pwm_pins_default: mikrobus-pwm-pins-default {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
+		>;
+	};
+
+	mikrobus_pwm_pins_gpio: mikrobus-pwm-pins-gpio {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
 		>;
 	};
 
@@ -808,22 +808,10 @@
 	status = "disabled";
 };
 
-&dss {
-	pinctrl-names = "default";
-	pinctrl-0 = <&hdmi_pins_default>;
-};
-
-&dss_ports {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	/* VP2: DPI Output */
-	port@1 {
-		reg = <1>;
-
-		dpi1_out: endpoint {
-			remote-endpoint = <&it66121hdmitx_in>;
-		};
+&mailbox0_cluster0 {
+	mbox_m4_0: mbox-m4-0 {
+		ti,mbox-rx = <0 0 0>;
+		ti,mbox-tx = <1 0 0>;
 	};
 };
 
@@ -1074,11 +1062,9 @@
 	symlink = "play/mikrobus/i2c";
 };
 
-&mailbox0_cluster0 {
-	mbox_m4_0: mbox-m4-0 {
-		ti,mbox-rx = <0 0 0>;
-		ti,mbox-tx = <1 0 0>;
-	};
+&main_spi2 {
+	status = "okay";
+	symlink = "play/mikrobus/spi";
 };
 
 &mcasp0 {
@@ -1106,6 +1092,25 @@
 
 &mcasp2 {
 	status = "disabled";
+};
+
+&dss {
+	pinctrl-names = "default";
+	pinctrl-0 = <&hdmi_pins_default>;
+};
+
+&dss_ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	/* VP2: DPI Output */
+	port@1 {
+		reg = <1>;
+
+		dpi1_out: endpoint {
+			remote-endpoint = <&it66121hdmitx_in>;
+		};
+	};
 };
 
 &sdhci0 {
@@ -1226,11 +1231,6 @@
 
 &main_spi1 {
 	status = "disabled";
-};
-
-&main_spi2 {
-	status = "okay";
-	symlink = "play/mikrobus/spi";
 };
 
 &dphy0 {
