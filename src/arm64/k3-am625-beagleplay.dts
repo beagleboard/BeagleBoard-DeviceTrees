@@ -554,6 +554,7 @@
 	pinctrl-0 = <&i2c_csi_pins_default>;
 	clock-frequency = <400000>;
 	/* Enable with overlay for camera sensor */
+	symlink = "play/csi/i2c";
 };
 
 &mcu_i2c0 {
@@ -561,6 +562,7 @@
 	pinctrl-0 = <&i2c_qwiic_pins_default>;
 	clock-frequency = <100000>;
 	status = "okay";
+	symlink = "play/qwiic/i2c";
 };
 
 &usbss0 {
@@ -810,6 +812,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&mikrobus_spi_pins_default>;
 	status = "okay";
+	symlink = "play/mikrobus/spi";
 };
 
 &sdhci0 {
