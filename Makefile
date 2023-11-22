@@ -105,14 +105,13 @@ all_%:
 	$(Q)$(MAKE) ARCH=$* all_arch
 
 clean_%:
-	$(Q)$(MAKE) ARCH=$* clean_all
+	$(Q)$(MAKE) ARCH=$* clean_arch
 
 install_arm:
 	$(Q)$(MAKE) ARCH=arm install_arch_arm
 
 install_arm64:
 	$(Q)$(MAKE) ARCH=arm64 install_arch_arm64
-
 
 ifeq ($(ARCH),)
 
@@ -140,14 +139,13 @@ ARCH_DTB	:= $(patsubst %.dts,%.dtb,$(ARCH_DTS))
 src	:= src/$(ARCH)
 obj	:= src/$(ARCH)
 
+include scripts/Kbuild.include
+
 cmd_files := $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir $(f)).cmd))
 
 ifneq ($(cmd_files),)
   include $(cmd_files)
 endif
-
-$(obj)/%.dtb: $(src)/%.dts FORCE
-	$(call if_changed_dep,dtc)
 
 # Overlays
 ARCH_DTS_OVERLAYS	:= $(shell find src/$(ARCH)/overlays -name \*.dts)
@@ -162,9 +160,6 @@ endif
 
 $(obj_overlays)/%.dtbo: $(src_overlays)/%.dts FORCE
 	$(call if_changed_dep,dtc)
-
-
-include scripts/Kbuild.include
 
 quiet_cmd_clean    = CLEAN   $(obj) & $(obj_overlays)
       cmd_clean    = rm -f $(__clean-files)
@@ -181,6 +176,9 @@ cmd_dtc = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
                 -i $(src) $(DTC_FLAGS) \
                 -d $(depfile).dtc.tmp $(dtc-tmp) ; \
         cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+
+$(obj)/%.dtb: $(src)/%.dts FORCE
+	$(call if_changed_dep,dtc)
 
 PHONY += all_arch
 all_arch: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
@@ -205,9 +203,9 @@ install_arch_arm64: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS \
                    -o -name .pc -o -name .hg -o -name .git \) -prune -o
 
-PHONY += clean_all
-clean_all: __clean-files = $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
-clean_all : FORCE
+PHONY += clean_arch
+clean_arch: __clean-files = $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
+clean_arch: FORCE
 	$(call cmd,clean)
 	@find . $(RCS_FIND_IGNORE) \
 		\( -name '.*.cmd' \
