@@ -3,6 +3,8 @@ DTC ?= dtc
 CPP ?= cpp
 KERNEL_VERSION ?= $(shell uname -r)
 
+DTCVERSION = $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
+
 # Disable noisy checks by default
 ifeq ($(findstring 1,$(DTC_VERBOSE)),)
 DTC_FLAGS += -Wno-unit_address_vs_reg \
@@ -12,13 +14,16 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
         -Wno-graph_child_address \
         -Wno-simple_bus_reg \
         -Wno-unique_unit_address \
-        -Wno-pci_device_reg \
-        -Wno-interrupt_provider
+        -Wno-pci_device_reg
 endif
 
 ifneq ($(findstring 2,$(DTC_VERBOSE)),)
 DTC_FLAGS += -Wnode_name_chars_strict \
         -Wproperty_name_chars_strict
+endif
+
+ifeq "$(DTCVERSION)" "1.6.1"
+DTC_FLAGS += -Wno-interrupt_provider
 endif
 
 MAKEFLAGS += -rR --no-print-directory
@@ -111,9 +116,10 @@ install_arm64:
 
 ifeq ($(ARCH),)
 
-# Device Tree
 ALL_DTS		:= $(shell find src/* -name \*.dts)
+
 ALL_DTB		:= $(patsubst %.dts,%.dtb,$(ALL_DTS))
+
 $(ALL_DTB): ARCH=$(word 2,$(subst /, ,$@))
 $(ALL_DTB): FORCE
 	$(Q)$(MAKE) ARCH=$(ARCH) $@
@@ -127,12 +133,14 @@ $(ALL_DTB_OVERLAYS): FORCE
 
 else
 
-# Device Tree
 ARCH_DTS	:= $(shell find src/$(ARCH) -maxdepth 1 -name \*.dts)
+
 ARCH_DTB	:= $(patsubst %.dts,%.dtb,$(ARCH_DTS))
-src			:= src/$(ARCH)
-obj			:= src/$(ARCH)
-cmd_files 	:= $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir $(f)).cmd))
+
+src	:= src/$(ARCH)
+obj	:= src/$(ARCH)
+
+cmd_files := $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir $(f)).cmd))
 
 ifneq ($(cmd_files),)
   include $(cmd_files)
