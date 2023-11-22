@@ -353,7 +353,7 @@
 	};
 };
 
-/include/ "tps65217.dtsi"
+/include/ "../../tps65217.dtsi"
 
 &tps {
 	/delete-property/ ti,pmic-shutdown-controller;
