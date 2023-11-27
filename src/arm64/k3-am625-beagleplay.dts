@@ -50,6 +50,7 @@
 	};
 
 	memory@80000000 {
+		bootph-pre-ram;
 		device_type = "memory";
 		/* 2G RAM */
 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
@@ -62,7 +63,7 @@
 
 		ramoops: ramoops@9ca00000 {
 			compatible = "ramoops";
-			reg = <0x00 0x9c700000 0x00 0x00100000>;
+			reg = <0x00 0x9ca00000 0x00 0x00100000>;
 			record-size = <0x8000>;
 			console-size = <0x8000>;
 			ftrace-size = <0x00>;
@@ -107,6 +108,7 @@
 	};
 
 	vsys_5v0: regulator-1 {
+		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_5v0";
 		regulator-min-microvolt = <5000000>;
@@ -117,6 +119,7 @@
 
 	vdd_3v3: regulator-2 {
 		/* output of TLV62595DMQR-U12 */
+		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_3v3";
 		regulator-min-microvolt = <3300000>;
@@ -142,6 +145,7 @@
 
 	vdd_3v3_sd: regulator-4 {
 		/* output of TPS22918DBVR-U21 */
+		bootph-all;
 		pinctrl-names = "default";
 		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
 
@@ -156,6 +160,7 @@
 	};
 
 	vdd_sd_dv: regulator-5 {
+		bootph-all;
 		compatible = "regulator-gpio";
 		regulator-name = "sd_hs200_switch";
 		pinctrl-names = "default";
@@ -170,9 +175,11 @@
 	};
 
 	leds {
+		bootph-all;
 		compatible = "gpio-leds";
 
 		led-0 {
+			bootph-all;
 			label = "beaglebone:green:usr0";
 			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
@@ -181,6 +188,7 @@
 		};
 
 		led-1 {
+			bootph-all;
 			label = "beaglebone:green:usr1";
 			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc0";
@@ -189,6 +197,7 @@
 		};
 
 		led-2 {
+			bootph-all;
 			label = "beaglebone:green:usr2";
 			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "cpu";
@@ -196,6 +205,7 @@
 		};
 
 		led-3 {
+			bootph-all;
 			label = "beaglebone:green:usr3";
 			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc1";
@@ -203,6 +213,7 @@
 		};
 
 		led-4 {
+			bootph-all;
 			label = "beaglebone:green:usr4";
 			gpios = <&main_gpio0 9 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "phy0tx";
@@ -752,6 +763,7 @@
 };
 
 &main_gpio0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&gpio0_pins_default>;
 	gpio-line-names = "BL_EN_3V3", "SPE_PO_EN", "RTC_INT",	/* 0-2 */
@@ -795,6 +807,7 @@
 };
 
 &main_i2c0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&local_i2c_pins_default>;
 	clock-frequency = <400000>;
@@ -813,6 +826,7 @@
 	};
 
 	tps65219: pmic@30 {
+		bootph-all;
 		compatible = "ti,tps65219";
 		reg = <0x30>;
 		buck1-supply = <&vsys_5v0>;
@@ -1011,6 +1025,7 @@
 };
 
 &sdhci0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&emmc_pins_default>;
 	ti,driver-strength-ohm = <50>;
@@ -1020,6 +1035,7 @@
 
 &sdhci1 {
 	/* SD/MMC */
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sd_pins_default>;
 
@@ -1060,6 +1076,7 @@
 };
 
 &main_uart0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&console_pins_default>;
 	status = "okay";
