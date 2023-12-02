@@ -1,9 +1,6 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
  */
 
 /dts-v1/;
@@ -13,22 +10,16 @@
 #include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/board/am335x-bbw-bbb-base.h>
 
-/ {
-	/*
-	 * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
-	 */
-	fragment@0 {
-		target-path="/";
-		__overlay__ {
-
-			chosen {
-				overlays {
-					DLPDLCR2000-00A0 = __TIMESTAMP__;
-				};
-			};
-		};
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		DLPDLCR2000-00A0.kernel = __TIMESTAMP__;
 	};
+};
 
+/ {
 	/*
 	 * Free up the pins used by the cape from the pinmux helpers.
 	 */
