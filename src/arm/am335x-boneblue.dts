@@ -25,28 +25,28 @@
 		compatible = "gpio-leds";
 
 		usr_0_led {
-			label = "beaglebone:green:usr0";
+			label = "beaglebone:blue:usr0";
 			gpios = <&gpio1 21 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
 			default-state = "off";
 		};
 
 		usr_1_led {
-			label = "beaglebone:green:usr1";
+			label = "beaglebone:blue:usr1";
 			gpios = <&gpio1 22 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc0";
 			default-state = "off";
 		};
 
 		usr_2_led {
-			label = "beaglebone:green:usr2";
+			label = "beaglebone:blue:usr2";
 			gpios = <&gpio1 23 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "cpu0";
 			default-state = "off";
 		};
 
 		usr_3_led {
-			label = "beaglebone:green:usr3";
+			label = "beaglebone:blue:usr3";
 			gpios = <&gpio1 24 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc1";
 			default-state = "off";
