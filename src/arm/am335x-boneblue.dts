@@ -365,6 +365,10 @@
 		interrupt-names = "USB", "AC";
 		status = "okay";
 	};
+
+	pwrbutton {
+		status = "okay";
+	};
 };
 
 &mmc1 {
