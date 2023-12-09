@@ -355,19 +355,13 @@
 	};
 };
 
-/include/ "tps65217.dtsi"
+/* Previously HERE was an include of "tps65217.dtsi" which was already included through "am335x-osd335x-common.dtsi" and this invalidated the Power Button for example! */
 
 &tps {
-	/delete-property/ ti,pmic-shutdown-controller;
+	/delete-property/ ti,pmic-shutdown-controller; /* this property is somehow related to breaking devices, why is this still in "am335x-osd335x-common.dtsi" in the first place then ?! */
 
 	charger {
-		interrupts = <0>, <1>;
-		interrupt-names = "USB", "AC";
-		status = "okay";
-	};
-
-	pwrbutton {
-		status = "okay";
+		status = "okay"; /* the only necessary change, because disabled in tps65217.dtsi */
 	};
 };
 
