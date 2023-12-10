@@ -328,6 +328,21 @@
 		>;
 	};
 
+	/* Servo Output Pins via PRU */
+	servo_pins: servo_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE5)		/* (U5) lcd_vsync.pr1_pru1_pru_r30_8 - SVO1 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE5)		/* (V5) lcd_pclk.pr1_pru1_pru_r30_10 - SVO2 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT, MUX_MODE5)		/* (R5) lcd_hsync.pr1_pru1_pru_r30_9 - SVO3 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_OUTPUT, MUX_MODE5)	/* (R6) lcd_ac_bias_en.pr1_pru1_pru_r30_11 - SVO4 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_OUTPUT, MUX_MODE5)		/* (T3) lcd_data6.pr1_pru1_pru_r30_6 - SVO5 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_OUTPUT, MUX_MODE5)		/* (T4) lcd_data7.pr1_pru1_pru_r30_7 - SVO6 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_OUTPUT, MUX_MODE5)		/* (T1) lcd_data4.pr1_pru1_pru_r30_4 - SVO7 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE5)		/* (T2) lcd_data5.pr1_pru1_pru_r30_5 - SVO8 */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_OUTPUT, MUX_MODE7)		/* (U3) lcd_data10.gpio2[16] - SERVO_EN */
+		>;
+	};
+
 };
 
 &uart0 {
