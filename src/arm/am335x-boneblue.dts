@@ -274,6 +274,15 @@
 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD13, PIN_INPUT, MUX_MODE4)		/* (R12) gpmc_ad13.eQEP2B_in */
 		>;
 	};
+
+	spi1_pins: pinmux_spi1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_INPUT, MUX_MODE3)		/* (A13) mcasp0_aclkx.spi1_sclk */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_INPUT, MUX_MODE3)		/* (B13) mcasp0_fsx.spi1_d0 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR0, PIN_INPUT, MUX_MODE3)		/* (D12) mcasp0_axr0.spi1_d1 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_INPUT, MUX_MODE3)		/* (C12) mcasp0_ahclkr.spi1_cs0 */
+		>;
+	};
 };
 
 &uart0 {
@@ -629,3 +638,22 @@
 	pinctrl-0 = <&eqep2_pins>;
 	status = "okay";
 };
+
+&spi1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi1_pins>;
+
+	channel@0 {
+		/* external S1.0 connector JST-SH 6pin */
+		compatible = "spidev";
+		reg = <0>;
+	};
+
+	channel@1 {
+		/* external S1.1 connector JST-SH 6pin */
+		compatible = "spidev";
+		reg = <1>;
+	};
+};
+
