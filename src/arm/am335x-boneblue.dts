@@ -133,6 +133,7 @@
 
 		>;
 	};
+	/* Note: i2c0_pins C16 C17 are chip default - never touched */
 
 	i2c1_pins: pinmux_i2c1_pins {
 		pinctrl-single,pins = <
@@ -440,13 +441,11 @@
 	};
 };
 
-/* Previously HERE was an include of "tps65217.dtsi" which was already included through "am335x-osd335x-common.dtsi" and this invalidated the Power Button for example! */
-
 &tps {
-	/delete-property/ ti,pmic-shutdown-controller; /* this property is somehow related to breaking devices, why is this still in "am335x-osd335x-common.dtsi" in the first place then ?! */
+	/delete-property/ ti,pmic-shutdown-controller;
 
 	charger {
-		status = "okay"; /* the only necessary change, because disabled in tps65217.dtsi */
+		status = "okay";
 	};
 };
 
