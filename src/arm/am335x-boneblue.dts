@@ -285,6 +285,42 @@
 			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_INPUT, MUX_MODE2)	/* (C18) ecap0_in_pwm0_out.spi1_cs1 */
 		>;
 	};
+
+	/* Onboard Motor Driver Control Pins */
+	motor_pins: pinmux_motor_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN3, PIN_OUTPUT, MUX_MODE7)		/* (T13) gpmc_csn3.gpio2[0] - MDIR_1A */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_OUTPUT, MUX_MODE7)		/* (U17) gpmc_wpn.gpio0[31] - MDIR_1B */
+
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A0, PIN_OUTPUT, MUX_MODE7)		/* (R13) gpmc_a0.gpio1[16] - MDIR_2A */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE7)		/* (V4) lcd_data14.gpio0[10] - MDIR_2B */
+
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_OUTPUT, MUX_MODE7)		/* (R4) lcd_data3.gpio2[9] - MDIR_3A */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE7)		/* (R3) lcd_data2.gpio2[8] - MDIR_3B */
+
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE7)		/* (R1) lcd_data0.gpio2[6] - MDIR_4A */
+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE7)		/* (R2) lcd_data1.gpio2[7] - MDIR_4B */
+
+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR1, PIN_OUTPUT, MUX_MODE7)	/* (D14) xdma_event_intr1.gpio0[20] - MOT_STBY */
+		>;
+	};
+
+	/* PWM1 for Motor 1 and 2 */
+	ehrpwm1_pins: pinmux_ehrpwm1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A2, PIN_OUTPUT, MUX_MODE6)		/* (U14) gpmc_a2.ehrpwm1a - PWM_1A */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A3, PIN_OUTPUT, MUX_MODE6)		/* (T14) gpmc_a2.ehrpwm1b - PWM_1B */
+		>;
+	};
+
+	/* PWM2 for Motor 3 and 4 */
+	ehrpwm2_pins: pinmux_ehrpwm2_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD8, PIN_OUTPUT, MUX_MODE4)		/* (U10) gpmc_ad8.ehrpwm2a - PWM_2A */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD9, PIN_OUTPUT, MUX_MODE4)		/* (T10) gpmc_ad9.ehrpwm2b - PWM_2B */
+		>;
+	};
+
 };
 
 &uart0 {
@@ -615,7 +651,10 @@
 	status = "okay";
 };
 
-/* ecap0 ? */
+&ecap0 {
+	status="okay";
+};
+
 
 &eqep0 {
 	pinctrl-names = "default";
@@ -624,7 +663,7 @@
 };
 
 &ehrpwm0 {
-	/* PINS ? */
+	/* Does not seem to have any pins assigned in Kernel 4.14 DTS */
 	status = "okay";
 };
 
@@ -632,7 +671,10 @@
 	status = "okay";
 };
 
-/* ecap1 ? */
+&ecap1 {
+	status="okay";
+};
+
 
 &eqep1 {
 	pinctrl-names = "default";
@@ -641,7 +683,8 @@
 };
 
 &ehrpwm1 {
-	/* PINS ? */
+	pinctrl-names = "default";
+	pinctrl-0 = <&ehrpwm1_pins>;
 	status = "okay";
 };
 
@@ -649,7 +692,9 @@
 	status = "okay";
 };
 
-/* ecap2 ? */
+&ecap2 {
+	status="okay";
+};
 
 &eqep2 {
 	pinctrl-names = "default";
@@ -658,7 +703,8 @@
 };
 
 &ehrpwm2 {
-	/* PINS ? */
+	pinctrl-names = "default";
+	pinctrl-0 = <&ehrpwm2_pins>;
 	status = "okay";
 };
 
