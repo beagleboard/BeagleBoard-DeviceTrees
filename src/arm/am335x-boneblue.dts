@@ -324,7 +324,7 @@
 	/* IMU 9-Axis MPU-9250 */
 	mpu9250_pins: pinmux_mpu9250_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT, MUX_MODE7)		/* (U10) *gpio3_21 - INT_MPU */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT, MUX_MODE7)		/* (U10) mcasp0_ahclkx.gpio3[21] - INT_MPU */
 		>;
 	};
 
