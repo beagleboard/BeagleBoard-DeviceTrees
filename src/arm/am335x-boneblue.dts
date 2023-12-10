@@ -321,6 +321,13 @@
 		>;
 	};
 
+	/* IMU 9-Axis MPU-9250 */
+	mpu9250_pins: pinmux_mpu9250_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT, MUX_MODE7)		/* (U10) *gpio3_21 - INT_MPU */
+		>;
+	};
+
 };
 
 &uart0 {
@@ -398,6 +405,7 @@
 
 	mpu9250@68 {
 		compatible = "invensense,mpu9250";
+                pinctrl-0 = <&mpu9250_pins>;
 		reg = <0x68>;
 		interrupt-parent = <&gpio3>;
 		interrupts = <21 IRQ_TYPE_EDGE_RISING>;
