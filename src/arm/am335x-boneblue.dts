@@ -737,13 +737,13 @@
 
 	channel@0 {
 		/* external S1.0 connector JST-SH 6pin */
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		reg = <0>;
 	};
 
 	channel@1 {
 		/* external S1.1 connector JST-SH 6pin */
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		reg = <1>;
 	};
 };
