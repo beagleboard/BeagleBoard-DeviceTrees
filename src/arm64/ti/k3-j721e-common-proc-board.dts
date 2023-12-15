@@ -469,6 +469,24 @@
 	pinctrl-0 = <&main_uart4_pins_default>;
 };
 
+&wkup_gpio0 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_gpio_pins_default>;
+};
+
+&wkup_gpio1 {
+	status = "disabled";
+};
+
+&main_gpio0 {
+	status = "okay";
+};
+
+&main_gpio1 {
+	status = "okay";
+};
+
 &main_gpio2 {
 	status = "disabled";
 };
@@ -493,17 +511,9 @@
 	status = "disabled";
 };
 
-&wkup_gpio0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&wkup_gpio_pins_default>;
-};
-
-&wkup_gpio1 {
-	status = "disabled";
-};
-
 &main_sdhci0 {
 	/* eMMC */
+	status = "okay";
 	non-removable;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
@@ -511,6 +521,7 @@
 
 &main_sdhci1 {
 	/* SD/MMC */
+	status = "okay";
 	vmmc-supply = <&vdd_mmc1>;
 	vqmmc-supply = <&vdd_sd_dv_alt>;
 	pinctrl-names = "default";
@@ -641,12 +652,14 @@
 };
 
 &tscadc0 {
+	status = "okay";
 	adc {
 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
 	};
 };
 
 &tscadc1 {
+	status = "okay";
 	adc {
 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
 	};
