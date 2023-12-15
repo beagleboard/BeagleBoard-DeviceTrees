@@ -55,7 +55,7 @@
 	};
 };
 
-/include/ "../../tps65217.dtsi"
+/include/ "tps65217.dtsi"
 
 &tps {
 	interrupts = <7>; /* NMI */
