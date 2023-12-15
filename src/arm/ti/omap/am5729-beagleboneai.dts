@@ -203,7 +203,7 @@
 	extcon_usb1: extcon_usb1 {
 		compatible = "linux,extcon-usb-gpio";
 		ti,enable-id-detection;
-		id-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+		id-gpios = <&gpio3 13 GPIO_ACTIVE_HIGH>;
 	};
 };
 
@@ -684,12 +684,6 @@
 	status = "okay";
 	clock-frequency = <100000>;
 	symlink = "bone/i2c/2";
-};
-
-&cpu0_opp_table {
-	opp_slow-500000000 {
-		opp-shared;
-	};
 };
 
 &ipu2 {

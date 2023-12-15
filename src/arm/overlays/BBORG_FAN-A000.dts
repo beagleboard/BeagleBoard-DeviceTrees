@@ -14,14 +14,3 @@
 		BBORG_FAN-A000.kernel = __TIMESTAMP__;
 	};
 };
-
-/* From dra7.dtsi opp_nom-1000000000 */
-&cpu0_opp_table {
-	opp_slow-500000000 {
-		opp-hz = /bits/ 64 <1000000000>;
-		opp-microvolt = <1060000 850000 1150000>,
-				<1060000 850000 1150000>;
-		opp-supported-hw = <0xFF 0x01>;
-		opp-suspend;
-	};
-};
