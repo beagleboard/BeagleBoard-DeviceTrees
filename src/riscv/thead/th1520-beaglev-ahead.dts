@@ -13,6 +13,7 @@
 	compatible = "beagle,beaglev-ahead", "thead,th1520";
 
 	aliases {
+		ethernet0 = &gmac0;
 		gpio0 = &gpio0;
 		gpio1 = &gpio1;
 		gpio2 = &gpio2;
@@ -48,31 +49,54 @@
 	clock-frequency = <62500000>;
 };
 
-&uart_sclk {
-	clock-frequency = <100000000>;
-};
-
 &sdhci_clk {
 	clock-frequency = <198000000>;
+};
+
+&uart_sclk {
+	clock-frequency = <100000000>;
 };
 
 &dmac0 {
 	status = "okay";
 };
 
-&uart0 {
+&gmac_clk {
+	clock-frequency = <500000000>;
+};
+
+&gmac_axi_clk {
+	clock-frequency = <100000000>;
+};
+
+&mdio0 {
+	phy0: ethernet-phy@1 {
+		reg = <1>;
+	};
+};
+
+&gmac0 {
+	phy-handle = <&phy0>;
+	phy-mode = "rgmii-id";
 	status = "okay";
 };
 
-&mmc0 {
+&emmc {
+	bus-width = <8>;
 	max-frequency = <198000000>;
-	non-removable;
 	mmc-hs400-1_8v;
-	thead,io-fixed-1v8;
+	non-removable;
 	no-sdio;
 	no-sd;
-	thead,pull-up;
-	bus-width = <8>;
 	status = "okay";
+};
 
+&sdio0 {
+	bus-width = <4>;
+	max-frequency = <198000000>;
+	status = "okay";
+};
+
+&uart0 {
+	status = "okay";
 };
