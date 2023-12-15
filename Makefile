@@ -132,7 +132,7 @@ $(ALL_DTB_OVERLAYS): FORCE
 
 else
 
-ARCH_DTS	:= $(shell find src/$(ARCH) -maxdepth 1 -name \*.dts)
+ARCH_DTS	:= $(shell find src/$(ARCH) -name \*.dts)
 
 ARCH_DTB	:= $(patsubst %.dts,%.dtb,$(ARCH_DTS))
 
