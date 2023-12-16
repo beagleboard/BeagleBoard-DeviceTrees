@@ -2,7 +2,6 @@
 /*
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
-
 /dts-v1/;
 
 #include "am33xx.dtsi"
@@ -257,4 +256,8 @@
 			reg = <1>;
 		};
 	};
+};
+
+&baseboard_eeprom {
+	vcc-supply = <&ldo4_reg>;
 };

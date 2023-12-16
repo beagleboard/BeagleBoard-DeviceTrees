@@ -191,3 +191,7 @@
 		"NC",
 		"NC";
 };
+
+&baseboard_eeprom {
+	vcc-supply = <&ldo4_reg>;
+};

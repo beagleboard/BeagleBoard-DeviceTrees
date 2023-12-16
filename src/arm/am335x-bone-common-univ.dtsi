@@ -776,7 +776,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		symlink = "bone/spi/0.0";
 
 		reg = <0>;
@@ -788,7 +788,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		symlink = "bone/spi/0.1";
 
 		reg = <1>;
@@ -805,7 +805,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		symlink = "bone/spi/1.0";
 
 		reg = <0>;
@@ -817,7 +817,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		compatible = "spidev";
+		compatible = "rohm,dh2228fv";
 		symlink = "bone/spi/1.1";
 
 		reg = <1>;
