@@ -1088,3 +1088,11 @@
 		vdds-supply = <&vdd_3v3>;
 	};
 };
+
+&usbss0 {
+	vddcore-supply = <&buck1_reg>;
+};
+
+&usbss1 {
+	vddcore-supply = <&buck1_reg>;
+};
