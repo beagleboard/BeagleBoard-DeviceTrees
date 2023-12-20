@@ -330,7 +330,7 @@
 	};
 
 	/* Servo Output Pins via PRU */
-	servo_pins: servo_pins {
+	servo_pins: pinmux_servo_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE5)		/* (U5) lcd_vsync.pr1_pru1_pru_r30_8 - SVO1 */
 			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE5)		/* (V5) lcd_pclk.pr1_pru1_pru_r30_10 - SVO2 */
