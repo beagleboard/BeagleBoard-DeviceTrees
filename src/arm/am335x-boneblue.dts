@@ -731,18 +731,24 @@
 };
 
 &spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&spi1_pins>;
 
 	channel@0 {
 		/* external S1.0 connector JST-SH 6pin */
+		#address-cells = <1>;
+		#size-cells = <0>;
 		compatible = "rohm,dh2228fv";
 		reg = <0>;
 	};
 
 	channel@1 {
 		/* external S1.1 connector JST-SH 6pin */
+		#address-cells = <1>;
+		#size-cells = <0>;
 		compatible = "rohm,dh2228fv";
 		reg = <1>;
 	};
