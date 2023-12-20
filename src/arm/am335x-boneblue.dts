@@ -123,6 +123,24 @@
 		gpio = <&gpio3 9 0>;
 		enable-active-high;
 	};
+
+	motor_pwms: motor_pwms {
+		/* Note: The entries for PWMs contain tuples of
+		 *       - the phandle (in this case &ehrpwm1 or 2),
+		 *       - the relative chip number (in this case 0 or 1),
+		 *       - the period in nanoseconds (in this case 25kHz = 1/40000ns)
+		 *       - and special flags, i.e. PWM_POLARITY_INVERTED (in this case 0)
+		 *       See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pwm/pwm.txt ,
+		 *       https://www.kernel.org/doc/Documentation/devicetree/bindings/pwm/pwm.txt is always outdated!
+		 */
+		pwms = <
+			&ehrpwm1 0 40000 0
+			&ehrpwm1 1 40000 0
+			&ehrpwm2 0 40000 0
+			&ehrpwm2 1 40000 0
+		>;
+		pwm-names = "motor1pwm", "motor2pwm", "motor3pwm", "motor4pwm";
+	};
 };
 
 &am33xx_pinmux {
