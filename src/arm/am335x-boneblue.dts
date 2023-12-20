@@ -200,6 +200,14 @@
 		>;
 	};
 
+	/* E4 - Fake Encoder using PRU */
+	pru_encoder_pins: pinmux_pru_encoder_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_AD14, PIN_INPUT_PULLUP, MUX_MODE6)		/* (V13) gpmc_ad12.pr1_pru0_pru_r31_14 */
+			/* Note: That is only PRU_E_A. PRU_E_B is nowhere to be found in 4.14 dts but it's (U13) */
+		>;
+	};
+
 	/* Note: i2c0_pins C16 C17 are chip default - never touched */
 
 	i2c1_pins: pinmux_i2c1_pins {
