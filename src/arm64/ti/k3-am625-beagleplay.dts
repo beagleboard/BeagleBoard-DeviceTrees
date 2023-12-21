@@ -50,6 +50,7 @@
 	};
 
 	memory@80000000 {
+		bootph-pre-ram;
 		device_type = "memory";
 		/* 2G RAM */
 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
@@ -107,6 +108,7 @@
 	};
 
 	vsys_5v0: regulator-1 {
+		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_5v0";
 		regulator-min-microvolt = <5000000>;
@@ -117,6 +119,7 @@
 
 	vdd_3v3: regulator-2 {
 		/* output of TLV62595DMQR-U12 */
+		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_3v3";
 		regulator-min-microvolt = <3300000>;
@@ -133,7 +136,8 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 		enable-active-high;
-		regulator-always-on;
+		/* regulator-always-on; */
+		regulator-off-in-suspend;
 		vin-supply = <&vdd_3v3>;
 		gpio = <&main_gpio0 38 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
@@ -142,6 +146,7 @@
 
 	vdd_3v3_sd: regulator-4 {
 		/* output of TPS22918DBVR-U21 */
+		bootph-all;
 		pinctrl-names = "default";
 		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
 
@@ -156,6 +161,7 @@
 	};
 
 	vdd_sd_dv: regulator-5 {
+		bootph-all;
 		compatible = "regulator-gpio";
 		regulator-name = "sd_hs200_switch";
 		pinctrl-names = "default";
@@ -170,9 +176,11 @@
 	};
 
 	leds {
+		bootph-all;
 		compatible = "gpio-leds";
 
 		led-0 {
+			bootph-all;
 			label = "beaglebone:green:usr0";
 			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
@@ -181,6 +189,7 @@
 		};
 
 		led-1 {
+			bootph-all;
 			label = "beaglebone:green:usr1";
 			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc0";
@@ -189,6 +198,7 @@
 		};
 
 		led-2 {
+			bootph-all;
 			label = "beaglebone:green:usr2";
 			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "cpu";
@@ -196,6 +206,7 @@
 		};
 
 		led-3 {
+			bootph-all;
 			label = "beaglebone:green:usr3";
 			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "mmc1";
@@ -203,6 +214,7 @@
 		};
 
 		led-4 {
+			bootph-all;
 			label = "beaglebone:green:usr4";
 			gpios = <&main_gpio0 9 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "phy0tx";
@@ -365,6 +377,7 @@
 	};
 
 	vdd_sd_dv_pins_default: vdd-sd-pins-default {
+		bootph-all;
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x0244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
 		>;
@@ -384,6 +397,7 @@
 	};
 
 	local_i2c_pins_default: local-i2c-pins-default {
+		bootph-all;
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
 			AM62X_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
@@ -433,6 +447,7 @@
 	};
 
 	emmc_pins_default: emmc-pins-default {
+		bootph-all;
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x0220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
 			AM62X_IOPAD(0x0218, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
@@ -454,6 +469,7 @@
 	};
 
 	sd_pins_default: sd-pins-default {
+		bootph-all;
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x023c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
 			AM62X_IOPAD(0x0234, PIN_INPUT, 0) /* (B22) MMC1_CLK */
@@ -585,7 +601,16 @@
 		>;
 	};
 
+	main_uart0_pins_default: main-uart0-default-pins {
+		bootph-all;
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
+			AM62X_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
+		>;
+	};
+
 	mikrobus_pwm_pins_default: mikrobus-pwm-pins-default {
+		bootph-all;
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
 		>;
@@ -608,13 +633,6 @@
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x0000, PIN_OUTPUT, 7) /* (H24) OSPI0_CLK.GPIO0_0 */
 			AM62X_IOPAD(0x01b8, PIN_OUTPUT, 2) /* (C13) SPI0_CS1.EHRPWM0_B */
-		>;
-	};
-
-	console_pins_default: console-pins-default {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
-			AM62X_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
 		>;
 	};
 
@@ -752,6 +770,7 @@
 };
 
 &main_gpio0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&gpio0_pins_default>;
 	gpio-line-names = "BL_EN_3V3", "SPE_PO_EN", "RTC_INT",	/* 0-2 */
@@ -771,6 +790,7 @@
 };
 
 &main_gpio1 {
+	bootph-all;
 	gpio-line-names = "", "", "", "", "",			/* 0-4 */
 		"SPE_RSTN", "SPE_INTN", "MIKROBUS_GPIO1_7",	/* 5-7 */
 		"MIKROBUS_GPIO1_8", "MIKROBUS_GPIO1_9",		/* 8-9 */
@@ -795,6 +815,7 @@
 };
 
 &main_i2c0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&local_i2c_pins_default>;
 	clock-frequency = <400000>;
@@ -813,6 +834,7 @@
 	};
 
 	tps65219: pmic@30 {
+		bootph-all;
 		compatible = "ti,tps65219";
 		reg = <0x30>;
 		buck1-supply = <&vsys_5v0>;
@@ -914,20 +936,17 @@
 	status = "okay";
 
 	it66121hdmitx: hdmitx@4c {
-		#sound-dai-cells = <0>;
 		compatible = "ite,it66121";
+		reg = <0x4c>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&hdmi_gpio_pins_default>;
-		reg = <0x4c>;
-
-		interrupt-parent = <&main_gpio0>;
-		interrupts = <36 IRQ_TYPE_EDGE_FALLING>;
-
 		vcn33-supply = <&vdd_3v3>;
 		vcn18-supply = <&buck2_reg>;
 		vrf12-supply = <&buck3_reg>;
-
 		reset-gpios = <&main_gpio0 21 GPIO_ACTIVE_LOW>;
+		interrupt-parent = <&main_gpio0>;
+		interrupts = <36 IRQ_TYPE_EDGE_FALLING>;
+		#sound-dai-cells = <0>;
 
 		ports {
 			#address-cells = <1>;
@@ -968,49 +987,12 @@
 	status = "disabled";
 };
 
-&mcasp1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mcasp_hdmi_pins_default>;
-
-	#sound-dai-cells = <0>;
-
-	op-mode = <0>;          /* MCASP_IIS_MODE */
-	tdm-slots = <2>;
-
-	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-	       1 0 0 0
-	       0 0 0 0
-	       0 0 0 0
-	       0 0 0 0
-	>;
-	tx-num-evt = <32>;
-	rx-num-evt = <32>;
-};
-
 &mcasp2 {
 	status = "disabled";
 };
 
-&dss {
-	pinctrl-names = "default";
-	pinctrl-0 = <&hdmi_pins_default>;
-};
-
-&dss_ports {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	/* VP2: DPI Output */
-	port@1 {
-		reg = <1>;
-
-		dpi1_out: endpoint {
-			remote-endpoint = <&it66121hdmitx_in>;
-		};
-	};
-};
-
 &sdhci0 {
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&emmc_pins_default>;
 	ti,driver-strength-ohm = <50>;
@@ -1020,6 +1002,7 @@
 
 &sdhci1 {
 	/* SD/MMC */
+	bootph-all;
 	pinctrl-names = "default";
 	pinctrl-0 = <&sd_pins_default>;
 
@@ -1060,8 +1043,9 @@
 };
 
 &main_uart0 {
+	bootph-all;
 	pinctrl-names = "default";
-	pinctrl-0 = <&console_pins_default>;
+	pinctrl-0 = <&main_uart0_pins_default>;
 	status = "okay";
 };
 
@@ -1072,7 +1056,6 @@
 
 &main_uart5 {
 	status = "okay";
-	force-empty-serdev-controller;
 	symlink = "play/mikrobus/uart";
 };
 
@@ -1083,8 +1066,47 @@
 	symlink = "play/cc1352/uart";
 
 	mcu {
+		status = "okay";
 		compatible = "ti,cc1352p7";
 		reset-gpios = <&main_gpio0 72 GPIO_ACTIVE_LOW>;
 		vdds-supply = <&vdd_3v3>;
 	};
+};
+
+&dss {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&hdmi_pins_default>;
+};
+
+&dss_ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	/* VP2: DPI Output */
+	port@1 {
+		reg = <1>;
+
+		dpi1_out: endpoint {
+			remote-endpoint = <&it66121hdmitx_in>;
+		};
+	};
+};
+
+&mcasp1 {
+	status = "okay";
+	#sound-dai-cells = <0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcasp_hdmi_pins_default>;
+
+	op-mode = <0>;          /* MCASP_IIS_MODE */
+	tdm-slots = <2>;
+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+	       1 0 0 0
+	       0 0 0 0
+	       0 0 0 0
+	       0 0 0 0
+	>;
+	tx-num-evt = <32>;
+	rx-num-evt = <32>;
 };
