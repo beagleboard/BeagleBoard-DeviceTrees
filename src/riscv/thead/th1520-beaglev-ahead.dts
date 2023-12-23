@@ -88,12 +88,7 @@
 	non-removable;
 	no-sdio;
 	no-sd;
-	status = "okay";
-};
-
-&sdio0 {
-	bus-width = <4>;
-	max-frequency = <198000000>;
+	thead,phy-pull-up;
 	status = "okay";
 };
 
