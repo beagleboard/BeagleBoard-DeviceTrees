@@ -723,8 +723,6 @@
 };
 
 &tps {
-	/delete-property/ ti,pmic-shutdown-controller;
-
 	charger {
 		status = "okay";
 	};
