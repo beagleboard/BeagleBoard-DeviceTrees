@@ -16,7 +16,6 @@
 	chosen {
 		base_dtb = "am335x-bonegreen-wireless.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
-		wl1835_bt = "S3-texas-300000";
 	};
 
 	wlan_en_reg: fixedregulator@2 {

@@ -29,6 +29,7 @@
 	* EFUSE_SMA register reads as all zeros).
 	*/
 	oppnitro-1000000000 {
+		/* OPP Nitro */
 		opp-supported-hw = <0x06 0x0100>;
 	};
 };
