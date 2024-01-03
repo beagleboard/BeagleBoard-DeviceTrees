@@ -733,11 +733,6 @@
 	pinctrl-0 = <&main_uart1_pins_default>;
 };
 
-&main_sdhci0 {
-	/* Unused */
-	status = "disabled";
-};
-
 &main_sdhci1 {
 	/* SD Card */
 	status = "okay";
@@ -747,11 +742,6 @@
 	pinctrl-0 = <&main_mmc1_pins_default>;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
-};
-
-&main_sdhci2 {
-	/* Unused */
-	status = "disabled";
 };
 
 &ospi0 {
@@ -817,11 +807,6 @@
 			};
 		};
 	};
-};
-
-&ospi1 {
-	/* Unused */
-	status = "disabled";
 };
 
 &main_i2c0 {
@@ -908,32 +893,8 @@
 	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
 };
 
-&main_gpio2 {
-	status = "disabled";
-};
-
-&main_gpio3 {
-	status = "disabled";
-};
-
-&main_gpio4 {
-	status = "disabled";
-};
-
-&main_gpio5 {
-	status = "disabled";
-};
-
-&main_gpio6 {
-	status = "disabled";
-};
-
-&main_gpio7 {
-	status = "disabled";
-};
-
-&wkup_gpio1 {
-	status = "disabled";
+&wkup_gpio0 {
+	status = "okay";
 };
 
 &usb_serdes_mux {
@@ -1016,16 +977,6 @@
 	maximum-speed = "super-speed";
 	phys = <&serdes2_usb_link>;
 	phy-names = "cdns3,usb3-phy";
-};
-
-&tscadc0 {
-	/* Unused */
-	status = "disabled";
-};
-
-&tscadc1 {
-	/* Unused */
-	status = "disabled";
 };
 
 &mcu_cpsw {

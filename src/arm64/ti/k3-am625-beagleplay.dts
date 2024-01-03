@@ -170,7 +170,7 @@
 			bootph-all;
 			label = "beaglebone:green:usr1";
 			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc0";
+			linux,default-trigger = "disk-activity";
 			function = LED_FUNCTION_DISK_ACTIVITY;
 			default-state = "keep";
 		};
@@ -187,8 +187,7 @@
 			bootph-all;
 			label = "beaglebone:green:usr3";
 			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc1";
-			function = LED_FUNCTION_DISK_ACTIVITY;
+			function = LED_FUNCTION_LAN;
 		};
 
 		led-4 {

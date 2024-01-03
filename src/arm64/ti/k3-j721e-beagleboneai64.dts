@@ -588,21 +588,6 @@
 	disable-wp;
 };
 
-&main_sdhci2 {
-	/* Unused */
-	status = "disabled";
-};
-
-&ospi0 {
-	/* Unused */
-	status = "disabled";
-};
-
-&ospi1 {
-	/* Unused */
-	status = "disabled";
-};
-
 &main_i2c0 {
 	status = "okay";
 	pinctrl-names = "default";
@@ -677,11 +662,6 @@
 		    <&mikro_bus_pins_default>;
 };
 
-&wkup_gpio1 {
-	/* Unused */
-	status = "disabled";
-};
-
 &main_gpio0 {
 	status = "okay";
 	pinctrl-names = "default";
@@ -690,36 +670,6 @@
 
 &main_gpio1 {
 	status = "okay";
-};
-
-&main_gpio2 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio3 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio4 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio5 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio6 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio7 {
-	/* Unused */
-	status = "disabled";
 };
 
 &usb_serdes_mux {
