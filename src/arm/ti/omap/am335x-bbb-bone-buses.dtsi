@@ -21,7 +21,7 @@
 
 // For compatible bone pinmuxing
 bone_pinmux: &am33xx_pinmux {
-	emmc_pins: pinmux_emmc_pins {
+	emmc_pins: emmc-pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN1, PIN_INPUT_PULLUP, MUX_MODE2) /* gpmc_csn1.mmc1_clk */
 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN2, PIN_INPUT_PULLUP, MUX_MODE2) /* gpmc_csn2.mmc1_cmd */
@@ -36,7 +36,7 @@ bone_pinmux: &am33xx_pinmux {
 		>;
 	};
 
-	nxp_hdmi_bonelt_pins: nxp_hdmi_bonelt_pins {
+	nxp_hdmi_bonelt_pins: nxp-hdmi-bonelt-pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
 			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
@@ -62,7 +62,7 @@ bone_pinmux: &am33xx_pinmux {
 		>;
 	};
 
-	nxp_hdmi_bonelt_off_pins: nxp_hdmi_bonelt_off_pins {
+	nxp_hdmi_bonelt_off_pins: nxp-hdmi-bonelt-off-pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
 		>;
