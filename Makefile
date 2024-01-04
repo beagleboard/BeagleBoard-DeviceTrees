@@ -5,6 +5,27 @@ KERNEL_VERSION ?= $(shell uname -r)
 
 DTCVERSION = $(shell $(DTC) --version | grep ^Version | sed 's/^.* //g')
 
+# Disable noisy checks by default
+ifeq ($(findstring 1,$(DTC_VERBOSE)),)
+DTC_FLAGS += -Wno-unit_address_vs_reg \
+        -Wno-unit_address_format \
+        -Wno-avoid_unnecessary_addr_size \
+        -Wno-alias_paths \
+        -Wno-graph_child_address \
+        -Wno-simple_bus_reg \
+        -Wno-unique_unit_address \
+        -Wno-pci_device_reg
+endif
+
+ifneq ($(findstring 2,$(DTC_VERBOSE)),)
+DTC_FLAGS += -Wnode_name_chars_strict \
+        -Wproperty_name_chars_strict
+endif
+
+ifeq "$(DTCVERSION)" "1.6.1"
+DTC_FLAGS += -Wno-interrupt_provider
+endif
+
 MAKEFLAGS += -rR --no-print-directory
 
 ALL_ARCHES := $(patsubst src/%,%,$(wildcard src/*))
@@ -32,57 +53,6 @@ ifeq ("$(origin V)", "command line")
 endif
 ifndef KBUILD_VERBOSE
   KBUILD_VERBOSE = 0
-endif
-
-DTC_FLAGS += -Wno-unit_address_vs_reg
-#http://snapshot.debian.org/binary/device-tree-compiler/
-#http://snapshot.debian.org/package/device-tree-compiler/1.4.4-1/#device-tree-compiler_1.4.4-1
-#http://snapshot.debian.org/archive/debian/20170925T220404Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.4-1_amd64.deb
-
-ifeq "$(DTCVERSION)" "1.4.5"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.4.5-3/#device-tree-compiler_1.4.5-3
-	#http://snapshot.debian.org/archive/debian/20171006T213452Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.5-3_amd64.deb
-	#Debian: 1.4.5
-	DTC_FLAGS += -Wno-pci_bridge
-	DTC_FLAGS += -Wno-simple_bus_reg
-endif
-
-ifeq "$(DTCVERSION)" "1.4.6"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.4.6-1/#device-tree-compiler_1.4.6-1
-	#http://snapshot.debian.org/archive/debian/20180426T224735Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.6-1_amd64.deb
-	#Debian: 1.4.5
-	DTC_FLAGS += -Wno-pci_bridge
-	DTC_FLAGS += -Wno-simple_bus_reg
-	#Debian: 1.4.6
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
-	DTC_FLAGS += -Wno-alias_paths
-endif
-
-ifeq "$(DTCVERSION)" "1.4.7"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.4.7-3/#device-tree-compiler_1.4.7-3
-	#http://snapshot.debian.org/archive/debian/20180911T215003Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.7-3_amd64.deb
-	#Debian: 1.4.5
-	DTC_FLAGS += -Wno-pci_bridge
-	DTC_FLAGS += -Wno-simple_bus_reg
-	#Debian: 1.4.6
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
-	DTC_FLAGS += -Wno-alias_paths
-	#Debian: 1.4.7-3 (Buster)
-	DTC_FLAGS += -Wno-unique_unit_address
-	DTC_FLAGS += -Wno-phys_property
-endif
-
-ifeq "$(DTCVERSION)" "1.5.0"
-	#http://snapshot.debian.org/package/device-tree-compiler/1.5.0-1/#device-tree-compiler_1.5.0-1
-	#http://snapshot.debian.org/archive/debian/20190313T032949Z/pool/main/d/device-tree-compiler/device-tree-compiler_1.5.0-1_amd64.deb
-	#Debian: 1.4.5
-	DTC_FLAGS += -Wno-pci_bridge
-	DTC_FLAGS += -Wno-simple_bus_reg
-	#Debian: 1.4.6
-	DTC_FLAGS += -Wno-avoid_unnecessary_addr_size
-	DTC_FLAGS += -Wno-alias_paths
-	#Debian: 1.4.7-3 (Buster)
-	DTC_FLAGS += -Wno-unique_unit_address
 endif
 
 # Beautify output
