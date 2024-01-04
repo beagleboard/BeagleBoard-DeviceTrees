@@ -8,8 +8,9 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include <dt-bindings/pinctrl/k3.h>
 #include <dt-bindings/soc/ti,sci_pm_domain.h>
+
+#include <dt-bindings/pinctrl/k3.h>
 
 / {
 	model = "Texas Instruments K3 AM625 SoC";
@@ -46,6 +47,7 @@
 	};
 
 	cbass_main: bus@f0000 {
+		bootph-all;
 		compatible = "simple-bus";
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -84,6 +86,7 @@
 			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
 
 		cbass_mcu: bus@4000000 {
+			bootph-all;
 			compatible = "simple-bus";
 			#address-cells = <2>;
 			#size-cells = <2>;
@@ -91,6 +94,7 @@
 		};
 
 		cbass_wakeup: bus@2b000000 {
+			bootph-all;
 			compatible = "simple-bus";
 			#address-cells = <2>;
 			#size-cells = <2>;

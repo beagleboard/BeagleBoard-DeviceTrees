@@ -30,6 +30,7 @@
 	 * to support 1GHz OPP so enable it for PG 2.0 on this board.
 	 */
 	oppnitro-1000000000 {
+		/* OPP Nitro */
 		opp-supported-hw = <0x06 0x0100>;
 	};
 };
@@ -53,7 +54,7 @@
 		"P9_18 [spi0_d1]",
 		"P9_17 [spi0_cs0]",
 		"[mmc0_cd]",
-		"P8_42A [ecappwm0]",
+		"P9_42A [ecappwm0]",
 		"P8_35 [lcd d12]",
 		"P8_33 [lcd d13]",
 		"P8_31 [lcd d14]",
