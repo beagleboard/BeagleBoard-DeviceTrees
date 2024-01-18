@@ -8,7 +8,6 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/pinctrl/am33xx.h>
 #include <dt-bindings/gpio/gpio.h>
 
 /*
