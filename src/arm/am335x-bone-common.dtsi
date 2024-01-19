@@ -3,12 +3,9 @@
  * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
  */
 
-/ {
-	//aliases {
-	//	ethernet0 = &cpsw_port1;
-	//	ethernet1 = &cpsw_port2;
-	//};
+#include "am335x-bbb-bone-buses.dtsi"
 
+/ {
 	cpus {
 		cpu@0 {
 			cpu0-supply = <&dcdc2_reg>;
