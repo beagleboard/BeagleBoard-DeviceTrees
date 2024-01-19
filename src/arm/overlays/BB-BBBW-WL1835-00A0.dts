@@ -73,6 +73,9 @@
 };
 
 &mac {
+	/delete-property/pinctrl-names;
+	/delete-property/pinctrl-0;
+	/delete-property/pinctrl-1;
 	status = "disabled";
 };
 
