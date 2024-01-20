@@ -12,6 +12,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 #include <dt-bindings/pinctrl/dra.h>
+#include "bbai-bone-buses.dtsi"
 
 / {
 	model = "BeagleBoard.org BeagleBone AI";
