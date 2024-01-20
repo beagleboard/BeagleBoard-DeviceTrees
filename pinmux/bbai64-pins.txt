@@ -1,7 +1,7 @@
 
 ##################
 P8_03
-debug-AH21-AH21-446
+debug-AH21-AH21-119
 devicePinID_a=ID_2884,ball_a=AH21,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO19
 controlRegisterOffset_a=0x54
@@ -24,7 +24,7 @@ P8_03:null::null:null:null:
 P8_03:null::null:null:null:
 ##################
 P8_04
-debug-AC29-AC29-60
+debug-AC29-AC29-147
 devicePinID_a=ID_3232,ball_a=AC29,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO5
 controlRegisterOffset_a=0xC4
@@ -47,7 +47,7 @@ P8_04:null::null:null:null:
 P8_04:null::null:null:null:
 ##################
 P8_05
-debug-AH25-AH25-423
+debug-AH25-AH25-132
 devicePinID_a=ID_3058,ball_a=AH25,powerDomainID_a=ID_2638
 name_a=PRG1_PRU1_GPO12
 controlRegisterOffset_a=0x88
@@ -70,7 +70,7 @@ P8_05:null::null:null:null:
 P8_05:null::null:null:null:
 ##################
 P8_06
-debug-AG25-AG25-424
+debug-AG25-AG25-133
 devicePinID_a=ID_3069,ball_a=AG25,powerDomainID_a=ID_2638
 name_a=PRG1_PRU1_GPO13
 controlRegisterOffset_a=0x8C
@@ -93,7 +93,7 @@ P8_06:null::null:null:null:
 P8_06:null::null:null:null:
 ##################
 P8_07
-debug-AD24-AD24-443
+debug-AD24-AD24-114
 devicePinID_a=ID_2826,ball_a=AD24,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO14
 controlRegisterOffset_a=0x3C
@@ -116,7 +116,7 @@ P8_07:null::null:null:null:
 P8_07:null::null:null:null:
 ##################
 P8_08
-debug-AG24-AG24-439
+debug-AG24-AG24-113
 devicePinID_a=ID_2813,ball_a=AG24,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO13
 controlRegisterOffset_a=0x38
@@ -139,7 +139,7 @@ P8_08:null::null:null:null:
 P8_08:null::null:null:null:
 ##################
 P8_09
-debug-AE24-AE24-445
+debug-AE24-AE24-116
 devicePinID_a=ID_2852,ball_a=AE24,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO16
 controlRegisterOffset_a=0x44
@@ -162,7 +162,7 @@ P8_09:null::null:null:null:
 P8_09:null::null:null:null:
 ##################
 P8_10
-debug-AC24-AC24-442
+debug-AC24-AC24-115
 devicePinID_a=ID_2838,ball_a=AC24,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO15
 controlRegisterOffset_a=0x40
@@ -185,7 +185,7 @@ P8_10:null::null:null:null:
 P8_10:null::null:null:null:
 ##################
 P8_11
-debug-AB24-AB24-302
+debug-AB24-AB24-159
 devicePinID_a=ID_3355,ball_a=AB24,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO17
 controlRegisterOffset_a=0xF4
@@ -208,7 +208,7 @@ P8_11:null::null:null:null:
 P8_11:null::null:null:null:
 ##################
 P8_12
-debug-AH28-AH28-300
+debug-AH28-AH28-158
 devicePinID_a=ID_3347,ball_a=AH28,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO16
 controlRegisterOffset_a=0xF0
@@ -231,7 +231,7 @@ P8_12:null::null:null:null:
 P8_12:null::null:null:null:
 ##################
 P8_13
-debug-V27-V27-132
+debug-V27-V27-188
 devicePinID_a=ID_3643,ball_a=V27,powerDomainID_a=ID_3598
 name_a=RGMII5_TD1
 controlRegisterOffset_a=0x168
@@ -254,7 +254,7 @@ P8_13:null::null:null:null:
 P8_13:null::null:null:null:
 ##################
 P8_14
-debug-AF27-AF27-328
+debug-AF27-AF27-174
 devicePinID_a=ID_3502,ball_a=AF27,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO12
 controlRegisterOffset_a=0x130
@@ -277,7 +277,7 @@ P8_14:null::null:null:null:
 P8_14:null::null:null:null:
 ##################
 P8_15
-debug-AB29-AB29-303
+debug-AB29-AB29-160
 devicePinID_a=ID_3365,ball_a=AB29,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO18
 controlRegisterOffset_a=0xF8
@@ -300,7 +300,7 @@ P8_15:null::null:null:null:
 P8_15:null::null:null:null:
 ##################
 P8_16
-debug-AB28-AB28-354
+debug-AB28-AB28-161
 devicePinID_a=ID_3374,ball_a=AB28,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO19
 controlRegisterOffset_a=0xFC
@@ -323,7 +323,7 @@ P8_16:null::null:null:null:
 P8_16:null::null:null:null:
 ##################
 P8_17
-debug-AF22-AF22-353
+debug-AF22-AF22-102
 devicePinID_a=ID_2676,ball_a=AF22,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO2
 controlRegisterOffset_a=0xC
@@ -346,7 +346,7 @@ P8_17:null::null:null:null:
 P8_17:null::null:null:null:
 ##################
 P8_18
-debug-AJ23-AJ23-341
+debug-AJ23-AJ23-103
 devicePinID_a=ID_2690,ball_a=AJ23,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO3
 controlRegisterOffset_a=0x10
@@ -369,7 +369,7 @@ P8_18:null::null:null:null:
 P8_18:null::null:null:null:
 ##################
 P8_19
-debug-V29-V29-140
+debug-V29-V29-187
 devicePinID_a=ID_3634,ball_a=V29,powerDomainID_a=ID_3598
 name_a=RGMII5_TD2
 controlRegisterOffset_a=0x164
@@ -392,7 +392,7 @@ P8_19:null::null:null:null:
 P8_19:null::null:null:null:
 ##################
 P8_20
-debug-AF26-AF26-329
+debug-AF26-AF26-175
 devicePinID_a=ID_3512,ball_a=AF26,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO13
 controlRegisterOffset_a=0x134
@@ -415,7 +415,7 @@ P8_20:null::null:null:null:
 P8_20:null::null:null:null:
 ##################
 P8_21
-debug-AF21-AF21-32
+debug-AF21-AF21-129
 devicePinID_a=ID_3019,ball_a=AF21,powerDomainID_a=ID_2638
 name_a=PRG1_PRU1_GPO9
 controlRegisterOffset_a=0x7C
@@ -438,7 +438,7 @@ P8_21:null::null:null:null:
 P8_21:null::null:null:null:
 ##################
 P8_22
-debug-AH23-AH23-343
+debug-AH23-AH23-104
 devicePinID_a=ID_2702,ball_a=AH23,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO4
 controlRegisterOffset_a=0x14
@@ -461,7 +461,7 @@ P8_22:null::null:null:null:
 P8_22:null::null:null:null:
 ##################
 P8_23
-debug-AB23-AB23-421
+debug-AB23-AB23-130
 devicePinID_a=ID_3032,ball_a=AB23,powerDomainID_a=ID_2638
 name_a=PRG1_PRU1_GPO10
 controlRegisterOffset_a=0x80
@@ -484,7 +484,7 @@ P8_23:null::null:null:null:
 P8_23:null::null:null:null:
 ##################
 P8_24
-debug-AD20-AD20-346
+debug-AD20-AD20-105
 devicePinID_a=ID_2716,ball_a=AD20,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO5
 controlRegisterOffset_a=0x18
@@ -507,7 +507,7 @@ P8_24:null::null:null:null:
 P8_24:null::null:null:null:
 ##################
 P8_25
-debug-AH26-AH26-425
+debug-AH26-AH26-134
 devicePinID_a=ID_3081,ball_a=AH26,powerDomainID_a=ID_2638
 name_a=PRG1_PRU1_GPO14
 controlRegisterOffset_a=0x90
@@ -530,7 +530,7 @@ P8_25:null::null:null:null:
 P8_25:null::null:null:null:
 ##################
 P8_26
-debug-AC27-AC27-37
+debug-AC27-AC27-150
 devicePinID_a=ID_3262,ball_a=AC27,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO8
 controlRegisterOffset_a=0xD0
@@ -553,7 +553,7 @@ P8_26:null::null:null:null:
 P8_26:null::null:null:null:
 ##################
 P8_27
-debug-AA28-AA28-381
+debug-AA28-AA28-170
 devicePinID_a=ID_3464,ball_a=AA28,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO8
 controlRegisterOffset_a=0x120
@@ -576,7 +576,7 @@ P8_27:null::null:null:null:
 P8_27:null::null:null:null:
 ##################
 P8_28
-debug-Y24-Y24-412
+debug-Y24-Y24-171
 devicePinID_a=ID_3472,ball_a=Y24,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO9
 controlRegisterOffset_a=0x124
@@ -599,7 +599,7 @@ P8_28:null::null:null:null:
 P8_28:null::null:null:null:
 ##################
 P8_29
-debug-AA25-AA25-330
+debug-AA25-AA25-172
 devicePinID_a=ID_3483,ball_a=AA25,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO10
 controlRegisterOffset_a=0x128
@@ -622,7 +622,7 @@ P8_29:null::null:null:null:
 P8_29:null::null:null:null:
 ##################
 P8_30
-debug-AG26-AG26-331
+debug-AG26-AG26-173
 devicePinID_a=ID_3493,ball_a=AG26,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO11
 controlRegisterOffset_a=0x12C
@@ -645,9 +645,9 @@ P8_30:null::null:null:null:
 P8_30:null::null:null:null:
 ##################
 P8_31
-debug-AJ25-AJ25-422
+debug-AJ25-AJ25-131
 devicePinID_a=ID_3046,ball_a=AJ25,powerDomainID_a=ID_2638
-debug-AE29-AE29-390
+debug-AE29-AE29-162
 devicePinID_b=ID_3382,ball_b=AE29,powerDomainID_b=ID_3180
 name_a=PRG1_PRU1_GPO11
 name_b=PRG0_PRU1_GPO0
@@ -689,9 +689,9 @@ P8_31:null:AE29:null:null:null:
 P8_31:null:AE29:null:null:null:
 ##################
 P8_32
-debug-AG21-AG21-28
+debug-AG21-AG21-125
 devicePinID_a=ID_2967,ball_a=AG21,powerDomainID_a=ID_2638
-debug-AD28-AD28-383
+debug-AD28-AD28-163
 devicePinID_b=ID_3398,ball_b=AD28,powerDomainID_b=ID_3180
 name_a=PRG1_PRU1_GPO5
 name_b=PRG0_PRU1_GPO1
@@ -733,9 +733,9 @@ P8_32:null:AD28:null:null:null:
 P8_32:null:AD28:null:null:null:
 ##################
 P8_33
-debug-AH24-AH24-29
+debug-AH24-AH24-124
 devicePinID_a=ID_2951,ball_a=AH24,powerDomainID_a=ID_2638
-debug-AA2-AA2-253
+debug-AA2-AA2-210
 devicePinID_b=ID_3852,ball_b=AA2,powerDomainID_b=ID_3853
 name_a=PRG1_PRU1_GPO4
 name_b=SPI0_CS0
@@ -777,7 +777,7 @@ P8_33:null:AA2:null:null:null:
 P8_33:null:AA2:null:null:null:
 ##################
 P8_34
-debug-AD22-AD22-349
+debug-AD22-AD22-106
 devicePinID_a=ID_2725,ball_a=AD22,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO6
 controlRegisterOffset_a=0x1C
@@ -800,9 +800,9 @@ P8_34:null:AH24:null:null:null:
 P8_34:null:AH24:null:null:null:
 ##################
 P8_35
-debug-AD23-AD23-26
+debug-AD23-AD23-123
 devicePinID_a=ID_2935,ball_a=AD23,powerDomainID_a=ID_2638
-debug-Y3-Y3-414
+debug-Y3-Y3-215
 devicePinID_b=ID_3877,ball_b=Y3,powerDomainID_b=ID_3853
 name_a=PRG1_PRU1_GPO3
 name_b=SPI1_CS0
@@ -844,7 +844,7 @@ P8_35:null:Y3:null:null:null:
 P8_35:null:Y3:null:null:null:
 ##################
 P8_36
-debug-AE20-AE20-269
+debug-AE20-AE20-107
 devicePinID_a=ID_2739,ball_a=AE20,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO7
 controlRegisterOffset_a=0x20
@@ -867,9 +867,9 @@ P8_36:null:AD23:null:null:null:
 P8_36:null:AD23:null:null:null:
 ##################
 P8_37
-debug-Y27-Y27-126
+debug-Y27-Y27-205
 devicePinID_a=ID_3815,ball_a=Y27,powerDomainID_a=ID_3726
-debug-AD21-AD21-449
+debug-AD21-AD21-110
 devicePinID_b=ID_2776,ball_b=AD21,powerDomainID_b=ID_2638
 name_a=RGMII6_RD2
 name_b=PRG1_PRU0_GPO10
@@ -911,9 +911,9 @@ P8_37:null:AD21:null:null:null:
 P8_37:null:AD21:null:null:null:
 ##################
 P8_38
-debug-AJ20-AJ20-271
+debug-AJ20-AJ20-108
 devicePinID_a=ID_2750,ball_a=AJ20,powerDomainID_a=ID_2638
-debug-Y29-Y29-142
+debug-Y29-Y29-204
 devicePinID_b=ID_3808,ball_b=Y29,powerDomainID_b=ID_3726
 name_a=PRG1_PRU0_GPO8
 name_b=RGMII6_RD3
@@ -955,7 +955,7 @@ P8_38:null:Y29:null:null:null:
 P8_38:null:Y29:null:null:null:
 ##################
 P8_39
-debug-AC26-AC26-378
+debug-AC26-AC26-168
 devicePinID_a=ID_3444,ball_a=AC26,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO6
 controlRegisterOffset_a=0x118
@@ -978,7 +978,7 @@ P8_39:null:AJ20:null:null:null:
 P8_39:null:AJ20:null:null:null:
 ##################
 P8_40
-debug-AA24-AA24-379
+debug-AA24-AA24-169
 devicePinID_a=ID_3453,ball_a=AA24,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO7
 controlRegisterOffset_a=0x11C
@@ -1001,7 +1001,7 @@ P8_40:null:AJ20:null:null:null:
 P8_40:null:AJ20:null:null:null:
 ##################
 P8_41
-debug-AD29-AD29-386
+debug-AD29-AD29-166
 devicePinID_a=ID_3428,ball_a=AD29,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO4
 controlRegisterOffset_a=0x110
@@ -1024,7 +1024,7 @@ P8_41:null:AJ20:null:null:null:
 P8_41:null:AJ20:null:null:null:
 ##################
 P8_42
-debug-AB27-AB27-376
+debug-AB27-AB27-167
 devicePinID_a=ID_3438,ball_a=AB27,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO5
 controlRegisterOffset_a=0x114
@@ -1047,7 +1047,7 @@ P8_42:null:AJ20:null:null:null:
 P8_42:null:AJ20:null:null:null:
 ##################
 P8_43
-debug-AD27-AD27-384
+debug-AD27-AD27-164
 devicePinID_a=ID_3408,ball_a=AD27,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO2
 controlRegisterOffset_a=0x108
@@ -1070,7 +1070,7 @@ P8_43:null:AJ20:null:null:null:
 P8_43:null:AJ20:null:null:null:
 ##################
 P8_44
-debug-AC25-AC25-385
+debug-AC25-AC25-165
 devicePinID_a=ID_3419,ball_a=AC25,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO3
 controlRegisterOffset_a=0x10C
@@ -1093,7 +1093,7 @@ P8_44:null:AJ20:null:null:null:
 P8_44:null:AJ20:null:null:null:
 ##################
 P8_45
-debug-AG29-AG29-324
+debug-AG29-AG29-178
 devicePinID_a=ID_3540,ball_a=AG29,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO16
 controlRegisterOffset_a=0x140
@@ -1116,7 +1116,7 @@ P8_45:null:AJ20:null:null:null:
 P8_45:null:AJ20:null:null:null:
 ##################
 P8_46
-debug-Y25-Y25-325
+debug-Y25-Y25-179
 devicePinID_a=ID_3548,ball_a=Y25,powerDomainID_a=ID_3180
 name_a=PRG0_PRU1_GPO17
 controlRegisterOffset_a=0x144
@@ -1139,7 +1139,7 @@ P8_46:null:AJ20:null:null:null:
 P8_46:null:AJ20:null:null:null:
 ##################
 P9_11
-debug-AC23-AC23-351
+debug-AC23-AC23-100
 devicePinID_a=ID_2643,ball_a=AC23,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO0
 controlRegisterOffset_a=0x4
@@ -1162,7 +1162,7 @@ P9_11:null:AJ20:null:null:null:
 P9_11:null:AJ20:null:null:null:
 ##################
 P9_12
-debug-AE27-AE27-57
+debug-AE27-AE27-144
 devicePinID_a=ID_3204,ball_a=AE27,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO2
 controlRegisterOffset_a=0xB8
@@ -1185,7 +1185,7 @@ P9_12:null:AJ20:null:null:null:
 P9_12:null:AJ20:null:null:null:
 ##################
 P9_13
-debug-AG22-AG22-352
+debug-AG22-AG22-101
 devicePinID_a=ID_2664,ball_a=AG22,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO1
 controlRegisterOffset_a=0x8
@@ -1208,7 +1208,7 @@ P9_13:null:AJ20:null:null:null:
 P9_13:null:AJ20:null:null:null:
 ##################
 P9_14
-debug-U27-U27-310
+debug-U27-U27-192
 devicePinID_a=ID_3688,ball_a=U27,powerDomainID_a=ID_3598
 name_a=RGMII5_RD3
 controlRegisterOffset_a=0x178
@@ -1231,7 +1231,7 @@ P9_14:null:AJ20:null:null:null:
 P9_14:null:AJ20:null:null:null:
 ##################
 P9_15
-debug-AD25-AD25-59
+debug-AD25-AD25-146
 devicePinID_a=ID_3223,ball_a=AD25,powerDomainID_a=ID_3180
 name_a=PRG0_PRU0_GPO4
 controlRegisterOffset_a=0xC0
@@ -1254,7 +1254,7 @@ P9_15:null:AJ20:null:null:null:
 P9_15:null:AJ20:null:null:null:
 ##################
 P9_16
-debug-U24-U24-311
+debug-U24-U24-193
 devicePinID_a=ID_3697,ball_a=U24,powerDomainID_a=ID_3598
 name_a=RGMII5_RD2
 controlRegisterOffset_a=0x17C
@@ -1277,9 +1277,9 @@ P9_16:null:AJ20:null:null:null:
 P9_16:null:AJ20:null:null:null:
 ##################
 P9_17
-debug-AC21-AC21-30
+debug-AC21-AC21-127
 devicePinID_a=ID_2992,ball_a=AC21,powerDomainID_a=ID_2638
-debug-AA3-AA3-119
+debug-AA3-AA3-214
 devicePinID_b=ID_3874,ball_b=AA3,powerDomainID_b=ID_3853
 name_a=PRG1_PRU1_GPO7
 name_b=SPI0_D1
@@ -1321,9 +1321,9 @@ P9_17:null:AA3:null:null:null:
 P9_17:null:AA3:null:null:null:
 ##################
 P9_18
-debug-AH22-AH22-359
+debug-AH22-AH22-139
 devicePinID_a=ID_3145,ball_a=AH22,powerDomainID_a=ID_2638
-debug-Y2-Y2-147
+debug-Y2-Y2-219
 devicePinID_b=ID_3894,ball_b=Y2,powerDomainID_b=ID_3853
 name_a=PRG1_PRU1_GPO19
 name_b=SPI1_D1
@@ -1365,9 +1365,9 @@ P9_18:null:Y2:null:null:null:
 P9_18:null:Y2:null:null:null:
 ##################
 P9_19
-debug-W5-W5-122
+debug-W5-W5-228
 devicePinID_a=ID_3948,ball_a=W5,powerDomainID_a=ID_3853
-debug-AF29-AF29-327
+debug-AF29-AF29-177
 devicePinID_b=ID_3531,ball_b=AF29,powerDomainID_b=ID_3180
 name_a=MCAN0_RX
 name_b=PRG0_PRU1_GPO15
@@ -1409,9 +1409,9 @@ P9_19:null:AF29:null:null:null:
 P9_19:null:AF29:null:null:null:
 ##################
 P9_20
-debug-W6-W6-202
+debug-W6-W6-229
 devicePinID_a=ID_3952,ball_a=W6,powerDomainID_a=ID_3853
-debug-AE25-AE25-326
+debug-AE25-AE25-176
 devicePinID_b=ID_3521,ball_b=AE25,powerDomainID_b=ID_3180
 name_a=MCAN0_TX
 name_b=PRG0_PRU1_GPO14
@@ -1453,9 +1453,9 @@ P9_20:null:AE25:null:null:null:
 P9_20:null:AE25:null:null:null:
 ##################
 P9_21
-debug-AJ22-AJ22-429
+debug-AJ22-AJ22-138
 devicePinID_a=ID_3132,ball_a=AJ22,powerDomainID_a=ID_2638
-debug-U28-U28-133
+debug-U28-U28-189
 devicePinID_b=ID_3655,ball_b=U28,powerDomainID_b=ID_3598
 name_a=PRG1_PRU1_GPO18
 name_b=RGMII5_TD0
@@ -1497,9 +1497,9 @@ P9_21:null:U28:null:null:null:
 P9_21:null:U28:null:null:null:
 ##################
 P9_22
-debug-AC22-AC22-428
+debug-AC22-AC22-137
 devicePinID_a=ID_3117,ball_a=AC22,powerDomainID_a=ID_2638
-debug-U29-U29-77
+debug-U29-U29-190
 devicePinID_b=ID_3666,ball_b=U29,powerDomainID_b=ID_3598
 name_a=PRG1_PRU1_GPO17
 name_b=RGMII5_TXC
@@ -1541,7 +1541,7 @@ P9_22:null:U29:null:null:null:
 P9_22:null:U29:null:null:null:
 ##################
 P9_23
-debug-AG20-AG20-273
+debug-AG20-AG20-109
 devicePinID_a=ID_2762,ball_a=AG20,powerDomainID_a=ID_2638
 name_a=PRG1_PRU0_GPO9
 controlRegisterOffset_a=0x28
@@ -1564,9 +1564,9 @@ P9_23:null:AC22:null:null:null:
 P9_23:null:AC22:null:null:null:
 ##################
 P9_24
-debug-Y5-Y5-148
+debug-Y5-Y5-218
 devicePinID_a=ID_3890,ball_a=Y5,powerDomainID_a=ID_3853
-debug-AJ24-AJ24-440
+debug-AJ24-AJ24-112
 devicePinID_b=ID_2801,ball_b=AJ24,powerDomainID_b=ID_2638
 name_a=SPI1_D0
 name_b=PRG1_PRU0_GPO12
@@ -1608,9 +1608,9 @@ P9_24:null:AJ24:null:null:null:
 P9_24:null:AJ24:null:null:null:
 ##################
 P9_25
-debug-AC4-AC4-120
+debug-AC4-AC4-226
 devicePinID_a=ID_3934,ball_a=AC4,powerDomainID_a=ID_3853
-debug-W26-W26-74
+debug-W26-W26-203
 devicePinID_b=ID_3798,ball_b=W26,powerDomainID_b=ID_3726
 name_a=UART1_CTSn
 name_b=RGMII6_RXC
@@ -1652,9 +1652,9 @@ P9_25:null:W26:null:null:null:
 P9_25:null:W26:null:null:null:
 ##################
 P9_26
-debug-Y1-Y1-53
+debug-Y1-Y1-217
 devicePinID_a=ID_3886,ball_a=Y1,powerDomainID_a=ID_3853
-debug-AF24-AF24-448
+debug-AF24-AF24-111
 devicePinID_b=ID_2788,ball_b=AF24,powerDomainID_b=ID_2638
 name_a=SPI1_CLK
 name_b=PRG1_PRU0_GPO11
@@ -1696,9 +1696,9 @@ P9_26:null:AF24:null:null:null:
 P9_26:null:AF24:null:null:null:
 ##################
 P9_27
-debug-AD26-AD26-58
+debug-AD26-AD26-145
 devicePinID_a=ID_3214,ball_a=AD26,powerDomainID_a=ID_3180
-debug-AB1-AB1-51
+debug-AB1-AB1-223
 devicePinID_b=ID_3918,ball_b=AB1,powerDomainID_b=ID_3853
 name_a=PRG0_PRU0_GPO3
 name_b=UART0_RTSn
@@ -1740,9 +1740,9 @@ P9_27:null:AB1:null:null:null:
 P9_27:null:AB1:null:null:null:
 ##################
 P9_28
-debug-U2-U2-110
+debug-U2-U2-238
 devicePinID_a=ID_4000,ball_a=U2,powerDomainID_a=ID_3853
-debug-AF28-AF28-54
+debug-AF28-AF28-142
 devicePinID_b=ID_3179,ball_b=AF28,powerDomainID_b=ID_3180
 name_a=ECAP0_IN_APWM_OUT
 name_b=PRG0_PRU0_GPO0
@@ -1784,9 +1784,9 @@ P9_28:null:AF28:null:null:null:
 P9_28:null:AF28:null:null:null:
 ##################
 P9_29
-debug-V5-V5-334
+debug-V5-V5-241
 devicePinID_a=ID_4021,ball_a=V5,powerDomainID_a=ID_3853
-debug-AB25-AB25-305
+debug-AB25-AB25-152
 devicePinID_b=ID_3287,ball_b=AB25,powerDomainID_b=ID_3180
 name_a=TIMER_IO1
 name_b=PRG0_PRU0_GPO10
@@ -1828,9 +1828,9 @@ P9_29:null:AB25:null:null:null:
 P9_29:null:AB25:null:null:null:
 ##################
 P9_30
-debug-V6-V6-332
+debug-V6-V6-240
 devicePinID_a=ID_4013,ball_a=V6,powerDomainID_a=ID_3853
-debug-AE28-AE28-55
+debug-AE28-AE28-143
 devicePinID_b=ID_3195,ball_b=AE28,powerDomainID_b=ID_3180
 name_a=TIMER_IO0
 name_b=PRG0_PRU0_GPO1
@@ -1872,9 +1872,9 @@ P9_30:null:AE28:null:null:null:
 P9_30:null:AE28:null:null:null:
 ##################
 P9_31
-debug-U3-U3-375
+debug-U3-U3-239
 devicePinID_a=ID_4008,ball_a=U3,powerDomainID_a=ID_3853
-debug-AB26-AB26-38
+debug-AB26-AB26-151
 devicePinID_b=ID_3272,ball_b=AB26,powerDomainID_b=ID_3180
 name_a=EXT_REFCLK1
 name_b=PRG0_PRU0_GPO9
@@ -1916,9 +1916,9 @@ P9_31:null:AB26:null:null:null:
 P9_31:null:AB26:null:null:null:
 ##################
 P9_33
-debug-K24-K24-91
+debug-K24-K24-81
 devicePinID_a=ID_2585,ball_a=K24,powerDomainID_a=ID_2572
-debug-AC28-AC28-62
+debug-AC28-AC28-149
 devicePinID_b=ID_3249,ball_b=AC28,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN4
 name_b=PRG0_PRU0_GPO7
@@ -1946,9 +1946,9 @@ P9_33:null:AC28:null:null:null:
 P9_33:null:AC28:null:null:null:
 ##################
 P9_35
-debug-K29-K29-89
+debug-K29-K29-83
 devicePinID_a=ID_2591,ball_a=K29,powerDomainID_a=ID_2572
-debug-AH27-AH27-294
+debug-AH27-AH27-154
 devicePinID_b=ID_3308,ball_b=AH27,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN6
 name_b=PRG0_PRU0_GPO12
@@ -1976,9 +1976,9 @@ P9_35:null:AH27:null:null:null:
 P9_35:null:AH27:null:null:null:
 ##################
 P9_36
-debug-K27-K27-90
+debug-K27-K27-82
 devicePinID_a=ID_2588,ball_a=K27,powerDomainID_a=ID_2572
-debug-AH29-AH29-295
+debug-AH29-AH29-155
 devicePinID_b=ID_3318,ball_b=AH29,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN5
 name_b=PRG0_PRU0_GPO13
@@ -2006,9 +2006,9 @@ P9_36:null:AH29:null:null:null:
 P9_36:null:AH29:null:null:null:
 ##################
 P9_37
-debug-K28-K28-84
+debug-K28-K28-79
 devicePinID_a=ID_2579,ball_a=K28,powerDomainID_a=ID_2572
-debug-AG28-AG28-297
+debug-AG28-AG28-156
 devicePinID_b=ID_3327,ball_b=AG28,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN2
 name_b=PRG0_PRU0_GPO14
@@ -2036,9 +2036,9 @@ P9_37:null:AG28:null:null:null:
 P9_37:null:AG28:null:null:null:
 ##################
 P9_38
-debug-L28-L28-92
+debug-L28-L28-80
 devicePinID_a=ID_2582,ball_a=L28,powerDomainID_a=ID_2572
-debug-AG27-AG27-298
+debug-AG27-AG27-157
 devicePinID_b=ID_3337,ball_b=AG27,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN3
 name_b=PRG0_PRU0_GPO15
@@ -2066,9 +2066,9 @@ P9_38:null:AG27:null:null:null:
 P9_38:null:AG27:null:null:null:
 ##################
 P9_39
-debug-K25-K25-87
+debug-K25-K25-77
 devicePinID_a=ID_2571,ball_a=K25,powerDomainID_a=ID_2572
-debug-AJ28-AJ28-292
+debug-AJ28-AJ28-153
 devicePinID_b=ID_3298,ball_b=AJ28,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN0
 name_b=PRG0_PRU0_GPO11
@@ -2096,9 +2096,9 @@ P9_39:null:AJ28:null:null:null:
 P9_39:null:AJ28:null:null:null:
 ##################
 P9_40
-debug-K26-K26-85
+debug-K26-K26-78
 devicePinID_a=ID_2576,ball_a=K26,powerDomainID_a=ID_2572
-debug-AA26-AA26-320
+debug-AA26-AA26-180
 devicePinID_b=ID_3557,ball_b=AA26,powerDomainID_b=ID_3180
 name_a=MCU_ADC0_AIN1
 name_b=PRG0_PRU1_GPO18
@@ -2126,7 +2126,7 @@ P9_40:null:AA26:null:null:null:
 P9_40:null:AA26:null:null:null:
 ##################
 P9_41
-debug-AD5-AD5-288
+debug-AD5-AD5-227
 devicePinID_a=ID_3941,ball_a=AD5,powerDomainID_a=ID_3853
 name_a=UART1_RTSn
 controlRegisterOffset_a=0x204
@@ -2149,9 +2149,9 @@ P9_41:null:K26:null:null:null:
 P9_41:null:K26:null:null:null:
 ##################
 P9_42
-debug-AC2-AC2-205
+debug-AC2-AC2-222
 devicePinID_a=ID_3906,ball_a=AC2,powerDomainID_a=ID_3853
-debug-AJ21-AJ21-444
+debug-AJ21-AJ21-117
 devicePinID_b=ID_2865,ball_b=AJ21,powerDomainID_b=ID_2638
 name_a=UART0_CTSn
 name_b=PRG1_PRU0_GPO17
