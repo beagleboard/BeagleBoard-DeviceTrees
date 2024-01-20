@@ -8,6 +8,7 @@ echo "" >${file}-pinmux.dts
 echo "" >${file}-a-bone-pins.h
 echo "" >${file}-b-bone-pins.h
 echo "" >${file}-bone-pins.h
+echo "" >${file}-pins.txt
 
 echo "/* macro: BONE_PIN( <pin>, <mode_name>, <register_value_macro(s)> */" >${file}.dts
 echo "#define BONE_PIN(XX,ZZ,QQ) \\" >>${file}.dts
