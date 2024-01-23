@@ -156,13 +156,16 @@
 
 	vdd_mmc1: regulator-mmc1 {
 		/* TPS22918DBVR */
+		pinctrl-names = "default";
+		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
+
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_mmc1";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		enable-active-high;
-		gpio = <&exp1 15 GPIO_ACTIVE_HIGH>;
+		gpio = <&main_gpio1 50 GPIO_ACTIVE_HIGH>;
 		bootph-all;
 	};
 
@@ -176,7 +179,7 @@
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
 		vin-supply = <&vsys_5v0>;
-		gpios = <&main_gpio0 70 GPIO_ACTIVE_HIGH>;
+		gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
 		states = <1800000 0x0>,
 			 <3300000 0x1>;
 	};
@@ -232,18 +235,18 @@
 		pinctrl-0 = <&led_pins_default>;
 
 		led-0 {
-			label = "j722s-evm:red:heartbeat";
-			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-			function = LED_FUNCTION_HEARTBEAT;
-			linux,default-trigger = "heartbeat";
+			label = "j722s-evm:red:pwr";
+			gpios = <&main_gpio0 11 GPIO_ACTIVE_LOW>;
+			linux,default-trigger = "default-off";
+			default-state = "on";
 		};
 
 		led-1 {
 			label = "j722s-evm:green:disk-activity";
-			gpios = <&exp1 16 GPIO_ACTIVE_HIGH>;
+			gpios = <&main_gpio0 12 GPIO_ACTIVE_HIGH>;
 			function = LED_FUNCTION_DISK_ACTIVITY;
 			linux,default-trigger = "mmc1";
-			default-state = "off";
+			default-state = "on";
 		};
 	};
 };
@@ -269,7 +272,7 @@
 
 	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
 		pinctrl-single,pins = <
-			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
+			J722S_IOPAD(0x0244, PIN_OUTPUT, 7) /* (A24) MMC1_SDWP.GPIO1_49 */
 		>;
 		bootph-all;
 	};
@@ -385,7 +388,14 @@
 
 	led_pins_default: led-default-pins {
 		pinctrl-single,pins = <
-			J722S_IOPAD(0x0244, PIN_INPUT, 7) /* (A24) MMC1_SDWP */
+                        J722S_IOPAD(0x002c, PIN_OUTPUT, 7) /* (K26) OSPI0_CSn0.GPIO0_11 */
+			J722S_IOPAD(0x0030, PIN_OUTPUT, 7) /* (K23) OSPI0_CSn1.GPIO0_12 */
+		>;
+	};
+
+	vdd_3v3_sd_pins_default: vdd-3v3-sd-pins-default {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0254, PIN_OUTPUT, 7) /* (E25) USB0_DRVVBUS.GPIO1_50 */
 		>;
 	};
 
@@ -522,7 +532,7 @@
 };
 
 &ospi0 {
-	status = "okay";
+	status = "disabled";
 	pinctrl-names = "default";
 	pinctrl-0 = <&ospi0_pins_default>;
 	bootph-all;
