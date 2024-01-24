@@ -223,7 +223,7 @@
 		regulator-name = "dp0-pwr";
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>; /* P2 - DP0_PWR_SW_EN */
+		//gpio = <&exp2 2 GPIO_ACTIVE_HIGH>; /* P2 - DP0_PWR_SW_EN */
 		enable-active-high;
 		regulator-always-on;
 	};
@@ -659,49 +659,11 @@
 	clock-frequency = <100000>;
 	bootph-all;
 
-	exp2: gpio@20 {
-		compatible = "ti,tca6416";
-		reg = <0x20>;
-		gpio-controller;
-		#gpio-cells = <2>;
-		gpio-line-names = "DSI_Mux_SEL_2", "GPIO_eDP_ENABLE",
-				  "DP0_PWR_SW_EN", "GPIO_OLDI_RSTn",
-				  "GPIO_HDMI_RSTn", "HDMI_LS_OE",
-				  "PCIe0_1L_PERSTz", "DSI_GPIO0",
-				  "DSI_GPIO1", "DSI_EDID",
-				  "OLDI_INT#", "HDMI_INTn";
-
-		interrupt-parent = <&main_gpio0>;
-		interrupts = <67 IRQ_TYPE_EDGE_FALLING>;
-		interrupt-controller;
-		#interrupt-cells = <2>;
-
-		pinctrl-names = "default";
-		pinctrl-0 = <&main_gpio0_ioexp_intr_pins_default>;
-		bootph-all;
-
-		p04-hog {
-			/* P04 - GPIO_HDMI_RSTn */
-			gpio-hog;
-			gpios = <4 GPIO_ACTIVE_HIGH>;
-			output-high;
-			line-name = "GPIO_HDMI_RSTn";
-		};
-
-		p03-hog {
-			/* P03 - GPIO_OLDI_RSTn */
-			gpio-hog;
-			gpios = <3 GPIO_ACTIVE_HIGH>;
-			output-high;
-			line-name = "GPIO_OLDI_RSTn";
-		};
-	};
-
 	it66121hdmitx: hdmitx@4c {
 		compatible = "ite,it66121";
 		reg = <0x4c>;
-		interrupt-parent = <&exp2>;
-		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+		//interrupt-parent = <&exp2>;
+		//interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
 		#sound-dai-cells = <0>;
 
 		hdmi_tx_ports: ports {
@@ -739,7 +701,7 @@
 		clock-names = "refclk";
 		clocks = <&edp0_refclk>;
 
-		enable-gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
+		//enable-gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
 
 		vpll-supply = <&vsys_io_1v8>;
 		vccio-supply = <&vsys_io_1v8>;
