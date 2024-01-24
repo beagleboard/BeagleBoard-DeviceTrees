@@ -439,6 +439,7 @@
 };
 
 &wkup_uart0 {
+	symlink = "play/wkup_uart0";
 	/* WKUP UART0 is used by DM firmware */
 	pinctrl-names = "default";
 	pinctrl-0 = <&wkup_uart0_pins_default>;
@@ -447,6 +448,7 @@
 };
 
 &wkup_i2c0 {
+	symlink = "play/wkup_i2c0";
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&wkup_i2c0_pins_default>;
@@ -455,6 +457,7 @@
 };
 
 &main_i2c0 {
+	symlink = "play/main_i2c0";
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c0_pins_default>;
@@ -489,6 +492,7 @@
 };
 
 &main_i2c2 {
+	symlink = "play/main_i2c2";
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c2_pins_default>;
@@ -653,6 +657,7 @@
 };
 
 &main_i2c1 {
+	symlink = "play/main_i2c1";
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_i2c1_pins_default>;
@@ -688,53 +693,6 @@
 
 				it66121hdmitx_out: endpoint {
 					remote-endpoint = <&hdmi_connector_in>;
-				};
-			};
-		};
-	};
-
-	dsi_edp_bridge: dsi-edp-bridge@2c {
-		compatible = "ti,sn65dsi86";
-		status = "disabled";
-		reg = <0x2c>;
-
-		clock-names = "refclk";
-		clocks = <&edp0_refclk>;
-
-		//enable-gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
-
-		vpll-supply = <&vsys_io_1v8>;
-		vccio-supply = <&vsys_io_1v8>;
-		vcca-supply = <&vsys_io_1v2>;
-		vcc-supply = <&vsys_io_1v2>;
-
-		dsi_edp_bridge_ports: ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			port@0 {
-				reg = <0>;
-				dp0_in: endpoint {
-					remote-endpoint = <&dsi0_out>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				dp0_out: endpoint {
-					remote-endpoint = <&dp0_panel_in>;
-				};
-			};
-		};
-
-		aux-bus {
-			panel {
-				compatible = "ti,panel-edp";
-				power-supply = <&dp0_pwr_3v3>;
-
-				port {
-					dp0_panel_in: endpoint {
-						remote-endpoint = <&dp0_out>;
-					};
 				};
 			};
 		};
@@ -784,13 +742,6 @@
 	ports {
 		#address-cells = <1>;
 		#size-cells = <0>;
-
-		port@0 {
-			reg = <0>;
-			dsi0_out: endpoint {
-				remote-endpoint = <&dp0_in>;
-			};
-		};
 
 		port@1 {
 			reg = <1>;
