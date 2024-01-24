@@ -116,7 +116,7 @@
 		};
 
 		rtos_ipc_memory_region: ipc-memories@a5000000 {
-			reg = <0x00 0xa5000000 0x00 0x1C00000>;
+			reg = <0x00 0xa5000000 0x00 0x1c00000>;
 			alignment = <0x1000>;
 			no-map;
 		};
@@ -170,7 +170,6 @@
 	};
 
 	vdd_sd_dv: regulator-TLV71033 {
-		/* Output of TLV71033 */
 		compatible = "regulator-gpio";
 		regulator-name = "tlv71033";
 		pinctrl-names = "default";
@@ -270,7 +269,7 @@
 		bootph-all;
 	};
 
-	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0244, PIN_OUTPUT, 7) /* (A24) MMC1_SDWP.GPIO1_49 */
 		>;
@@ -963,22 +962,31 @@
 	};
 };
 
-&wkup_r5fss0_core0 {
+&wkup_r5fss0 {
 	status = "okay";
+};
+
+&wkup_r5fss0_core0 {
 	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
 	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
 			<&wkup_r5fss0_core0_memory_region>;
 };
 
-&mcu_r5fss0_core0 {
+&mcu_r5fss0 {
 	status = "okay";
+};
+
+&mcu_r5fss0_core0 {
 	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
 	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
 			<&mcu_r5fss0_core0_memory_region>;
 };
 
-&main_r5fss0_core0 {
+&main_r5fss0 {
 	status = "okay";
+};
+
+&main_r5fss0_core0 {
 	mboxes = <&mailbox0_cluster3 &mbox_main_r5_0>;
 	memory-region = <&main_r5fss0_core0_dma_memory_region>,
 			<&main_r5fss0_core0_memory_region>;
