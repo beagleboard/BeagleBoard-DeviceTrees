@@ -3,7 +3,7 @@
  * Device Tree file for the J722S-EVM
  * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
  *
- * Schematics: https://www.ti.com/lit/zip/sprr487
+ * Schematics: https://www.ti.com/lit/zip/sprr495
  */
 
 /dts-v1/;
@@ -53,6 +53,16 @@
 			reusable;
 			size = <0x00 0x38000000>;
 			linux,cma-default;
+		};
+
+		secure_tfa_ddr: tfa@9e780000 {
+			reg = <0x00 0x9e780000 0x00 0x80000>;
+			no-map;
+		};
+
+		secure_ddr: optee@9e800000 {
+			reg = <0x00 0x9e800000 0x00 0x01800000>;
+			no-map;
 		};
 
 		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
@@ -118,16 +128,6 @@
 		rtos_ipc_memory_region: ipc-memories@a5000000 {
 			reg = <0x00 0xa5000000 0x00 0x1c00000>;
 			alignment = <0x1000>;
-			no-map;
-		};
-
-		secure_tfa_ddr: tfa@9e780000 {
-			reg = <0x00 0x9e780000 0x00 0x80000>;
-			no-map;
-		};
-
-		secure_ddr: optee@9e800000 {
-			reg = <0x00 0x9e800000 0x00 0x01800000>;
 			no-map;
 		};
 	};
@@ -537,7 +537,7 @@
 	bootph-all;
 
 	flash@0{
-		status = "okay";
+		status = "disabled";
 		compatible = "jedec,spi-nor";
 		reg = <0x0>;
 		spi-tx-bus-width = <8>;
@@ -865,64 +865,6 @@
 
 &cpsw_port2 {
 	status = "disabled";
-};
-
-&serdes_ln_ctrl {
-	idle-states = <J722S_SERDES0_LANE0_USB0>,
-		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
-};
-
-&serdes0 {
-	serdes0_usb_link: phy@0 {
-		reg = <0>;
-		cdns,num-lanes = <1>;
-		#phy-cells = <0>;
-		cdns,phy-type = <PHY_TYPE_USB3>;
-		resets = <&serdes_wiz0 1>;
-	};
-};
-
-&usbss0 {
-	status = "okay";
-	ti,vbus-divider;
-};
-
-&usb0 {
-	status = "okay";
-	dr_mode = "peripheral";
-	usb-role-switch;
-};
-
-&usbss1 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_usb1_pins_default>;
-	ti,vbus-divider;
-};
-
-&usb1 {
-	status = "okay";
-	dr_mode = "host";
-	maximum-speed = "super-speed";
-	phys = <&serdes0_usb_link>;
-	phy-names = "cdns3,usb3-phy";
-};
-
-&serdes1 {
-	serdes1_pcie_link: phy@0 {
-		reg = <0>;
-		cdns,num-lanes = <1>;
-		#phy-cells = <0>;
-		cdns,phy-type = <PHY_TYPE_PCIE>;
-		resets = <&serdes_wiz1 1>;
-	};
-};
-
-&pcie0_rc {
-	status = "okay";
-	reset-gpios = <&exp1 18 GPIO_ACTIVE_HIGH>;
-	phys = <&serdes1_pcie_link>;
-	phy-names = "pcie-phy";
 };
 
 &mailbox0_cluster0 {
