@@ -26,6 +26,7 @@
 		spi0 = &ospi0;
 		mmc0 = &sdhci0;
 		mmc1 = &sdhci1;
+		mmc2 = &sdhci2;
 		usb0 = &usb0;
 		usb1 = &usb1;
 	};
@@ -151,6 +152,20 @@
 		vin-supply = <&vsys_5v0>;
 		regulator-always-on;
 		regulator-boot-on;
+	};
+
+	wlan_en: regulator-3 {
+		compatible = "regulator-fixed";
+		regulator-name = "wlan_en";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		/* regulator-always-on; */
+		regulator-off-in-suspend;
+		vin-supply = <&vdd_3v3>;
+		gpio = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&wifi_en_pins_default>;
 	};
 
 	vdd_mmc1: regulator-mmc1 {
@@ -408,6 +423,30 @@
 			J722S_IOPAD(0x01f4, PIN_INPUT_PULLUP, 0) /* (B23) EXTINTn */
 		>;
 	};
+
+	wifi_pins_default: wifi-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0120, PIN_INPUT, 0) /* (F27) MMC2_CMD */
+			J722S_IOPAD(0x0118, PIN_OUTPUT, 0) /* (H26) MMC2_CLK */
+			J722S_IOPAD(0x011C, PIN_INPUT, 0) /* () MMC2_CLKLB */
+			J722S_IOPAD(0x0114, PIN_INPUT, 0) /* (G26) MMC2_DAT0 */
+			J722S_IOPAD(0x0110, PIN_INPUT_PULLUP, 0) /* (G27) MMC2_DAT1 */
+			J722S_IOPAD(0x010c, PIN_INPUT_PULLUP, 0) /* (H27) MMC2_DAT2 */
+			J722S_IOPAD(0x0108, PIN_INPUT_PULLUP, 0) /* (J27) MMC2_DAT3 */
+		>;
+	};
+
+	wifi_en_pins_default: wifi-en-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0010, PIN_OUTPUT, 7) /* (L27) OSPI0_D1.GPIO0_4 */
+		>;
+	};
+
+	wifi_wlirq_pins_default: wifi-wlirq-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0014, PIN_INPUT, 7) /* (L26) OSPI0_D2.GPIO0_5 */
+		>;
+	};
 };
 
 &main_gpio1 {
@@ -440,6 +479,12 @@
 			J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
 		>;
 		bootph-all;
+	};
+
+	wifi_32k_clk: mcu-clk-out-default-pins {
+		pinctrl-single,pins = <
+			J722S_MCU_IOPAD(0x0084, PIN_OUTPUT, 0) /* (F12) WKUP_CLKOUT0 */
+		>;
 	};
 };
 
@@ -614,6 +659,32 @@
 	disable-wp;
 	no-1-8-v;
 	bootph-all;
+};
+
+&sdhci2 {
+	vmmc-supply = <&wlan_en>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&wifi_pins_default>, <&wifi_32k_clk>;
+	bus-width = <4>;
+	non-removable;
+	ti,fails-without-test-cd;
+	cap-power-off-card;
+	keep-power-in-suspend;
+	ti,driver-strength-ohm = <50>;
+	assigned-clocks = <&k3_clks 157 158>;
+	assigned-clock-parents = <&k3_clks 157 160>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	wlcore: wlcore@2 {
+		compatible = "ti,wl1835";
+		reg = <2>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&wifi_wlirq_pins_default>;
+		interrupt-parent = <&main_gpio0>;
+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+	};
 };
 
 &ospi0 {
