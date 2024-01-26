@@ -14,6 +14,7 @@
 #include <dt-bindings/net/ti-dp83867.h>
 #include <dt-bindings/mux/ti-serdes.h>
 #include <dt-bindings/phy/phy.h>
+#include <dt-bindings/pwm/pwm.h>
 
 / {
 	compatible = "ti,j722s-evm", "ti,j722s";
@@ -262,6 +263,20 @@
 			default-state = "on";
 		};
 	};
+
+	fan0: pwm-fan {
+		compatible = "pwm-fan";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pwm_fan_pins>;
+		fan-supply = <&vsys_5v0>;
+		#cooling-cells = <2>;
+		cooling-levels = <0 32 64 128 196 240>;
+		pwms = <&epwm2 0 40000 PWM_POLARITY_INVERTED>;
+		pulses-per-revolution = <2>;
+		interrupt-parent = <&main_gpio1>;
+		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
+		status = "okay";
+	};
 };
 
 &main_pmx0 {
@@ -448,6 +463,13 @@
 		>;
 	};
 
+	pwm_fan_pins: pwm-fan-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0124, PIN_OUTPUT, 4) /* (F26) MMC2_SDCD.EHRPWM2_A FAN_PWM */
+			J722S_IOPAD(0x01d0, PIN_INPUT, 7) /* (E22) UART0_CTSn.GPIO1_22 FAN_TACH */
+		>;
+	};
+
 	dss0_pins_default: dss0-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0100, PIN_OUTPUT, 0) /* (AB23) VOUT0_VSYNC */
@@ -480,6 +502,10 @@
 			J722S_IOPAD(0x0078, PIN_OUTPUT, 1) /* (V23) GPMC0_AD15.VOUT0_DATA23 */
 		>;
 	};
+};
+
+&epwm2 {
+	status = "okay";
 };
 
 &main_gpio1 {
