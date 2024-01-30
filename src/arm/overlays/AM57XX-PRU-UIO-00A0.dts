@@ -18,6 +18,22 @@
 	};
 };
 
+&pru1_0 {
+	status = "okay";
+};
+
+&pru1_1 {
+	status = "okay";
+};
+
+&pru2_0 {
+	status = "okay";
+};
+
+&pru2_1 {
+	status = "okay";
+};
+
 &pruss1_tm {
 	status = "okay";
 };
