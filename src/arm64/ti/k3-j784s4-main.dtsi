@@ -628,6 +628,7 @@
 		ti,itap-del-sel-sd-hs = <0x0>;
 		ti,itap-del-sel-sdr12 = <0x0>;
 		ti,itap-del-sel-sdr25 = <0x0>;
+		ti,itap-del-sel-ddr50 = <0x2>;
 		ti,clkbuf-sel = <0x7>;
 		ti,trm-icp = <0x8>;
 		dma-coherent;
@@ -1225,24 +1226,28 @@
 			main_cpsw0_port5: port@5 {
 				reg = <5>;
 				label = "port5";
+				ti,mac-only;
 				status = "disabled";
 			};
 
 			main_cpsw0_port6: port@6 {
 				reg = <6>;
 				label = "port6";
+				ti,mac-only;
 				status = "disabled";
 			};
 
 			main_cpsw0_port7: port@7 {
 				reg = <7>;
 				label = "port7";
+				ti,mac-only;
 				status = "disabled";
 			};
 
 			main_cpsw0_port8: port@8 {
 				reg = <8>;
 				label = "port8";
+				ti,mac-only;
 				status = "disabled";
 			};
 		};
