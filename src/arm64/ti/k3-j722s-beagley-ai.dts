@@ -502,6 +502,12 @@
 			J722S_IOPAD(0x0078, PIN_OUTPUT, 1) /* (V23) GPMC0_AD15.VOUT0_DATA23 */
 		>;
 	};
+
+	pcie_clk: pcie-clk-out-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x02ac, PIN_OUTPUT, 0) /* (F25) PCIE0_CLKREQn */
+		>;
+	};
 };
 
 &epwm2 {
@@ -550,6 +556,12 @@
 		pinctrl-single,pins = <
 			J722S_MCU_IOPAD(0x0038, PIN_INPUT_PULLUP, 7) /* (D8) MCU_MCAN0_RX.MCU_GPIO0_14 HDMI_INTn */
 			J722S_MCU_IOPAD(0x0034, PIN_OUTPUT_PULLUP, 7) /* (B2) MCU_MCAN0_TX.MCU_GPIO0_13 HDMI_RSTn */
+		>;
+	};
+
+	pcie_reset_pins_default: pcie-reset-default-pins {
+		pinctrl-single,pins = <
+			J722S_MCU_IOPAD(0x0018, PIN_OUTPUT, 7) /* (B4) MCU_UART0_TXD.MCU_GPIO0_6 */
 		>;
 	};
 };
@@ -1138,7 +1150,9 @@
 
 &pcie0_rc {
 	status = "okay";
-	reset-gpios = <&exp1 18 GPIO_ACTIVE_HIGH>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pcie_reset_pins_default>;
+	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 };
