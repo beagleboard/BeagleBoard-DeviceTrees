@@ -13,7 +13,7 @@ thermal_zones: thermal-zones {
 
 		trips {
 			main0_crit: main0-crit {
-				temperature = <105000>;	/* milliCelsius */
+				temperature = <125000>;	/* milliCelsius */
 				hysteresis = <2000>;	/* milliCelsius */
 				type = "critical";
 			};
@@ -27,7 +27,21 @@ thermal_zones: thermal-zones {
 
 		trips {
 			main1_crit: main1-crit {
-				temperature = <105000>;	/* milliCelsius */
+				temperature = <125000>;	/* milliCelsius */
+				hysteresis = <2000>;	/* milliCelsius */
+				type = "critical";
+			};
+		};
+	};
+
+	main2_thermal: main2-thermal {
+	       polling-delay-passive = <250>;	/* milliSeconds */
+	       polling-delay = <500>;		/* milliSeconds */
+	       thermal-sensors = <&wkup_vtm0 2>;
+
+		trips {
+			main2_crit: main2-crit {
+				temperature = <125000>;	/* milliCelsius */
 				hysteresis = <2000>;	/* milliCelsius */
 				type = "critical";
 			};
