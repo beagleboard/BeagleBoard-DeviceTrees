@@ -326,7 +326,6 @@
 			};
 		};
 
-
 		gmacapb_syscon0: syscon@ffec003000 {
 			compatible = "thead,th1520-gmacapb-syscon", "syscon";
 			reg = <0xff 0xec003000 0x0 0x1000>;
