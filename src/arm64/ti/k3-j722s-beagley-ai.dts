@@ -300,7 +300,7 @@
 
 	main_uart1_pins_default: main-uart1-default-pins {
 		pinctrl-single,pins = <
-			J722S_IOPAD(0x01ac, PIN_OUTPUT, 2) /* (C27) MCASP0_AFSR.UART1_RXD */
+			J722S_IOPAD(0x01ac, PIN_INPUT, 2) /* (C27) MCASP0_AFSR.UART1_RXD */
 			J722S_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (F24) MCASP0_ACLKR.UART1_TXD */
 		>;
 	};
