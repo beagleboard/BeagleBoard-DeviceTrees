@@ -517,6 +517,13 @@
 			J722S_IOPAD(0x02ac, PIN_OUTPUT, 0) /* (F25) PCIE0_CLKREQn */
 		>;
 	};
+
+	usb_hub: usb-hub-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0084, PIN_OUTPUT, 7) /* (N21) GPMC0_ADVn_ALE.GPIO0_32 */
+		>;
+		//E27/RESETSTATz/3V3
+	};
 };
 
 &epwm2 {
@@ -1205,6 +1212,28 @@
 	maximum-speed = "super-speed";
 	phys = <&serdes0_usb_link>;
 	phy-names = "cdns3,usb3-phy";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb_hub>;
+	status = "okay";
+
+	hub_2_0: hub@1 {
+		compatible = "usb451,8140";
+		reg = <1>;
+		peer-hub = <&hub_3_0>;
+		reset-gpios = <&main_gpio0 32 GPIO_ACTIVE_LOW>;
+		vdd-supply = <&vdd_3v3>;
+	};
+
+	hub_3_0: hub@2 {
+		compatible = "usb451,8140";
+		reg = <2>;
+		peer-hub = <&hub_2_0>;
+		reset-gpios = <&main_gpio0 32 GPIO_ACTIVE_LOW>;
+		vdd-supply = <&vdd_3v3>;
+	};
 };
 
 &pcie0_rc {
