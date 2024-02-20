@@ -619,6 +619,9 @@
 		pinctrl-single,pins = <
 			J722S_MCU_IOPAD(0x0018, PIN_OUTPUT, 7) /* (B4) MCU_UART0_TXD.MCU_GPIO0_6 */
 		>;
+		//C5/MCU_GPIO0_8/PCIE_PWR_EN/3V3[11]
+		//B8/MCU_GPIO0_5/PCIE_DET_WAKE/3V3[11]
+		//F25/PCIE_CLKREQN/3V3[17]
 	};
 };
 
@@ -1208,7 +1211,9 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&pcie_reset_pins_default>;
-	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
+	num-lanes = <1>;
+	max-link-speed = <3>;
+	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
 };
