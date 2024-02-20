@@ -264,14 +264,16 @@
 		};
 	};
 
-	fan0: pwm-fan {
+	fan: cooling_fan {
 		compatible = "pwm-fan";
 		pinctrl-names = "default";
 		pinctrl-0 = <&pwm_fan_pins>;
 		fan-supply = <&vsys_5v0>;
 		#cooling-cells = <2>;
-		cooling-levels = <0 32 64 128 196 240>;
-		pwms = <&epwm2 0 40000 PWM_POLARITY_INVERTED>;
+		cooling-min-state = <0>;
+		cooling-max-state = <3>;
+		cooling-levels = <0 75 125 175 250>;
+		pwms = <&epwm2 0 40000 0>;
 		pulses-per-revolution = <2>;
 		interrupt-parent = <&main_gpio1>;
 		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
