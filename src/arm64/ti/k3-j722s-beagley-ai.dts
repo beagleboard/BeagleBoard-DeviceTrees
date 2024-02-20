@@ -135,13 +135,13 @@
 	};
 
 	vsys_5v0: regulator-1 {
-		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_5v0";
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
 		regulator-always-on;
 		regulator-boot-on;
+		bootph-all;
 	};
 
 	vdd_3v3: regulator-2 {
