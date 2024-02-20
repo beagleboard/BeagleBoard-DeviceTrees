@@ -298,6 +298,13 @@
 		bootph-all;
 	};
 
+	main_uart1_pins_default: main-uart1-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x01ac, PIN_OUTPUT, 2) /* (C27) MCASP0_AFSR.UART1_RXD */
+			J722S_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (F24) MCASP0_ACLKR.UART1_TXD */
+		>;
+	};
+
 	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0244, PIN_OUTPUT, 7) /* (A24) MMC1_SDWP.GPIO1_49 */
@@ -521,6 +528,14 @@
 &main_uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart0_pins_default>;
+	status = "okay";
+	bootph-all;
+};
+
+&main_uart1 {
+	symlink = "rpi/ttyAMA0";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_uart1_pins_default>;
 	status = "okay";
 	bootph-all;
 };
