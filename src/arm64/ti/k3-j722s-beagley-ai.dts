@@ -1227,14 +1227,16 @@
 	pinctrl-0 = <&usb_hub>;
 	status = "okay";
 
+	/* 2.0 hub on port 1 */
 	hub_2_0: hub@1 {
-		compatible = "usb451,8140";
+		compatible = "usb451,8142";
 		reg = <1>;
 		peer-hub = <&hub_3_0>;
 		reset-gpios = <&main_gpio0 32 GPIO_ACTIVE_LOW>;
 		vdd-supply = <&vdd_3v3>;
 	};
 
+	/* 3.0 hub on port 2 */
 	hub_3_0: hub@2 {
 		compatible = "usb451,8140";
 		reg = <2>;
