@@ -743,32 +743,6 @@
 	pinctrl-0 = <&main_i2c0_pins_default>;
 	clock-frequency = <400000>;
 	bootph-all;
-
-	exp1: gpio@23 {
-		compatible = "ti,tca6424";
-		reg = <0x23>;
-		gpio-controller;
-		#gpio-cells = <2>;
-		gpio-line-names = "TRC_MUX_SEL", "OSPI/ONAND_MUX_SEL",
-				  "MCASP1_FET_SEL", "CTRL_PM_I2C_OE#",
-				  "CSI_VIO_SEL", "USB2.0_MUX_SEL",
-				  "CSI01_MUX_SEL_2", "CSI23_MUX_SEL_2",
-				  "LMK1_OE1", "LMK1_OE0",
-				  "LMK2_OE0", "LMK2_OE1",
-				  "GPIO_RGMII1_RST#", "GPIO_AUD_RSTn",
-				  "GPIO_eMMC_RSTn", "GPIO_uSD_PWR_EN",
-				  "USER_LED2", "MCAN0_STB",
-				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
-				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
-				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-		p01-hog {
-			/* P01 - TRC_MUX_SEL */
-			gpio-hog;
-			gpios = <0 GPIO_ACTIVE_HIGH>;
-			output-low;
-			line-name = "TRC_MUX_SEL";
-		};
-	};
 };
 
 &main_i2c2 {
