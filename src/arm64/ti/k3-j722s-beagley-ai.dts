@@ -25,8 +25,7 @@
 		serial2 = &main_uart0;
 		serial3 = &main_uart1;
 		spi0 = &ospi0;
-		mmc0 = &sdhci0;
-		mmc1 = &sdhci1;
+		mmc0 = &sdhci1;
 		mmc2 = &sdhci2;
 		usb0 = &usb0;
 		usb1 = &usb1;
@@ -773,10 +772,7 @@
 
 &sdhci0 {
 	/*eMMC*/
-	status = "okay";
-	ti,driver-strength-ohm = <50>;
-	disable-wp;
-	bootph-all;
+	status = "disabled";
 };
 
 &sdhci1 {
