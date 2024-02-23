@@ -226,22 +226,6 @@
 		regulator-boot-on;
 	};
 
-	edp0_refclk: clock-edp0-refclk {
-		#clock-cells = <0>;
-		compatible = "fixed-clock";
-		clock-frequency = <19200000>;
-	};
-
-	dp0_pwr_3v3: regulator-dp0-prw {
-		compatible = "regulator-fixed";
-		regulator-name = "dp0-pwr";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		//gpio = <&exp2 2 GPIO_ACTIVE_HIGH>; /* P2 - DP0_PWR_SW_EN */
-		enable-active-high;
-		regulator-always-on;
-	};
-
 	leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
@@ -277,6 +261,45 @@
 		interrupt-parent = <&main_gpio1>;
 		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
 		status = "okay";
+	};
+
+	mipi_switch: mipi-switch {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&mipi_switch_pins>;
+
+		oe-pin {
+			label = "MIPI_SWITCH_OE";
+			gpios = <&main_gpio0 1 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "default-off";
+			default-state = "off";
+		};
+
+		sel-pin {
+			label = "MIPI_SWITCH_SEL";
+			gpios = <&main_gpio0 2 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "default-off";
+			default-state = "off";
+		};
+	};
+
+	rpi_7inch_dsi_panel: rpi-7inch-dsi-panel {
+		compatible = "raspberrypi,7inch-dsi", "simple-panel";
+		backlight = <&display_reg>;
+		power-supply = <&display_reg>;
+		port {
+			panel_in: endpoint {
+				remote-endpoint = <&panel_bridge_out>;
+			};
+		};
+	};
+
+	bridge_reg: bridge-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "bridge-reg";
+		gpio = <&display_reg 0 0>;
+		vin-supply = <&display_reg>;
+		enable-active-high;
 	};
 };
 
@@ -424,7 +447,7 @@
 
 	led_pins_default: led-default-pins {
 		pinctrl-single,pins = <
-                        J722S_IOPAD(0x002c, PIN_OUTPUT, 7) /* (K26) OSPI0_CSn0.GPIO0_11 */
+            J722S_IOPAD(0x002c, PIN_OUTPUT, 7) /* (K26) OSPI0_CSn0.GPIO0_11 */
 			J722S_IOPAD(0x0030, PIN_OUTPUT, 7) /* (K23) OSPI0_CSn1.GPIO0_12 */
 		>;
 	};
@@ -530,10 +553,30 @@
 			J722S_IOPAD(0x0020, PIN_INPUT, 7) /* (M26) OSPI0_D5.GPIO0_8 PCIE_DET_WAKE */
 		>;
 	};
+
+	mipi_switch_pins: mipi-switch-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0004, PIN_OUTPUT, 7) /* (L23) OSPI0_LBCLKO.GPIO0_1 */
+			J722S_IOPAD(0x0008, PIN_OUTPUT, 7) /* (L22) OSPI0_DQS.GPIO0_2 */
+		>;
+	};
 };
 
 &epwm2 {
 	status = "okay";
+};
+
+&main_gpio0 {
+	status = "okay";
+	pinctrl-names = "default";
+	/* GPIO line names can change, were mainly put in for debug purposes */
+	gpio-line-names = "", "", "", "", "", /* 0-4 */
+					  "", "", "", "", "", /* 5-9 */
+					  "", "", "", "", "", /* 10-14 */
+					  "", "", "", "", "", /* 15-19 */
+					  "", "", "", "", "", /* 20-24 */
+					  "", "", "", "", "", /* 25-29 */
+					  "", "", "USB_RST", "", ""; /* 30-34 */
 };
 
 &main_gpio1 {
@@ -1111,4 +1154,59 @@
 	num-lanes = <1>;
 	max-link-speed = <3>;
 	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
+};
+
+&dphy_tx0 {
+	status = "okay";
+};
+
+&dsi0 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	ports {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		port@0 {
+			reg = <0>;
+			dsi0_out: endpoint {
+				remote-endpoint = <&panel_bridge_in>;
+			};
+		};
+
+		port@1 {
+			reg = <1>;
+			dsi0_in: endpoint {
+				remote-endpoint = <&dss1_dpi1_out>;
+			};
+		};
+	};
+
+	bridge@0 {
+		status = "okay";
+		compatible = "toshiba,tc358762";
+		reg = <0>;
+		vddc-supply = <&bridge_reg>;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+				panel_bridge_in: endpoint {
+					remote-endpoint = <&dsi0_out>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+				panel_bridge_out: endpoint {
+					remote-endpoint = <&panel_in>;
+				};
+			};
+		};
+	};
 };
