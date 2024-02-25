@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-2.0
+/**
+ * DT Overlay for RPi 7inch touchscreen panel interfaced with DSI on
+ *
+ * RPi DSI Panel: https://www.raspberrypi.com/products/raspberry-pi-touch-display/
+ *
+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+ */
+
+/dts-v1/;
+/plugin/;
+
+&dsi0 {
+	status = "okay";
+	bridge@0 {
+		status = "okay";
+	};
+};

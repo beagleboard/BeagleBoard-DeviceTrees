@@ -1187,7 +1187,7 @@
 };
 
 &dsi0 {
-	status = "okay";
+	status = "disabled";
 	#address-cells = <1>;
 	#size-cells = <0>;
 
@@ -1211,7 +1211,7 @@
 	};
 
 	bridge@0 {
-		status = "okay";
+		status = "disabled";
 		compatible = "toshiba,tc358762";
 		reg = <0>;
 		vddc-supply = <&bridge_reg>;
