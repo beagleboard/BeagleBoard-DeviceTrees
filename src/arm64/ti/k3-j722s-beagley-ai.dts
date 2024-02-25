@@ -302,10 +302,16 @@
 		enable-active-high;
 	};
 
-	clk_csi0_imx219_fixed: csi0-imx219-xclk {
+	//clk_csi0_imx219_fixed: csi0-imx219-xclk {
+	//	compatible = "fixed-clock";
+	//	#clock-cells = <0>;
+	//	clock-frequency = <24000000>;
+	//};
+
+	clk_ov5640_fixed: ov5640-xclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
-		clock-frequency = <24000000>;
+		clock-frequency = <25000000>;
 	};
 };
 
@@ -815,12 +821,33 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	csi0_imx219: csi0_sensor@10 {
-		status = "okay";
+	csi0_imx219: csi0_imx219@10 {
+		status = "disabled";
 		compatible = "sony,imx219";
 		reg = <0x10>;
 
-		clocks = <&clk_csi0_imx219_fixed>;
+		//clocks = <&clk_csi0_imx219_fixed>;
+		//clock-names = "xclk";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&csi0_gpio_pins_default>;
+		reset-gpios = <&mcu_gpio0 15 GPIO_ACTIVE_HIGH>;
+
+		//port {
+		//	csi2rx0_cam0: endpoint {
+		//			remote-endpoint = <&csi2rx0_in_sensor>;
+		//			clock-lanes = <0>;
+		//			data-lanes = <1 2>;
+		//	};
+		//};
+	};
+
+	csi0_iov5640: csi0_iov5640@3c {
+		status = "okay";
+		compatible = "ovti,ov5640";
+		reg = <0x3c>;
+
+		clocks = <&clk_ov5640_fixed>;
 		clock-names = "xclk";
 
 		pinctrl-names = "default";
@@ -830,13 +857,11 @@
 		port {
 			csi2rx0_cam0: endpoint {
 				remote-endpoint = <&csi2rx0_in_sensor>;
-				link-frequencies = /bits/ 64 <456000000>;
 				clock-lanes = <0>;
 				data-lanes = <1 2>;
 			};
 		};
 	};
-
 };
 
 &sdhci0 {
@@ -1245,4 +1270,12 @@
 		clock-lanes = <0>;
 		data-lanes = <1 2>;
 	};
+};
+
+&ti_csi2rx0 {
+	status = "okay";
+};
+
+&dphy0 {
+	status = "okay";
 };
