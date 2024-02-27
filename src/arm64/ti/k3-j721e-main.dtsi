@@ -7,7 +7,6 @@
 #include <dt-bindings/phy/phy.h>
 #include <dt-bindings/phy/phy-ti.h>
 #include <dt-bindings/mux/mux.h>
-
 #include <dt-bindings/mux/ti-serdes.h>
 
 / {
