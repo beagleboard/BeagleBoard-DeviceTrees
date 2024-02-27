@@ -560,13 +560,6 @@
 		//E27/RESETSTATz/3V3
 	};
 
-	pcie_pwr_pins_default: pcie-pwr-default-pins {
-		pinctrl-single,pins = <
-			J722S_IOPAD(0x0014, PIN_OUTPUT, 7) /* (L26) OSPI0_D2.GPIO0_5 PCIE_PWR_EN */
-			J722S_IOPAD(0x0020, PIN_INPUT, 7) /* (M26) OSPI0_D5.GPIO0_8 PCIE_DET_WAKE */
-		>;
-	};
-
 	mipi_switch_pins: mipi-switch-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0004, PIN_OUTPUT, 7) /* (L23) OSPI0_LBCLKO.GPIO0_1 */
@@ -723,9 +716,11 @@
 		>;
 	};
 
-	pcie_reset_pins_default: pcie-reset-default-pins {
+	pcie_pins_default: pcie-default-pins {
 		pinctrl-single,pins = <
-			J722S_MCU_IOPAD(0x0018, PIN_OUTPUT, 7) /* (B4) MCU_UART0_TXD.MCU_GPIO0_6 */
+			J722S_MCU_IOPAD(0x0018, PIN_OUTPUT, 7)	/* (B4) MCU_UART0_TXD.MCU_GPIO0_6 */
+			J722S_MCU_IOPAD(0x0014, PIN_INPUT, 7)	/* (B8) MCU_UART0_RXD.MCU_GPIO0_5 */ /* PCIE_DET_WAKE */
+			J722S_MCU_IOPAD(0x0020, PIN_OUTPUT, 7)	/* (C5) MCU_UART0_RTSn.MCU_GPIO0_8 */ /* PCIE_PWR_EN */
 		>;
 	};
 
@@ -1230,7 +1225,7 @@
 &pcie0_rc {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&pcie_reset_pins_default &pcie_pwr_pins_default &pcie_clk>;
+	pinctrl-0 = <&pcie_pins_default &pcie_clk>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <1>;
