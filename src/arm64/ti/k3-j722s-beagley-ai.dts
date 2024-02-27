@@ -635,6 +635,21 @@
 	bootph-all;
 };
 
+&main_uart6 {
+	symlink = "board/bluetooth";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_uart6_pins_default>;
+	status = "okay";
+	bootph-all;
+
+	bluetooth {
+		pinctrl-names = "default";
+		pinctrl-0 = <&bt_en_pins_default>;
+		compatible = "ti,wl1835-st";
+		enable-gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
+	};
+};
+
 &main0_thermal {
 	trips {
 		main0_active0: trip-active0 {
@@ -1303,17 +1318,4 @@
 
 &dphy0 {
 	status = "okay";
-};
-
-&main_uart6 {
-       status = "okay";
-       pinctrl-names = "default";
-       pinctrl-0 = <&main_uart6_pins_default>;
-
-       bluetooth {
-           pinctrl-names = "default";
-           pinctrl-0 = <&bt_en_pins_default>;
-            compatible = "ti,wl1835-st";
-            enable-gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
-       };
 };
