@@ -549,6 +549,9 @@
 
 	pcie_clk: pcie-clk-out-default-pins {
 		pinctrl-single,pins = <
+			//TI SYSCONFIG USES 0x02ac, but this doesn't match driver...
+			//[    3.457404] pinctrl-single f4000.pinctrl: mux offset out of range: 0x2ac (0x2ac)
+			//[    3.464839] pinctrl-single f4000.pinctrl: could not add functions for pcie-clk-out-default-pins 684x
 			J722S_IOPAD(0x02ac, PIN_OUTPUT, 0) /* (F25) PCIE0_CLKREQn */
 		>;
 	};
@@ -1225,7 +1228,7 @@
 &pcie0_rc {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&pcie_pins_default &pcie_clk>;
+	pinctrl-0 = <&pcie_pins_default>, <&pcie_clk>;
 	phys = <&serdes1_pcie_link>;
 	phy-names = "pcie-phy";
 	num-lanes = <1>;
