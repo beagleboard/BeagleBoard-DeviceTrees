@@ -632,7 +632,7 @@
 };
 
 &main_uart6 {
-	symlink = "board/bluetooth";
+	symlink = "board/bluetooth/uart";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart6_pins_default>;
 	status = "okay";
