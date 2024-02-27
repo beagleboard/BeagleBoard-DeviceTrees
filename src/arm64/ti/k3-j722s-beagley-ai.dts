@@ -624,7 +624,7 @@
 };
 
 &main_uart1 {
-	symlink = "rpi/ttyAMA0";
+	symlink = "ttyAMA0";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart1_pins_default>;
 	status = "okay";
