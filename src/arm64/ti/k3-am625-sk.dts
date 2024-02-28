@@ -98,42 +98,10 @@
 		regulator-always-on;
 		regulator-boot-on;
 	};
-
-	wlan_lten: regulator-6 {
-		compatible = "regulator-fixed";
-		regulator-name = "wlan_lten";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		vin-supply = <&vcc_3v3_sys>;
-		gpios = <&exp1 11 GPIO_ACTIVE_LOW>;
-	};
-
-	wlan_en: regulator-7 {
-		compatible = "regulator-fixed";
-		regulator-name = "wlan_en";
-		regulator-min-microvolt = <1800000>;
-		regulator-max-microvolt = <1800000>;
-		vin-supply = <&wlan_lten>;
-		enable-active-high;
-		gpios = <&main_gpio0 71 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&wlan_en_pins_default>;
-	};
-
-	vdd_core: regulator-8 {
-		/* output of TPS62826DMQ */
-		compatible = "regulator-fixed";
-		regulator-name = "vdd_core";
-		regulator-min-microvolt = <850000>;
-		regulator-max-microvolt = <850000>;
-		vin-supply = <&vcc_3v3_sys>;
-		regulator-always-on;
-		regulator-boot-on;
-	};
 };
 
 &main_pmx0 {
-	main_rgmii2_pins_default: main-rgmii2-pins-default {
+	main_rgmii2_pins_default: main-rgmii2-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x184, PIN_INPUT, 0) /* (AE23) RGMII2_RD0 */
 			AM62X_IOPAD(0x188, PIN_INPUT, 0) /* (AB20) RGMII2_RD1 */
@@ -150,7 +118,7 @@
 		>;
 	};
 
-	ospi0_pins_default: ospi0-pins-default {
+	ospi0_pins_default: ospi0-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x000, PIN_OUTPUT, 0) /* (H24) OSPI0_CLK */
 			AM62X_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F23) OSPI0_CSn0 */
@@ -166,39 +134,15 @@
 		>;
 	};
 
-	vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x07c, PIN_OUTPUT, 7) /* (P25) GPMC0_CLK.GPIO0_31 */
 		>;
 	};
 
-	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-pins-default {
+	main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
-		>;
-	};
-
-	wlan_en_pins_default: wlan-en-pins-default {
-		pinctrl-single,pins = <
-				AM62X_IOPAD(0x124, PIN_OUTPUT, 7) /* (A23) MMC2_SDCD.GPIO0_71 */
-		>;
-	};
-
-	main_mmc2_pins_default: main-mmc2-pins-default {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x120, PIN_INPUT, 0) /* (C24) MMC2_CMD */
-			AM62X_IOPAD(0x118, PIN_INPUT, 0) /* (D25) MMC2_CLK */
-			AM62X_IOPAD(0x114, PIN_INPUT, 0) /* (B24) MMC2_DAT0 */
-			AM62X_IOPAD(0x110, PIN_INPUT, 0) /* (C25) MMC2_DAT1 */
-			AM62X_IOPAD(0x10c, PIN_INPUT, 0) /* (E23) MMC2_DAT2 */
-			AM62X_IOPAD(0x108, PIN_INPUT, 0) /* (D24) MMC2_DAT3 */
-			AM62X_IOPAD(0x11c, PIN_INPUT, 0) /* (#N/A) MMC2_CLKB */
-		>;
-	};
-
-	main_wlirq_pins_default: main-wlirq-pins-default {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x128, PIN_INPUT, 7) /* (B23) MMC2_SDWP.GPIO0_72 */
 		>;
 	};
 };
@@ -237,40 +181,9 @@
 	vqmmc-supply = <&vdd_sd_dv>;
 };
 
-&sdhci2 {
-	status = "okay";
-	vmmc-supply = <&wlan_en>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_mmc2_pins_default>;
-	bus-width = <4>;
-	non-removable;
-	ti,fails-without-test-cd;
-	cap-power-off-card;
-	keep-power-in-suspend;
-	assigned-clocks = <&k3_clks 157 158>;
-	assigned-clock-parents = <&k3_clks 157 160>;
-
-	#address-cells = <1>;
-	#size-cells = <0>;
-	wlcore: wlcore@2 {
-		compatible = "ti,wl1837";
-		reg = <2>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&main_wlirq_pins_default>;
-		interrupt-parent = <&main_gpio0>;
-		interrupts = <72 IRQ_TYPE_EDGE_RISING>;
-	};
-};
-
 &cpsw3g {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_rgmii1_pins_default
-		     &main_rgmii2_pins_default>;
-
-	cpts@3d000 {
-		/* MAP HW3_TS_PUSH to GENF1 */
-		ti,pps = <2 1>;
-	};
+	pinctrl-0 = <&main_rgmii1_pins_default>, <&main_rgmii2_pins_default>;
 };
 
 &cpsw_port2 {
@@ -287,12 +200,19 @@
 	};
 };
 
+&mailbox0_cluster0 {
+	mbox_m4_0: mbox-m4-0 {
+		ti,mbox-rx = <0 0 0>;
+		ti,mbox-tx = <1 0 0>;
+	};
+};
+
 &ospi0 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&ospi0_pins_default>;
 
-	flash@0{
+	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0x0>;
 		spi-tx-bus-width = <8>;
@@ -349,20 +269,4 @@
 
 &tlv320aic3106 {
 	DVDD-supply = <&vcc_1v8>;
-};
-
-#define K3_TS_OFFSET(pa, val)	(0x4+(pa)*4) (0x10000 | val)
-
-&timesync_router {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&cpsw_cpts>;
-
-	/* Use Time Sync Router to map GENF1 input to HW3_TS_PUSH output */
-	cpsw_cpts: cpsw-cpts {
-		pinctrl-single,pins = <
-			/* pps [cpsw cpts genf1] in17 -> out12 [cpsw cpts hw3_push] */
-			K3_TS_OFFSET(12, 17)
-			>;
-	};
 };

@@ -20,6 +20,7 @@
 	model = "BeagleBoard.org BeagleBone AI-64";
 
 	aliases {
+		serial0 = &wkup_uart0;
 		serial2 = &main_uart0;
 		mmc0 = &main_sdhci0;
 		mmc1 = &main_sdhci1;
@@ -587,21 +588,6 @@
 	disable-wp;
 };
 
-&main_sdhci2 {
-	/* Unused */
-	status = "disabled";
-};
-
-&ospi0 {
-	/* Unused */
-	status = "disabled";
-};
-
-&ospi1 {
-	/* Unused */
-	status = "disabled";
-};
-
 &main_i2c0 {
 	status = "okay";
 	pinctrl-names = "default";
@@ -669,36 +655,6 @@
 	};
 };
 
-&main_gpio2 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio3 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio4 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio5 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio6 {
-	/* Unused */
-	status = "disabled";
-};
-
-&main_gpio7 {
-	/* Unused */
-	status = "disabled";
-};
-
 &wkup_gpio0 {
 	status = "okay";
 	pinctrl-names = "default";
@@ -706,15 +662,14 @@
 		    <&mikro_bus_pins_default>;
 };
 
-&wkup_gpio1 {
-	/* Unused */
-	status = "disabled";
-};
-
 &main_gpio0 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&csi1_gpio_pins_default>, <&csi0_gpio_pins_default>;
+};
+
+&main_gpio1 {
+	status = "okay";
 };
 
 &usb_serdes_mux {
@@ -857,12 +812,7 @@
 };
 
 &dss_ports {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	port@0 {
-		reg = <0>;
-
+	port {
 		dpi0_out: endpoint {
 			remote-endpoint = <&dp0_in>;
 		};
