@@ -178,12 +178,6 @@
 		mboxes = <&mbox 0>;
 	};
 
-	scbclk: mssclkclk {
-		compatible = "fixed-clock";
-		#clock-cells = <0>;
-		clock-frequency = <80000000>;
-	};
-
 	soc {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -205,7 +199,7 @@
 		clint: clint@2000000 {
 			compatible = "sifive,fu540-c000-clint", "sifive,clint0";
 			reg = <0x0 0x2000000 0x0 0xC000>;
-			interrupts-extended = <&cpu0_intc 0xffffffff>, <&cpu0_intc 0xffffffff>,
+			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
 					      <&cpu1_intc 3>, <&cpu1_intc 7>,
 					      <&cpu2_intc 3>, <&cpu2_intc 7>,
 					      <&cpu3_intc 3>, <&cpu3_intc 7>,
@@ -218,19 +212,20 @@
 			#address-cells = <0>;
 			#interrupt-cells = <1>;
 			interrupt-controller;
-			interrupts-extended = <&cpu0_intc 0xffffffff>,
-					      <&cpu1_intc 0xffffffff>, <&cpu1_intc 9>,
-					      <&cpu2_intc 0xffffffff>, <&cpu2_intc 9>,
-					      <&cpu3_intc 0xffffffff>, <&cpu3_intc 9>,
-					      <&cpu4_intc 0xffffffff>, <&cpu4_intc 9>;
+			interrupts-extended = <&cpu0_intc 11>,
+					      <&cpu1_intc 11>, <&cpu1_intc 9>,
+					      <&cpu2_intc 11>, <&cpu2_intc 9>,
+					      <&cpu3_intc 11>, <&cpu3_intc 9>,
+					      <&cpu4_intc 11>, <&cpu4_intc 9>;
 			riscv,ndev = <186>;
 		};
-	
+
 		pdma: dma-controller@3000000 {
-			compatible = "microchip,mpfs-pdma", "sifive,fu540-c000-pdma";
+			compatible = "sifive,fu540-c000-pdma", "sifive,pdma0";
 			reg = <0x0 0x3000000 0x0 0x8000>;
 			interrupt-parent = <&plic>;
 			interrupts = <5 6>, <7 8>, <9 10>, <11 12>;
+			dma-channels = <4>;
 			#dma-cells = <1>;
 		};
 
@@ -453,7 +448,7 @@
 			reg = <0x0 0x20120000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
 			interrupt-controller;
-			#interrupt-cells = <2>;
+			#interrupt-cells = <1>;
 			clocks = <&clkcfg CLK_GPIO0>;
 			gpio-controller;
 			#gpio-cells = <2>;
@@ -465,7 +460,7 @@
 			reg = <0x0 0x20121000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
 			interrupt-controller;
-			#interrupt-cells = <2>;
+			#interrupt-cells = <1>;
 			clocks = <&clkcfg CLK_GPIO1>;
 			gpio-controller;
 			#gpio-cells = <2>;
@@ -477,7 +472,7 @@
 			reg = <0x0 0x20122000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
 			interrupt-controller;
-			#interrupt-cells = <2>;
+			#interrupt-cells = <1>;
 			clocks = <&clkcfg CLK_GPIO2>;
 			gpio-controller;
 			#gpio-cells = <2>;
@@ -500,7 +495,7 @@
 			interrupt-parent = <&plic>;
 			interrupts = <86>, <87>;
 			clocks = <&clkcfg CLK_USB>;
-			interrupt-names = "dma", "mc";
+			interrupt-names = "dma","mc";
 			status = "disabled";
 		};
 
@@ -511,17 +506,6 @@
 			interrupt-parent = <&plic>;
 			interrupts = <96>;
 			#mbox-cells = <1>;
-			status = "disabled";
-		};
-
-		syscontroller_qspi: spi@37020100 {
-			compatible = "microchip,mpfs-qspi", "microchip,coreqspi-rtl-v2";
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <0x0 0x37020100 0x0 0x100>;
-			interrupt-parent = <&plic>;
-			interrupts = <110>;
-			clocks = <&scbclk>;
 			status = "disabled";
 		};
 	};
