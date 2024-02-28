@@ -213,7 +213,7 @@
 	extcon_usb1: extcon_usb1 {
 		compatible = "linux,extcon-usb-gpio";
 		ti,enable-id-detection;
-		id-gpios = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+		id-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&extcon_usb1_pins_default>;
 	};
