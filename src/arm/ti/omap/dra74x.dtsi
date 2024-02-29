@@ -49,6 +49,7 @@
 			reg = <0x41500000 0x100>;
 		};
 
+
 		target-module@41501000 {
 			compatible = "ti,sysc-omap2", "ti,sysc";
 			reg = <0x41501000 0x4>,

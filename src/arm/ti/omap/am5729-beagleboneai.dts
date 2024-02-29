@@ -722,10 +722,6 @@
 	dr_mode = "host";
 };
 
-&bb2d {
-	status = "okay";
-};
-
 &dss {
 	status = "okay";
 	vdda_video-supply = <&vdd_1v8_pll>;
