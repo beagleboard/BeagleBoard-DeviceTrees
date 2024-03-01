@@ -286,25 +286,6 @@
 		};
 	};
 
-	rpi_7inch_dsi_panel: rpi-7inch-dsi-panel {
-		compatible = "raspberrypi,7inch-dsi", "simple-panel";
-		backlight = <&display_reg>;
-		power-supply = <&display_reg>;
-		port {
-			panel_in: endpoint {
-				remote-endpoint = <&panel_bridge_out>;
-			};
-		};
-	};
-
-	bridge_reg: bridge-regulator {
-		compatible = "regulator-fixed";
-		regulator-name = "bridge-reg";
-		gpio = <&display_reg 0 0>;
-		vin-supply = <&display_reg>;
-		enable-active-high;
-	};
-
 	//clk_csi0_imx219_fixed: csi0-imx219-xclk {
 	//	compatible = "fixed-clock";
 	//	#clock-cells = <0>;
@@ -982,37 +963,25 @@ csi0_i2c: &main_i2c2 {
 				 <&k3_clks 245 2>;	/* DSS1-DPI0 */
 };
 
+&dsi0 {
+	status = "disabled";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	bridge@0 {
+		status = "disabled";
+	};
+};
+
 &dss1_ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
 	/* DSS1-VP1: DPI/HDMI Output */
 	port@0 {
 		reg = <0>;
 		dss1_dpi0_out: endpoint {
 			remote-endpoint = <&it66121hdmitx_in>;
-		};
-	};
-
-	/* DSS1-VP2: DSI Output */
-	port@1 {
-		reg = <1>;
-		dss1_dpi1_out: endpoint {
-			remote-endpoint = <&dsi0_in>;
-		};
-	};
-};
-
-&dsi0 {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	ports {
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		port@1 {
-			reg = <1>;
-			dsi0_in: endpoint {
-				remote-endpoint = <&dss1_dpi1_out>;
-			};
 		};
 	};
 };
@@ -1209,59 +1178,4 @@ csi0_i2c: &main_i2c2 {
 	num-lanes = <1>;
 	max-link-speed = <3>;
 	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
-};
-
-&dphy_tx0 {
-	status = "okay";
-};
-
-&dsi0 {
-	status = "disabled";
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	ports {
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		port@0 {
-			reg = <0>;
-			dsi0_out: endpoint {
-				remote-endpoint = <&panel_bridge_in>;
-			};
-		};
-
-		port@1 {
-			reg = <1>;
-			dsi0_in: endpoint {
-				remote-endpoint = <&dss1_dpi1_out>;
-			};
-		};
-	};
-
-	bridge@0 {
-		status = "disabled";
-		compatible = "toshiba,tc358762";
-		reg = <0>;
-		vddc-supply = <&bridge_reg>;
-
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			port@0 {
-				reg = <0>;
-				panel_bridge_in: endpoint {
-					remote-endpoint = <&dsi0_out>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				panel_bridge_out: endpoint {
-					remote-endpoint = <&panel_in>;
-				};
-			};
-		};
-	};
 };
