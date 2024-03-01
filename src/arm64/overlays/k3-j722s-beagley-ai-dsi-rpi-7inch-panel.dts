@@ -10,6 +10,9 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/gpio/gpio.h>
+//#include "k3-pinctrl.h"
+
 /*
  * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
  */
