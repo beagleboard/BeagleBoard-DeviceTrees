@@ -10,6 +10,15 @@
 /dts-v1/;
 /plugin/;
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j722s-beagley-ai-dsi-rpi-7inch-panel.kernel = __TIMESTAMP__;
+	};
+};
+
 &dsi0 {
 	status = "okay";
 	bridge@0 {
