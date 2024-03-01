@@ -562,6 +562,18 @@
 			J722S_IOPAD(0x000c, PIN_OUTPUT, 7)	/* (K27) OSPI0_D0.GPIO0_3 */
 		>;
 	};
+
+	main_oldi_backlight_default_pins: main-backlight-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x01f0, PIN_OUTPUT, 8) /* (A23) EXT_REFCLK1.ECAP0_IN_APWM_OUT */
+		>;
+	};
+
+	main_oldi_touchscreen_default_pins: main-touchscreen-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0038, PIN_INPUT, 7) /* (J22) OSPI0_CSn3.GPIO0_14 */
+		>;
+	};
 };
 
 &epwm2 {
@@ -709,6 +721,18 @@
 		pinctrl-single,pins = <
 			J722S_MCU_IOPAD(0x003c, PIN_OUTPUT, 7) /* (C1) MCU_MCAN1_TX.MCU_GPIO0_15 */
 			//J722S_MCU_IOPAD(0x0040, PIN_OUTPUT, 7) /* (B1) MCU_MCAN1_RX.MCU_GPIO0_16 */
+		>;
+	};
+
+	mcu_oldi_backlight_default_pins: mcu-backlight-default-pins {
+		pinctrl-single,pins = <
+			J722S_MCU_IOPAD(0x002c, PIN_OUTPUT, 7) /* (C4) WKUP_UART0_CTSn.MCU_GPIO0_11 */
+		>;
+	};
+
+	mcu_oldi_touchscreen_default_pins: mcu-touchscreen-default-pins {
+		pinctrl-single,pins = <
+			J722S_MCU_IOPAD(0x0030, PIN_OUTPUT, 7) /* (C3) WKUP_UART0_RTSn.MCU_GPIO0_12 */
 		>;
 	};
 };
