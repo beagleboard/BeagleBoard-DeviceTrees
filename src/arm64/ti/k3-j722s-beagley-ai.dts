@@ -25,7 +25,6 @@
 		serial2 = &main_uart0;
 		serial3 = &main_uart1;
 		serial6 = &main_uart6;
-		spi0 = &ospi0;
 		mmc0 = &sdhci1;
 		mmc2 = &sdhci2;
 		usb0 = &usb0;
@@ -200,17 +199,6 @@
 			 <3300000 0x1>;
 	};
 
-	hdmi0: connector-hdmi {
-		compatible = "hdmi-connector";
-		label = "hdmi";
-		type = "d";
-		port {
-			hdmi_connector_in: endpoint {
-				remote-endpoint = <&it66121hdmitx_out>;
-			};
-		};
-	};
-
 	vsys_io_1v8: regulator-vsys-io-1v8 {
 		compatible = "regulator-fixed";
 		regulator-name = "vsys_io_1v8";
@@ -247,6 +235,17 @@
 			function = LED_FUNCTION_DISK_ACTIVITY;
 			linux,default-trigger = "mmc1";
 			default-state = "on";
+		};
+	};
+
+	hdmi0: connector-hdmi {
+		compatible = "hdmi-connector";
+		label = "hdmi";
+		type = "d";
+		port {
+			hdmi_connector_in: endpoint {
+				remote-endpoint = <&it66121hdmitx_out>;
+			};
 		};
 	};
 
@@ -874,6 +873,56 @@ csi0_i2c: &main_i2c2 {
 	};
 };
 
+&main_i2c1 {
+	symlink = "play/main_i2c1";
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c1_pins_default>;
+	clock-frequency = <100000>;
+	bootph-all;
+
+	it66121hdmitx: hdmitx@4c {
+		compatible = "ite,it66121";
+		reg = <0x4c>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&hdmi_gpio_pins_default>;
+		vcn33-supply = <&vdd_3v3>;
+		vcn18-supply = <&buck2_reg>;
+		vrf12-supply = <&buck3_reg>;
+		reset-gpios = <&mcu_gpio0 13 GPIO_ACTIVE_LOW>;
+		interrupt-parent = <&mcu_gpio0>;
+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+		#sound-dai-cells = <0>;
+
+		hdmi_tx_ports: ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			/*
+			 * HDMI can be serviced with 3 potential VPs -
+			 * (DSS0 VP1 / DSS1 VP0 / DSS1 VP1).
+			 * For now, we will service it with DSS0 VP1.
+			 */
+			port@0 {
+				reg = <0>;
+
+				it66121hdmitx_in: endpoint {
+					bus-width = <24>;
+					remote-endpoint = <&dss1_dpi0_out>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				it66121hdmitx_out: endpoint {
+					remote-endpoint = <&hdmi_connector_in>;
+				};
+			};
+		};
+	};
+};
+
 &sdhci0 {
 	/*eMMC*/
 	status = "disabled";
@@ -921,70 +970,8 @@ csi0_i2c: &main_i2c2 {
 	status = "disabled";
 };
 
-&main_i2c1 {
-	symlink = "play/main_i2c1";
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c1_pins_default>;
-	clock-frequency = <100000>;
-	bootph-all;
-
-	it66121hdmitx: hdmitx@4c {
-		compatible = "ite,it66121";
-		reg = <0x4c>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&hdmi_gpio_pins_default>;
-		vcn33-supply = <&vdd_3v3>;
-		vcn18-supply = <&buck2_reg>;
-		vrf12-supply = <&buck3_reg>;
-		reset-gpios = <&mcu_gpio0 13 GPIO_ACTIVE_LOW>;
-		interrupt-parent = <&mcu_gpio0>;
-		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-		#sound-dai-cells = <0>;
-
-		hdmi_tx_ports: ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			/*
-			 * HDMI can be serviced with 3 potential VPs -
-			 * (DSS0 VP1 / DSS1 VP0 / DSS1 VP1).
-			 * For now, we will service it with DSS0 VP1.
-			 */
-			port@0 {
-				reg = <0>;
-				it66121hdmitx_in: endpoint {
-					bus-width = <24>;
-					remote-endpoint = <&dss1_dpi0_out>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				it66121hdmitx_out: endpoint {
-					remote-endpoint = <&hdmi_connector_in>;
-				};
-			};
-		};
-	};
-};
-
 &dphy_tx0 {
 	status = "okay";
-};
-
-&dss1 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_dpi_pins_default>;
-
-	assigned-clocks = <&k3_clks 240 0>,	/* DSS1-VP1 */
-			  <&k3_clks 241 0>,	/* DSS1-VP0 */
-			  <&k3_clks 245 0>;	/* DPI Output */
-
-	assigned-clock-parents = <&k3_clks 240 1>,	/* PLL 18 DSI */
-				 <&k3_clks 241 2>,	/* PLL 17 HDMI */
-				 <&k3_clks 245 2>;	/* DSS1-DPI0 */
 };
 
 &dsi0 {
@@ -994,19 +981,6 @@ csi0_i2c: &main_i2c2 {
 
 	bridge@0 {
 		status = "disabled";
-	};
-};
-
-&dss1_ports {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	/* DSS1-VP1: DPI/HDMI Output */
-	port@0 {
-		reg = <0>;
-		dss1_dpi0_out: endpoint {
-			remote-endpoint = <&it66121hdmitx_in>;
-		};
 	};
 };
 
@@ -1202,4 +1176,32 @@ csi0_i2c: &main_i2c2 {
 	num-lanes = <1>;
 	max-link-speed = <3>;
 	reset-gpios = <&mcu_gpio0 6 GPIO_ACTIVE_HIGH>;
+};
+
+&dss1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_dpi_pins_default>;
+
+	assigned-clocks = <&k3_clks 241 0>,	/* DSS1-VP0 */
+			  <&k3_clks 240 0>,	/* DSS1-VP1 */
+			  <&k3_clks 245 0>;	/* DPI Output */
+
+	assigned-clock-parents = <&k3_clks 241 2>,	/* PLL 17 HDMI */
+				 <&k3_clks 240 1>,	/* PLL 18 DSI */
+				 <&k3_clks 245 2>;	/* DSS1-DPI0 */
+};
+
+&dss1_ports {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	/* DSS1-VP1: DPI/HDMI Output */
+	port@0 {
+		reg = <0>;
+
+		dss1_dpi0_out: endpoint {
+			remote-endpoint = <&it66121hdmitx_in>;
+		};
+	};
 };
