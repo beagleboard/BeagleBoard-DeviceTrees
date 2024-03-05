@@ -850,27 +850,6 @@ csi0_i2c: &main_i2c2 {
 
 	#address-cells = <1>;
 	#size-cells = <0>;
-
-	csi0_imx219: csi0_imx219@10 {
-		status = "disabled";
-		compatible = "sony,imx219";
-		reg = <0x10>;
-
-		//clocks = <&clk_csi0_imx219_fixed>;
-		//clock-names = "xclk";
-
-		pinctrl-names = "default";
-		pinctrl-0 = <&csi0_gpio_pins_default>;
-		reset-gpios = <&mcu_gpio0 15 GPIO_ACTIVE_HIGH>;
-
-		//port {
-		//	csi2rx0_cam0: endpoint {
-		//			remote-endpoint = <&csi2rx0_in_sensor>;
-		//			clock-lanes = <0>;
-		//			data-lanes = <1 2>;
-		//	};
-		//};
-	};
 };
 
 &main_i2c1 {
