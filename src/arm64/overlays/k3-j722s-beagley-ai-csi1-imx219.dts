@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * DT Overlay for RPi Camera V2.1 on CSI0 J722S BeagleY-AI board.
+ * DT Overlay for RPi Camera V2.1 on CSI1 J722S BeagleY-AI board.
  *
  * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
  *
@@ -13,41 +13,51 @@
 #include <dt-bindings/gpio/gpio.h>
 
 &{/} {
-	clk_csi0_imx219_fixed: csi0-imx219-xclk {
+    mipi_switch: mipi-switch {
+		oe-pin {
+			default-state = "off";
+		};
+
+		sel-pin {
+			default-state = "on";
+		};
+	};
+
+	clk_csi1_imx219_fixed: csi1-imx219-xclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <24000000>;
 	};
 };
 
-&mcu_gpio0 {
+&main_gpio1 {
     status = "okay";
 };
 
-&main_i2c2 {
+&main_i2c0 {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c2_pins_default>;
+	pinctrl-0 = <&main_i2c0_pins_default>;
 	clock-frequency = <400000>;
 
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	imx219_0: sensor@10 {
+	imx219_1: sensor@10 {
 		compatible = "sony,imx219";
 		reg = <0x10>;
 
-		clocks = <&clk_csi0_imx219_fixed>;
+		clocks = <&clk_csi1_imx219_fixed>;
 		clock-names = "xclk";
 
 		pinctrl-names = "default";
-		pinctrl-0 = <&csi0_gpio_pins_default>;
+		pinctrl-0 = <&csi1_gpio_pins_default>;
 
-		reset-gpios = <&mcu_gpio0 15 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&main_gpio1 24 GPIO_ACTIVE_HIGH>;
 
 		port {
-			csi2_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
+			csi2_cam1: endpoint {
+				remote-endpoint = <&csi2rx1_in_sensor>;
 				link-frequencies = /bits/ 64 <456000000>;
 				clock-lanes = <0>;
 				data-lanes = <1 2>;
@@ -56,17 +66,17 @@
 	};
 };
 
-&cdns_csi2rx0 {
+&cdns_csi2rx1 {
 	ports {
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		csi0_port0: port@0 {
+		csi1_port0: port@0 {
 			reg = <0>;
 			status = "okay";
 
-			csi2rx0_in_sensor: endpoint {
-				remote-endpoint = <&csi2_cam0>;
+			csi2rx1_in_sensor: endpoint {
+				remote-endpoint = <&csi2_cam1>;
 				bus-type = <4>; /* CSI2 DPHY */
 				clock-lanes = <0>;
 				data-lanes = <1 2>;
@@ -75,10 +85,10 @@
 	};
 };
 
-&ti_csi2rx0 {
+&ti_csi2rx1 {
 	status = "okay";
 };
 
-&dphy0 {
+&dphy1 {
 	status = "okay";
 };
