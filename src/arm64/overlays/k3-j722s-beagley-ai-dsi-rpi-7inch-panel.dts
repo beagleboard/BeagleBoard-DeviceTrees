@@ -23,6 +23,16 @@
 };
 
 &{/} {
+	mipi_switch: mipi-switch {
+		oe-pin {
+			default-state = "off";
+		};
+
+		sel-pin {
+			default-state = "off";
+		};
+	};
+
 	panel0 {
 		compatible = "raspberrypi,7inch-dsi", "simple-panel";
 		backlight = <&display_reg>;
