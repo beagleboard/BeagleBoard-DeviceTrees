@@ -273,23 +273,15 @@
 		oe-pin {
 			label = "MIPI_SWITCH_OE";
 			gpios = <&main_gpio0 1 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "default-off";
-			default-state = "off";
+			default-state = "on";
 		};
 
 		sel-pin {
 			label = "MIPI_SWITCH_SEL";
 			gpios = <&main_gpio0 2 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "default-off";
 			default-state = "off";
 		};
 	};
-
-	//clk_csi0_imx219_fixed: csi0-imx219-xclk {
-	//	compatible = "fixed-clock";
-	//	#clock-cells = <0>;
-	//	clock-frequency = <24000000>;
-	//};
 };
 
 &main_pmx0 {
@@ -533,6 +525,13 @@
 		>;
 	};
 
+	csi1_gpio_pins_default: csi1-gpio-pins-default {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x01d8, PIN_OUTPUT, 7) /* (D22) MCAN0_TX.GPIO1_24 */
+			/* J722S_IOPAD(0x01dc, PIN_OUTPUT, 7) /* (C22) MCAN0_RX.GPIO1_25 */
+		>;
+	};
+
 	usb_hub: usb-hub-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0084, PIN_OUTPUT, 7) /* (N21) GPMC0_ADVn_ALE.GPIO0_32 */
@@ -719,7 +718,7 @@
 	csi0_gpio_pins_default: csi0-gpio-pins-default {
 		pinctrl-single,pins = <
 			J722S_MCU_IOPAD(0x003c, PIN_OUTPUT, 7) /* (C1) MCU_MCAN1_TX.MCU_GPIO0_15 */
-			//J722S_MCU_IOPAD(0x0040, PIN_OUTPUT, 7) /* (B1) MCU_MCAN1_RX.MCU_GPIO0_16 */
+			/* J722S_MCU_IOPAD(0x0040, PIN_OUTPUT, 7) /* (B1) MCU_MCAN1_RX.MCU_GPIO0_16 */
 		>;
 	};
 
