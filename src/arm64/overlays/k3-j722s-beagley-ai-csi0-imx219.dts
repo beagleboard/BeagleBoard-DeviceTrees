@@ -12,6 +12,15 @@
 
 #include <dt-bindings/gpio/gpio.h>
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j722s-beagley-ai-csi0-imx219.kernel = __TIMESTAMP__;
+	};
+};
+
 &{/} {
 	clk_csi0_imx219_fixed: csi0-imx219-xclk {
 		compatible = "fixed-clock";

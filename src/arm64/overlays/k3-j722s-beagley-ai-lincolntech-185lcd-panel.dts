@@ -13,6 +13,15 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/irq.h>
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j722s-beagley-ai-lincolntech-185lcd-panel.kernel = __TIMESTAMP__;
+	};
+};
+
 &{/} {
 	backlight: backlight {
 		compatible = "pwm-backlight";

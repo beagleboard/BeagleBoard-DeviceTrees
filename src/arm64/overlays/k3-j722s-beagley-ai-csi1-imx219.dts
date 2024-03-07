@@ -12,6 +12,15 @@
 
 #include <dt-bindings/gpio/gpio.h>
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j722s-beagley-ai-csi1-imx219.kernel = __TIMESTAMP__;
+	};
+};
+
 &{/} {
     mipi_switch: mipi-switch {
 		oe-pin {
