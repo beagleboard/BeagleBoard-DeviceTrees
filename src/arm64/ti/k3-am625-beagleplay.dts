@@ -266,8 +266,7 @@
 	};
 
 	mikrobus0: linux-mikrobus {
-		symlink = "play/mikrobus";
-		compatible = "linux,mikrobus";
+		compatible = "mikrobus-connector";
 		pinctrl-names = "default", "pwm_default", "pwm_gpio",
 				"uart_default", "uart_gpio", "i2c_default",
 				"i2c_gpio", "spi_default", "spi_gpio";
@@ -281,7 +280,7 @@
 		pinctrl-7 = <&mikrobus_spi_pins_default>;
 		pinctrl-8 = <&mikrobus_spi_pins_gpio>;
 		i2c-adapter = <&main_i2c3>;
-		spi-master = <1>;
+		spi-controller = <&main_spi2>;
 		spi-cs = <0 1>;
 		uart = <&main_uart5>;
 		mikrobus-gpios = <&main_gpio1 11 GPIO_ACTIVE_HIGH>, <&main_gpio1 9 GPIO_ACTIVE_HIGH>,
@@ -450,6 +449,18 @@
 		>;
 	};
 
+	mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
+		>;
+	};
+
+	mikrobus_pwm_pins_gpio: mikrobus-pwm-gpio-pins {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
+		>;
+	};
+
 	mikrobus_i2c_pins_default: mikrobus-i2c-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) UART0_CTSn.I2C3_SCL */
@@ -457,7 +468,7 @@
 		>;
 	};
 
-	mikrobus_i2c_pins_gpio: mikrobus-i2c-pins-gpio {
+	mikrobus_i2c_pins_gpio: mikrobus-i2c-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) UART0_CTSn.GPIO1_22 */
 			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
@@ -471,7 +482,7 @@
 		>;
 	};
 
-	mikrobus_uart_pins_gpio: mikrobus-uart-pins-gpio {
+	mikrobus_uart_pins_gpio: mikrobus-uart-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01d8, PIN_INPUT, 7) /* (C15) MCAN0_TX.GPIO1_24 */
 			AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) MCAN0_RX.GPIO1_25 */
@@ -487,7 +498,7 @@
 		>;
 	};
 
-	mikrobus_spi_pins_gpio: mikrobus-spi-pins-gpio {
+	mikrobus_spi_pins_gpio: mikrobus-spi-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x0194, PIN_INPUT, 7) /* (B19) MCASP0_AXR3.GPIO1_7 */
 			AM62X_IOPAD(0x0198, PIN_INPUT, 7) /* (A19) MCASP0_AXR2.GPIO1_8 */
@@ -510,19 +521,6 @@
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
 			AM62X_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
-		>;
-	};
-
-	mikrobus_pwm_pins_default: mikrobus-pwm-pins-default {
-		bootph-all;
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
-		>;
-	};
-
-	mikrobus_pwm_pins_gpio: mikrobus-pwm-pins-gpio {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
 		>;
 	};
 
@@ -730,8 +728,6 @@
 
 &main_gpio1 {
 	bootph-all;
-	pinctrl-names = "default";
-	pinctrl-0 = <&mikrobus_gpio_pins_default>;
 	gpio-line-names = "", "", "", "", "",			/* 0-4 */
 		"SPE_RSTN", "SPE_INTN", "MIKROBUS_GPIO1_7",	/* 5-7 */
 		"MIKROBUS_GPIO1_8", "MIKROBUS_GPIO1_9",		/* 8-9 */
@@ -914,16 +910,12 @@
 };
 
 &main_i2c3 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mikrobus_i2c_pins_default>;
 	clock-frequency = <400000>;
 	status = "okay";
 	symlink = "play/mikrobus/i2c";
 };
 
 &main_spi2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mikrobus_spi_pins_default>;
 	status = "okay";
 	symlink = "play/mikrobus/spi";
 };
@@ -988,9 +980,8 @@
 };
 
 &main_uart5 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&mikrobus_uart_pins_default>;
 	status = "okay";
+	force-empty-serdev-controller;
 	symlink = "play/mikrobus/uart";
 };
 
