@@ -232,6 +232,7 @@
 &main_pmx0 {
 	bootph-all;
 
+	/delete-property/ interrupts;
 	main_i2c0_pins_default: main-i2c0-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
@@ -524,6 +525,14 @@
 			gpios = <3 GPIO_ACTIVE_LOW>;
 			output-low;
 			line-name = "GPIO_OLDI_RSTn";
+		};
+
+		p05-hog {
+			/* P05 - HDMI_LS_OE */
+			gpio-hog;
+			gpios = <5 GPIO_ACTIVE_HIGH>;
+			output-high;
+			line-name = "HDMI_LS_OE";
 		};
 	};
 
