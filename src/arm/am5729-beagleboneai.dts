@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (C) 2014-2019 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2014-2019 Texas Instruments Incorporated - https://www.ti.com/
  */
 
 /dts-v1/;
@@ -212,7 +212,7 @@
 	extcon_usb1: extcon_usb1 {
 		compatible = "linux,extcon-usb-gpio";
 		ti,enable-id-detection;
-		id-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+		id-gpios = <&gpio3 13 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&extcon_usb1_pins_default>;
 	};
@@ -505,7 +505,6 @@
 		reg = <0x41>;
 		interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
 		interrupt-parent = <&gpio2>;
-		interrupt-controller;
 		id = <0>;
 		blocks = <0x5>;
 		irq-trigger = <0x1>;
@@ -649,7 +648,11 @@
 	ti,needs-special-reset;
 	dmas = <&sdma_xbar 47>, <&sdma_xbar 48>;
 	dma-names = "tx", "rx";
-
+	pinctrl-names = "default", "hs", "ddr_1_8v", "hs200_1_8v";
+	pinctrl-0 = <&mmc2_pins_default>;
+	pinctrl-1 = <&mmc2_pins_hs>;
+	pinctrl-2 = <&mmc2_pins_ddr_rev20>;
+	pinctrl-3 = <&mmc2_pins_hs200>;
 };
 
 &mmc4 {
@@ -661,6 +664,10 @@
 	/* SDR104: SDR up to 208 MHz (1.8 V signaling) */
 	/* DDR50: DDR up to 50 MHz (1.8 V signaling). */
 	status = "okay";
+
+	pinctrl-names = "default", "hs";
+	pinctrl-0 = <&mmc4_pins_default &wifibt_extra_pins_default>;
+	pinctrl-1 = <&mmc4_pins_hs &wifibt_extra_pins_default>;
 
 	ti,needs-special-reset;
 	vmmc-supply = <&vdd_3v3>;
@@ -781,12 +788,6 @@
 	status = "okay";
 	clock-frequency = <100000>;
 	symlink = "bone/i2c/2";
-};
-
-&cpu0_opp_table {
-	opp_slow-500000000 {
-		opp-shared;
-	};
 };
 
 &ipu2 {
