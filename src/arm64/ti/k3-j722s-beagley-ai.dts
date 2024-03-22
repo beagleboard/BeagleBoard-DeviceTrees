@@ -734,6 +734,12 @@
 			J722S_MCU_IOPAD(0x0030, PIN_OUTPUT, 7) /* (C3) WKUP_UART0_RTSn.MCU_GPIO0_12 */
 		>;
 	};
+
+	gbe_pmx_obsclk: gbe-pmx-obsclk-default-pins {
+		pinctrl-single,pins = <
+			J722S_MCU_IOPAD(0x0004, PIN_OUTPUT, 1) /* (A10) MCU_SPI0_CS1.MCU_OBSCLK0 */
+		>;
+	};
 };
 
 &wkup_uart0 {
@@ -966,7 +972,10 @@ csi0_i2c: &main_i2c2 {
 &cpsw3g {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&rgmii1_pins_default>;
+	pinctrl-0 = <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
+
+	assigned-clocks = <&k3_clks 227 0>;
+	assigned-clock-parents = <&k3_clks 227 6>;
 };
 
 &cpsw3g_mdio {
