@@ -249,6 +249,23 @@
 		};
 	};
 
+	sound0: sound {
+		compatible = "simple-audio-card";
+		simple-audio-card,name = "it66121 HDMI";
+		simple-audio-card,format = "i2s";
+		simple-audio-card,bitclock-master = <&hdmi_dailink_master>;
+		simple-audio-card,frame-master = <&hdmi_dailink_master>;
+
+		hdmi_dailink_master: simple-audio-card,cpu {
+			sound-dai = <&mcasp1>;
+			system-clock-direction-out;
+		};
+
+		simple-audio-card,codec {
+			sound-dai = <&it66121hdmitx>;
+		};
+	};
+
 	fan: cooling_fan {
 		compatible = "pwm-fan";
 		pinctrl-names = "default";
@@ -571,6 +588,14 @@
 	main_oldi_touchscreen_default_pins: main-touchscreen-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0038, PIN_INPUT, 7) /* (J22) OSPI0_CSn3.GPIO0_14 */
+		>;
+	};
+
+	main_mcasp1_pins_default: main-mcasp1-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x0090, PIN_INPUT, 2) /* (P27) GPMC0_BE0n_CLE.MCASP1_ACLKX */
+			J722S_IOPAD(0x0098, PIN_INPUT, 2) /* (V21) GPMC0_WAIT0.MCASP1_AFSX */
+			J722S_IOPAD(0x008c, PIN_INPUT, 2) /* (N23) GPMC0_WEn.MCASP1_AXR0 */
 		>;
 	};
 };
@@ -1192,4 +1217,22 @@ csi0_i2c: &main_i2c2 {
 			remote-endpoint = <&it66121hdmitx_in>;
 		};
 	};
+};
+
+&mcasp1 {
+	status = "okay";
+	#sound-dai-cells = <0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_mcasp1_pins_default>;
+	auxclk-fs-ratio = <2177>;
+	op-mode = <0>;          /* MCASP_IIS_MODE */
+	tdm-slots = <2>;
+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+	       1 0 0 0
+	       0 0 0 0
+	       0 0 0 0
+	       0 0 0 0
+	>;
+	tx-num-evt = <32>;
+	rx-num-evt = <32>;
 };
