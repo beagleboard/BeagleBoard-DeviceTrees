@@ -190,7 +190,7 @@
 		>;
 	};
 
-	vdd_3v3_sd_pins_default: vdd-3v3-sd-pins-default {
+	vdd_3v3_sd_pins_default: vdd-3v3-sd-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0254, PIN_OUTPUT, 7) /* (E25) USB0_DRVVBUS.GPIO1_50 */
 		>;
