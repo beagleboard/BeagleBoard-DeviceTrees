@@ -1,24 +1,24 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Device Tree file for the J722S EVM
- * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+ * https://beagley-ai.org/
  *
- * Schematics: https://www.ti.com/lit/zip/sprr495
+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2024 Robert Nelson, BeagleBoard.org Foundation
  */
 
 /dts-v1/;
 
-#include <dt-bindings/leds/common.h>
-#include "k3-j722s.dtsi"
-#include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/net/ti-dp83867.h>
+#include "k3-j722s.dtsi"
+#include <dt-bindings/leds/common.h>
+#include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/mux/ti-serdes.h>
 #include <dt-bindings/phy/phy.h>
 #include <dt-bindings/pwm/pwm.h>
 
 / {
-	compatible = "ti,j722s-evm", "ti,j722s";
-	model = "Texas Instruments J722S EVM";
+	compatible = "beagle,j722s-beagley-ai", "ti,j722s";
+	model = "BeagleBoard.org BeagleY-AI";
 
 	aliases {
 		serial0 = &wkup_uart0;
@@ -146,7 +146,6 @@
 	};
 
 	vdd_3v3: regulator-2 {
-		bootph-all;
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_3v3";
 		regulator-min-microvolt = <3300000>;
@@ -171,12 +170,10 @@
 	};
 
 	vdd_mmc1: regulator-mmc1 {
-		/* TPS22918DBVR */
-		pinctrl-names = "default";
-		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
-
 		compatible = "regulator-fixed";
 		regulator-name = "vdd_mmc1";
+		pinctrl-names = "default";
+		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-boot-on;
@@ -315,8 +312,8 @@
 
 	main_uart0_pins_default: main-uart0-default-pins {
 		pinctrl-single,pins = <
-			J722S_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-			J722S_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
+			J722S_IOPAD(0x01c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
+			J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
 		>;
 		bootph-all;
 	};
@@ -600,6 +597,37 @@
 	};
 };
 
+&cpsw3g {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
+
+	assigned-clocks = <&k3_clks 227 0>;
+	assigned-clock-parents = <&k3_clks 227 6>;
+};
+
+&cpsw3g_mdio {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&mdio_pins_default>;
+
+	cpsw3g_phy0: ethernet-phy@0 {
+		reg = <0>;
+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+		ti,min-output-impedance;
+	};
+};
+
+&cpsw_port1 {
+	phy-mode = "rgmii-rxid";
+	phy-handle = <&cpsw3g_phy0>;
+};
+
+&cpsw_port2 {
+	status = "disabled";
+};
+
 &epwm2 {
 	status = "okay";
 };
@@ -775,15 +803,6 @@
 	};
 };
 
-&wkup_uart0 {
-	symlink = "play/wkup_uart0";
-	/* WKUP UART0 is used by DM firmware */
-	pinctrl-names = "default";
-	pinctrl-0 = <&wkup_uart0_pins_default>;
-	status = "reserved";
-	bootph-all;
-};
-
 &mcu_i2c0 {
 	symlink = "hat/mcu_i2c0";
 	status = "okay";
@@ -793,12 +812,21 @@
 	bootph-all;
 };
 
+&wkup_uart0 {
+	symlink = "play/wkup_uart0";
+	/* WKUP UART0 is used by Device Manager firmware */
+	pinctrl-names = "default";
+	pinctrl-0 = <&wkup_uart0_pins_default>;
+	status = "reserved";
+	bootph-all;
+};
+
 &wkup_i2c0 {
 	symlink = "play/wkup_i2c0";
-	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&wkup_i2c0_pins_default>;
 	clock-frequency = <400000>;
+	status = "okay";
 	bootph-all;
 
 	tps65219: pmic@30 {
@@ -888,18 +916,6 @@ dsi0_csi1_i2c: &main_i2c0 {
 	bootph-all;
 };
 
-csi0_i2c: &main_i2c2 {
-	symlink = "hat/csi0";
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&main_i2c2_pins_default>;
-	clock-frequency = <400000>;
-	status = "okay";
-
-	#address-cells = <1>;
-	#size-cells = <0>;
-};
-
 &main_i2c1 {
 	symlink = "play/main_i2c1";
 	status = "okay";
@@ -950,6 +966,18 @@ csi0_i2c: &main_i2c2 {
 	};
 };
 
+csi0_i2c: &main_i2c2 {
+	symlink = "hat/csi0";
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_i2c2_pins_default>;
+	clock-frequency = <400000>;
+	status = "okay";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+};
+
 &sdhci0 {
 	/*eMMC*/
 	status = "disabled";
@@ -957,13 +985,13 @@ csi0_i2c: &main_i2c2 {
 
 &sdhci1 {
 	/* SD/MMC */
-	status = "okay";
 	vmmc-supply = <&vdd_mmc1>;
 	vqmmc-supply = <&vdd_sd_dv>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_mmc1_pins_default>;
 	ti,driver-strength-ohm = <50>;
 	disable-wp;
+	status = "okay";
 	bootph-all;
 };
 
@@ -1009,37 +1037,6 @@ csi0_i2c: &main_i2c2 {
 	bridge@0 {
 		status = "disabled";
 	};
-};
-
-&cpsw3g {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
-
-	assigned-clocks = <&k3_clks 227 0>;
-	assigned-clock-parents = <&k3_clks 227 6>;
-};
-
-&cpsw3g_mdio {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&mdio_pins_default>;
-
-	cpsw3g_phy0: ethernet-phy@0 {
-		reg = <0>;
-		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-		ti,min-output-impedance;
-	};
-};
-
-&cpsw_port1 {
-	phy-mode = "rgmii-rxid";
-	phy-handle = <&cpsw3g_phy0>;
-};
-
-&cpsw_port2 {
-	status = "disabled";
 };
 
 &mailbox0_cluster0 {
