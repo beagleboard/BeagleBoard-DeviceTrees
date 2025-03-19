@@ -853,6 +853,13 @@
 		};
 	};
 
+	timesync_router: mux-controller@a40000 {
+		compatible = "reg-mux";
+		reg = <0x0 0xa40000 0x0 0x800>;
+		#mux-control-cells = <1>;
+		status = "disabled";
+	};
+
 	hwspinlock: spinlock@2a000000 {
 		compatible = "ti,am64-hwspinlock";
 		reg = <0x00 0x2a000000 0x00 0x1000>;
@@ -1078,8 +1085,9 @@
 
 	ti_csi2rx0: ticsi2rx@30102000 {
 		compatible = "ti,j721e-csi2rx-shim";
-		dmas = <&main_bcdma 0 0x4700 0>;
-		dma-names = "rx0";
+		dmas = <&main_bcdma 0 0x4700 0>, <&main_bcdma 0 0x4701 0>,
+		       <&main_bcdma 0 0x4702 0>, <&main_bcdma 0 0x4703 0>;
+		dma-names = "rx0", "rx1", "rx2", "rx3";
 		reg = <0x00 0x30102000 0x00 0x1000>;
 		power-domains = <&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
 		#address-cells = <2>;
@@ -1203,6 +1211,15 @@
 					  "host_intr2", "host_intr3",
 					  "host_intr4", "host_intr5",
 					  "host_intr6", "host_intr7";
+		};
+
+		pruss_uart: serial@28000 {
+			compatible = "ti,pruss-uart";
+			reg = <0x28000 0x40>;
+			clocks = <&k3_clks 81 13>; /* pruss_uart_clk */
+			interrupt-parent = <&pruss_intc>;
+			interrupts = <6 4 4>;
+			status = "disabled";
 		};
 
 		pru0: pru@34000 {

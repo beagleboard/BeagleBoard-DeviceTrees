@@ -667,7 +667,7 @@
 		p05-hog {
 			/* P05 - USB2.0_MUX_SEL */
 			gpio-hog;
-			gpios = <5 GPIO_ACTIVE_HIGH>;
+			gpios = <5 GPIO_ACTIVE_LOW>;
 			output-high;
 		};
 
@@ -835,6 +835,7 @@
 		cdns,tchsh-ns = <60>;
 		cdns,tslch-ns = <60>;
 		cdns,read-delay = <4>;
+		cdns,phy-mode;
 		bootph-all;
 
 		partitions {
@@ -894,6 +895,7 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		bootph-all;
+		cdns,phy-mode;
 
 		partitions {
 			compatible = "fixed-partitions";
