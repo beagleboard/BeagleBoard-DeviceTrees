@@ -38,9 +38,14 @@
             J721E_IOPAD(0x11c, PIN_OUTPUT, 4) /* (AA24) PRG0_PRU1_GPO7.SPI3_CS0 P8_40*/
             J721E_IOPAD(0x148, PIN_OUTPUT, 4) /* (AA26) PRG0_PRU1_GPO18.SPI3_D0 P9_40b*/
 
-            /* Disable SoC pins that share same BB header pins */
-            /* Using the J721E_WKUP_IOPAD() marco because K26, as seen from spreadsheet above, is a MCU/WKUP pin */
-            J721E_WKUP_IOPAD(0x134, PIN_DISABLE, 7) /* (K26) MCU_ADC0_AIN1 K26_AA26 disable P9_40a */
+            /* Disable SoC pins that share same BB header pins
+             *
+             * Turns out there is no P9_40a pin connected to the main domain. You may be tempted to disable the pad K26 
+             * using the J721E_WKUP_IOPAD() macro. It turns out in actuality this disables P8_20. MCU pad K26 and main domain
+             * pad AF2,as seen from the processor datasheet, happen to have the same address 11c134. It turns out the
+             * J721E_IOPAD() and J721E_WKUP_IOPAD() marcos are the same. They do not do anything different.
+             *
+            */
         >;
     };
 };
