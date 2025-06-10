@@ -25,5 +25,17 @@
 			default-state = "off";
 			linux,default-trigger = "none";
 		};
+
+		led-3 {
+			function = LED_FUNCTION_INDICATOR;
+			default-state = "off";
+			linux,default-trigger = "none";
+		};
+
+		led-4 {
+			function = LED_FUNCTION_INDICATOR;
+			default-state = "off";
+			linux,default-trigger = "none";
+		};
 	};
 };
