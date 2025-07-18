@@ -42,19 +42,22 @@
 		pinctrl-0 = <&P1_33_A17_pwm>;
 
         	multi-led {
+        		color = <LED_COLOR_ID_RGB>;
+			max-brightness = <255>;
+
 			led-red {
 				pwms = <&epwm2 1 255 0>;
 				color = <LED_COLOR_ID_RED>;
 			};
 
-        		led-blue {
-				pwms = <&epwm2 0 255 0>;
-				color = <LED_COLOR_ID_BLUE>;
-			};
-
         		led-green {
 				pwms = <&ecap2 0 255 0>;
 				color = <LED_COLOR_ID_GREEN>;
+			};
+
+        		led-blue {
+				pwms = <&epwm2 0 255 0>;
+				color = <LED_COLOR_ID_BLUE>;
 			};
 		};
 	};
