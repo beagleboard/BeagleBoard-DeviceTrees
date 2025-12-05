@@ -6,12 +6,16 @@
  */
 
 /*
- *
+ * CAN1 usage:
  * sudo ip link set can0 type can bitrate 500000
  * sudo ifconfig can0 up
  *
  * candump can0
  * cansend can0 123#DEADBEEF
+ *
+ * RS485 (UART4) usage:
+ * Device: /dev/ttyS4
+ * RS485 mode is enabled at boot time with GPIO3_19 as RTS direction control
  */
 
 /dts-v1/;
@@ -44,4 +48,8 @@
 
 &bone_uart_4 {
 	status = "okay";
+	rs485-rts-delay = <0 0>;
+	rts-gpio = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+	rs485-rts-active-high;
+	linux,rs485-enabled-at-boot-time;
 };
