@@ -22,11 +22,11 @@
 	};
 
 	leds {
+        compatible ="gpio-leds";
 		pinctrl-names = "default";
 		pinctrl-0 = <&user_leds_s0>;
 
-		compatible = "gpio-leds";
-
+		
 		led2 {
 			label = "beaglebone:green:usr0";
 			gpios = <&gpio1 21 GPIO_ACTIVE_HIGH>;
