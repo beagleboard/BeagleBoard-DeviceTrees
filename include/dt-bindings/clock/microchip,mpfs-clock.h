@@ -4,8 +4,8 @@
  * Copyright (C) 2020-2022 Microchip Technology Inc.  All rights reserved.
  */
 
-#ifndef _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_
-#define _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_
+#ifndef _DT_BINDINGS_CLK_MICROCHIP_MPFS_CLOCK_H_
+#define _DT_BINDINGS_CLK_MICROCHIP_MPFS_CLOCK_H_
 
 #define CLK_CPU		0
 #define CLK_AXI		1
@@ -73,4 +73,4 @@
 #define CLK_CCC_DLL1_OUT0	14
 #define CLK_CCC_DLL1_OUT1	15
 
-#endif	/* _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_ */
+#endif	/* _DT_BINDINGS_CLK_MICROCHIP_MPFS_CLOCK_H_ */
