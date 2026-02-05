@@ -8,6 +8,15 @@
 
 #include "ti/k3-pinctrl.h"
 
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+*/
+&{/chosen} {
+	overlays {
+		k3-am62-pocketbeagle2-mspm0swd.kernel = __TIMESTAMP__;
+	};
+};
+
 &mcu_gpio0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mspm0_swdio_pins_gpio>;

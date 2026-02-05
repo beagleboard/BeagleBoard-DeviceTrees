@@ -129,7 +129,7 @@
 	P1_02_E18_gpio: P1-02-E18-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01A0, PIN_INPUT, 7) /* (E18) MCASP0_AXR0.GPIO1_10 */
-			AM62X_IOPAD(0x0164, PIN_INPUT, 7) /* (AA19) RGMII2_TX_CTL.GPIO0_87 */
+			AM62X_IOPAD(0x0164, PIN_DISABLE, 7) /* (AA19) RGMII2_TX_CTL.GPIO0_87 */
 		>;
 	};
 
@@ -232,6 +232,7 @@
 		>;
 	};
 
+	/* I2C2 20020000.i2c */
 	P1_26_K24_gpio: P1-26-K24-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x00B4, PIN_INPUT, 7) /* (K24) GPMC0_CSn3.GPIO0_44 */
@@ -244,6 +245,7 @@
 		>;
 	};
 
+	/* I2C2 20020000.i2c */
 	P1_28_K22_gpio: P1-28-K22-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x00B0, PIN_INPUT, 7) /* (K22) GPMC0_CSn2.GPIO0_43 */
@@ -256,6 +258,7 @@
 		>;
 	};
 
+	/* UART0_TXD debug */
 	P1_30_gpio: P1-30-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01CC, PIN_INPUT, 7) /* (E14) UART0_TXD.GPIO1_21 */
@@ -268,6 +271,7 @@
 		>;
 	};
 
+	/* UART0_RXD debug */
 	P1_32_gpio: P1-32-gpio-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01C8, PIN_INPUT, 7) /* (D14) UART0_RXD.GPIO1_20 */
@@ -565,6 +569,12 @@
 			AM62X_MCU_IOPAD(0x003C, PIN_INPUT, 7) /* (E5) MCU_MCAN1_TX.MCU_GPIO0_15 */
 		>;
 	};
+
+	mspm0_swdio_pins_gpio: mspm0-swdio-gpio-pins {
+		pinctrl-single,pins = <
+			AM62X_MCU_IOPAD(0x0010, PIN_INPUT_PULLDOWN, 7) /* (C9) MCU_SPI0_D1.MCU_GPIO0_4 */
+		>;
+	};
 };
 
 &main_gpio0 {
@@ -588,7 +598,7 @@
 			  "P2.02/AIN6", "P2.04", "P2.06",	/* 45-47 */
 			  "P2.08", "P2.20", "P1.20",	/* 48-50 */
 			  "P2.24", "P2.33", "P2.18",	/* 51-53 */
-			  "P2.35/AIN5", "P1.36(V20)", "P1.33(AA23)",	/* 54-56 */
+			  "P2.35/AIN5/MSPM0_SWCLK", "P1.36(V20)", "P1.33(AA23)",	/* 54-56 */
 			  "P2.32", "P2.30", "P1.31",	/* 57-59 */
 			  "P2.34", "P2.28", "P1.29",	/* 60-62 */
 			  "P2.22", "P2.17", "",	/* 63-65 */
@@ -624,7 +634,7 @@
 &mcu_gpio0 {
 	pinctrl-names = "default";
 	gpio-line-names = "", "", "",   /* 0-2 */
-			  "", "", "P2.05(B5)",   /* 3-5 */
+			  "", "MSPM0_SWDIO", "P2.05(B5)",   /* 3-5 */
 			  "P2.07(A5)", "", "",   /* 6-8 */
 			  "", "", "",   /* 9-11 */
 			  "", "P1.26(D6)", "P1.28(B3)",   /* 12-14 */
