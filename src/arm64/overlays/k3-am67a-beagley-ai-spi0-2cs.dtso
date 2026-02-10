@@ -1,9 +1,6 @@
-// SPDX-License-Identifier: GPL-2.0
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * DT Overlay for spi0-2cs on BeagleY-AI board.
- *
- * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
- *
+ * Copyright (C) BeagleBoard.org Foundation
  */
 
 /dts-v1/;

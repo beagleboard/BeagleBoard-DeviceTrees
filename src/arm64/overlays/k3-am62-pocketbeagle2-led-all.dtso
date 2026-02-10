@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * Copyright (C) 2025 Robert Nelson, BeagleBoard.org Foundation
+ */
+
 /dts-v1/;
 /plugin/;
 

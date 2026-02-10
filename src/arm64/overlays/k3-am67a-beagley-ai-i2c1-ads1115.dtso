@@ -1,11 +1,6 @@
-// SPDX-License-Identifier: GPL-2.0
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * DT Overlay for I2C1 with Gravity: I2C ADS1115 16-Bit ADC Module
- * https://www.dfrobot.com/product-1730.html
- * https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
- *
- * Copyright (C) 2024 Robert Nelson, BeagleBoard.org Foundation
- *
+ * Copyright (C) BeagleBoard.org Foundation
  */
 
 /dts-v1/;

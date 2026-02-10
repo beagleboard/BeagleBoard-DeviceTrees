@@ -15,3 +15,14 @@ build-debian-13-arm64:
   stage: build
   script:
     - make CC=gcc CROSS_COMPILE= all
+
+build-debian-14-arm64:
+  image: robertcnelson/beagle-devscripts-kernel-debian-14-arm64:latest
+  # https://openbeagle.org/beagleboard/ci-docker-images
+  tags:
+    - docker-aarch64
+  stage: build
+  script:
+    - reuse lint-file src/arm/overlays/*
+    - reuse lint-file src/arm64/overlays/* || true
+    - make CC=gcc CROSS_COMPILE= all

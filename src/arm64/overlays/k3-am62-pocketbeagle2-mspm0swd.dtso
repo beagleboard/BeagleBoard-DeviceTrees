@@ -10,7 +10,7 @@
 
 /*
  * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
-*/
+ */
 &{/chosen} {
 	overlays {
 		k3-am62-pocketbeagle2-mspm0swd.kernel = __TIMESTAMP__;
