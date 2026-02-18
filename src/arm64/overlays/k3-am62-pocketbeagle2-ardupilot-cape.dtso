@@ -1,9 +1,10 @@
-// SPDX-License-Identifier: GPL-2.0
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
  * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
  *
- * https://docs.beagleboard.io/latest/boards/capes/cape-interface-spec.html#i2c
+ * https://docs.beagleboard.io/boards/capes/cape-interface-spec.html
  */
+
 #include <dt-bindings/leds/common.h>
 #include <dt-bindings/gpio/gpio.h>
 #include "ti/k3-pinctrl.h"
