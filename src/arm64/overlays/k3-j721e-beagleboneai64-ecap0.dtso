@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
+ * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
  * DT Overlay for ECAP0
  * P9.28 - ECAP0_IN
  */
