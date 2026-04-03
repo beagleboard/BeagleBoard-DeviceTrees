@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ * Copyright (C) 2026 Pranav Raja
  * DT Overlay for RS485 support on UART8
  * P8.28 - UART8_RXD
  * P8.29 - UART8_TXD
@@ -22,9 +22,9 @@
 &main_pmx0 {
     uart8_rs485_pins: uart8-rs485-pins {
         pinctrl-single,pins = <
-            J721E_IOPAD(0x124, PIN_INPUT, 14)  /* P8_28 - UART8_RXD */
-            J721E_IOPAD(0x128, PIN_OUTPUT, 14) /* P8_29 - UART8_TXD */
-            J721E_IOPAD(0x134, PIN_OUTPUT, 14) /* P8_20 - UART8_RTSn */
+            J721E_IOPAD(0x124, PIN_INPUT, 14)  /* P8_28 (Y24) UART8_RXD */
+            J721E_IOPAD(0x128, PIN_OUTPUT, 14) /* P8_29 (AA25) UART8_TXD */
+            J721E_IOPAD(0x134, PIN_OUTPUT, 14) /* P8_20 (AF26) UART8_RTSn */
         >;
     };
 };

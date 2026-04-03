@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ * Copyright (C) 2026 Pranav Raja
  * DT Overlay for EQEP1
  * P8.35 - EQEP1_A
  * P8.33 - EQEP1_B
@@ -24,8 +24,8 @@
 &main_pmx0 {
     eqep1_pins: eqep1-pins {
         pinctrl-single,pins = <
-            J721E_IOPAD(0x64, PIN_INPUT, 9) /* P8_35 - EQEP1_A */
-            J721E_IOPAD(0x68, PIN_INPUT, 9) /* P8_33 - EQEP1_B */
+            J721E_IOPAD(0x64, PIN_INPUT, 9) /* (AD23) PRG1_PRU1_GPO3.EQEP1_A -> P8_35a */
+            J721E_IOPAD(0x68, PIN_INPUT, 9) /* (AH24) PRG1_PRU1_GPO4.EQEP1_B -> P8_33a */
         >;
     };
 };
@@ -45,7 +45,9 @@
         interrupt-names = "eqep1";
         pinctrl-names = "default";
         pinctrl-0 = <&eqep1_pins>;
+        symlink = "bone/qep/1";
         status = "okay";
+        label = "encoder1";
 
         count_mode = <0>;
         swap_input = <0>;

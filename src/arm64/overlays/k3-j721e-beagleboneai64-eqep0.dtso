@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ * Copyright (C) 2026 Pranav Raja
  * DT Overlay for EQEP0
  * P9.42 - EQEP0_A
  * P9.27 - EQEP0_B

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ * Copyright (C) 2026 Pranav Raja
  * DT Overlay for GPIOs
  * P8.15 & P8.18 GPIOs are enabled with this overlay.
  * Make sure the IO pins you are enabling are not being used by any other overlay.

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ * Copyright (C) 2026 Pranav Raja
  * DT Overlay for ECAP1
  * P9.30 - ECAP1_IN
  */
@@ -35,5 +35,6 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&ecap1_pins_default>;
 		status = "okay";
+		label = "capture1";
 	};
 };
