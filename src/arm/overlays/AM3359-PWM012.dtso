@@ -27,15 +27,6 @@
       };
 
 &am33xx_pinmux {
-	nxp_hdmi_bonelt_pins: nxp-hdmi-bonelt-pins {
-	}; /* removes the hdmi tda998x pins */
-
-	nxp_hdmi_bonelt_off_pins: nxp-hdmi-bonelt-off-pins {
-	}; /* more hdmi pins */
-
-	mcasp0_pins: mcasp0-pins {
-	}; /* more hdmi pins */
-
 	epwmss0_pins: pinmux_epwmss0_pins {
 		pinctrl-single,pins = <
 			AM33XX_IOPAD(0x990, PIN_OUTPUT | MUX_MODE1) /* (A13) mcasp0_aclkx.ehrpwm0A */
