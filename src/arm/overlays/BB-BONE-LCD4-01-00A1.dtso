@@ -125,9 +125,8 @@
 
 	blue-and-red-wiring = "straight";
 
-	//FIXME - LCD doesn't init...
 	//port {
-	//	lcdc_0: endpoint@0 {
+	//	lcdc_0: endpoint {
 	//		remote-endpoint = <&panel_0>;
 	//	};
 	//};
@@ -140,7 +139,7 @@
 		ti,x-plate-resistance = <200>;
 		ti,coordinate-readouts = <5>;
 		ti,wire-config = <0x00 0x11 0x22 0x33>;
-		ti,charge-delay = <0x400>;
+		ti,charge-delay = <0xB000>;
 	};
 
 	adc {
@@ -169,16 +168,15 @@
 		default-brightness-level = <100>;
 	};
 
-	panel {
+	panel: panel {
 		status = "okay";
 		compatible = "ti,tilcdc,panel";
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_lcd_lcd_pins>;
 		backlight = <&backlight>;
 
-		//FIXME - LCD doesn't init...
 		//port {
-		//	panel_0: endpoint@0 {
+		//	panel_0: endpoint {
 		//		remote-endpoint = <&lcdc_0>;
 		//	};
 		//};

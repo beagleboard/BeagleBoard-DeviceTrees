@@ -1860,7 +1860,7 @@
 
 			gpio2: gpio@0 {
 				compatible = "ti,omap4-gpio";
-                                gpio-ranges =	<&am33xx_pinmux  0 34 18>,
+				gpio-ranges =	<&am33xx_pinmux  0 34 18>,
 						<&am33xx_pinmux 18 77  4>,
 						<&am33xx_pinmux 22 56 10>;
 				gpio-controller;
