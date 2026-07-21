@@ -405,6 +405,7 @@
 		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
 		reset-assert-us = <300>;
 		reset-deassert-us = <50000>;
+		smsc,disable-energy-detect;
 	};
 };
 
