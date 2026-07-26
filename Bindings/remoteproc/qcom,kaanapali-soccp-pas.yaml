@@ -20,11 +20,11 @@ properties:
     oneOf:
       - items:
           - enum:
-              - qcom,glymur-soccp-pas
               - qcom,hawi-soccp-pas
               - qcom,maili-soccp-pas
           - const: qcom,kaanapali-soccp-pas
       - enum:
+          - qcom,glymur-soccp-pas
           - qcom,kaanapali-soccp-pas
 
   reg:
