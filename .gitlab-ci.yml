@@ -1,5 +1,5 @@
 build-debian-12-arm64:
-  image: robertcnelson/beagle-devscripts-kernel-debian-12-arm64:latest
+  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-12-arm64:latest
   # https://openbeagle.org/beagleboard/ci-docker-images
   tags:
     - docker-aarch64
@@ -8,7 +8,7 @@ build-debian-12-arm64:
     - make CC=gcc CROSS_COMPILE= all
 
 build-debian-13-arm64:
-  image: robertcnelson/beagle-devscripts-kernel-debian-13-arm64:latest
+  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-13-arm64:latest
   # https://openbeagle.org/beagleboard/ci-docker-images
   tags:
     - docker-aarch64
@@ -17,7 +17,7 @@ build-debian-13-arm64:
     - make CC=gcc CROSS_COMPILE= all
 
 build-debian-14-arm64:
-  image: robertcnelson/beagle-devscripts-kernel-debian-14-arm64:latest
+  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-14-arm64:latest
   # https://openbeagle.org/beagleboard/ci-docker-images
   tags:
     - docker-aarch64
