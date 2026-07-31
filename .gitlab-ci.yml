@@ -1,3 +1,11 @@
+# SPDX-FileCopyrightText: Robert Nelson <robertcnelson@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
+variables:
+  GIT_STRATEGY: "clone"
+  GIT_DEPTH: 1
+
 build-debian-12-arm64:
   image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-12-arm64:latest
   # https://openbeagle.org/beagleboard/ci-docker-images
