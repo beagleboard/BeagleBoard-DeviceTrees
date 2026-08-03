@@ -17,6 +17,9 @@ properties:
   compatible:
     oneOf:
       - enum:
+          - qcom,eliza-cdsp-pas
+          - qcom,hawi-mpss-pas
+          - qcom,maili-mpss-pas
           - qcom,sdx75-mpss-pas
           - qcom,sm8550-adsp-pas
           - qcom,sm8550-cdsp-pas
@@ -29,6 +32,7 @@ properties:
           - qcom,x1e80100-cdsp-pas
       - items:
           - enum:
+              - qcom,eliza-adsp-pas
               - qcom,glymur-adsp-pas
               - qcom,hawi-adsp-pas
               - qcom,kaanapali-adsp-pas
@@ -134,6 +138,7 @@ allOf:
         compatible:
           contains:
             enum:
+              - qcom,eliza-adsp-pas
               - qcom,glymur-adsp-pas
               - qcom,glymur-cdsp-pas
               - qcom,hawi-adsp-pas
@@ -171,6 +176,7 @@ allOf:
         compatible:
           contains:
             enum:
+              - qcom,eliza-cdsp-pas
               - qcom,sm8750-cdsp-pas
     then:
       properties:
@@ -200,6 +206,8 @@ allOf:
       properties:
         compatible:
           enum:
+            - qcom,hawi-mpss-pas
+            - qcom,maili-mpss-pas
             - qcom,sdx75-mpss-pas
             - qcom,sm8650-mpss-pas
     then:
@@ -250,6 +258,8 @@ allOf:
       properties:
         compatible:
           enum:
+            - qcom,hawi-mpss-pas
+            - qcom,maili-mpss-pas
             - qcom,sdx75-mpss-pas
             - qcom,sm8550-mpss-pas
             - qcom,sm8650-mpss-pas
@@ -283,6 +293,25 @@ allOf:
           items:
             - const: cx
             - const: mxc
+            - const: nsp
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - qcom,eliza-cdsp-pas
+    then:
+      properties:
+        power-domains:
+          items:
+            - description: CX power domain
+            - description: MX power domain
+            - description: NSP power domain
+        power-domain-names:
+          items:
+            - const: cx
+            - const: mx
             - const: nsp
 
 unevaluatedProperties: false
