@@ -1,27 +1,24 @@
-build-debian-12-arm64:
-  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-12-arm64:latest
-  # https://openbeagle.org/beagleboard/ci-docker-images
-  tags:
-    - docker-aarch64
-  stage: build
-  script:
-    - make CC=gcc CROSS_COMPILE= all
+# SPDX-FileCopyrightText: Robert Nelson <robertcnelson@gmail.com>
+# SPDX-License-Identifier: MIT
+#
+# You can find the Docker source files at https://openbeagle.org/beagleboard/ci-docker-images
 
-build-debian-13-arm64:
-  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-13-arm64:latest
-  # https://openbeagle.org/beagleboard/ci-docker-images
-  tags:
-    - docker-aarch64
-  stage: build
-  script:
-    - make CC=gcc CROSS_COMPILE= all
+variables:
+  GIT_STRATEGY: "clone"
+  GIT_DEPTH: 1
+  REGISTRY_BASE: "registry.gfnd.rcn-ee.org:5000/ci"
 
-build-debian-14-arm64:
-  image: registry.gfnd.rcn-ee.org:5000/ci/beagle-devscripts-kernel-debian-14-arm64:latest
-  # https://openbeagle.org/beagleboard/ci-docker-images
+build-arm64:
+  stage: build
+  image: $REGISTRY_BASE/beagle-devscripts-kernel-debian-${DEBIAN_VERSION}-arm64:latest
   tags:
     - docker-aarch64
-  stage: build
+  parallel:
+    matrix:
+      - DEBIAN_VERSION: ["12", "13", "14"]
   script:
-    - reuse lint-file src/arm/overlays/*
+    - |
+      if [ "$DEBIAN_VERSION" = "14" ]; then
+        reuse lint-file src/arm/overlays/*
+      fi
     - make CC=gcc CROSS_COMPILE= all
