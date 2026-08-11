@@ -1,20 +1,20 @@
 # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 %YAML 1.2
 ---
-$id: http://devicetree.org/schemas/pinctrl/airoha,en7581-pinctrl.yaml#
+$id: http://devicetree.org/schemas/pinctrl/airoha,en7523-pinctrl.yaml#
 $schema: http://devicetree.org/meta-schemas/core.yaml#
 
-title: Airoha EN7581 Pin Controller
+title: Airoha EN7523 Pin Controller
 
 maintainers:
   - Lorenzo Bianconi <lorenzo@kernel.org>
 
 description:
-  The Airoha's EN7581 Pin controller is used to control SoC pins.
+  The Airoha's EN7523 Pin controller is used to control SoC pins.
 
 properties:
   compatible:
-    const: airoha,en7581-pinctrl
+    const: airoha,en7523-pinctrl
 
   interrupts:
     maxItems: 1
@@ -39,6 +39,7 @@ required:
   - compatible
   - interrupts
   - gpio-controller
+  - gpio-ranges
   - "#gpio-cells"
   - interrupt-controller
   - "#interrupt-cells"
@@ -61,7 +62,7 @@ patternProperties:
             description:
               A string containing the name of the function to mux to the group.
             enum: [pon, tod_1pps, sipo, mdio, uart, i2c, jtag, pcm, spi,
-                   pcm_spi, i2s, emmc, pnand, gpio, pcie_reset, pwm, phy1_led0,
+                   pcm_spi, i2s, gpio, pcie_reset, pwm, phy1_led0,
                    phy2_led0, phy3_led0, phy4_led0, phy1_led1, phy2_led1,
                    phy3_led1, phy4_led1]
 
@@ -114,8 +115,7 @@ patternProperties:
               properties:
                 groups:
                   items:
-                    enum: [uart2, uart2_cts_rts, hsuart, hsuart_cts_rts,
-                           uart4, uart5]
+                    enum: [uart2, npu_uart]
                   maxItems: 2
           - if:
               properties:
@@ -174,27 +174,11 @@ patternProperties:
           - if:
               properties:
                 function:
-                  const: emmc
-            then:
-              properties:
-                groups:
-                  enum: [emmc]
-          - if:
-              properties:
-                function:
-                  const: pnand
-            then:
-              properties:
-                groups:
-                  enum: [pnand]
-          - if:
-              properties:
-                function:
                   const: gpio
             then:
               properties:
                 groups:
-                  enum: [gpio47, gpio48, gpio49]
+                  enum: [gpio28, gpio29]
           - if:
               properties:
                 function:
@@ -202,7 +186,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [pcie_reset0, pcie_reset1, pcie_reset2]
+                  enum: [pcie_reset0, pcie_reset1]
           - if:
               properties:
                 function:
@@ -214,10 +198,7 @@ patternProperties:
                          gpio7, gpio8, gpio9, gpio10, gpio11, gpio12, gpio13,
                          gpio14, gpio15, gpio16, gpio17, gpio18, gpio19,
                          gpio20, gpio21, gpio22, gpio23, gpio24, gpio25,
-                         gpio26, gpio27, gpio28, gpio29, gpio30, gpio31,
-                         gpio36, gpio37, gpio38, gpio39, gpio40, gpio41,
-                         gpio42, gpio43, gpio44, gpio45, gpio46, gpio47,
-                         gpio48, gpio49]
+                         gpio26, gpio27, gpio28, gpio29]
           - if:
               properties:
                 function:
@@ -225,7 +206,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio33, gpio34, gpio35, gpio42]
+                  enum: [gpio22, gpio23, gpio24, gpio25]
           - if:
               properties:
                 function:
@@ -233,7 +214,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio33, gpio34, gpio35, gpio42]
+                  enum: [gpio22, gpio23, gpio24, gpio25]
           - if:
               properties:
                 function:
@@ -241,7 +222,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio33, gpio34, gpio35, gpio42]
+                  enum: [gpio22, gpio23, gpio24, gpio25]
           - if:
               properties:
                 function:
@@ -249,7 +230,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio33, gpio34, gpio35, gpio42]
+                  enum: [gpio22, gpio23, gpio24, gpio25]
           - if:
               properties:
                 function:
@@ -257,7 +238,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio43, gpio44, gpio45, gpio46]
+                  enum: [gpio7, gpio6, gpio5, gpio4]
           - if:
               properties:
                 function:
@@ -265,7 +246,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio43, gpio44, gpio45, gpio46]
+                  enum: [gpio7, gpio6, gpio5, gpio4]
           - if:
               properties:
                 function:
@@ -273,7 +254,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio43, gpio44, gpio45, gpio46]
+                  enum: [gpio7, gpio6, gpio5, gpio4]
           - if:
               properties:
                 function:
@@ -281,7 +262,7 @@ patternProperties:
             then:
               properties:
                 groups:
-                  enum: [gpio43, gpio44, gpio45, gpio46]
+                  enum: [gpio7, gpio6, gpio5, gpio4]
 
         additionalProperties: false
 
@@ -298,17 +279,14 @@ patternProperties:
             description:
               An array of strings. Each string contains the name of a pin.
             items:
-              enum: [uart1_txd, uart1_rxd, i2c_scl, i2c_sda, spi_cs0, spi_clk,
-                     spi_mosi, spi_miso, gpio0, gpio1, gpio2, gpio3, gpio4,
+              enum: [i2c_sda, i2c_scl, spi_cs0, spi_clk, spi_mosi, spi_miso,
+                     uart1_txd, uart1_rxd, gpio0, gpio1, gpio2, gpio3, gpio4,
                      gpio5, gpio6, gpio7, gpio8, gpio9, gpio10, gpio11, gpio12,
                      gpio13, gpio14, gpio15, gpio16, gpio17, gpio18, gpio19,
                      gpio20, gpio21, gpio22, gpio23, gpio24, gpio25, gpio26,
-                     gpio27, gpio28, gpio29, gpio30, gpio31, gpio32, gpio33,
-                     gpio34, gpio35, gpio36, gpio37, gpio38, gpio39, gpio40,
-                     gpio41, gpio42, gpio43, gpio44, gpio45, gpio46,
-                     pcie_reset0, pcie_reset1, pcie_reset2]
+                     gpio27, pcie_reset0, pcie_reset1]
             minItems: 1
-            maxItems: 58
+            maxItems: 38
 
           bias-disable: true
 
@@ -345,7 +323,7 @@ examples:
     #include <dt-bindings/interrupt-controller/arm-gic.h>
 
     pinctrl {
-      compatible = "airoha,en7581-pinctrl";
+      compatible = "airoha,en7523-pinctrl";
 
       interrupt-parent = <&gic>;
       interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
@@ -356,7 +334,7 @@ examples:
       interrupt-controller;
       #interrupt-cells = <2>;
 
-      gpio-ranges = <&pinctrl 0 13 50>;
+      gpio-ranges = <&pinctrl 0 12 30>;
 
       pcie1-rst-pins {
         conf {
@@ -382,21 +360,7 @@ examples:
       uart2-pins {
         mux {
           function = "uart";
-          groups = "uart2", "uart2_cts_rts";
-        };
-      };
-
-      uar5-pins {
-        mux {
-          function = "uart";
-          groups = "uart5";
-        };
-      };
-
-      mmc-pins {
-        mux {
-          function = "emmc";
-          groups = "emmc";
+          groups = "uart2";
         };
       };
 
