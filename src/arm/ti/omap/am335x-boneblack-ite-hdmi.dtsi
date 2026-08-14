@@ -96,6 +96,7 @@
 };
 
 &i2c0 {
+	status = "okay";
 	it66122: bridge-hdmi@4c {
 		compatible = "ite,it66122";
 		reg = <0x4c>;
