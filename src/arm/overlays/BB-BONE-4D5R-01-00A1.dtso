@@ -119,12 +119,11 @@
 
 	blue-and-red-wiring = "straight";
 
-	//FIXME - LCD doesn't init...
-	//port {
-	//	lcdc_0: endpoint@0 {
-	//		remote-endpoint = <&panel_0>;
-	//	};
-	//};
+	port {
+		lcdc_0: endpoint {
+			remote-endpoint = <&panel_0>;
+		};
+	};
 };
 
 &i2c1 {
@@ -174,7 +173,7 @@
 		default-brightness-level = <100>;
 	};
 
-	panel {
+	panel: panel {
 		status = "okay";
 		compatible = "ti,tilcdc,panel";
 		pinctrl-names = "default";
@@ -182,12 +181,11 @@
 		backlight = <&backlight>;
 		enable-gpios = <&gpio3 19 0>;
 
-		//FIXME - LCD doesn't init...
-		//port {
-		//	panel_0: endpoint@0 {
-		//		remote-endpoint = <&lcdc_0>;
-		//	};
-		//};
+		port {
+			panel_0: endpoint {
+				remote-endpoint = <&lcdc_0>;
+			};
+		};
 
 		panel-info {
 			ac-bias           = <255>;
