@@ -180,10 +180,9 @@
 		default-brightness-level = <100>;
 	};
 
-	/* NHD-7.0-800480EF-ATXL# */
 	panel: panel {
 		status = "okay";
-		compatible = "ti,tilcdc,panel";
+		compatible = "newhaven,nhd-7.0-800480ef-atxl", "panel-dpi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_lcd_lcd_pins>;
 		backlight = <&backlight>;
@@ -192,38 +191,6 @@
 		port {
 			panel_0: endpoint {
 				remote-endpoint = <&lcdc_0>;
-			};
-		};
-
-		panel-info {
-			ac-bias           = <255>;
-			ac-bias-intrpt    = <0>;
-			dma-burst-sz      = <16>;
-			bpp               = <32>;
-			fdd               = <0x80>;
-			tft-alt-mode      = <0>;
-			stn-565-mode      = <0>;
-			mono-8bit-mode    = <0>;
-			sync-edge         = <0>;
-			sync-ctrl         = <0>;
-			raster-order      = <0>;
-			fifo-th           = <0>;
-		};
-
-		display-timings {
-			native-mode = <&timing0>;
-			timing0: 800x480 {
-				clock-frequency = <45000000>;
-				hactive = <800>;
-				vactive = <480>;
-				hfront-porch = <40>;
-				hback-porch = <40>;
-				hsync-len = <48>;
-				vback-porch = <29>;
-				vfront-porch = <13>;
-				vsync-len = <3>;
-				hsync-active = <0>;
-				vsync-active = <0>;
 			};
 		};
 	};
