@@ -23,6 +23,7 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 	};
+
 	it66122_vcn12_fixed: fixedregulator2 {
 		compatible = "regulator-fixed";
 		regulator-name = "it66122_vcn12_fixed";
