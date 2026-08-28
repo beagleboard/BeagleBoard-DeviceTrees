@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: GPL-2.0-only
+
+/*
+ * Copyright (C) 2025 Charlie Larrabee <charlie@ambrosiaspace.com>
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		BB-I2C1-ADS1015-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_17_pinmux { status = "disabled"; };	/* i2c1_scl */
+	P9_18_pinmux { status = "disabled"; };	/* i2c1_sda */
+};
+
+&am33xx_pinmux {
+	bb_i2c1_pins: pinmux_bb_i2c1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)		/* spi0_d1.i2c1_sda */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* spi0_cs0.i2c1_scl */
+		>;
+	};
+};
+
+&i2c1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_i2c1_pins>;
+
+	clock-frequency = <100000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	adc@48 {
+		status = "okay";
+		compatible = "ti,ads1115";
+		reg = <0x48>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		channel@4 {     /* Voltage over AIN0 and GND */
+			reg = <4>;
+			ti,gain = <2>;
+			ti,datarate = <4>;
+		};
+		channel@5 {     /* Voltage over AIN1 and GND */
+			reg = <5>;
+			ti,gain = <2>;
+			ti,datarate = <4>;
+		};
+		channel@6 {     /* Voltage over AIN2 and GND */
+			reg = <6>;
+			ti,gain = <2>;
+			ti,datarate = <4>;
+		};
+		channel@7 {     /* Voltage over AIN3 and GND */
+			reg = <7>;
+			ti,gain = <2>;
+			ti,datarate = <4>;
+		};
+	};
+};
