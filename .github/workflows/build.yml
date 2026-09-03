@@ -1,18 +1,13 @@
-name: Build Arm64
+name: Build Device Trees
 
 on:
-  # This triggers on every push to EVERY branch
   push:
-  
-  # This triggers on every Pull Request targeting ANY branch
   pull_request:
-
-  # This allows you to manually run it from the Actions tab
   workflow_dispatch:
 
 jobs:
   build-arm64:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
@@ -23,7 +18,11 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential device-tree-compiler
+          sudo apt-get install -y build-essential device-tree-compiler reuse
 
       - name: Run Build
-        run: make CC=gcc CROSS_COMPILE= all
+        run: |
+          reuse lint-file src/arm/overlays/*
+          reuse lint-file src/arm64/overlays/*
+          make CC=gcc CROSS_COMPILE= all
+
