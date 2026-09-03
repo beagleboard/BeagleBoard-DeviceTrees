@@ -10,15 +10,15 @@ variables:
 
 build-arm64:
   stage: build
-  image: $REGISTRY_BASE/beagle-devscripts-kernel-debian-${DEBIAN_VERSION}-arm64:latest
+  image: $REGISTRY_BASE/beagle-devscripts-kernel-${DISTRO_VERSION}-arm64:latest
   tags:
     - docker-aarch64
   parallel:
     matrix:
-      - DEBIAN_VERSION: ["12", "13", "14"]
+      - DISTRO_VERSION: ["debian-12", "debian-13", "debian-14", "ubuntu-24.04"]
   script:
     - |
-      if [ "$DEBIAN_VERSION" = "14" ]; then
+      if [ "$DISTRO_VERSION" = "debian-14" ]; then
         reuse lint-file src/arm/overlays/*
         reuse lint-file src/arm64/overlays/*
       fi
