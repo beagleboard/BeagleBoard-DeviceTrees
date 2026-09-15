@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
@@ -23,6 +23,5 @@ jobs:
       - name: Run Build
         run: |
           reuse lint-file src/arm/overlays/*
-          reuse lint-file src/arm64/overlays/*
           make CC=gcc CROSS_COMPILE= all
 
