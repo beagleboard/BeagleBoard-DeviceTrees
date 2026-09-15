@@ -210,7 +210,7 @@
 	};
 
 	baseboard_eeprom: eeprom@50 {
-		compatible = "atmel,24c256";
+		compatible = "atmel,24c32";
 		reg = <0x50>;
 		vcc-supply = <&ldo4_reg>;
 
@@ -380,6 +380,7 @@
 		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
 		reset-assert-us = <300>;
 		reset-deassert-us = <50000>;
+		smsc,disable-energy-detect;
 	};
 };
 
