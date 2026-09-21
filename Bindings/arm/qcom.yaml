@@ -86,6 +86,7 @@ properties:
 
       - items:
           - enum:
+              - asus,zenbook-a14-ux3407na
               - asus,zenbook-a16-ux3607oa
               - hp,elitebook-x-g2q
               - lenovo,yoga-slim7x-gen11
@@ -408,6 +409,12 @@ properties:
               - sony,xperia-poplar
               - xiaomi,sagit
           - const: qcom,msm8998
+
+      - items:
+          - enum:
+              - qcom,iq10-rrd
+              - qcom,sa8797p-ride
+          - const: qcom,nord
 
       - description: Qualcomm Technologies, Inc. Robotics RB1
         items:
