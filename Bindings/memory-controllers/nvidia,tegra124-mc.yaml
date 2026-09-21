@@ -22,7 +22,6 @@ properties:
     enum:
       - nvidia,tegra114-mc
       - nvidia,tegra124-mc
-      - nvidia,tegra132-mc
 
   reg:
     maxItems: 1

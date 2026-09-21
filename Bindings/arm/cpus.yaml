@@ -86,8 +86,6 @@ properties:
           - apple,avalanche
           - apple,blizzard
           - apple,cyclone
-          - apple,donan-e
-          - apple,donan-p
           - apple,everest
           - apple,firestorm
           - apple,hurricane-zephyr
@@ -214,7 +212,6 @@ properties:
           - qcom,kryo465
           - qcom,kryo468
           - qcom,kryo470
-          - qcom,kryo475
           - qcom,kryo485
           - qcom,kryo560
           - qcom,kryo570

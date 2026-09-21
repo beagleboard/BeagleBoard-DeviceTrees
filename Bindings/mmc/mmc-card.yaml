@@ -38,9 +38,7 @@ patternProperties:
     properties:
       compatible:
         contains:
-          enum:
-            - fixed-partitions
-            - fixed-layout
+          const: fixed-partitions
 
 required:
   - compatible
@@ -86,25 +84,6 @@ examples:
                     label = "bl";
                     reg = <0x0 0x2000000>; /* 32MB */
                     read-only;
-                };
-            };
-
-            partitions-boot2 {
-                compatible = "fixed-layout";
-
-                #address-cells = <1>;
-                #size-cells = <1>;
-
-                mac-addr@4400 {
-                    compatible = "mac-base";
-                    reg = <0x4400 0x6>;
-                    #nvmem-cell-cells = <1>;
-                };
-
-                bd-addr@5400 {
-                    compatible = "mac-base";
-                    reg = <0x5400 0x6>;
-                    #nvmem-cell-cells = <1>;
                 };
             };
         };

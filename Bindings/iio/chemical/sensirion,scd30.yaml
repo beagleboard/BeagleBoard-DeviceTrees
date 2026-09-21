@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 title: Sensirion SCD30 carbon dioxide sensor
 
 maintainers:
-  - Maxwell Doose <maxwell@maxwelld.cc>
+  - Maxwell Doose <m32285159@gmail.com>
   - Tomasz Duszynski <tduszyns@gmail.com>
 
 description: |

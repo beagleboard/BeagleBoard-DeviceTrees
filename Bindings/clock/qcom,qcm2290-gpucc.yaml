@@ -18,9 +18,7 @@ description: |
 
 properties:
   compatible:
-    enum:
-      - qcom,qcm2290-gpucc
-      - qcom,shikra-gpucc
+    const: qcom,qcm2290-gpucc
 
   reg:
     maxItems: 1

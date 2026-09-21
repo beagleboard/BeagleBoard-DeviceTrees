@@ -14,13 +14,7 @@ description:
 
 properties:
   compatible:
-    oneOf:
-      - items:
-          - enum:
-              - qcom,sdm660-wcd-digital-codec
-          - const: qcom,msm8916-wcd-digital-codec
-
-      - const: qcom,msm8916-wcd-digital-codec
+    const: qcom,msm8916-wcd-digital-codec
 
   reg:
     maxItems: 1

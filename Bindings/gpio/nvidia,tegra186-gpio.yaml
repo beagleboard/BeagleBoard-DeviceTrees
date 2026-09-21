@@ -91,9 +91,6 @@ properties:
       - nvidia,tegra264-gpio
       - nvidia,tegra264-gpio-uphy
       - nvidia,tegra264-gpio-aon
-      - nvidia,tegra268-gpio
-      - nvidia,tegra268-gpio-uphy
-      - nvidia,tegra268-gpio-aon
 
   reg-names:
     items:
@@ -172,8 +169,6 @@ allOf:
               - nvidia,tegra256-gpio
               - nvidia,tegra264-gpio
               - nvidia,tegra264-gpio-uphy
-              - nvidia,tegra268-gpio
-              - nvidia,tegra268-gpio-uphy
     then:
       properties:
         interrupts:
@@ -190,7 +185,6 @@ allOf:
               - nvidia,tegra234-gpio-aon
               - nvidia,tegra238-gpio-aon
               - nvidia,tegra264-gpio-aon
-              - nvidia,tegra268-gpio-aon
     then:
       properties:
         interrupts:
@@ -207,9 +201,6 @@ allOf:
               - nvidia,tegra264-gpio
               - nvidia,tegra264-gpio-uphy
               - nvidia,tegra264-gpio-aon
-              - nvidia,tegra268-gpio
-              - nvidia,tegra268-gpio-uphy
-              - nvidia,tegra268-gpio-aon
     then:
       required:
         - wakeup-parent

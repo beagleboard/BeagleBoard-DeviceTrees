@@ -27,9 +27,6 @@ properties:
 
   gpio-reserved-ranges: true
 
-  gpio-line-names:
-    maxItems: 230
-
 patternProperties:
   "-state$":
     oneOf:

@@ -49,8 +49,7 @@ properties:
   interrupt-controller: true
 
   "#interrupt-cells":
-    const: 3
-    description: The cells have the same encoding as defined in arm,gic.yaml.
+    $ref: arm,gic.yaml#/properties/#interrupt-cells
 
 required:
   - reg

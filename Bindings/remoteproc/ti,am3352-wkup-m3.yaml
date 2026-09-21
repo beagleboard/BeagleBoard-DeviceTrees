@@ -62,6 +62,7 @@ required:
 
 dependencies:
   resets: [reset-names]
+  reset-names: [resets]
 
 additionalProperties: false
 

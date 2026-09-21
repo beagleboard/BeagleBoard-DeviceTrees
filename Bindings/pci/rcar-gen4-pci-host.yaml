@@ -66,9 +66,6 @@ properties:
   max-link-speed:
     maximum: 4
 
-  msi-parent:
-    maxItems: 1
-
   num-lanes:
     maximum: 4
 

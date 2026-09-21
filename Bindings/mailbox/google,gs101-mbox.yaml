@@ -20,9 +20,7 @@ description:
 
 properties:
   compatible:
-    enum:
-      - google,gs101-mbox
-      - samsung,exynos850-mbox
+    const: google,gs101-mbox
 
   reg:
     maxItems: 1
