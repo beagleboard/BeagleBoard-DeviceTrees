@@ -465,6 +465,8 @@ patternProperties:
     description: Dongwoon Anatech
   "^dptechnics,.*":
     description: DPTechnics
+  "^dptel,.*":
+    description: Guangdong Dapu Telecom Co., Ltd.
   "^dragino,.*":
     description: Dragino Technology Co., Limited
   "^dream,.*":
@@ -805,6 +807,8 @@ patternProperties:
     description: ILI Technology Corporation (ILITEK)
   "^imagis,.*":
     description: Imagis Technologies Co., Ltd.
+  "^imdt,.*":
+    description: IMD Technologies Ltd.
   "^img,.*":
     description: Imagination Technologies Ltd.
   "^imi,.*":

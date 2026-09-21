@@ -9,7 +9,7 @@ title: QST QMC6308 3-Axis Magnetic Sensor
 maintainers:
   - Jorijn van der Graaf <jorijnvdgraaf@catcrafts.net>
 
-description: |
+description:
   QST QMC6308 3-axis anisotropic magnetoresistive (AMR) magnetic sensor
   on I2C bus, with a single supply and no interrupt pin.
   https://qstcorp.com/upload/pdf/202202/13-52-15%20QMC6308%20Datasheet%20Rev.%20F(1).pdf
@@ -25,12 +25,12 @@ properties:
 
   mount-matrix: true
 
-additionalProperties: false
-
 required:
   - compatible
   - reg
   - vdd-supply
+
+additionalProperties: false
 
 examples:
   - |
