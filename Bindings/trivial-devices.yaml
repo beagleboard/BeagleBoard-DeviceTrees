@@ -81,8 +81,6 @@ properties:
           - atmel,atsha204a
             # BPA-RS600: Power Supply
           - blutek,bpa-rs600
-            # CM32181: Ambient Light Sensor
-          - capella,cm32181
             # CM3232: Ambient Light Sensor
           - capella,cm3232
             # CM3323: Ambient Light Sensor
@@ -178,6 +176,7 @@ properties:
             # Infineon Multi-phase Digital VR Controller xdpe1a2g7b
           - infineon,xdpe1a2g5b
           - infineon,xdpe1a2g7b
+          - infineon,xdpe1a2g7c
             # Injoinic IP5108 2.0A Power Bank IC with I2C
           - injoinic,ip5108
             # Injoinic IP5109 2.1A Power Bank IC with I2C
