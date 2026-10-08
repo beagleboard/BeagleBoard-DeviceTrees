@@ -49,6 +49,7 @@ properties:
       - ti,bq27z561
       - ti,bq27z746
       - ti,bq28z610
+      - ti,bq28z620
       - ti,bq34z100
       - ti,bq78z100
 
@@ -93,6 +94,7 @@ allOf:
               - ti,bq27545
               - ti,bq27411
               - ti,bq28z610
+              - ti,bq28z620
               - ti,bq34z100
               - ti,bq78z100
     then:
