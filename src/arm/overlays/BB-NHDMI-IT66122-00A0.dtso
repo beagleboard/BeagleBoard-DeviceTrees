@@ -63,6 +63,13 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 	};
+
+	it66122_vcn12_fixed: fixedregulator2 {
+		compatible = "regulator-fixed";
+		regulator-name = "it66122_vcn12_fixed";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+	};
 };
 
 &am33xx_pinmux {
@@ -132,7 +139,7 @@
 
 		vcn33-supply = <&vmmcsd_fixed>;
 		vcn18-supply = <&it66122_vcn18_fixed>;
-		//vrf12-supply = <&mt6358_vrf12_reg>;
+		vrf12-supply = <&it66122_vcn12_fixed>;
 		reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
