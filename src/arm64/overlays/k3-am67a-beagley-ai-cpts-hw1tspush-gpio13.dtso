@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
+ * Copyright (C) 2026 James Clark <jjc@jclark.com>
+ *
  * DT Overlay for GPIO13 (HAT pin 33) as CPTS hardware timestamp input 1.
  *
  * Pad 0x1C0 (E19, SPI0_D0) in mux mode 1 is CP_GEMAC_CPTS0_HW1TSPUSH. A rising
