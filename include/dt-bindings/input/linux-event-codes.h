@@ -643,6 +643,10 @@
 #define KEY_EPRIVACY_SCREEN_ON		0x252
 #define KEY_EPRIVACY_SCREEN_OFF		0x253
 
+#define KEY_ACTION_ON_SELECTION		0x254	/* AL Action on Selection (HUTRR119) */
+#define KEY_CONTEXTUAL_INSERT		0x255	/* AL Contextual Insertion (HUTRR119) */
+#define KEY_CONTEXTUAL_QUERY		0x256	/* AL Contextual Query (HUTRR119) */
+
 #define KEY_KBDINPUTASSIST_PREV		0x260
 #define KEY_KBDINPUTASSIST_NEXT		0x261
 #define KEY_KBDINPUTASSIST_PREVGROUP		0x262
@@ -966,6 +970,12 @@
 
 /*
  * LEDs
+ *
+ * Do not add any new LED definitions to the input subsystem. The existing
+ * definitions are legacy and grandfathered for backwards compatibility with
+ * userspace (via evdev). Any new LEDs should be implemented using the
+ * LED subsystem (struct led_classdev). The input core provides a bridge to
+ * the LED subsystem in drivers/input/input-leds.c.
  */
 
 #define LED_NUML		0x00
