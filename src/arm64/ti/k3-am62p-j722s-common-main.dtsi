@@ -1152,7 +1152,7 @@
 			 <&k3_clks 186 2>;
 		clock-names = "fck", "vp1", "vp2";
 		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-		ti,dpi-io-ctrl = <&main_conf 0x8300>;
+		#ti,dpi-io-ctrl = <&main_conf 0x8300>;
 		status = "disabled";
 
 		oldi-transmitters {
@@ -1197,7 +1197,7 @@
 			 <&k3_clks 232 4>;
 		clock-names = "fck", "vp1", "vp2";
 		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-		ti,dpi-io-ctrl = <&main_conf 0x8300>;
+		#ti,dpi-io-ctrl = <&main_conf 0x8300>;
 		status = "disabled";
 
 		oldi-transmitters {
