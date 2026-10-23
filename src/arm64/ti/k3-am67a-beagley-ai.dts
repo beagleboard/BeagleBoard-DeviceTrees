@@ -751,7 +751,7 @@
 			/*
 			 * HDMI can be serviced with 3 potential VPs -
 			 * (DSS0 VP1 / DSS1 VP0 / DSS1 VP1).
-			 * For now, we will service it with DSS1 VP1.
+			 * For now, we will service it with DSS1 VP0.
 			 */
 			port@0 {
 				reg = <0>;
@@ -861,7 +861,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		/* DSS1-VP1: DPI/HDMI Output */
+		/* DSS1-VP0: DPI/HDMI Output */
 		port@0 {
 			reg = <0>;
 
