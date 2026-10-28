@@ -2,7 +2,7 @@
 /*
  * Device Tree file for the WAKEUP domain peripherals shared by AM62P and J722S
  *
- * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2023-2025 Texas Instruments Incorporated - https://www.ti.com/
  */
 
 #include <dt-bindings/bus/ti-sysc.h>
