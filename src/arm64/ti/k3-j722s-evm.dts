@@ -841,6 +841,9 @@
 
 		enable-gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
 
+		interrupt-parent = <&exp2>;
+		interrupts = <11 IRQ_TYPE_EDGE_RISING>;
+
 		vpll-supply = <&vsys_io_1v8>;
 		vccio-supply = <&vsys_io_1v8>;
 		vcca-supply = <&vsys_io_1v2>;
