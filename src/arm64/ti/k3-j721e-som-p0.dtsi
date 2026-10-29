@@ -567,6 +567,7 @@
 	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
 	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
 			<&mcu_r5fss0_core0_memory_region>;
+	ti,rproc-attach-only;
 };
 
 &mcu_r5fss0_core1 {
