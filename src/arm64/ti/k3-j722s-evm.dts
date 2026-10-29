@@ -203,7 +203,7 @@
 		regulator-boot-on;
 	};
 
-	lmk6x_clk: clock-12288000 {
+	tlv320_mclk: clock-12288000 {
 		compatible = "fixed-clock";
 		clock-frequency = <12288000>;
 		#clock-cells = <0>;
@@ -234,7 +234,7 @@
 
 		sound_master: simple-audio-card,codec {
 			sound-dai = <&tlv320aic3106>;
-			clocks = <&lmk6x_clk>;
+			clocks = <&tlv320_mclk>;
 		};
 	};
 
