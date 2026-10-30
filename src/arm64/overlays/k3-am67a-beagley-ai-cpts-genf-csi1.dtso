@@ -1,0 +1,87 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * Copyright (C) 2026 James Clark <jjc@jclark.com>
+ *
+ * DT Overlay for CPTS periodic outputs (GENF0/GENF1) on the CSI1/DSI0
+ * connector (22-pin, 0.5 mm FPC, Raspberry Pi 5 camera/display pinout).
+ *
+ * The CPSW CPTS generators GENF0 and GENF1 are driven by Linux as periodic
+ * output channels 0 and 1 of the CPTS PHC (/dev/ptp0, PTP_PEROUT_REQUEST /
+ * sysfs period), so these pins can carry a signal, such as a 1PPS, locked to
+ * the clock that timestamps PTP packets. They reach the connector as:
+ *
+ *   pin 20  D23 I2C0_SCL  0x1E0 mode 2  SYNC0_OUT  router out 20 <- GENF0
+ *   pin 17  D22 MCAN0_TX  0x1D8 mode 3  SYNC2_OUT  router out 22 <- GENF1
+ *   pin 18  C22 MCAN0_RX  0x1DC mode 3  SYNC3_OUT  router out 23 <- GENF0
+ *
+ * Pin 20 is the connector's I2C clock (main_i2c0, disabled in the base DT,
+ * on-board pull-up) and pins 17/18 its camera GPIOs (via 0 ohm R258/R259),
+ * so a camera or display on CSI1/DSI0 cannot be used with this overlay.
+ *
+ * The generators do not reach the pads directly. They are inputs 16 and 17
+ * of the Time Sync Router (TIMESYNC_EVENT_INTROUTER0 at 0xA40000), whose
+ * outputs 20, 22 and 23 are SYNC0_OUT, SYNC2_OUT and SYNC3_OUT. The router
+ * comes out of reset with every output disabled and has no mainline driver,
+ * so it is modelled here as a pinctrl-single whose "pins" are the per-output
+ * mux registers: output N at 0x4 + 4*N, value 0x10000 (enable) | input number.
+ * The register block is 1 KiB (TRM memory map, TIMESYNC_EVENT_INTROUTER0_
+ * INTR_ROUTER_CFG 0xA40000-0xA40400); a larger reg size makes pinctrl-single
+ * read past it and the bus fault oopses the kernel when debugfs is read.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "ti/k3-pinctrl.h"
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-am67a-beagley-ai-cpts-genf-csi1.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	csi1_cpts_genf: csi1-cpts-genf-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x1E0, PIN_OUTPUT, 2) /* (D23) I2C0_SCL.SYNC0_OUT */
+			J722S_IOPAD(0x1D8, PIN_OUTPUT, 3) /* (D22) MCAN0_TX.SYNC2_OUT */
+			J722S_IOPAD(0x1DC, PIN_OUTPUT, 3) /* (C22) MCAN0_RX.SYNC3_OUT */
+		>;
+	};
+};
+
+&cpsw3g {
+	pinctrl-names = "default";
+	pinctrl-0 = <&rgmii1_pins_default>, <&csi1_cpts_genf>;
+};
+
+&cbass_main {
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	timesync_router: pinctrl@a40000 {
+		compatible = "pinctrl-single";
+		reg = <0x0 0xa40000 0x0 0x400>;
+		#pinctrl-cells = <1>;
+		pinctrl-single,register-width = <32>;
+		pinctrl-single,function-mask = <0x000107ff>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cpts_genf_routes>;
+
+		/*
+		 * in16 [cpts genf0] -> out20 [SYNC0_OUT]
+		 * in17 [cpts genf1] -> out22 [SYNC2_OUT]
+		 * in16 [cpts genf0] -> out23 [SYNC3_OUT]
+		 */
+		cpts_genf_routes: cpts-genf-routes {
+			pinctrl-single,pins = <
+				0x54 0x10010
+				0x5c 0x10011
+				0x60 0x10010
+			>;
+		};
+	};
+};
