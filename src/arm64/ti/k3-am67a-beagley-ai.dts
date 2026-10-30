@@ -251,14 +251,6 @@
 		bootph-all;
 	};
 
-	main_i2c1_pins_default: main-i2c1-default-pins {
-		pinctrl-single,pins = <
-			J722S_IOPAD(0x01e8, PIN_INPUT_PULLUP, 0) /* (C24) I2C1_SCL */
-			J722S_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (A22) I2C1_SDA */
-		>;
-		bootph-all;
-	};
-
 	main_i2c2_pins_default: main-i2c2-default-pins {
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x00b0, PIN_INPUT_PULLUP, 1) /* (P22) GPMC0_CSn2.I2C2_SCL */
@@ -298,6 +290,14 @@
 			J722S_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (J23) MMC1_DAT2 */
 			J722S_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (H25) MMC1_DAT3 */
 			J722S_IOPAD(0x0240, PIN_INPUT, 7) /* (B24) MMC1_SDCD.GPIO1_48 */
+		>;
+		bootph-all;
+	};
+
+	main_i2c1_pins_default: main-i2c1-default-pins {
+		pinctrl-single,pins = <
+			J722S_IOPAD(0x01e8, PIN_INPUT_PULLUP, 0) /* (C24) I2C1_SCL */
+			J722S_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (A22) I2C1_SDA */
 		>;
 		bootph-all;
 	};
@@ -407,7 +407,7 @@
 		pinctrl-single,pins = <
 			J722S_IOPAD(0x0090, PIN_INPUT, 2) /* (P27) GPMC0_BE0n_CLE.MCASP1_ACLKX */
 			J722S_IOPAD(0x0098, PIN_INPUT, 2) /* (V21) GPMC0_WAIT0.MCASP1_AFSX */
-			J722S_IOPAD(0x008c, PIN_INPUT, 2) /* (N23) GPMC0_WEn.MCASP1_AXR0 */
+			J722S_IOPAD(0x008c, PIN_OUTPUT, 2) /* (N23) GPMC0_WEn.MCASP1_AXR0 */
 		>;
 	};
 
@@ -877,7 +877,6 @@
 	#sound-dai-cells = <0>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_mcasp1_pins_default>;
-	auxclk-fs-ratio = <2177>;
 	op-mode = <0>; /* MCASP_IIS_MODE */
 	tdm-slots = <2>;
 	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */

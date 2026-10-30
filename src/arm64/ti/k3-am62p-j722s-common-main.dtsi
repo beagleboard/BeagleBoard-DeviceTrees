@@ -64,12 +64,7 @@
 			#clock-cells = <0>;
 		};
 
-		dss_dpi0_clk_ctrl: dss-dpi0-clk-ctrl@8300 {
-			compatible = "ti,am625-dss-dpi0-clk-ctrl", "syscon";
-			reg = <0x8300 0x4>;
-		};
-
-		dss_oldi_io_ctrl: dss-oldi-io-ctrl@8600 {
+		dss_oldi_io_ctrl: oldi-io-controller@8600 {
 			compatible = "ti,am625-dss-oldi-io-ctrl", "syscon";
 			reg = <0x8600 0x200>;
 		};
@@ -789,19 +784,6 @@
 		};
 	};
 
-	gpu: gpu@fd80000 {
-		compatible = "ti,am62p-pvr", "img,pvr-bxs64";
-		reg = <0x00 0x0fd80000 0x00 0x80000>;
-		interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
-		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>,
-		                <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
-		assigned-clocks = <&k3_clks 237 3>;
-		assigned-clock-rates = <800000000>;
-		power-domain-names = "firmware", "dust";
-		clocks = <&k3_clks 237 3>;
-		clock-names = "core";
-	};
-
 	hwspinlock: spinlock@2a000000 {
 		compatible = "ti,am64-hwspinlock";
 		reg = <0x00 0x2a000000 0x00 0x1000>;
@@ -1134,6 +1116,19 @@
 		status = "disabled";
 	};
 
+	dphy_tx0: phy@301c0000 {
+		compatible = "ti,j721e-dphy";
+		reg = <0x0 0x301c0000 0x0 0x1000>;
+		clocks = <&k3_clks 238 16>, <&k3_clks 238 1>;
+		clock-names = "psm", "pll_ref";
+		#phy-cells = <0>;
+		power-domains = <&k3_pds 238 TI_SCI_PD_EXCLUSIVE>;
+		assigned-clocks = <&k3_clks 238 1>;
+		assigned-clock-parents = <&k3_clks 238 2>;
+		assigned-clock-rates = <25000000>;
+		status = "disabled";
+	};
+
 	dss0: dss@30200000 {
 		compatible = "ti,am62p-dss";
 		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
@@ -1152,7 +1147,6 @@
 			 <&k3_clks 186 2>;
 		clock-names = "fck", "vp1", "vp2";
 		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-		#ti,dpi-io-ctrl = <&main_conf 0x8300>;
 		status = "disabled";
 
 		oldi-transmitters {
@@ -1164,8 +1158,8 @@
 				clocks = <&k3_clks 186 0>;
 				clock-names = "serial";
 				ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-				status = "disabled";
 				power-domains = <&k3_pds 243 TI_SCI_PD_EXCLUSIVE>; /* OLDI0_VD */
+				status = "disabled";
 			};
 
 			dss0_oldi1: oldi@1 {
@@ -1173,10 +1167,18 @@
 				clocks = <&k3_clks 186 0>;
 				clock-names = "serial";
 				ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-				status = "disabled";
 				power-domains = <&k3_pds 244 TI_SCI_PD_EXCLUSIVE>; /* OLDI1_VD */
+				status = "disabled";
 			};
 		};
+	};
+
+	vpu: video-codec@30210000 {
+		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
+		reg = <0x00 0x30210000 0x00 0x10000>;
+		interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&k3_clks 204 2>;
+		power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
 	};
 
 	dss1: dss@30220000 {
@@ -1187,7 +1189,7 @@
 		      <0x00 0x30227000 0x00 0x1000>, /* ovr1 */
 		      <0x00 0x30228000 0x00 0x1000>, /* ovr2 */
 		      <0x00 0x3022a000 0x00 0x1000>, /* vp1: Used for DPI/OLDI */
-		      <0x00 0x3022b000 0x00 0x1000>, /* vp2: Used DPI/DSI */
+		      <0x00 0x3022b000 0x00 0x1000>, /* vp2: Used for DPI/DSI */
 		      <0x00 0x30221000 0x00 0x1000>; /* common1 */
 		reg-names = "common", "vidl1", "vid",
 			    "ovr1", "ovr2", "vp1", "vp2", "common1";
@@ -1197,7 +1199,6 @@
 			 <&k3_clks 232 4>;
 		clock-names = "fck", "vp1", "vp2";
 		interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-		#ti,dpi-io-ctrl = <&main_conf 0x8300>;
 		status = "disabled";
 
 		oldi-transmitters {
@@ -1209,23 +1210,10 @@
 				clocks = <&k3_clks 232 0>;
 				clock-names = "serial";
 				ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-				status = "disabled";
 				power-domains = <&k3_pds 244 TI_SCI_PD_EXCLUSIVE>; /* OLDI1_VD */
+				status = "disabled";
 			};
 		};
-	};
-
-	dphy_tx0: phy@301c0000 {
-		compatible = "ti,j721e-dphy";
-		reg = <0x0 0x301c0000 0x0 0x1000>;
-		clocks = <&k3_clks 238 16>, <&k3_clks 238 1>;
-		clock-names = "psm", "pll_ref";
-		#phy-cells = <0>;
-		power-domains = <&k3_pds 238 TI_SCI_PD_EXCLUSIVE>;
-		assigned-clocks = <&k3_clks 238 1>;
-		assigned-clock-parents = <&k3_clks 238 2>;
-		assigned-clock-rates = <25000000>;
-		status = "disabled";
 	};
 
 	dsi0: dsi@30500000 {
@@ -1239,15 +1227,6 @@
 		phys = <&dphy_tx0>;
 		phy-names = "dphy";
 		status = "disabled";
-	};
-
-	vpu: video-codec@30210000 {
-		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
-		reg = <0x00 0x30210000 0x00 0x10000>;
-		interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-		clocks = <&k3_clks 204 2>;
-		power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
-		sram = <&oc_sram>;
 	};
 
 	hsm: remoteproc@43c00000 {
