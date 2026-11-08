@@ -1,0 +1,80 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * DT Overlay for esp32-hosted-linux
+ *
+ * Hardware: https://github.com/espressif/esp-hosted-linux/blob/master/docs/getting-started/hardware-setup.md
+ *
+ * Function                 ESP32  ESP32-S2/S3  ESP32-S31  ESP32-C2/C3/C5/C6  ESP32-C61
+ * CS                       IO15   IO10         IO23       IO10               IO8
+ * SCLK                     IO14   IO12         IO20       IO6                IO6
+ * MISO                     IO12   IO13         IO22       IO2                IO2
+ * MOSI                     IO13   IO11         IO21       IO7                IO7
+ * Handshake (ESP → host)   IO2    IO2          IO3        IO3                IO3
+ * Data Ready (ESP → host)  IO4    IO4          IO4        IO4                IO4
+ * ESP reset                EN     RST          RST        RST                RST
+ *
+ * Copyright (C) 2025 Robert Nelson
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+#include "ti/k3-pinctrl.h"
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+*/
+&{/chosen} {
+	overlays {
+		k3-am62-pocketbeagle2-spi2-esp32.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	esp32_pins: esp32-default-pins {
+		pinctrl-single,pins = <
+			//Handshake (ESP → host) 	IO2 	IO2 	IO3 	IO3 	IO3
+			//GPIO0_50 20
+			AM62X_IOPAD(0x00CC, PIN_INPUT, 7) /* (Y24) VOUT0_DATA5.GPIO0_50 */
+			//Data Ready (ESP → host) 	IO4 	IO4 	IO4 	IO4 	IO4
+			//GPIO1_2 34
+			AM62X_IOPAD(0x0180, PIN_INPUT, 7) /* (AD23) RGMII2_RXC.GPIO1_2 */
+			//ESP reset 	EN 	RST 	RST 	RST 	RST
+			//GPIO0_87
+			AM62X_IOPAD(0x0164, PIN_OUTPUT, 7) /* (AA19) RGMII2_TX_CTL.GPIO0_87 */
+		>;
+	};
+
+	spi2_pins: spi2-default-pins {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x01b0, PIN_OUTPUT, 1) /* P1.06: (A20) MCASP0_ACLKR.SPI2_CLK */
+			AM62X_IOPAD(0x01ac, PIN_OUTPUT, 1) /* P1.08: (E19) MCASP0_AFSR.SPI2_CS0 */
+			AM62X_IOPAD(0x0194, PIN_INPUT, 1)  /* P1.10: (B19) MCASP0_AXR3.SPI2_D0 (MISO) */
+			AM62X_IOPAD(0x0198, PIN_OUTPUT, 1) /* P1.12: (A19) MCASP0_AXR2.SPI2_D1 (MOSI) */
+		>;
+	};
+};
+
+&main_spi2 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi2_pins>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	esp32_spi: esp32-spi@0 {
+		compatible = "espressif,esp32-spi";
+		reg = <0>;
+		spi-max-frequency = <30000000>;
+		spi-cpol;
+		pinctrl-names = "default";
+		pinctrl-0 = <&esp32_pins>;
+		reset-gpios = <&main_gpio0 87 GPIO_ACTIVE_LOW>;
+		handshake-gpios = <&main_gpio0 50 GPIO_ACTIVE_HIGH>;
+		data-ready-gpios = <&main_gpio1 2 GPIO_ACTIVE_HIGH>;
+	};
+};
