@@ -1,8 +1,17 @@
 // SPDX-License-Identifier: GPL-2.0-only OR MIT
 /*
- * DT Overlay for eth-wiz-click connections within the expansion header.
+ * DT Overlay for esp32-hosted-linux
  *
- * https://github.com/espressif/esp-hosted-linux/blob/master/docs/getting-started/hardware-setup.md
+ * Hardware: https://github.com/espressif/esp-hosted-linux/blob/master/docs/getting-started/hardware-setup.md
+ *
+ * Function                 ESP32  ESP32-S2/S3  ESP32-S31  ESP32-C2/C3/C5/C6  ESP32-C61
+ * CS                       IO15   IO10         IO23       IO10               IO8
+ * SCLK                     IO14   IO12         IO20       IO6                IO6
+ * MISO                     IO12   IO13         IO22       IO2                IO2
+ * MOSI                     IO13   IO11         IO21       IO7                IO7
+ * Handshake (ESP → host)   IO2    IO2          IO3        IO3                IO3
+ * Data Ready (ESP → host)  IO4    IO4          IO4        IO4                IO4
+ * ESP reset                EN     RST          RST        RST                RST
  *
  * Copyright (C) 2025 Robert Nelson
  *
@@ -20,7 +29,7 @@
 */
 &{/chosen} {
 	overlays {
-		k3-am62-pocketbeagle2-spi2-esp32-c6.kernel = __TIMESTAMP__;
+		k3-am62-pocketbeagle2-spi2-esp32.kernel = __TIMESTAMP__;
 	};
 };
 
