@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+ * https://github.com/beagleboard/beaglebone-black
+ *
+ * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2026 Robert Nelson, BeagleBoard.org Foundation
  */
 /dts-v1/;
 
@@ -11,7 +14,7 @@
 
 / {
 	model = "TI AM335x BeagleBone Black Rev D";
-	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+	compatible = "beagle,am335x-bone-black-revd", "ti,am33xx";
 
 	chosen {
 		base_dtb = "am335x-boneblack-revd.dts";
