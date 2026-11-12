@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+ * https://github.com/beagleboard/beaglebone-black
+ *
+ * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com/
+ * Copyright (C) 2026 Robert Nelson, BeagleBoard.org Foundation
  */
 
 #include <dt-bindings/interrupt-controller/irq.h>
@@ -97,13 +100,11 @@
 };
 
 &i2c0 {
-	status = "okay";
 	it66122: bridge-hdmi@4c {
 		compatible = "ite,it66122";
 		reg = <0x4c>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&hdmi_gpio_pins_default>;
-
 		vcn33-supply = <&vmmcsd_fixed>;
 		vcn18-supply = <&it66122_vcn18_fixed>;
 		vrf12-supply = <&it66122_vcn12_fixed>;
