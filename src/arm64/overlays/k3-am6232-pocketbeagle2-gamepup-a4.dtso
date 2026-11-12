@@ -1,0 +1,272 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Portions derived from BBORG_GAMEPUP-00A2.dts:
+ * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+ */
+
+/dts-v1/;
+/plugin/;
+
+/*
+ * PocketBeagle 2 support for the PocketBeagle GamePup Cape revision A4.
+ *
+ * The GamePup was designed for the AM335x PocketBeagle.  On PocketBeagle 2,
+ * its P1 SPI connection is main_spi2.  The A4 schematic connects LCD MOSI to
+ * P1.12 (SPI2_D1 on PB2); P1.10/SPI2_D0 is the unused MISO direction.
+ *
+ * This source intentionally uses numeric pin configuration and input key
+ * values so it can be compiled directly by dtc without a kernel source tree.
+ */
+
+&{/chosen} {
+	overlays {
+		gamepup-a4 = "PocketBeagle 2 GamePup A4";
+	};
+};
+
+&main_pmx0 {
+	gamepup_spi2_pins: gamepup-spi2-pins {
+		pinctrl-single,pins = <
+			0x01ac 0x020001 /* P1.06 E19: SPI2_CS0, output pull-up */
+			0x01b0 0x010001 /* P1.08 A20: SPI2_CLK, output */
+			0x0194 0x054001 /* P1.10 B19: SPI2_D0, MISO input */
+			0x0198 0x010001 /* P1.12 A19: SPI2_D1, LCD MOSI output */
+
+			0x0140 0x200007 /* P1.06 alternate AM62x pad disabled */
+			0x01f0 0x200007 /* P1.10 alternate AM62x pad disabled */
+			0x013c 0x200007 /* P1.12 alternate AM62x pad disabled */
+		>;
+	};
+
+	gamepup_display_control_pins: gamepup-display-control-pins {
+		pinctrl-single,pins = <
+			0x0104 0x010007 /* P2.17: LCD D/C, GPIO0_64 output */
+			0x0178 0x010007 /* P2.19: LCD reset, GPIO1_0 output */
+		>;
+	};
+
+	gamepup_button_pins: gamepup-button-pins {
+		pinctrl-single,pins = <
+			0x00b8 0x064007 /* P2.02: left down, GPIO0_45 pull-up */
+			0x00bc 0x064007 /* P2.04: left right, GPIO0_46 pull-up */
+			0x00c0 0x064007 /* P2.06: left up, GPIO0_47 pull-up */
+			0x00c4 0x064007 /* P2.08: left left, GPIO0_48 pull-up */
+			0x00d8 0x064007 /* P2.18: right down, GPIO0_53 pull-up */
+			0x00c8 0x064007 /* P2.20: right right, GPIO0_49 pull-up */
+			0x0100 0x064007 /* P2.22: right up, GPIO0_63 pull-up */
+			0x00d0 0x064007 /* P2.24: right left, GPIO0_51 pull-up */
+			0x00f0 0x064007 /* P1.31: Select, GPIO0_59 pull-up */
+			0x0168 0x064007 /* P1.35: Start, GPIO0_88 pull-up */
+		>;
+	};
+
+	gamepup_eye_led_pins: gamepup-eye-led-pins {
+		pinctrl-single,pins = <
+			0x016c 0x010007 /* P1.04 Y18: left eye, GPIO0_89 output */
+			0x015c 0x010007 /* P2.03 AB22: right eye, GPIO0_85 output */
+			0x01a8 0x200007 /* P1.04 alternate AM62x pad disabled */
+			0x019c 0x200007 /* P2.03 alternate AM62x pad disabled */
+		>;
+	};
+
+	gamepup_backlight_pwm_pin: gamepup-backlight-pwm-pin {
+		pinctrl-single,pins = <
+			0x01a4 0x010002 /* P2.01 B20: ECAP2 PWM output */
+			0x0160 0x200007 /* P2.01 alternate AM62x pad disabled */
+		>;
+	};
+
+	gamepup_buzzer_pwm_pin: gamepup-buzzer-pwm-pin {
+		pinctrl-single,pins = <
+			0x01ec 0x010008 /* P1.33 A17: EHRPWM2_B output */
+			0x00e4 0x200007 /* P1.33 alternate AM62x pad disabled */
+		>;
+	};
+
+	/*
+	 * GamePup mikroBUS socket 2 control signals for OLED C Click:
+	 * AN=R/W, RST=reset, PWM=D/C and INT=display power enable.
+	 */
+	gamepup_oledc_control_pins: gamepup-oledc-control-pins {
+		pinctrl-single,pins = <
+			0x017c 0x010007 /* P1.19: OLED R/W, GPIO1_1 output */
+			0x0180 0x010007 /* P1.34: OLED EN, GPIO1_2 output */
+			0x01a0 0x010007 /* P1.02 E18: OLED reset, GPIO1_10 output */
+			0x0164 0x200007 /* P1.02 alternate AM62x pad disabled */
+			0x01e8 0x010007 /* P1.36 B17: OLED D/C, GPIO1_28 output */
+			0x00e0 0x200007 /* P1.36 alternate AM62x pad disabled */
+		>;
+	};
+};
+
+&main_spi2 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&gamepup_spi2_pins>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	display@0 {
+		compatible = "jianda,jd-t18003-t01", "sitronix,st7735r";
+		reg = <0>;
+		spi-max-frequency = <32000000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&gamepup_display_control_pins>;
+		dc-gpios = <&main_gpio0 64 0>;
+		reset-gpios = <&main_gpio1 0 0>;
+		backlight = <&gamepup_backlight>;
+		rotation = <0>;
+	};
+};
+
+/* The GamePup Click socket uses the original PocketBeagle SPI1 pins. */
+&main_spi0 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	gamepup_click_spi: spidev@0 {
+		compatible = "rohm,dh2228fv";
+		reg = <0>;
+		spi-max-frequency = <18000000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&gamepup_oledc_control_pins>;
+	};
+};
+
+&ecap2 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&gamepup_backlight_pwm_pin>;
+};
+
+&epwm2 {
+	status = "okay";
+	/* P1.36 is OLED D/C; the buzzer supplies its P1.33 pinctrl below. */
+	pinctrl-names = "default";
+	pinctrl-0 = <>;
+};
+
+&main_i2c2 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	gamepup_eeprom: eeprom@57 {
+		compatible = "atmel,24c32";
+		reg = <0x57>;
+		pagesize = <32>;
+		read-only;
+	};
+};
+
+&{/} {
+	gamepup_backlight: backlight-gamepup {
+		compatible = "pwm-backlight";
+		pwms = <&ecap2 0 100000 0>;
+		brightness-levels = <0 4 8 16 32 64 96 128 160 192 224 255>;
+		default-brightness-level = <11>;
+	};
+
+	gamepup-buttons {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&gamepup_button_pins>;
+		autorepeat;
+
+		left-pad-left {
+			label = "GamePup Left";
+			linux,code = <105>;
+			gpios = <&main_gpio0 48 1>;
+			debounce-interval = <10>;
+		};
+
+		left-pad-right {
+			label = "GamePup Right";
+			linux,code = <106>;
+			gpios = <&main_gpio0 46 1>;
+			debounce-interval = <10>;
+		};
+
+		left-pad-up {
+			label = "GamePup Up";
+			linux,code = <103>;
+			gpios = <&main_gpio0 47 1>;
+			debounce-interval = <10>;
+		};
+
+		left-pad-down {
+			label = "GamePup Down";
+			linux,code = <108>;
+			gpios = <&main_gpio0 45 1>;
+			debounce-interval = <10>;
+		};
+
+		right-pad-left {
+			label = "GamePup P";
+			linux,code = <25>;
+			gpios = <&main_gpio0 51 1>;
+			debounce-interval = <10>;
+		};
+
+		right-pad-right {
+			label = "GamePup Tab";
+			linux,code = <15>;
+			gpios = <&main_gpio0 49 1>;
+			debounce-interval = <10>;
+		};
+
+		right-pad-up {
+			label = "GamePup Esc";
+			linux,code = <1>;
+			gpios = <&main_gpio0 63 1>;
+			debounce-interval = <10>;
+		};
+
+		right-pad-down {
+			label = "GamePup Enter";
+			linux,code = <28>;
+			gpios = <&main_gpio0 53 1>;
+			debounce-interval = <10>;
+		};
+
+		select {
+			label = "GamePup Select";
+			linux,code = <6>;
+			gpios = <&main_gpio0 59 1>;
+			debounce-interval = <10>;
+		};
+
+		start {
+			label = "GamePup Start";
+			linux,code = <2>;
+			gpios = <&main_gpio0 88 1>;
+			debounce-interval = <10>;
+		};
+	};
+
+	gamepup-eye-leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&gamepup_eye_led_pins>;
+
+		left-eye {
+			label = "gamepup:left-eye";
+			gpios = <&main_gpio0 89 0>;
+			default-state = "off";
+		};
+
+		right-eye {
+			label = "gamepup:right-eye";
+			gpios = <&main_gpio0 85 0>;
+			default-state = "off";
+		};
+	};
+
+	gamepup-buzzer {
+		compatible = "pwm-beeper";
+		pinctrl-names = "default";
+		pinctrl-0 = <&gamepup_buzzer_pwm_pin>;
+		pwms = <&epwm2 1 250000 0>;
+	};
+};
