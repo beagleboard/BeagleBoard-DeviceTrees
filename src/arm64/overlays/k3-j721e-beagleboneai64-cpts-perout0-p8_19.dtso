@@ -1,0 +1,70 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * Copyright (C) 2026 James Clark <jjc@jclark.com>
+ *
+ * DT Overlay for P8.19 as a PPS output from the onboard Ethernet's PTP
+ * hardware clock: MCU_CPSW0 CPTS periodic output GENF0.
+ *
+ * The MCU_CPSW0 CPTS generator GENF0 is driven by Linux as periodic output
+ * channel 0 of the onboard Ethernet's PTP hardware clock (PHC)
+ * (PTP_PEROUT_REQUEST / sysfs period). GENF0 is input 16 of the Time Sync
+ * Router (TIMESYNC_INTRTR0 at 0xA40000), whose output 37 is SYNC3_OUT.
+ * P8.19 is ball V29, pad 0x164, which is SYNC3_OUT in mux mode 3. P8.19 is
+ * also the EHRPWM0_A output of the pwm-epwm0-p8_19 and pwm-epwm0-p8_13-p8_19
+ * overlays, which cannot be used with this one.
+ *
+ * The router comes out of reset with every output disabled and has no
+ * mainline driver, so it is modelled here as a pinctrl-single whose "pins"
+ * are the per-output mux registers: output N at 0x4 + 4*N, value 0x10000
+ * (enable) | input number. The reg size is 1 KiB, as for the same router on
+ * the J722S (BeagleY-AI), where a larger size makes pinctrl-single read past
+ * the register block and the bus fault oopses the kernel when debugfs is
+ * read.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "ti/k3-pinctrl.h"
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j721e-beagleboneai64-cpts-perout0-p8_19.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	p8_19_cpts_genf0: p8-19-cpts-genf0-pins {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x164, PIN_OUTPUT, 3) /* P8_19 (V29) RGMII5_TD2.SYNC3_OUT */
+		>;
+	};
+};
+
+&mcu_cpsw {
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_cpsw_pins_default>, <&p8_19_cpts_genf0>;
+};
+
+&cbass_main {
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	timesync_router: pinctrl@a40000 {
+		compatible = "pinctrl-single";
+		reg = <0x0 0xa40000 0x0 0x400>;
+		#pinctrl-cells = <1>;
+		pinctrl-single,register-width = <32>;
+		pinctrl-single,function-mask = <0x000107ff>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cpts_genf0_route>;
+
+		/* in16 [mcu_cpsw0 cpts genf0] -> out37 [SYNC3_OUT] */
+		cpts_genf0_route: cpts-genf0-route {
+			pinctrl-single,pins = <0x98 0x10010>;
+		};
+	};
+};
