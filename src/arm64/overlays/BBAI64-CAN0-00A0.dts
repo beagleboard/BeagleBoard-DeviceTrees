@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * https://beagleboard.org/ai-64
+ * Copyright (C) 2025 BeagleBoard.org Foundation
+ *
+ * CAN overlay for BeagleBone AI-64
+ * Enables MCAN0 on pins mapped to I2C2 by default
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "ti/k3-pinctrl.h"
+
+&{/chosen} {
+	overlays {
+		BBAI64-CAN0-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	main_mcan0_pins_default: main-mcan0-default-pins {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
+			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
+		>;
+	};
+};
+
+&main_mcan0 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&main_mcan0_pins_default>;
+};
+
+&main_i2c2 {
+	status = "disabled";
+};
