@@ -1,0 +1,52 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * Copyright (C) 2026 James Clark <jjc@jclark.com>
+ *
+ * DT Overlay for main_uart2 on P9.24 (TXD) and P9.26 (RXD), the BeagleBone
+ * cape interface's UART1 position (bone/uart/1), as on the BeagleBone Black.
+ *
+ *   P9.24  Y5  0x1E0 mode 3  UART2_TXD   (also wired to AJ24, 0x034)
+ *   P9.26  Y1  0x1DC mode 3  UART2_RXD   (also wired to AF24, 0x030)
+ *
+ * Each of these header pins is connected to two SoC balls. The second ball
+ * is set to a GPIO input with no pull, so that it does not drive the pin.
+ *
+ * The base DT uses the same two pins for main_i2c4 (I2C4_SCL/I2C4_SDA, with
+ * pull-ups), which has no devices on it. This overlay disables main_i2c4.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "ti/k3-pinctrl.h"
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j721e-beagleboneai64-uart-uart2.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	p9_24_p9_26_uart2_pins: p9-24-p9-26-uart2-pins {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x1e0, PIN_OUTPUT, 3) /* P9_24 (Y5) SPI1_D0.UART2_TXD */
+			J721E_IOPAD(0x034, PIN_INPUT, 7) /* P9_24 (AJ24) PRG1_PRU0_GPO12.GPIO0_13 */
+			J721E_IOPAD(0x1dc, PIN_INPUT, 3) /* P9_26 (Y1) SPI1_CLK.UART2_RXD */
+			J721E_IOPAD(0x030, PIN_INPUT, 7) /* P9_26 (AF24) PRG1_PRU0_GPO11.GPIO0_12 */
+		>;
+	};
+};
+
+&main_i2c4 {
+	status = "disabled";
+};
+
+&main_uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&p9_24_p9_26_uart2_pins>;
+	symlink = "bone/uart/1";
+	status = "okay";
+};

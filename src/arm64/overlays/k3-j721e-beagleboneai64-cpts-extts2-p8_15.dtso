@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: GPL-2.0-only OR MIT
+/*
+ * Copyright (C) 2026 James Clark <jjc@jclark.com>
+ *
+ * DT Overlay for P8.15 as a PPS input to the onboard Ethernet's PTP hardware
+ * clock: MCU_CPSW0 CPTS hardware timestamp input 3 (HW3_TS_PUSH).
+ *
+ * P8.15 is ball AB29, pad 0x0F8. In mux mode 2 it is PRG0_IEP0_EDC_LATCH_IN0,
+ * which is input 48 of the Time Sync Router (TIMESYNC_INTRTR0 at 0xA40000).
+ * Router output 24 is the MCU_CPSW0 CPTS hw3_push, which Linux reports as
+ * external timestamp channel 2 of the onboard Ethernet's PTP hardware clock
+ * (PHC) (PTP_EXTTS_REQUEST / extts_enable). A rising edge on P8.15 (for
+ * example a GNSS 1PPS) latches the counter that timestamps PTP packets, so
+ * the PPS can discipline the PHC directly. No PRU firmware is needed: the
+ * pad reaches the router whether or not the PRU-ICSSG is running.
+ *
+ * The router comes out of reset with every output disabled and has no
+ * mainline driver, so it is modelled here as a pinctrl-single whose "pins"
+ * are the per-output mux registers: output N at 0x4 + 4*N, value 0x10000
+ * (enable) | input number. The reg size is 1 KiB, as for the same router on
+ * the J722S (BeagleY-AI), where a larger size makes pinctrl-single read past
+ * the register block and the bus fault oopses the kernel when debugfs is
+ * read.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "ti/k3-pinctrl.h"
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		k3-j721e-beagleboneai64-cpts-extts2-p8_15.kernel = __TIMESTAMP__;
+	};
+};
+
+&main_pmx0 {
+	p8_15_cpts_hw3tspush: p8-15-cpts-hw3tspush-pins {
+		pinctrl-single,pins = <
+			J721E_IOPAD(0x0f8, PIN_INPUT, 2) /* P8_15 (AB29) PRG0_PRU0_GPO18.PRG0_IEP0_EDC_LATCH_IN0 */
+		>;
+	};
+};
+
+&mcu_cpsw {
+	pinctrl-names = "default";
+	pinctrl-0 = <&mcu_cpsw_pins_default>, <&p8_15_cpts_hw3tspush>;
+};
+
+&cbass_main {
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	timesync_router: pinctrl@a40000 {
+		compatible = "pinctrl-single";
+		reg = <0x0 0xa40000 0x0 0x400>;
+		#pinctrl-cells = <1>;
+		pinctrl-single,register-width = <32>;
+		pinctrl-single,function-mask = <0x000107ff>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cpts_hw3_route>;
+
+		/* in48 [PRG0_IEP0_EDC_LATCH_IN0 pin] -> out24 [mcu_cpsw0 cpts hw3_push] */
+		cpts_hw3_route: cpts-hw3-route {
+			pinctrl-single,pins = <0x64 0x10030>;
+		};
+	};
+};
