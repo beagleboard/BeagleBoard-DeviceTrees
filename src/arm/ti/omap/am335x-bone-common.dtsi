@@ -21,6 +21,10 @@
 		stdout-path = "serial0:115200n8";
 	};
 
+	aliases {
+		watchdog0 = &wdt2;
+	};
+
 	leds {
 		pinctrl-names = "default";
 		pinctrl-0 = <&user_leds_s0>;
